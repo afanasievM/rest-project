@@ -1,0 +1,323 @@
+Request URL http://localhost:8081/students?size=2&page=0
+  Request method: GET
+  Accept: application/json
+  Description: Retrieve all students
+  Parameters:
+	"size": optional,
+	"page":  optional
+  Responses:
+  "200": [
+    {
+      "id": "f92afb9e-462a-11ed-b878-0242ac120002",
+      "firstName": "Yura",
+      "lastName": "Orlycia",
+      "birthDay": "1980-01-01 12:00:00",
+      "group": {
+        "id": "4937378e-4620-11ed-b878-0242ac120002",
+        "name": "ET-01"
+      },
+      "courseNumber": "1",
+      "isCaptain": "false"
+    },
+    {
+      "id": "f92afe3c-462a-11ed-b878-0242ac120002",
+      "firstName": "Andriy",
+      "lastName": "Lyseiko",
+      "birthDay": "1980-01-02 12:00:00",
+      "group": {
+        "id": "49373afe-4620-11ed-b878-0242ac120002",
+        "name": "ET-11"
+      },
+      "course": "2",
+      "isCaptain": "false"
+    }
+  ],
+"200": []
+
+Request URL http://localhost:8081/students:
+  Request method: POST
+  Content-type: application/json
+  Description: Add new student
+  Payload:
+  {
+    "firstName": "Yura" - required,
+    "lastName": "Orlycia" - required,
+    "birthDay": "1980-01-01 12:00:00" -required,
+    "groupId": "4937378e-4620-11ed-b878-0242ac120002" - optional,
+    "courseNumber": "1" - required,
+    "isCaptain": "false" - required
+  }
+  Responses:
+    "409": "Conflict"
+    "201": "Created"
+
+Request URL http://localhost:8081/students/f92afb9e-462a-11ed-b878-0242ac120002:
+  Request method: PUT
+  Accept: application/json
+  Description: Update student fields
+  Payload:
+  {
+    "firstName": "Yura" — optional,
+    "lastName": "Orlycia" — optional,
+    "birthDay": "1980-01-01 12:00:00" — optional,
+    "group":
+      {
+        "id": "4937378e-4620-11ed-b878-0242ac120002"
+      } — optional,
+    "course": "1" — optional,
+    "isCaptain": "false" — optional,
+  }
+  Responses:
+    "404": "Student aren't found."
+    "205": "Reset content"
+
+Request URL  http://localhost:8081/students/f92afb9e-462a-11ed-b878-0242ac120002:
+  Request method: GET
+  Accept: application/json
+  Description: Retrieve student by ID
+  Parameters:
+	"id": - required
+  Responses:
+    "200": "OK"
+      Payload:
+        {
+          "id": "f92afb9e-462a-11ed-b878-0242ac120002",
+          "firstName": "Yura",
+          "lastName": "Orlycia",
+          "birthDay": "1980-01-01 12:00:00",
+          "group": {
+            "id": "4937378e-4620-11ed-b878-0242ac120002",
+            "name": "ET-01"
+          },
+          "course": "1",
+          "isCaptain": "false"
+        }
+    "404": "Student aren't found."
+
+Request URL  http://localhost:8081/students/f92afb9e-462a-11ed-b878-0242ac120002:
+  Request method: DELETE
+  Description: Delete student by ID
+  Parameters:
+	"id": - required
+  Responses:
+    "204": "No Content"
+
+Request URL http://localhost:8081/teachers?size=2&page=0:
+  Request method: GET
+  Accept: application/json
+  Description: Retrieve all teachers
+  Parameters:
+	"size": - optional,
+	"page": - optional
+  Responses:
+  "200": [
+    {
+      "id": "e966f608-4621-11ed-b878-0242ac120002",
+      "firstName": "Yulia",
+      "lastName": "Chunyak",
+      "birthDay": "1980-01-19 12:00:00",
+      "degree": "NTUU KPI",
+      "salary": "2800",
+      firstDay: "2000-09-19 08:00:00",
+      rank: "lecturer",
+      title: "doctor"
+    },
+    {
+      "id": "e966c430-4621-11ed-b878-0242ac120002",
+      "firstName": "Kateryna",
+      "lastName": "Kyrylenko",
+      "birthDay": "1980-01-01 12:00:00",
+      "degree": "NTUU KPI",
+      "salary": "1000",
+      firstDay: "2000-09-01 08:00:00",
+      rank: "lecturer",
+      title: "phd"
+    }
+  ],
+"200": []
+
+Request URL http://localhost:8081/teachers:
+  Request method: POST
+  Content-type: application/json
+  Description: Add new teacher
+  Payload:
+  {
+    "firstName": "Yulia" - required,
+    "lastName": "Chunyak"- required,
+    "birthDay": "1980-01-19 12:00:00" - required,
+    "degree": "NTUU KPI"- required,
+    "salary": "2800" - optional,
+    firstDay: "2000-09-19 08:00:00" - required,
+    rank: "lecturer" - optional,
+    title: "doctor" - optional
+  }
+  Responses:
+    "409": "Conflict"
+    "201": "Created"
+
+Request URL http://localhost:8081/teachers:
+  Request method: PUT
+  Content-type: application/json
+  Description: Update teacher fields
+  Payload:
+  {
+    "firstName": "Kateryna"  - optional,
+    "lastName": "Kyrylenko"  - optional,
+    "birthDay": "1980-01-01 12:00:00"  - optional,
+    "degree": "NTUU KPI"  - optional,
+    "salary": "1000"  - optional,
+    firstDay: "2000-09-01 08:00:00"  - optional,
+    rank: "lecturer"  - optional,
+    title: "phd"  - optional
+  }
+  Responses:
+    "404": "Student aren't found."
+    "205": "Reset content"
+
+Request URL  http://localhost:8081/teachers/e966c430-4621-11ed-b878-0242ac120002:
+  Request method: GET
+  Accept: application/json
+  Description: Retrieve teacher by ID
+  Parameters:
+	"id": - required
+  Responses:
+    "200": "OK"
+      Payload:
+        {
+          "id": "e966c430-4621-11ed-b878-0242ac120002",
+          "firstName": "Kateryna",
+          "lastName": "Kyrylenko",
+          "birthDay": "1980-01-01 12:00:00",
+          "degree": "NTUU KPI",
+          "salary": "1000",
+          firstDay: "2000-09-01 08:00:00",
+          rank: "lecturer",
+          title: "phd"
+        }
+    "404": "Teacher aren't found."
+
+Request URL  http://localhost:8081/teachers/e966c430-4621-11ed-b878-0242ac120002:
+  Request method: DELETE
+  Accept: application/json
+  Description: Delete teacher by ID
+  Parameters:
+	"id": - required
+  Responses:
+    "204": "No Content",
+    "404": "Not found"
+
+Request URL
+http://localhost:8081/student/{id}/schedule?startdate=2022-10-13&enddate=2022-10-13:
+  Request method: GET
+  Accept: application/json
+  Description: Get student days schedule
+  Parameters:
+    "startdate": required
+    "enddate": optional
+  Responses:
+    "200": "OK"
+      Payload:
+        {
+          id: "94969c3e-4633-11ed-b878-0242ac120002",
+          lessons:
+            [
+              {
+                id: "1228e6d4-462f-11ed-b878-0242ac120002",
+                subject:
+                  {
+                    id: "79324d34-434b-11ed-b878-0242ac120002",
+                    name: "Electrical drive"
+                  },
+                classRoom: {
+                  id: "6705b1e6-462f-11ed-b878-0242ac120002",
+                  number: "1"
+                },
+                number: "4",
+                startTime: "14:15:00",
+                endTime: "15:50:00",
+                teacher:
+                  {
+                    "id": "e966f608-4621-11ed-b878-0242ac120002",
+                    "firstName": "Yulia",
+                    "lastName": "Chunyak",
+                    "birthDay": "1980-01-19 12:00:00",
+                    "degree": "NTUU KPI",
+                    "salary": "2800",
+                    firstDay: "2000-09-19 08:00:00",
+                    rank: "lecturer",
+                    title: "doctor"
+                  },
+                groups:
+                  [
+                    {
+                      id: "4937378e-4620-11ed-b878-0242ac120002",
+                      name: "ET-01"
+                    },
+                    {
+                      id: "49373afe-4620-11ed-b878-0242ac120002",
+                      name: "ET-11"
+                    }
+                  ]
+              }
+            ],
+          dayNumber: "4"
+        }
+    "404": "Teacher aren't found."
+
+Request URL
+http://localhost:8081/teacher/{id}/schedule?startdate=2022-10-13&enddate=2022-10-13:
+  Request method: GET
+  Accept: application/json
+  Description: Get teacher days schedule
+  Parameters:
+    "startdate": required
+    "enddate": optional
+  Responses:
+    "200": "OK"
+      Payload:
+        {
+          id: "949694f0-4633-11ed-b878-0242ac120002",
+          lessons:
+            [
+              {
+                id: "1228e6d4-462f-11ed-b878-0242ac120002",
+                subject:
+                  {
+                    id: "79324d34-434b-11ed-b878-0242ac120002",
+                    name: "Electrical drive"
+                  },
+                classRoom: {
+                  id: "6705b1e6-462f-11ed-b878-0242ac120002",
+                  number: "1"
+                },
+                number: "4",
+                startTime: "14:15:00",
+                endTime: "15:50:00",
+                teacher:
+                  {
+                    "id": "e966f608-4621-11ed-b878-0242ac120002",
+                    "firstName": "Yulia",
+                    "lastName": "Chunyak",
+                    "birthDay": "1980-01-19 12:00:00",
+                    "degree": "NTUU KPI",
+                    "salary": "2800",
+                    firstDay: "2000-09-19 08:00:00",
+                    rank: "lecturer",
+                    title: "doctor"
+                  },
+                groups:
+                  [
+                    {
+                      id: "4937378e-4620-11ed-b878-0242ac120002",
+                      name: "ET-01"
+                    },
+                    {
+                      id: "49373afe-4620-11ed-b878-0242ac120002",
+                      name: "ET-11"
+                    }
+                  ]
+              }
+            ],
+          dayNumber: "4"
+        }
+    "404": "Not Found"

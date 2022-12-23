@@ -1,0 +1,6 @@
+ALTER TABLE users
+ALTER
+COLUMN password TYPE VARCHAR(36);
+ALTER TABLE users
+    ALTER
+        COLUMN password SET NOT NULL;
