@@ -7,6 +7,7 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors;
+import ua.com.foxminded.restClient.mapper.TransactionMapper;
 
 import java.util.Collections;
 
@@ -21,6 +22,4 @@ public class WebConfig {
         restTemplate.setInterceptors(Collections.singletonList(requestLoggingInterceptors));
         return restTemplate;
     }
-
-
 }

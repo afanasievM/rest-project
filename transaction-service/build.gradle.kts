@@ -9,12 +9,9 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    maven {
-        url = uri("https://repo.maven.apache.org/maven2/")
-    }
 }
+
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter:2.7.4")
@@ -31,14 +28,20 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.7.4")
     compileOnly ("org.projectlombok:lombok:1.18.24")
     annotationProcessor ("org.projectlombok:lombok:1.18.24")
+    annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.3.Final")
+
 
 }
-
+sourceSets {
+    main{
+        java.srcDirs.add(File("build/generated/source/apt/main"))
+    }
+}
 
 group = "ua.com.foxminded"
 version = "0.0.1-SNAPSHOT"
 description = "restClient"
-java.sourceCompatibility = JavaVersion.VERSION_16
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -49,6 +52,10 @@ publishing {
 tasks.withType<JavaCompile>() {
     options.encoding = "UTF-8"
 }
-apply(plugin = "java")
+tasks.withType<JavaCompile>() {
+    options.compilerArgs = listOf("-Amapstruct.suppressGeneratorTimestamp=true")
 
+
+}
+apply(plugin = "java")
 
