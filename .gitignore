@@ -1,0 +1,4 @@
+transaction-service/.gradle
+transaction-service/target
+transaction-service/build
+transaction-service/.idea
