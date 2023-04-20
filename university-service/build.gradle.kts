@@ -29,7 +29,7 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
     api("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
     api("org.springframework.boot:spring-boot-starter-security:$SPRINGBOOT_VER")
-    implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
+    api("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     testImplementation("org.springframework.security:spring-security-test:$SPRINGBOOT_VER")
 }
