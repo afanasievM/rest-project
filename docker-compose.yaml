@@ -2,6 +2,7 @@ version: '3.9'
 
 services:
   university:
+    platform: linux/arm64
     image: 'university-service'
     build:
       context: ./university-service
@@ -22,6 +23,7 @@ services:
       - "8081:8081"
 
   transaction:
+    platform: linux/arm64
     image: 'transaction-service'
     build:
       context: ./transaction-service
