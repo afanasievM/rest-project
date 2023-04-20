@@ -2,3 +2,9 @@ transaction-service/.gradle
 transaction-service/target
 transaction-service/build
 transaction-service/.idea
+
+university-service/.gradle
+university-service/target
+university-service/build
+university-service/.idea
+
