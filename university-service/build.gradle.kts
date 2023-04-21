@@ -4,15 +4,18 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-val OPENAPI_VER = "1.6.14"
+
+val OPENAPI_VER = "1.6.13"
 val HTTP_CLIENT_VER = "4.5.13"
 val POSTGRES_VER = "42.5.1"
 val FLYWAY_CORE_VER = "8.5.13"
-val SPRINGBOOT_VER = "2.7.4"
+
+
 
 plugins {
-    `java-library`
-    id("org.springframework.boot") version "2.7.4"
+    java
+    id("org.springframework.boot") version "2.7.11"
+    id("io.spring.dependency-management") version "1.0.15.RELEASE"
 }
 
 repositories {
@@ -20,18 +23,26 @@ repositories {
 }
 
 dependencies {
-    api("org.springframework.boot:spring-boot-starter:$SPRINGBOOT_VER")
-    api("org.flywaydb:flyway-core:$FLYWAY_CORE_VER")
-    api("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
-    api("org.springframework.boot:spring-boot-starter-web:$SPRINGBOOT_VER")
-    api("org.postgresql:postgresql:$POSTGRES_VER")
-    api("org.springframework.boot:spring-boot-starter-validation:$SPRINGBOOT_VER")
-    api("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
-    api("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
-    api("org.springframework.boot:spring-boot-starter-security:$SPRINGBOOT_VER")
-    api("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
-    testImplementation("org.springframework.security:spring-security-test:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.flywaydb:flyway-core:$FLYWAY_CORE_VER")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.postgresql:postgresql:$POSTGRES_VER")
+    implementation("org.springframework.boot:spring-boot-starter-validation:")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+    testImplementation("org.springframework.security:spring-security-test")
+
+
+
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 group = "ua.com.foxminded"
