@@ -1,41 +1,31 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import org.junit.jupiter.api.Test;
-import ua.com.foxminded.courseproject.dto.WeekScheduleDto;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import ua.com.foxminded.courseproject.dto.WeekScheduleDto
+import javax.validation.ConstraintViolation
 
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class WeekScheduleDtoTest extends ValidationSetupTest {
-
+class WeekScheduleDtoTest : ValidationSetupTest() {
     @Test
-    public void numberValidation_shouldThrowException_whenNumberIsNull() {
-        WeekScheduleDto weekScheduleDto = new WeekScheduleDto();
-        weekScheduleDto.setIsOdd(null);
-        String expectedMessage = "must not be null";
-        Integer expectedSize = 1;
-
-        Set<ConstraintViolation<WeekScheduleDto>> constraintViolations = validator.validate(weekScheduleDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
-
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+    fun numberValidation_shouldThrowException_whenNumberIsNull() {
+        val weekScheduleDto = WeekScheduleDto()
+        weekScheduleDto.isOdd = null
+        val expectedMessage = "must not be null"
+        val expectedSize = 1
+        val constraintViolations: Set<ConstraintViolation<WeekScheduleDto>> = validator.validate<WeekScheduleDto>(weekScheduleDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
-
     @Test
-    public void numberValidation_shouldNotThrowException_whenNumberEqualsZero() {
-        WeekScheduleDto weekScheduleDto = new WeekScheduleDto();
-        weekScheduleDto.setIsOdd(true);
-        Integer expectedSize = 0;
-
-        Set<ConstraintViolation<WeekScheduleDto>> constraintViolations = validator.validate(weekScheduleDto);
-        Integer actualSize = constraintViolations.size();
-
-        assertEquals(expectedSize, actualSize);
+    fun numberValidation_shouldNotThrowException_whenNumberEqualsZero() {
+        val weekScheduleDto = WeekScheduleDto()
+        weekScheduleDto.isOdd = true
+        val expectedSize = 0
+        val constraintViolations: Set<ConstraintViolation<WeekScheduleDto>> = validator.validate<WeekScheduleDto>(weekScheduleDto)
+        val actualSize = constraintViolations.size
+        Assertions.assertEquals(expectedSize, actualSize)
     }
-
 }

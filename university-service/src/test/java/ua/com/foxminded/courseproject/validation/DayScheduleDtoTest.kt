@@ -1,93 +1,89 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import org.junit.jupiter.api.Test;
-import ua.com.foxminded.courseproject.dto.DayScheduleDto;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import ua.com.foxminded.courseproject.dto.DayScheduleDto
+import javax.validation.ConstraintViolation
 
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class DayScheduleDtoTest extends ValidationSetupTest {
-
+class DayScheduleDtoTest : ValidationSetupTest() {
     @Test
-    public void dayNumberValidation_shouldThrowException_whenNumberIsNull() {
-        DayScheduleDto dayScheduleDto = new DayScheduleDto();
-        dayScheduleDto.setDayNumber(null);
-        String expectedMessage = "must not be null";
-        Integer expectedSize = 1;
+    fun dayNumberValidation_shouldThrowException_whenNumberIsNull() {
+        val dayScheduleDto = DayScheduleDto()
+        dayScheduleDto.dayNumber = null
+        val expectedMessage = "must not be null"
+        val expectedSize = 1
 
-        Set<ConstraintViolation<DayScheduleDto>> constraintViolations = validator.validate(dayScheduleDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void dayNumberValidation_shouldThrowException_whenNumberLessOne() {
-        DayScheduleDto dayScheduleDto = new DayScheduleDto();
-        dayScheduleDto.setDayNumber(0);
-        String expectedMessage = "Weekday number should be greater than 0 and less than 8.";
-        Integer expectedSize = 1;
+    fun dayNumberValidation_shouldThrowException_whenNumberLessOne() {
+        val dayScheduleDto = DayScheduleDto()
+        dayScheduleDto.dayNumber = 0
+        val expectedMessage = "Weekday number should be greater than 0 and less than 8."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<DayScheduleDto>> constraintViolations = validator.validate(dayScheduleDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void dayNumberValidation_shouldNotThrowException_whenNumberGreaterSeven() {
-        DayScheduleDto dayScheduleDto = new DayScheduleDto();
-        dayScheduleDto.setDayNumber(8);
-        String expectedMessage = "Weekday number should be greater than 0 and less than 8.";
-        Integer expectedSize = 1;
+    fun dayNumberValidation_shouldNotThrowException_whenNumberGreaterSeven() {
+        val dayScheduleDto = DayScheduleDto()
+        dayScheduleDto.dayNumber = 8
+        val expectedMessage = "Weekday number should be greater than 0 and less than 8."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<DayScheduleDto>> constraintViolations = validator.validate(dayScheduleDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void dayNumberValidation_shouldNotThrowException_whenNumberEqualsOne() {
-        DayScheduleDto dayScheduleDto = new DayScheduleDto();
-        dayScheduleDto.setDayNumber(1);
-        Integer expectedSize = 0;
+    fun dayNumberValidation_shouldNotThrowException_whenNumberEqualsOne() {
+        val dayScheduleDto = DayScheduleDto()
+        dayScheduleDto.dayNumber = 1
+        val expectedSize = 0
 
-        Set<ConstraintViolation<DayScheduleDto>> constraintViolations = validator.validate(dayScheduleDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void dayNumberValidation_shouldNotThrowException_whenNumberEqualsSeven() {
-        DayScheduleDto dayScheduleDto = new DayScheduleDto();
-        dayScheduleDto.setDayNumber(7);
-        Integer expectedSize = 0;
+    fun dayNumberValidation_shouldNotThrowException_whenNumberEqualsSeven() {
+        val dayScheduleDto = DayScheduleDto()
+        dayScheduleDto.dayNumber = 7
+        val expectedSize = 0
 
-        Set<ConstraintViolation<DayScheduleDto>> constraintViolations = validator.validate(dayScheduleDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void dayNumberValidation_shouldNotThrowException_whenNumberBetweenOneAndSeven() {
-        DayScheduleDto dayScheduleDto = new DayScheduleDto();
-        dayScheduleDto.setDayNumber(5);
-        Integer expectedSize = 0;
+    fun dayNumberValidation_shouldNotThrowException_whenNumberBetweenOneAndSeven() {
+        val dayScheduleDto = DayScheduleDto()
+        dayScheduleDto.dayNumber = 5
+        val expectedSize = 0
 
-        Set<ConstraintViolation<DayScheduleDto>> constraintViolations = validator.validate(dayScheduleDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 }

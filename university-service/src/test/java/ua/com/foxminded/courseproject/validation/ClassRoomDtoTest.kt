@@ -1,68 +1,62 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import org.junit.jupiter.api.Test;
-import ua.com.foxminded.courseproject.dto.ClassRoomDto;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import ua.com.foxminded.courseproject.dto.ClassRoomDto
+import javax.validation.ConstraintViolation
 
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class ClassRoomDtoTest extends ValidationSetupTest {
-
+class ClassRoomDtoTest : ValidationSetupTest() {
     @Test
-    public void numberValidation_shouldThrowException_whenNumberIsNull() {
-        ClassRoomDto classRoomDto = new ClassRoomDto();
-        classRoomDto.setNumber(null);
-        String expectedMessage = "must not be null";
-        Integer expectedSize = 1;
+    fun numberValidation_shouldThrowException_whenNumberIsNull() {
+        val classRoomDto = ClassRoomDto()
+        classRoomDto.number = null
+        val expectedMessage = "must not be null"
+        val expectedSize = 1
 
-        Set<ConstraintViolation<ClassRoomDto>> constraintViolations = validator.validate(classRoomDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldThrowException_whenNumberIsNegative() {
-        ClassRoomDto classRoomDto = new ClassRoomDto();
-        classRoomDto.setNumber(-5);
-        String expectedMessage = "Classroom number must be positive or equal 0.";
-        Integer expectedSize = 1;
+    fun numberValidation_shouldThrowException_whenNumberIsNegative() {
+        val classRoomDto = ClassRoomDto()
+        classRoomDto.number = -5
+        val expectedMessage = "Classroom number must be positive or equal 0."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<ClassRoomDto>> constraintViolations = validator.validate(classRoomDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldNotThrowException_whenNumberEqualsZero() {
-        ClassRoomDto classRoomDto = new ClassRoomDto();
-        classRoomDto.setNumber(0);
-        Integer expectedSize = 0;
+    fun numberValidation_shouldNotThrowException_whenNumberEqualsZero() {
+        val classRoomDto = ClassRoomDto()
+        classRoomDto.number = 0
+        val expectedSize = 0
 
-        Set<ConstraintViolation<ClassRoomDto>> constraintViolations = validator.validate(classRoomDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldNotThrowException_whenNumberIsPositive() {
-        ClassRoomDto classRoomDto = new ClassRoomDto();
-        classRoomDto.setNumber(1);
-        Integer expectedSize = 0;
+    fun numberValidation_shouldNotThrowException_whenNumberIsPositive() {
+        val classRoomDto = ClassRoomDto()
+        classRoomDto.number = 1
+        val expectedSize = 0
 
-        Set<ConstraintViolation<ClassRoomDto>> constraintViolations = validator.validate(classRoomDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
-
-
 }

@@ -1,18 +1,20 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeAll
+import javax.validation.Validation
+import javax.validation.Validator
 
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
+open class ValidationSetupTest {
+    companion object {
 
-public class ValidationSetupTest {
+        @JvmStatic
+        protected lateinit var validator: Validator
 
-    protected static Validator validator;
-
-    @BeforeAll
-    public static void setUpValidator() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
+        @JvmStatic
+        @BeforeAll
+        fun setUpValidator() {
+            val factory = Validation.buildDefaultValidatorFactory()
+            validator = factory.validator
+        }
     }
 }

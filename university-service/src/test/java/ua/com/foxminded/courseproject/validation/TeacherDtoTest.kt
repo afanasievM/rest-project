@@ -1,42 +1,37 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import ua.com.foxminded.courseproject.dto.TeacherDto;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import ua.com.foxminded.courseproject.dto.TeacherDto
+import java.time.LocalDate
+import javax.validation.ConstraintViolation
 
-import javax.validation.ConstraintViolation;
-import java.time.LocalDate;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class TeacherDtoTest extends PersonDtoTest<TeacherDto> {
-
+class TeacherDtoTest : PersonDtoTest<TeacherDto>() {
     @BeforeEach
-    void setUp() {
-        this.person = new TeacherDto();
-        this.person.setFirstName("firstName");
-        this.person.setLastName("lastName");
-        this.person.setBirthDay(LocalDate.now().minusYears(18));
-        this.person.setFirstDay(LocalDate.now());
-        this.person.setDegree("degree");
-        this.person.setSalary(1000);
-        this.person.setRank("rank");
-        this.person.setTitle("title");
+    fun setUp() {
+        person = TeacherDto()
+        person.firstName = "firstName"
+        person.lastName = "lastName"
+        person.birthDay = LocalDate.now().minusYears(18)
+        person.firstDay = LocalDate.now()
+        person.degree = "degree"
+        person.salary = 1000
+        person.rank = "rank"
+        person.title = "title"
     }
 
     @Test
-    public void courseValidation_shouldThrowException_whenNumberIsNull() {
-        this.person.setFirstDay(null);
-        String expectedMessage = "must not be null";
-        Integer expectedSize = 1;
+    fun courseValidation_shouldThrowException_whenNumberIsNull() {
+        person.firstDay = null
+        val expectedMessage = "must not be null"
+        val expectedSize = 1
 
-        Set<ConstraintViolation<TeacherDto>> constraintViolations = validator.validate(this.person);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<TeacherDto?>> = validator.validate<TeacherDto?>(person)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
-
 }

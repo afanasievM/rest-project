@@ -16,6 +16,7 @@ plugins {
     java
     id("org.springframework.boot") version "2.7.11"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
+    kotlin("jvm") version "1.8.21"
 }
 
 repositories {
@@ -35,7 +36,8 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation(kotlin("test"))
 
 
 }
@@ -55,4 +57,7 @@ tasks.withType<JavaCompile>() {
 
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
+}
+kotlin {
+    jvmToolchain(17)
 }

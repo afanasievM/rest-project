@@ -1,94 +1,89 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import org.junit.jupiter.api.Test;
-import ua.com.foxminded.courseproject.dto.GroupDto;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import ua.com.foxminded.courseproject.dto.GroupDto
+import javax.validation.ConstraintViolation
 
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class GroupDtoTest extends ValidationSetupTest {
-
+class GroupDtoTest : ValidationSetupTest() {
     @Test
-    public void nameValidation_shouldThrowException_whenNameIsNull() {
-        GroupDto groupDto = new GroupDto();
-        groupDto.setName(null);
-        String expectedMessage = "must not be null";
-        Integer expectedSize = 1;
+    fun nameValidation_shouldThrowException_whenNameIsNull() {
+        val groupDto = GroupDto()
+        groupDto.name = null
+        val expectedMessage = "must not be null"
+        val expectedSize = 1
 
-        Set<ConstraintViolation<GroupDto>> constraintViolations = validator.validate(groupDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void nameValidation_shouldThrowException_whenNameIsEmpty() {
-        GroupDto groupDto = new GroupDto();
-        groupDto.setName("");
-        String expectedMessage = "Group name should be between 1 and 36.";
-        Integer expectedSize = 1;
+    fun nameValidation_shouldThrowException_whenNameIsEmpty() {
+        val groupDto = GroupDto()
+        groupDto.name = ""
+        val expectedMessage = "Group name should be between 1 and 36."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<GroupDto>> constraintViolations = validator.validate(groupDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void nameValidation_shouldNotThrowException_whenNameLengthEqualsOne() {
-        GroupDto groupDto = new GroupDto();
-        groupDto.setName("s");
-        Integer expectedSize = 0;
+    fun nameValidation_shouldNotThrowException_whenNameLengthEqualsOne() {
+        val groupDto = GroupDto()
+        groupDto.name = "s"
+        val expectedSize = 0
 
-        Set<ConstraintViolation<GroupDto>> constraintViolations = validator.validate(groupDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void nameValidation_shouldNotThrowException_whenNameLengthBetweenOneAndThirtySix() {
-        GroupDto groupDto = new GroupDto();
-        groupDto.setName("sss");
-        Integer expectedSize = 0;
+    fun nameValidation_shouldNotThrowException_whenNameLengthBetweenOneAndThirtySix() {
+        val groupDto = GroupDto()
+        groupDto.name = "sss"
+        val expectedSize = 0
 
-        Set<ConstraintViolation<GroupDto>> constraintViolations = validator.validate(groupDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void nameValidation_shouldNotThrowException_whenNameLengthEqualsThirtySix() {
-        GroupDto groupDto = new GroupDto();
-        groupDto.setName("s".repeat(36));
-        Integer expectedSize = 0;
+    fun nameValidation_shouldNotThrowException_whenNameLengthEqualsThirtySix() {
+        val groupDto = GroupDto()
+        groupDto.name = "s".repeat(36)
+        val expectedSize = 0
 
-        Set<ConstraintViolation<GroupDto>> constraintViolations = validator.validate(groupDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void nameValidation_shouldThrowException_whenNameLengthGreaterThanThirtySix() {
-        GroupDto groupDto = new GroupDto();
-        groupDto.setName("s".repeat(37));
-        String expectedMessage = "Group name should be between 1 and 36.";
-        Integer expectedSize = 1;
+    fun nameValidation_shouldThrowException_whenNameLengthGreaterThanThirtySix() {
+        val groupDto = GroupDto()
+        groupDto.name = "s".repeat(37)
+        val expectedMessage = "Group name should be between 1 and 36."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<GroupDto>> constraintViolations = validator.validate(groupDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
-
 }

@@ -1,138 +1,132 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import ua.com.foxminded.courseproject.dto.ClassRoomDto;
-import ua.com.foxminded.courseproject.dto.LessonDto;
-import ua.com.foxminded.courseproject.dto.SubjectDto;
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import ua.com.foxminded.courseproject.dto.ClassRoomDto
+import ua.com.foxminded.courseproject.dto.LessonDto
+import ua.com.foxminded.courseproject.dto.SubjectDto
+import javax.validation.ConstraintViolation
 
-import javax.validation.ConstraintViolation;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class LessonDtoTest extends ValidationSetupTest {
-    private LessonDto lessonDto;
-
+class LessonDtoTest : ValidationSetupTest() {
+    private lateinit var lessonDto: LessonDto
     @BeforeEach
-    void setUp(){
-        this.lessonDto = new LessonDto();
-        this.lessonDto.setSubject(new SubjectDto());
-        this.lessonDto.setClassRoom(new ClassRoomDto());
-        this.lessonDto.setNumber(3);
+    fun setUp() {
+        lessonDto = LessonDto()
+        lessonDto.subject = SubjectDto()
+        lessonDto.classRoom = ClassRoomDto()
+        lessonDto.number = 3
     }
 
     @Test
-    public void subjectValidation_shouldThrowException_whenNameIsNull() {
-        this.lessonDto.setSubject(null);
-        String expectedMessage = "Lesson subject should be not null.";
-        Integer expectedSize = 1;
+    fun subjectValidation_shouldThrowException_whenNameIsNull() {
+        lessonDto.subject = null
+        val expectedMessage = "Lesson subject should be not null."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void validation_shouldNotThrowException_whenSubjectClassroomNumberAreNotNullAndValid() {
-        Integer expectedSize = 0;
+    fun validation_shouldNotThrowException_whenSubjectClassroomNumberAreNotNullAndValid() {
+        val expectedSize = 0
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
-
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void classRoomValidation_shouldThrowException_whenNameIsNull() {
-        this.lessonDto.setClassRoom(null);
-        String expectedMessage = "Lesson classroom should be not null.";
-        Integer expectedSize = 1;
+    fun classRoomValidation_shouldThrowException_whenNameIsNull() {
+        lessonDto.classRoom = null
+        val expectedMessage = "Lesson classroom should be not null."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
-    }
-    
-    @Test
-    public void numberValidation_shouldThrowException_whenNumberIsNull() {
-        this.lessonDto.setNumber(null);
-        String expectedMessage = "must not be null";
-        Integer expectedSize = 1;
-
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
-
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldThrowException_whenNumberLessZero() {
-        this.lessonDto.setNumber(-1);
-        String expectedMessage = "Lesson number should be greater than 0 and less than 5.";
-        Integer expectedSize = 1;
+    fun numberValidation_shouldThrowException_whenNumberIsNull() {
+        lessonDto.number = null
+        val expectedMessage = "must not be null"
+        val expectedSize = 1
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldNotThrowException_whenNumberGreaterFive() {
-        this.lessonDto.setNumber(6);
-        String expectedMessage = "Lesson number should be greater than 0 and less than 5.";
-        Integer expectedSize = 1;
+    fun numberValidation_shouldThrowException_whenNumberLessZero() {
+        lessonDto.number = -1
+        val expectedMessage = "Lesson number should be greater than 0 and less than 5."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
-        String actualMessage = constraintViolations.iterator().next().getMessage();
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedMessage, actualMessage);
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldNotThrowException_whenNumberEqualsZero() {
-        this.lessonDto.setNumber(0);
-        Integer expectedSize = 0;
+    fun numberValidation_shouldNotThrowException_whenNumberGreaterFive() {
+        lessonDto.number = 6
+        val expectedMessage = "Lesson number should be greater than 0 and less than 5."
+        val expectedSize = 1
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
+        val actualMessage = constraintViolations.iterator().next().message
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedMessage, actualMessage)
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldNotThrowException_whenNumberEqualsFive() {
-        this.lessonDto.setNumber(5);
-        Integer expectedSize = 0;
+    fun numberValidation_shouldNotThrowException_whenNumberEqualsZero() {
+        lessonDto.number = 0
+        val expectedSize = 0
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
     @Test
-    public void numberValidation_shouldNotThrowException_whenNumberBetweenZeroAndFive() {
-        this.lessonDto.setNumber(3);
-        Integer expectedSize = 0;
+    fun numberValidation_shouldNotThrowException_whenNumberEqualsFive() {
+        lessonDto.number = 5
+        val expectedSize = 0
 
-        Set<ConstraintViolation<LessonDto>> constraintViolations = validator.validate(lessonDto);
-        Integer actualSize = constraintViolations.size();
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
 
-        assertEquals(expectedSize, actualSize);
+        Assertions.assertEquals(expectedSize, actualSize)
     }
 
+    @Test
+    fun numberValidation_shouldNotThrowException_whenNumberBetweenZeroAndFive() {
+        lessonDto.number = 3
+        val expectedSize = 0
+
+        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val actualSize = constraintViolations.size
+
+        Assertions.assertEquals(expectedSize, actualSize)
+    }
 }

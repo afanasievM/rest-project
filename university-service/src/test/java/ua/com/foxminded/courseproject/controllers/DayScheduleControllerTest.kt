@@ -1,179 +1,167 @@
-package ua.com.foxminded.courseproject.controllers;
+package ua.com.foxminded.courseproject.controllers
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import ua.com.foxminded.courseproject.dto.DayScheduleDto;
-import ua.com.foxminded.courseproject.dto.LessonDto;
-import ua.com.foxminded.courseproject.service.DayScheduleService;
-
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.security.test.context.support.WithMockUser
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import org.springframework.util.LinkedMultiValueMap
+import org.springframework.util.MultiValueMap
+import ua.com.foxminded.courseproject.dto.DayScheduleDto
+import ua.com.foxminded.courseproject.dto.LessonDto
+import ua.com.foxminded.courseproject.service.DayScheduleService
+import java.time.LocalDate
+import java.util.*
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class DayScheduleControllerTest {
+internal class DayScheduleControllerTest {
     @Autowired
-    private MockMvc mockMvc;
+    private lateinit var mockMvc: MockMvc
 
     @MockBean
-    private DayScheduleService service;
-
-    Map<LocalDate, DayScheduleDto> dayScheduleDtoMap;
+    private lateinit var service: DayScheduleService
+    private lateinit var dayScheduleDtoMap: MutableMap<LocalDate, DayScheduleDto>
 
     @BeforeEach
-    void setUp() {
-        setDaySchedule();
+    fun setUp() {
+        setDaySchedule()
     }
 
+    @Throws(Exception::class)
+    @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
-    @WithMockUser(username = "admin", authorities = "ADMIN")
-    void getTeacherSchedule_shouldReturnStartDayScheduleAndOk_WhenQueryStartDayOnly() throws Exception {
-        LocalDate startDate = LocalDate.now();
-        DayScheduleDto daySchedule = dayScheduleDtoMap.get(startDate);
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        String teacherId = UUID.randomUUID().toString();
+    fun teacherSchedule_shouldReturnStartDayScheduleAndOk_WhenQueryStartDayOnly() {
+        val startDate = LocalDate.now()
+        val daySchedule = dayScheduleDtoMap[startDate]
+        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
+        val teacherId = UUID.randomUUID().toString()
+        params["startdate"] = listOf(startDate.toString())
 
-        params.put("startdate", Collections.singletonList(startDate.toString()));
+        Mockito.`when`(service.getTeacherOneDaySchedule(startDate, UUID.fromString(teacherId))).thenReturn(daySchedule)
 
-        when(service.getTeacherOneDaySchedule(startDate, UUID.fromString(teacherId))).thenReturn(daySchedule);
-
-        mockMvc.perform(get("/teachers/{id}/schedule", teacherId).params(params))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(daySchedule.getId().toString()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
+    @Throws(Exception::class)
+    @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
-    @WithMockUser(username = "admin", authorities = "ADMIN")
-    void getTeacherSchedule_shouldReturnDaysMapAndOk_WhenQueryEndDayBeforeStartDay() throws Exception {
-        LocalDate startDate = LocalDate.now();
-        LocalDate endDate = startDate.plusDays(1);
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        String teacherId = UUID.randomUUID().toString();
+    fun teacherSchedule_shouldReturnDaysMapAndOk_WhenQueryEndDayBeforeStartDay() {
+        val startDate = LocalDate.now()
+        val endDate = startDate.plusDays(1)
+        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
+        val teacherId = UUID.randomUUID().toString()
+        params["startdate"] = listOf(startDate.toString())
+        params["enddate"] = listOf(endDate.toString())
 
-        params.put("startdate", Collections.singletonList(startDate.toString()));
-        params.put("enddate", Collections.singletonList(endDate.toString()));
+        Mockito.`when`(service.getTeacherDaysSchedule(startDate, endDate, UUID.fromString(teacherId))).thenReturn(dayScheduleDtoMap)
 
-        when(service.getTeacherDaysSchedule(startDate, endDate, UUID.fromString(teacherId))).thenReturn(dayScheduleDtoMap);
-
-        mockMvc.perform(get("/teachers/{id}/schedule", teacherId).params(params))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$." + startDate + ".id").
-                        value(dayScheduleDtoMap.get(startDate).getId().toString()))
-                .andExpect(jsonPath("$." + endDate + ".id").
-                        value(dayScheduleDtoMap.get(endDate).getId().toString()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.$startDate.id").value(dayScheduleDtoMap[startDate]?.id.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.$endDate.id").value(dayScheduleDtoMap[endDate]?.id.toString()))
     }
 
+    @Throws(Exception::class)
+    @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
-    @WithMockUser(username = "admin", authorities = "ADMIN")
-    void getTeacherSchedule_shouldReturnDayScheduleAndOk_WhenQueryEndDayBeforeStartDay() throws Exception {
-        LocalDate startDate = LocalDate.now();
-        LocalDate endDate = startDate.minusDays(1);
-        DayScheduleDto daySchedule = dayScheduleDtoMap.get(startDate);
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        String teacherId = UUID.randomUUID().toString();
+    fun teacherSchedule_shouldReturnDayScheduleAndOk_WhenQueryEndDayBeforeStartDay() {
+        val startDate = LocalDate.now()
+        val endDate = startDate.minusDays(1)
+        val daySchedule = dayScheduleDtoMap[startDate]
+        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
+        val teacherId = UUID.randomUUID().toString()
+        params["startdate"] = listOf(startDate.toString())
+        params["enddate"] = listOf(endDate.toString())
 
-        params.put("startdate", Collections.singletonList(startDate.toString()));
-        params.put("enddate", Collections.singletonList(endDate.toString()));
+        Mockito.`when`(service.getTeacherOneDaySchedule(startDate, UUID.fromString(teacherId))).thenReturn(daySchedule)
 
-        when(service.getTeacherOneDaySchedule(startDate, UUID.fromString(teacherId))).thenReturn(daySchedule);
-
-        mockMvc.perform(get("/teachers/{id}/schedule", teacherId).params(params))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(daySchedule.getId().toString()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
+    @Throws(Exception::class)
+    @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
-    @WithMockUser(username = "admin", authorities = "ADMIN")
-    void getStudentSchedule_shouldReturnStartDayScheduleAndOk_WhenQueryStartDayOnly() throws Exception {
-        LocalDate startDate = LocalDate.now();
-        DayScheduleDto daySchedule = dayScheduleDtoMap.get(startDate);
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        String teacherId = UUID.randomUUID().toString();
+    fun studentSchedule_shouldReturnStartDayScheduleAndOk_WhenQueryStartDayOnly() {
+        val startDate = LocalDate.now()
+        val daySchedule = dayScheduleDtoMap[startDate]
+        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
+        val teacherId = UUID.randomUUID().toString()
+        params["startdate"] = listOf(startDate.toString())
 
-        params.put("startdate", Collections.singletonList(startDate.toString()));
+        Mockito.`when`(service.getStudentOneDaySchedule(startDate, UUID.fromString(teacherId))).thenReturn(daySchedule)
 
-        when(service.getStudentOneDaySchedule(startDate, UUID.fromString(teacherId))).thenReturn(daySchedule);
-
-        mockMvc.perform(get("/students/{id}/schedule", teacherId).params(params))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(daySchedule.getId().toString()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", teacherId).params(params))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
+    @Throws(Exception::class)
+    @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
-    @WithMockUser(username = "admin", authorities = "ADMIN")
-    void getStudentSchedule_shouldReturnDaysMapAndOk_WhenQueryEndDayBeforeStartDay() throws Exception {
-        LocalDate startDate = LocalDate.now();
-        LocalDate endDate = startDate.plusDays(1);
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        String studentId = UUID.randomUUID().toString();
+    fun studentSchedule_shouldReturnDaysMapAndOk_WhenQueryEndDayBeforeStartDay() {
+        val startDate = LocalDate.now()
+        val endDate = startDate.plusDays(1)
+        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
+        val studentId = UUID.randomUUID().toString()
+        params["startdate"] = listOf(startDate.toString())
+        params["enddate"] = listOf(endDate.toString())
 
-        params.put("startdate", Collections.singletonList(startDate.toString()));
-        params.put("enddate", Collections.singletonList(endDate.toString()));
+        Mockito.`when`(service.getStudentDaysSchedule(startDate, endDate, UUID.fromString(studentId))).thenReturn(dayScheduleDtoMap)
 
-        when(service.getStudentDaysSchedule(startDate, endDate, UUID.fromString(studentId))).thenReturn(dayScheduleDtoMap);
-
-        mockMvc.perform(get("/students/{id}/schedule", studentId).params(params))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$." + startDate + ".id").
-                        value(dayScheduleDtoMap.get(startDate).getId().toString()))
-                .andExpect(jsonPath("$." + endDate + ".id").
-                        value(dayScheduleDtoMap.get(endDate).getId().toString()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", studentId).params(params))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.$startDate.id").value(dayScheduleDtoMap[startDate]?.id.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.$endDate.id").value(dayScheduleDtoMap[endDate]?.id.toString()))
     }
 
+    @Throws(Exception::class)
+    @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
-    @WithMockUser(username = "admin", authorities = "ADMIN")
-    void getStudentSchedule_shouldReturnDayScheduleAndOk_WhenQueryEndDayBeforeStartDay() throws Exception {
-        LocalDate startDate = LocalDate.now();
-        LocalDate endDate = startDate.minusDays(1);
-        DayScheduleDto daySchedule = dayScheduleDtoMap.get(startDate);
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        String studentId = UUID.randomUUID().toString();
+    fun studentSchedule_shouldReturnDayScheduleAndOk_WhenQueryEndDayBeforeStartDay() {
+        val startDate = LocalDate.now()
+        val endDate = startDate.minusDays(1)
+        val daySchedule = dayScheduleDtoMap[startDate]
+        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
+        val studentId = UUID.randomUUID().toString()
+        params["startdate"] = listOf(startDate.toString())
+        params["enddate"] = listOf(endDate.toString())
 
-        params.put("startdate", Collections.singletonList(startDate.toString()));
-        params.put("enddate", Collections.singletonList(endDate.toString()));
+        Mockito.`when`(service.getStudentOneDaySchedule(startDate, UUID.fromString(studentId))).thenReturn(daySchedule)
 
-        when(service.getStudentOneDaySchedule(startDate, UUID.fromString(studentId))).thenReturn(daySchedule);
-
-        mockMvc.perform(get("/students/{id}/schedule", studentId).params(params))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(daySchedule.getId().toString()));
+        mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", studentId).params(params))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
-    private void setDaySchedule() {
-        dayScheduleDtoMap = new HashMap<>();
-        LessonDto lessonOne = new LessonDto();
-        lessonOne.setId(UUID.randomUUID());
-        LessonDto lessonTwo = new LessonDto();
-        lessonTwo.setId(UUID.randomUUID());
-        DayScheduleDto firstDay = new DayScheduleDto();
-        firstDay.setId(UUID.randomUUID());
-        firstDay.setDayNumber(1);
-        firstDay.setLessons(Arrays.asList(lessonOne, lessonTwo));
-        DayScheduleDto secondDay = new DayScheduleDto();
-        secondDay.setId(UUID.randomUUID());
-        secondDay.setDayNumber(2);
-        secondDay.setLessons(Arrays.asList(lessonOne));
-        dayScheduleDtoMap.put(LocalDate.now(), firstDay);
-        dayScheduleDtoMap.put(LocalDate.now().plusDays(1), secondDay);
+    private fun setDaySchedule() {
+        dayScheduleDtoMap = HashMap()
+        val lessonOne = LessonDto()
+        lessonOne.id = UUID.randomUUID()
+        val lessonTwo = LessonDto()
+        lessonTwo.id = UUID.randomUUID()
+        val firstDay = DayScheduleDto()
+        firstDay.id = UUID.randomUUID()
+        firstDay.dayNumber = 1
+        firstDay.lessons = Arrays.asList(lessonOne, lessonTwo)
+        val secondDay = DayScheduleDto()
+        secondDay.id = UUID.randomUUID()
+        secondDay.dayNumber = 2
+        secondDay.lessons = Arrays.asList(lessonOne)
+        dayScheduleDtoMap[LocalDate.now()] = firstDay
+        dayScheduleDtoMap[LocalDate.now().plusDays(1)] = secondDay
     }
 }
