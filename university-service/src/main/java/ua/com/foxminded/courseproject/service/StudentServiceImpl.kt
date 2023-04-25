@@ -12,9 +12,10 @@ import ua.com.foxminded.courseproject.repository.StudentRepository
 import java.util.*
 
 @Service
-open class StudentServiceImpl
-@Autowired
-constructor(private val mapper: StudentMapper, private val repository: StudentRepository) : PersonService<StudentDto> {
+open class StudentServiceImpl @Autowired constructor(
+    private val mapper: StudentMapper,
+    private val repository: StudentRepository
+) : PersonService<StudentDto> {
     override fun findById(id: UUID): StudentDto {
         return mapper.toDto(repository.findById(id).orElseThrow { StudentNotFoundException(id) })
     }
