@@ -1,38 +1,21 @@
-package ua.com.foxminded.courseproject.service;
+package ua.com.foxminded.courseproject.service
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-import ua.com.foxminded.courseproject.entity.User;
-import ua.com.foxminded.courseproject.exceptions.UserNotFoundException;
-import ua.com.foxminded.courseproject.repository.UserRepository;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.stereotype.Service
+import ua.com.foxminded.courseproject.exceptions.UserNotFoundException
+import ua.com.foxminded.courseproject.repository.UserRepository
 
 @Service
-public class UserServiceImpl implements UserService {
-
-    private UserRepository repository;
-
-    @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
-        Optional<User> userOptional = repository.findByUsername(username);
-        if (userOptional.isEmpty()) {
-            throw new UserNotFoundException(username);
-        }
-        User user = userOptional.get();
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+open class UserServiceImpl @Autowired constructor(private val repository: UserRepository) : UserService {
+    @Throws(UserNotFoundException::class)
+    override fun loadUserByUsername(username: String): UserDetails {
+        val user = repository.findByUsername(username) ?: throw UserNotFoundException()
+        val authorities: MutableList<GrantedAuthority> = ArrayList()
+        authorities.add(SimpleGrantedAuthority(user.role.toString()))
+        return User(user.username, user.password, authorities)
     }
 }

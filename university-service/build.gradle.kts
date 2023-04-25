@@ -34,6 +34,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     implementation(kotlin("stdlib-jdk8"))

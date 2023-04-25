@@ -1,14 +1,10 @@
-package ua.com.foxminded.courseproject.repository;
+package ua.com.foxminded.courseproject.repository
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-import ua.com.foxminded.courseproject.entity.User;
-
-import java.util.Optional;
+import org.springframework.data.repository.CrudRepository
+import org.springframework.stereotype.Repository
+import ua.com.foxminded.courseproject.entity.User
 
 @Repository
-public interface UserRepository extends CrudRepository<User, String> {
-
-    Optional<User> findByUsername(String username);
-
+interface UserRepository : CrudRepository<User?, String?> {
+    fun findByUsername(username: String?): User?
 }
