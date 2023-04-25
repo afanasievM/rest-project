@@ -1,26 +1,22 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
+import javax.validation.ConstraintValidator
+import javax.validation.ConstraintValidatorContext
 
-public class AgeValidator implements ConstraintValidator<Age, LocalDate> {
-    private long min;
-
-    @Override
-    public void initialize(Age constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-        this.min = constraintAnnotation.min();
+class AgeValidator : ConstraintValidator<Age, LocalDate?> {
+    private var min: Long = 0
+    override fun initialize(constraintAnnotation: Age) {
+        super.initialize(constraintAnnotation)
+        this.min = constraintAnnotation.min
     }
 
-    @Override
-    public boolean isValid(LocalDate birthday, ConstraintValidatorContext context) {
+    override fun isValid(birthday: LocalDate?, context: ConstraintValidatorContext): Boolean {
         if (birthday == null) {
-            return true;
+            return true
         }
-        long age = LocalDate.from(birthday).until(LocalDate.now(), ChronoUnit.YEARS);
-        return age >= min;
+        val age = LocalDate.from(birthday).until(LocalDate.now(), ChronoUnit.YEARS)
+        return age >= min
     }
-
 }

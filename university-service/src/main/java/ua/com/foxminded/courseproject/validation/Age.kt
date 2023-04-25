@@ -1,22 +1,14 @@
-package ua.com.foxminded.courseproject.validation;
+package ua.com.foxminded.courseproject.validation
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import javax.validation.Constraint
+import javax.validation.Payload
+import kotlin.reflect.KClass
 
-@Constraint(validatedBy = AgeValidator.class)
-@Target({ElementType.METHOD, ElementType.FIELD})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-public @interface Age {
-    String message() default "{minAge.message}";
-    Class<?>[] groups() default { };
-
-    Class<? extends Payload>[] payload() default { };
-
-    long min() default 18;
-}
+@Constraint(validatedBy = [AgeValidator::class])
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER, AnnotationTarget.FIELD)
+@Retention(AnnotationRetention.RUNTIME)
+@MustBeDocumented
+annotation class Age(val message: String = "{minAge.message}",
+                     val groups: Array<KClass<*>> = [],
+                     val payload: Array<KClass<out Payload>> = [],
+                     val min: Long = 18)
