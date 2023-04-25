@@ -1,45 +1,39 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.ScheduleDto;
-import ua.com.foxminded.courseproject.entity.Schedule;
-
-import java.sql.Timestamp;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.ScheduleDto
+import ua.com.foxminded.courseproject.dto.WeekScheduleDto
+import ua.com.foxminded.courseproject.entity.Schedule
+import ua.com.foxminded.courseproject.entity.WeekSchedule
+import java.sql.Timestamp
 
 @Component
-public class ScheduleMapper implements Mapper<ScheduleDto, Schedule> {
-
-    private WeekScheduleMapper weekScheduleMapper;
-
-    @Autowired
-    public ScheduleMapper(WeekScheduleMapper weekScheduleMapper) {
-        this.weekScheduleMapper = weekScheduleMapper;
-    }
-
-    @Override
-    public ScheduleDto toDto(Schedule entity) {
+class ScheduleMapper @Autowired constructor(private val weekScheduleMapper: WeekScheduleMapper) :
+    Mapper<ScheduleDto?, Schedule?> {
+    override fun toDto(entity: Schedule?): ScheduleDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        ScheduleDto dto = new ScheduleDto();
-        dto.setId(entity.getId());
-        dto.setEndDate(entity.getEndDate().toLocalDateTime());
-        dto.setStartDate(entity.getStartDate().toLocalDateTime());
-        dto.setWeeks(entity.getWeeks().stream().map(weekScheduleMapper::toDto).toList());
-        return dto;
+        val dto = ScheduleDto()
+        dto.id = entity.id
+        dto.endDate = entity.endDate.toLocalDateTime()
+        dto.startDate = entity.startDate.toLocalDateTime()
+        dto.weeks = entity.weeks.stream().map { entity: WeekSchedule? -> weekScheduleMapper.toDto(entity) }
+            .toList()
+        return dto
     }
 
-    @Override
-    public Schedule toEntity(ScheduleDto dto) {
+    override fun toEntity(dto: ScheduleDto?): Schedule? {
         if (dto == null) {
-            return null;
+            return null
         }
-        Schedule entity = new Schedule();
-        entity.setId(dto.getId());
-        entity.setEndDate(Timestamp.valueOf(dto.getEndDate()));
-        entity.setEndDate(Timestamp.valueOf(dto.getStartDate()));
-        entity.setWeeks(dto.getWeeks().stream().map(weekScheduleMapper::toEntity).toList());
-        return entity;
+        val entity = Schedule()
+        entity.id = dto.id
+        entity.endDate = Timestamp.valueOf(dto.endDate)
+        entity.endDate = Timestamp.valueOf(dto.startDate)
+        entity.weeks = dto.weeks.stream().map { dto: WeekScheduleDto? -> weekScheduleMapper.toEntity(dto) }
+            .toList()
+        return entity
     }
 }

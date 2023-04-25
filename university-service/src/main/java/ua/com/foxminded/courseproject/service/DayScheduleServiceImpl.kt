@@ -1,117 +1,111 @@
-package ua.com.foxminded.courseproject.service;
+package ua.com.foxminded.courseproject.service
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import ua.com.foxminded.courseproject.dto.DayScheduleDto;
-import ua.com.foxminded.courseproject.dto.LessonDto;
-import ua.com.foxminded.courseproject.dto.PersonDto;
-import ua.com.foxminded.courseproject.dto.StudentDto;
-import ua.com.foxminded.courseproject.dto.TeacherDto;
-import ua.com.foxminded.courseproject.entity.DaySchedule;
-import ua.com.foxminded.courseproject.mapper.DayScheduleMapper;
-import ua.com.foxminded.courseproject.mapper.OptionalMapper;
-import ua.com.foxminded.courseproject.repository.DayScheduleRepository;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoField;
-import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
+import ua.com.foxminded.courseproject.dto.*
+import ua.com.foxminded.courseproject.entity.DaySchedule
+import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
+import ua.com.foxminded.courseproject.mapper.Mapper
+import ua.com.foxminded.courseproject.repository.DayScheduleRepository
+import java.time.LocalDate
+import java.time.temporal.ChronoField
+import java.time.temporal.ChronoUnit
+import java.util.*
 
 @Service
-public class DayScheduleServiceImpl implements DayScheduleService {
+open class DayScheduleServiceImpl @Autowired constructor(
+    mapper: DayScheduleMapper, repository: DayScheduleRepository,
+    teacherService: TeacherServiceImpl, studentService: StudentServiceImpl
+) : DayScheduleService {
+    private val mapper: Mapper<DayScheduleDto?, DaySchedule?>
+    private val repository: DayScheduleRepository
+    private val teacherService: TeacherServiceImpl
+    private val studentService: StudentServiceImpl
 
-    private OptionalMapper mapper;
-    private DayScheduleRepository repository;
-    private TeacherServiceImpl teacherService;
-    private StudentServiceImpl studentService;
-
-    @Autowired
-    public DayScheduleServiceImpl(DayScheduleMapper mapper, DayScheduleRepository repository,
-                                  TeacherServiceImpl teacherService, StudentServiceImpl studentService) {
-        this.mapper = mapper;
-        this.repository = repository;
-        this.teacherService = teacherService;
-        this.studentService = studentService;
+    init {
+        this.mapper = mapper
+        this.repository = repository
+        this.teacherService = teacherService
+        this.studentService = studentService
     }
 
-    @Override
-    public Map<LocalDate, DayScheduleDto> getStudentDaysSchedule(LocalDate startDay, LocalDate endDay, UUID id) {
-        return getDaysSchedule(startDay, endDay, studentService.findById(id));
+    override fun getStudentDaysSchedule(
+        startDay: LocalDate,
+        endDay: LocalDate,
+        id: UUID
+    ): Map<LocalDate, DayScheduleDto?> {
+        return getDaysSchedule(startDay, endDay, studentService.findById(id))
     }
 
-    @Override
-    public Map<LocalDate, DayScheduleDto> getTeacherDaysSchedule(LocalDate startDay, LocalDate endDay, UUID id) {
-        return getDaysSchedule(startDay, endDay, teacherService.findById(id));
+    override fun getTeacherDaysSchedule(
+        startDay: LocalDate,
+        endDay: LocalDate,
+        id: UUID
+    ): Map<LocalDate, DayScheduleDto?> {
+        return getDaysSchedule(startDay, endDay, teacherService.findById(id))
     }
 
-    @Override
-    public DayScheduleDto getStudentOneDaySchedule(LocalDate date, UUID id) {
-        return getPersonDaySchedule(date, studentService.findById(id));
+    override fun getStudentOneDaySchedule(date: LocalDate, id: UUID): DayScheduleDto? {
+        return getPersonDaySchedule(date, studentService.findById(id))
     }
 
-    @Override
-    public DayScheduleDto getTeacherOneDaySchedule(LocalDate date, UUID id) {
-        return getPersonDaySchedule(date, teacherService.findById(id));
+    override fun getTeacherOneDaySchedule(date: LocalDate, id: UUID): DayScheduleDto? {
+        return getPersonDaySchedule(date, teacherService.findById(id))
     }
 
-    private Map<LocalDate, DayScheduleDto> getDaysSchedule(LocalDate startDay, LocalDate endDay, PersonDto personDto) {
-        Map<LocalDate, DayScheduleDto> result = new HashMap<>();
-        long dayDifference = ChronoUnit.DAYS.between(startDay, endDay);
-        for (int i = 0; i <= dayDifference; i++) {
-            DayScheduleDto dayScheduleDto = getPersonDaySchedule(startDay.plusDays(i), personDto);
-            result.put(startDay.plusDays(i), dayScheduleDto);
+    private fun getDaysSchedule(
+        startDay: LocalDate,
+        endDay: LocalDate,
+        personDto: PersonDto
+    ): Map<LocalDate, DayScheduleDto?> {
+        val result: MutableMap<LocalDate, DayScheduleDto?> = HashMap()
+        val dayDifference = ChronoUnit.DAYS.between(startDay, endDay)
+        for (i in 0..dayDifference) {
+            val dayScheduleDto = getPersonDaySchedule(startDay.plusDays(i), personDto)
+            result[startDay.plusDays(i)] = dayScheduleDto
         }
-        return result;
+        return result
     }
 
-    private Optional<DayScheduleDto> getDaySchedule(LocalDate date) {
-        Integer weekNumber = date.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
-        Integer dayNumber = date.getDayOfWeek().getValue();
-        Optional<DaySchedule> daySchedule = null;
-        if (weekNumber % 2 == 0) {
-            daySchedule = repository.findDayScheduleByDayNumberFromOddWeek(dayNumber);
+    private fun getDaySchedule(date: LocalDate): DayScheduleDto? {
+        val weekNumber = date[ChronoField.ALIGNED_WEEK_OF_YEAR]
+        val dayNumber = date.dayOfWeek.value
+        val daySchedule = if (weekNumber % 2 == 0) {
+            repository.findDayScheduleByDayNumberFromOddWeek(dayNumber)
         } else {
-            daySchedule = repository.findDayScheduleByDayNumberFromEvenWeek(dayNumber);
+            repository.findDayScheduleByDayNumberFromEvenWeek(dayNumber)
         }
-        return mapper.toOptionalDto(daySchedule);
+        return mapper.toDto(daySchedule)
     }
 
-    private DayScheduleDto getPersonDaySchedule(LocalDate date, PersonDto personDto) {
-        DayScheduleDto dayScheduleDto = getDaySchedule(date).get();
-        if (personDto instanceof StudentDto) {
-            return getStudentDaySchedule(dayScheduleDto, (StudentDto) personDto);
+    private fun getPersonDaySchedule(date: LocalDate, personDto: PersonDto): DayScheduleDto? {
+        val dayScheduleDto = getDaySchedule(date)
+        return if (personDto is StudentDto) {
+            getStudentDaySchedule(dayScheduleDto, personDto)
         } else {
-            return getTeacherDaySchedule(dayScheduleDto, (TeacherDto) personDto);
+            getTeacherDaySchedule(dayScheduleDto, personDto as TeacherDto)
         }
     }
 
-    private DayScheduleDto getStudentDaySchedule(DayScheduleDto dayScheduleDto, StudentDto studentDto) {
-        dayScheduleDto.setLessons(filterStudentLessons(dayScheduleDto.getLessons(), studentDto));
-        return dayScheduleDto;
+    private fun getStudentDaySchedule(dayScheduleDto: DayScheduleDto?, studentDto: StudentDto): DayScheduleDto? {
+        dayScheduleDto?.lessons = filterStudentLessons(dayScheduleDto?.lessons as List<LessonDto>, studentDto)
+        return dayScheduleDto
     }
 
-    private DayScheduleDto getTeacherDaySchedule(DayScheduleDto dayScheduleDto, TeacherDto teacherDto) {
-        dayScheduleDto.setLessons(filterTeacherLessons(dayScheduleDto.getLessons(), teacherDto));
-        return dayScheduleDto;
+    private fun getTeacherDaySchedule(dayScheduleDto: DayScheduleDto?, teacherDto: TeacherDto): DayScheduleDto? {
+        dayScheduleDto?.lessons = filterTeacherLessons(dayScheduleDto?.lessons as List<LessonDto>, teacherDto)
+        return dayScheduleDto
     }
 
-    private List<LessonDto> filterStudentLessons(List<LessonDto> lessons, StudentDto studentDto) {
+    private fun filterStudentLessons(lessons: List<LessonDto>, studentDto: StudentDto): List<LessonDto> {
         return lessons.stream()
-                .filter(l -> l.getGroups().contains(studentDto.getGroup()))
-                .toList();
+            .filter { l: LessonDto -> l.groups.contains(studentDto.group) }
+            .toList()
     }
 
-    private List<LessonDto> filterTeacherLessons(List<LessonDto> lessons, TeacherDto teacherDto) {
+    private fun filterTeacherLessons(lessons: List<LessonDto>, teacherDto: TeacherDto): List<LessonDto> {
         return lessons.stream()
-                .filter(l -> l.getTeacher().equals(teacherDto))
-                .toList();
+            .filter { l: LessonDto -> l.teacher == teacherDto }
+            .toList()
     }
-
-
 }
-
-

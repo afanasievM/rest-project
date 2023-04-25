@@ -4,6 +4,6 @@ import ua.com.foxminded.courseproject.dto.ScheduleDto
 import java.util.*
 
 interface ScheduleService {
-    fun findById(id: UUID): ScheduleDto
-    fun findAll(): List<ScheduleDto>
+    fun findById(id: UUID): ScheduleDto?
+    fun findAll(): List<ScheduleDto?>
 }

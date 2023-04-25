@@ -1,49 +1,39 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.StudentDto;
-import ua.com.foxminded.courseproject.entity.Student;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.StudentDto
+import ua.com.foxminded.courseproject.entity.Student
 
 @Component
-public class StudentMapper implements Mapper<StudentDto, Student> {
-
-    private GroupMapper groupMapper;
-
-    @Autowired
-    public StudentMapper(GroupMapper groupMapper) {
-        this.groupMapper = groupMapper;
-    }
-
-    @Override
-    public StudentDto toDto(Student entity) {
+class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper) : Mapper<StudentDto?, Student?> {
+    override fun toDto(entity: Student?): StudentDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        StudentDto dto = new StudentDto();
-        dto.setId(entity.getId());
-        dto.setCaptain(entity.getCaptain());
-        dto.setCourse(entity.getCourse());
-        dto.setGroup(groupMapper.toDto(entity.getGroup()));
-        dto.setBirthDay(entity.getBirthDay());
-        dto.setFirstName(entity.getFirstName());
-        dto.setLastName(entity.getLastName());
-        return dto;
+        val dto = StudentDto()
+        dto.id = entity.id
+        dto.captain = entity.captain
+        dto.course = entity.course
+        dto.group = groupMapper.toDto(entity.group)
+        dto.birthDay = entity.birthDay
+        dto.firstName = entity.firstName
+        dto.lastName = entity.lastName
+        return dto
     }
 
-    @Override
-    public Student toEntity(StudentDto dto) {
+    override fun toEntity(dto: StudentDto?): Student? {
         if (dto == null) {
-            return null;
+            return null
         }
-        Student entity = new Student();
-        entity.setId(dto.getId());
-        entity.setCaptain(dto.getCaptain());
-        entity.setCourse(dto.getCourse());
-        entity.setGroup(groupMapper.toEntity(dto.getGroup()));
-        entity.setBirthDay(dto.getBirthDay());
-        entity.setFirstName(dto.getFirstName());
-        entity.setLastName(dto.getLastName());
-        return entity;
+        val entity = Student()
+        entity.id = dto.id
+        entity.captain = dto.captain
+        entity.course = dto.course
+        entity.group = groupMapper.toEntity(dto.group)
+        entity.birthDay = dto.birthDay
+        entity.firstName = dto.firstName
+        entity.lastName = dto.lastName
+        return entity
     }
 }

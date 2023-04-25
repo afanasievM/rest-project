@@ -1,31 +1,28 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.ClassRoomDto;
-import ua.com.foxminded.courseproject.entity.ClassRoom;
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.ClassRoomDto
+import ua.com.foxminded.courseproject.entity.ClassRoom
 
 @Component
-public class ClassRoomMapper implements Mapper<ClassRoomDto, ClassRoom> {
-
-    @Override
-    public ClassRoomDto toDto(ClassRoom entity) {
+class ClassRoomMapper : Mapper<ClassRoomDto?, ClassRoom?> {
+    override fun toDto(entity: ClassRoom?): ClassRoomDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        ClassRoomDto dto = new ClassRoomDto();
-        dto.setId(entity.getId());
-        dto.setNumber(entity.getNumber());
-        return dto;
+        val dto = ClassRoomDto()
+        dto.id = entity.id
+        dto.number = entity.number
+        return dto
     }
 
-    @Override
-    public ClassRoom toEntity(ClassRoomDto dto) {
+    override fun toEntity(dto: ClassRoomDto?): ClassRoom? {
         if (dto == null) {
-            return null;
+            return null
         }
-        ClassRoom entity = new ClassRoom();
-        entity.setId(dto.getId());
-        entity.setNumber(dto.getNumber());
-        return entity;
+        val entity = ClassRoom()
+        entity.id = dto.id
+        entity.number = dto.number
+        return entity
     }
 }

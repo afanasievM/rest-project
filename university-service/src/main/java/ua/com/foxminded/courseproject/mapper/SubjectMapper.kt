@@ -1,31 +1,28 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.SubjectDto;
-import ua.com.foxminded.courseproject.entity.Subject;
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.SubjectDto
+import ua.com.foxminded.courseproject.entity.Subject
 
 @Component
-public class SubjectMapper implements Mapper<SubjectDto, Subject> {
-
-    @Override
-    public SubjectDto toDto(Subject entity) {
+class SubjectMapper : Mapper<SubjectDto?, Subject?> {
+    override fun toDto(entity: Subject?): SubjectDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        SubjectDto dto = new SubjectDto();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        return dto;
+        val dto = SubjectDto()
+        dto.id = entity.id
+        dto.name = entity.name
+        return dto
     }
 
-    @Override
-    public Subject toEntity(SubjectDto dto) {
+    override fun toEntity(dto: SubjectDto?): Subject? {
         if (dto == null) {
-            return null;
+            return null
         }
-        Subject entity = new Subject();
-        entity.setId(dto.getId());
-        entity.setName(dto.getName());
-        return entity;
+        val entity = Subject()
+        entity.id = dto.id
+        entity.name = dto.name
+        return entity
     }
 }

@@ -17,7 +17,7 @@ open class StudentServiceImpl @Autowired constructor(
     private val repository: StudentRepository
 ) : PersonService<StudentDto> {
     override fun findById(id: UUID): StudentDto {
-        return mapper.toDto(repository.findById(id).orElseThrow { StudentNotFoundException(id) })
+        return mapper.toDto(repository.findById(id).orElseThrow { StudentNotFoundException(id) })!!
     }
 
     override fun findAll(pageable: Pageable): Page<StudentDto> {
@@ -25,7 +25,7 @@ open class StudentServiceImpl @Autowired constructor(
     }
 
     override fun save(student: StudentDto): StudentDto {
-        return mapper.toDto(repository.save(mapper.toEntity(student)))
+        return mapper.toDto(repository.save(mapper.toEntity(student)))!!
     }
 
     override fun delete(id: UUID) {

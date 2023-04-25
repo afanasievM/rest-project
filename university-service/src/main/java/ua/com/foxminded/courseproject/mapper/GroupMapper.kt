@@ -1,31 +1,28 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.GroupDto;
-import ua.com.foxminded.courseproject.entity.Group;
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.GroupDto
+import ua.com.foxminded.courseproject.entity.Group
 
 @Component
-public class GroupMapper implements Mapper<GroupDto, Group> {
-
-    @Override
-    public GroupDto toDto(Group entity) {
+class GroupMapper : Mapper<GroupDto?, Group?> {
+    override fun toDto(entity: Group?): GroupDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        GroupDto dto = new GroupDto();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        return dto;
+        val dto = GroupDto()
+        dto.id = entity.id
+        dto.name = entity.name
+        return dto
     }
 
-    @Override
-    public Group toEntity(GroupDto dto) {
+    override fun toEntity(dto: GroupDto?): Group? {
         if (dto == null) {
-            return null;
+            return null
         }
-        Group entity = new Group();
-        entity.setId(dto.getId());
-        entity.setName(dto.getName());
-        return entity;
+        val entity = Group()
+        entity.id = dto.id
+        entity.name = dto.name
+        return entity
     }
 }

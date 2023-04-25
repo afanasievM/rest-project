@@ -39,7 +39,7 @@ internal open class DayScheduleControllerIntegrationTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule.id.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -75,7 +75,7 @@ internal open class DayScheduleControllerIntegrationTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule.id.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -90,7 +90,7 @@ internal open class DayScheduleControllerIntegrationTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", studentId).params(params))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule.id.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -125,6 +125,6 @@ internal open class DayScheduleControllerIntegrationTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", studentId).params(params))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule.id.toString()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 }

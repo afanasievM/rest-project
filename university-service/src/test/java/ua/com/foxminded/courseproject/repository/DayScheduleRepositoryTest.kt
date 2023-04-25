@@ -50,7 +50,7 @@ internal open class DayScheduleRepositoryTest {
         val expected = repository.findById(idExpected).get()
         val number = 1
 
-        val actual = repository.findDayScheduleByDayNumberFromOddWeek(number).get()
+        val actual = repository.findDayScheduleByDayNumberFromOddWeek(number)
 
         Assertions.assertEquals(expected, actual)
     }
@@ -61,7 +61,7 @@ internal open class DayScheduleRepositoryTest {
         val expected = repository.findById(idExpected).get()
         val number = 1
 
-        val actual = repository.findDayScheduleByDayNumberFromEvenWeek(number).get()
+        val actual = repository.findDayScheduleByDayNumberFromEvenWeek(number)
 
         Assertions.assertEquals(expected, actual)
     }
@@ -72,7 +72,7 @@ internal open class DayScheduleRepositoryTest {
 
         val actual = repository.findDayScheduleByDayNumberFromOddWeek(number)
 
-        Assertions.assertEquals(Optional.empty<Any>(), actual)
+        Assertions.assertEquals(null, actual)
     }
 
     @Test
@@ -81,6 +81,6 @@ internal open class DayScheduleRepositoryTest {
 
         val actual = repository.findDayScheduleByDayNumberFromOddWeek(number)
 
-        Assertions.assertEquals(Optional.empty<Any>(), actual)
+        Assertions.assertEquals(null, actual)
     }
 }

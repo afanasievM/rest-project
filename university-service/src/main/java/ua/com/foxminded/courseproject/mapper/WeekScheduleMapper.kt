@@ -1,41 +1,36 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.WeekScheduleDto;
-import ua.com.foxminded.courseproject.entity.WeekSchedule;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.DayScheduleDto
+import ua.com.foxminded.courseproject.dto.WeekScheduleDto
+import ua.com.foxminded.courseproject.entity.DaySchedule
+import ua.com.foxminded.courseproject.entity.WeekSchedule
 
 @Component
-public class WeekScheduleMapper implements Mapper<WeekScheduleDto, WeekSchedule> {
-
-    private DayScheduleMapper dayScheduleMapper;
-
-    @Autowired
-    public WeekScheduleMapper(DayScheduleMapper dayScheduleMapper) {
-        this.dayScheduleMapper = dayScheduleMapper;
-    }
-
-    @Override
-    public WeekScheduleDto toDto(WeekSchedule entity) {
+class WeekScheduleMapper @Autowired constructor(private val dayScheduleMapper: DayScheduleMapper) :
+    Mapper<WeekScheduleDto?, WeekSchedule?> {
+    override fun toDto(entity: WeekSchedule?): WeekScheduleDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        WeekScheduleDto dto = new WeekScheduleDto();
-        dto.setId(entity.getId());
-        dto.setDaysSchedule(entity.getDaysSchedule().stream().map(dayScheduleMapper::toDto).toList());
-        dto.setIsOdd(entity.getIsOdd());
-        return dto;
+        val dto = WeekScheduleDto()
+        dto.id = entity.id
+        dto.daysSchedule = entity.daysSchedule.stream().map { entity: DaySchedule? -> dayScheduleMapper.toDto(entity) }
+            .toList()
+        dto.isOdd = entity.isOdd
+        return dto
     }
 
-    @Override
-    public WeekSchedule toEntity(WeekScheduleDto dto) {
+    override fun toEntity(dto: WeekScheduleDto?): WeekSchedule? {
         if (dto == null) {
-            return null;
+            return null
         }
-        WeekSchedule entity = new WeekSchedule();
-        entity.setId(dto.getId());
-        entity.setDaysSchedule(dto.getDaysSchedule().stream().map(dayScheduleMapper::toEntity).toList());
-        entity.setIsOdd(dto.getIsOdd());
-        return entity;
+        val entity = WeekSchedule()
+        entity.id = dto.id
+        entity.daysSchedule = dto.daysSchedule.stream().map { dto: DayScheduleDto? -> dayScheduleMapper.toEntity(dto) }
+            .toList()
+        entity.isOdd = dto.isOdd
+        return entity
     }
 }

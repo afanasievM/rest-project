@@ -13,11 +13,11 @@ open class ScheduleServiceImpl @Autowired constructor(
     private val mapper: ScheduleMapper,
     private val repository: ScheduleRepository
 ) : ScheduleService {
-    override fun findById(id: UUID): ScheduleDto {
+    override fun findById(id: UUID): ScheduleDto? {
         return mapper.toDto(repository.findById(id).get())
     }
 
-    override fun findAll(): List<ScheduleDto> {
+    override fun findAll(): List<ScheduleDto?> {
         return repository.findAll().map { entity: Schedule -> mapper.toDto(entity) }
             .toList()
     }

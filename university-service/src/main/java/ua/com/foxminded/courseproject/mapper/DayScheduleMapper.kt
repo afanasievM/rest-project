@@ -1,41 +1,34 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.DayScheduleDto;
-import ua.com.foxminded.courseproject.entity.DaySchedule;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.DayScheduleDto
+import ua.com.foxminded.courseproject.dto.LessonDto
+import ua.com.foxminded.courseproject.entity.DaySchedule
+import ua.com.foxminded.courseproject.entity.Lesson
 
 @Component
-public class DayScheduleMapper implements OptionalMapper<DayScheduleDto, DaySchedule> {
-
-    private LessonMapper lessonMapper;
-
-    @Autowired
-    public DayScheduleMapper(LessonMapper lessonMapper) {
-        this.lessonMapper = lessonMapper;
-    }
-
-    @Override
-    public DayScheduleDto toDto(DaySchedule entity) {
+class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonMapper) :
+    Mapper<DayScheduleDto?, DaySchedule?> {
+    override fun toDto(entity: DaySchedule?): DayScheduleDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        DayScheduleDto dto = new DayScheduleDto();
-        dto.setId(entity.getId());
-        dto.setDayNumber(entity.getDayNumber());
-        dto.setLessons(entity.getLessons().stream().map(lessonMapper::toDto).toList());
-        return dto;
+        val dto = DayScheduleDto()
+        dto.id = entity.id
+        dto.dayNumber = entity.dayNumber
+        dto.lessons = entity.lessons.stream().map { entity: Lesson? -> lessonMapper.toDto(entity) }.toList()
+        return dto
     }
 
-    @Override
-    public DaySchedule toEntity(DayScheduleDto dto) {
+    override fun toEntity(dto: DayScheduleDto?): DaySchedule? {
         if (dto == null) {
-            return null;
+            return null
         }
-        DaySchedule entity = new DaySchedule();
-        entity.setId(dto.getId());
-        entity.setDayNumber(dto.getDayNumber());
-        entity.setLessons(dto.getLessons().stream().map(lessonMapper::toEntity).toList());
-        return entity;
+        val entity = DaySchedule()
+        entity.id = dto.id
+        entity.dayNumber = dto.dayNumber
+        entity.lessons = dto.lessons.stream().map { dto: LessonDto? -> lessonMapper.toEntity(dto) }.toList()
+        return entity
     }
 }

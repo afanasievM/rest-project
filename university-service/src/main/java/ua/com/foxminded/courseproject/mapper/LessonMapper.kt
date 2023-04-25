@@ -1,57 +1,50 @@
-package ua.com.foxminded.courseproject.mapper;
+package ua.com.foxminded.courseproject.mapper
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import ua.com.foxminded.courseproject.dto.LessonDto;
-import ua.com.foxminded.courseproject.entity.Lesson;
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+import ua.com.foxminded.courseproject.dto.GroupDto
+import ua.com.foxminded.courseproject.dto.LessonDto
+import ua.com.foxminded.courseproject.entity.Group
+import ua.com.foxminded.courseproject.entity.Lesson
 
 @Component
-public class LessonMapper implements Mapper<LessonDto, Lesson> {
-
-    private ClassRoomMapper classRoomMapper;
-    private SubjectMapper subjectMapper;
-    private TeacherMapper teacherMapper;
-    private GroupMapper groupMapper;
-
-    @Autowired
-    public LessonMapper(ClassRoomMapper classRoomMapper, SubjectMapper subjectMapper, TeacherMapper teacherMapper, GroupMapper groupMapper) {
-        this.classRoomMapper = classRoomMapper;
-        this.subjectMapper = subjectMapper;
-        this.teacherMapper = teacherMapper;
-        this.groupMapper = groupMapper;
-    }
-
-    @Override
-    public LessonDto toDto(Lesson entity) {
+class LessonMapper @Autowired constructor(
+    private val classRoomMapper: ClassRoomMapper,
+    private val subjectMapper: SubjectMapper,
+    private val teacherMapper: TeacherMapper,
+    private val groupMapper: GroupMapper
+) : Mapper<LessonDto?, Lesson?> {
+    override fun toDto(entity: Lesson?): LessonDto? {
         if (entity == null) {
-            return null;
+            return null
         }
-        LessonDto dto = new LessonDto();
-        dto.setId(entity.getId());
-        dto.setClassRoom(classRoomMapper.toDto(entity.getClassRoom()));
-        dto.setEndTime(entity.getEndTime());
-        dto.setNumber(entity.getNumber());
-        dto.setStartTime(entity.getStartTime());
-        dto.setSubject(subjectMapper.toDto(entity.getSubject()));
-        dto.setTeacher(teacherMapper.toDto(entity.getTeacher()));
-        dto.setGroups(entity.getGroups().stream().map(groupMapper::toDto).toList());
-        return dto;
+        val dto = LessonDto()
+        dto.id = entity.id
+        dto.classRoom = classRoomMapper.toDto(entity.classRoom)
+        dto.endTime = entity.endTime
+        dto.number = entity.number
+        dto.startTime = entity.startTime
+        dto.subject = subjectMapper.toDto(entity.subject)
+        dto.teacher = teacherMapper.toDto(entity.teacher)
+        dto.groups = entity.groups.stream().map { entity: Group? -> groupMapper.toDto(entity) }
+            .toList()
+        return dto
     }
 
-    @Override
-    public Lesson toEntity(LessonDto dto) {
+    override fun toEntity(dto: LessonDto?): Lesson? {
         if (dto == null) {
-            return null;
+            return null
         }
-        Lesson entity = new Lesson();
-        entity.setId(dto.getId());
-        entity.setClassRoom(classRoomMapper.toEntity(dto.getClassRoom()));
-        entity.setEndTime(dto.getEndTime());
-        entity.setNumber(dto.getNumber());
-        entity.setStartTime(dto.getStartTime());
-        entity.setSubject(subjectMapper.toEntity(dto.getSubject()));
-        entity.setTeacher(teacherMapper.toEntity(dto.getTeacher()));
-        entity.setGroups(dto.getGroups().stream().map(groupMapper::toEntity).toList());
-        return entity;
+        val entity = Lesson()
+        entity.id = dto.id
+        entity.classRoom = classRoomMapper.toEntity(dto.classRoom)
+        entity.endTime = dto.endTime
+        entity.number = dto.number
+        entity.startTime = dto.startTime
+        entity.subject = subjectMapper.toEntity(dto.subject)
+        entity.teacher = teacherMapper.toEntity(dto.teacher)
+        entity.groups = dto.groups.stream().map { dto: GroupDto? -> groupMapper.toEntity(dto) }
+            .toList()
+        return entity
     }
 }

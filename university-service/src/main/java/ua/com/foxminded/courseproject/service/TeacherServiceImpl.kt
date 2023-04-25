@@ -18,7 +18,7 @@ open class TeacherServiceImpl @Autowired constructor(
     private val repository: TeacherRepository
 ) : PersonService<TeacherDto> {
     override fun findById(id: UUID): TeacherDto {
-        return mapper.toDto(repository.findById(id).orElseThrow { TeacherNotFoundException(id) })
+        return mapper.toDto(repository.findById(id).orElseThrow { TeacherNotFoundException(id) })!!
     }
 
     override fun findAll(pageable: Pageable): Page<TeacherDto> {
@@ -29,7 +29,7 @@ open class TeacherServiceImpl @Autowired constructor(
         if (personExists(teacher)) {
             throw TeacherConflictException(teacher)
         }
-        return mapper.toDto(repository.save(mapper.toEntity(teacher)))
+        return mapper.toDto(repository.save(mapper.toEntity(teacher)))!!
     }
 
     override fun delete(id: UUID) {
