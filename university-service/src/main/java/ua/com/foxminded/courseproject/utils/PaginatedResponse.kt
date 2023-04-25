@@ -9,18 +9,18 @@ import org.springframework.data.domain.Pageable
 
 class PaginatedResponse<T> : PageImpl<T> {
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    constructor(@JsonProperty("content") content: List<T>?,
+    constructor(@JsonProperty("content") content: List<T>,
                 @JsonProperty("number") number: Int,
                 @JsonProperty("size") size: Int,
-                @JsonProperty("totalElements") totalElements: Long?,
-                @JsonProperty("pageable") pageable: JsonNode?,
+                @JsonProperty("totalElements") totalElements: Long,
+                @JsonProperty("pageable") pageable: JsonNode,
                 @JsonProperty("last") last: Boolean,
                 @JsonProperty("totalPages") totalPages: Int,
-                @JsonProperty("sort") sort: JsonNode?,
+                @JsonProperty("sort") sort: JsonNode,
                 @JsonProperty("first") first: Boolean,
-                @JsonProperty("empty") empty: Boolean) : super(content, PageRequest.of(number, size), totalElements!!)
+                @JsonProperty("empty") empty: Boolean) : super(content, PageRequest.of(number, size), totalElements)
 
-    constructor(content: List<T>?, pageable: Pageable?, total: Long) : super(content, pageable, total)
-    constructor(content: List<T>?) : super(content)
+    constructor(content: List<T>, pageable: Pageable, total: Long) : super(content, pageable, total)
+    constructor(content: List<T>) : super(content)
     constructor() : super(ArrayList<T>())
 }

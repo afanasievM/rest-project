@@ -174,7 +174,7 @@ internal class StudentControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isNoContent())
     }
 
-    private fun setStudents(pageable: Pageable?): Page<StudentDto> {
+    private fun setStudents(pageable: Pageable): Page<StudentDto> {
         val studentDtos: MutableList<StudentDto> = ArrayList()
         for (i in 0..2) {
             val student = StudentDto()

@@ -7,6 +7,6 @@ import org.springframework.data.domain.Pageable
 import ua.com.foxminded.courseproject.dto.StudentDto
 
 @Schema(description = "Response-Object Page<StudentDto>).")
-class PageableStudent @JsonIgnore constructor(content: List<*>?,
+class PageableStudent @JsonIgnore constructor(content: List<*>,
                                               pageable: Pageable?,
-                                              total: Long) : PageImpl<StudentDto?>(content as MutableList<StudentDto?>, pageable, total)
+                                              total: Long) : PageImpl<StudentDto>(content as MutableList<StudentDto>, pageable, total)
