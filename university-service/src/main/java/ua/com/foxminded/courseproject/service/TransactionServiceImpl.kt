@@ -1,65 +1,63 @@
-package ua.com.foxminded.courseproject.service;
+package ua.com.foxminded.courseproject.service
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
-import ua.com.foxminded.courseproject.dto.TransactionDto;
-import ua.com.foxminded.courseproject.utils.PaginatedResponse;
-
-
-import java.net.URI;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
-
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.core.ParameterizedTypeReference
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.http.HttpMethod
+import org.springframework.http.ResponseEntity
+import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
+import org.springframework.web.client.exchange
+import org.springframework.web.util.UriComponentsBuilder
+import ua.com.foxminded.courseproject.dto.TransactionDto
+import ua.com.foxminded.courseproject.utils.PaginatedResponse
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 @Service
-public class TransactionServiceImpl implements TransactionService {
-    @Value("${university.service.URL}")
-    private String URL;
+open class TransactionServiceImpl @Autowired constructor(private val restTemplate: RestTemplate) : TransactionService {
+    @Value("\${university.service.URL}")
+    private lateinit var URL: String
 
-    @Value("${spring.mvc.format.date-time}")
-    private String DATE_TIME_FORMAT;
-    private RestTemplate restTemplate;
+    @Value("\${spring.mvc.format.date-time}")
+    private lateinit var DATE_TIME_FORMAT: String
 
-    @Autowired
-    public TransactionServiceImpl(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    override fun getTransactions(
+        id: String,
+        currency: String,
+        startDate: LocalDateTime?,
+        endDate: LocalDateTime,
+        pageable: Pageable
+    ): Page<TransactionDto> {
+        val url = getURL(id, currency, startDate, endDate, pageable)
+        val response: ResponseEntity<PaginatedResponse<TransactionDto>> =
+            restTemplate.exchange<PaginatedResponse<TransactionDto>>(url,
+                HttpMethod.GET,
+                null,
+                object : ParameterizedTypeReference<PaginatedResponse<TransactionDto?>?>() {})
+        return response.body
     }
 
-    @Override
-    public Page<TransactionDto> getTransactions(String id, String currency, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
-        String url = getURL(id, currency, startDate, endDate, pageable);
-        ResponseEntity<PaginatedResponse<TransactionDto>> response =
-                restTemplate.exchange(url,
-                        HttpMethod.GET,
-                        null,
-                        new ParameterizedTypeReference<>() {
-                        });
-        return response.getBody();
-    }
-
-    private String getURL(String id, String currency, LocalDateTime startDate, LocalDateTime endDate, Pageable pageable) {
-        UriComponents uriComponents = UriComponentsBuilder.fromUriString(URL)
-                .pathSegment(String.valueOf(id))
-                .pathSegment(String.valueOf(currency))
-                .queryParamIfPresent("startdate", Optional.ofNullable(startDate)
-                        .stream().map(d -> d.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))).findAny())
-                .queryParamIfPresent("enddate", Optional.ofNullable(endDate)
-                        .stream().map(d -> d.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))).findAny())
-                .queryParamIfPresent("size", Optional.of(pageable.getPageSize()))
-                .queryParamIfPresent("page", Optional.of(pageable.getPageNumber()))
-                .build();
-        return uriComponents.toString();
+    private fun getURL(
+        id: String,
+        currency: String,
+        startDate: LocalDateTime?,
+        endDate: LocalDateTime,
+        pageable: Pageable
+    ): String {
+        val uriComponents = UriComponentsBuilder.fromUriString(URL)
+            .pathSegment(id)
+            .pathSegment(currency)
+            .queryParamIfPresent(
+                "startdate", Optional.ofNullable(startDate?.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
+            )
+            .queryParam("enddate", endDate.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
+            .queryParam("size", pageable.pageSize)
+            .queryParam("page", pageable.pageNumber)
+            .build()
+        return uriComponents.toString()
     }
 }
-
