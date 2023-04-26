@@ -1,25 +1,12 @@
-package ua.com.foxminded.courseproject.exceptions;
+package ua.com.foxminded.courseproject.exceptions
 
-import java.util.NoSuchElementException;
+class UserNotFoundException : NoSuchElementException {
+    constructor() : super()
+    constructor(s: String, cause: Throwable) : super(s, cause)
+    constructor(cause: Throwable) : super(cause)
+    constructor(s: String) : super(Companion.message.format(s))
 
-public class UserNotFoundException extends NoSuchElementException {
-
-    static private final String message = "Can't find user with username - '%s'";
-
-    public UserNotFoundException() {
-        super();
+    companion object {
+        private const val message = "Can't find user with username - '%s'"
     }
-
-    public UserNotFoundException(String s, Throwable cause) {
-        super(s, cause);
-    }
-
-    public UserNotFoundException(Throwable cause) {
-        super(cause);
-    }
-
-    public UserNotFoundException(String s) {
-        super(message.formatted(s.toString()));
-    }
-
 }

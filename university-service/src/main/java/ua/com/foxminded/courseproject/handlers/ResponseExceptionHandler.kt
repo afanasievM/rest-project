@@ -20,7 +20,7 @@ class ResponseExceptionHandler : ResponseEntityExceptionHandler() {
     @ApiResponse(responseCode = "404", description = "Student isn't found.", content = [Content()])
     fun handleStudentNotFoundException(ex: Exception): ResponseEntity<*> {
         logger.error(stackTraceToString(ex.stackTrace))
-        return ResponseEntity<Any?>("Student isn't found.", HttpStatus.NOT_FOUND)
+        return ResponseEntity("Student isn't found.", HttpStatus.NOT_FOUND)
     }
 
     @ExceptionHandler(StudentConflictException::class)
@@ -28,7 +28,7 @@ class ResponseExceptionHandler : ResponseEntityExceptionHandler() {
     @ApiResponse(responseCode = "409", description = "Student already exists.", content = [Content()])
     fun handleStudentConflictException(ex: Exception): ResponseEntity<*> {
         logger.error(stackTraceToString(ex.stackTrace))
-        return ResponseEntity<Any?>("Student already exists.", HttpStatus.CONFLICT)
+        return ResponseEntity("Student already exists.", HttpStatus.CONFLICT)
     }
 
     @ExceptionHandler(UserNotFoundException::class)
@@ -36,7 +36,7 @@ class ResponseExceptionHandler : ResponseEntityExceptionHandler() {
     @ApiResponse(responseCode = "404", description = "User isn't found.", content = [Content()])
     fun handleUserNotFoundException(ex: Exception): ResponseEntity<*> {
         logger.error(stackTraceToString(ex.stackTrace))
-        return ResponseEntity<Any?>("User isn't found.", HttpStatus.NOT_FOUND)
+        return ResponseEntity("User isn't found.", HttpStatus.NOT_FOUND)
     }
 
     @ExceptionHandler(TeacherNotFoundException::class)
@@ -44,7 +44,7 @@ class ResponseExceptionHandler : ResponseEntityExceptionHandler() {
     @ApiResponse(responseCode = "404", description = "Teacher isn't found.", content = [Content()])
     fun handleTeacherNotFoundException(ex: Exception): ResponseEntity<*> {
         logger.error(stackTraceToString(ex.stackTrace))
-        return ResponseEntity<Any?>("Teacher isn't found.", HttpStatus.NOT_FOUND)
+        return ResponseEntity("Teacher isn't found.", HttpStatus.NOT_FOUND)
     }
 
     @ExceptionHandler(TeacherConflictException::class)
@@ -52,7 +52,7 @@ class ResponseExceptionHandler : ResponseEntityExceptionHandler() {
     @ApiResponse(responseCode = "409", description = "Teacher already exists.", content = [Content()])
     fun handleTeacherConflictException(ex: Exception): ResponseEntity<*> {
         logger.error(stackTraceToString(ex.stackTrace))
-        return ResponseEntity<Any?>("Teacher already exists.", HttpStatus.CONFLICT)
+        return ResponseEntity("Teacher already exists.", HttpStatus.CONFLICT)
     }
 
     private fun stackTraceToString(stackTraceElements: Array<StackTraceElement>): String {

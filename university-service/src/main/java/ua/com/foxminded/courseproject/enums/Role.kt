@@ -1,7 +1,7 @@
-package ua.com.foxminded.courseproject.enums;
+package ua.com.foxminded.courseproject.enums
 
-public enum Role {
+enum class Role {
     ADMIN,
     STUDENT,
-    TEACHER;
+    TEACHER
 }

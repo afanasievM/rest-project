@@ -1,29 +1,15 @@
-package ua.com.foxminded.courseproject.exceptions;
+package ua.com.foxminded.courseproject.exceptions
 
-import java.util.NoSuchElementException;
-import java.util.UUID;
+import java.util.*
 
-public class StudentNotFoundException extends NoSuchElementException {
+class StudentNotFoundException : NoSuchElementException {
+    constructor() : super()
+    constructor(s: String, cause: Throwable) : super(s, cause)
+    constructor(cause: Throwable) : super(cause)
+    constructor(s: String) : super(s)
+    constructor(s: UUID) : super(Companion.message.format(s.toString()))
 
-    static private final String message = "Can't find student with ID=%s";
-
-    public StudentNotFoundException() {
-        super();
-    }
-
-    public StudentNotFoundException(String s, Throwable cause) {
-        super(s, cause);
-    }
-
-    public StudentNotFoundException(Throwable cause) {
-        super(cause);
-    }
-
-    public StudentNotFoundException(String s) {
-        super(s);
-    }
-
-    public StudentNotFoundException(UUID s) {
-        super(message.formatted(s.toString()));
+    companion object {
+        private const val message = "Can't find student with ID=%s"
     }
 }

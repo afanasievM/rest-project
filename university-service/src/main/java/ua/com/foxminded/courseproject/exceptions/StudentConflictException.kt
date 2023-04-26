@@ -1,29 +1,21 @@
-package ua.com.foxminded.courseproject.exceptions;
+package ua.com.foxminded.courseproject.exceptions
 
-import ua.com.foxminded.courseproject.dto.StudentDto;
+import ua.com.foxminded.courseproject.dto.StudentDto
 
-public class StudentConflictException extends RuntimeException {
+class StudentConflictException : RuntimeException {
+    constructor() : super()
+    constructor(s: String, cause: Throwable) : super(s, cause)
+    constructor(cause: Throwable) : super(cause)
+    constructor(s: String) : super(s)
+    constructor(studentDto: StudentDto) : super(
+        Companion.message.format(
+            studentDto.firstName,
+            studentDto.lastName,
+            studentDto.birthDay.toString()
+        )
+    )
 
-    static private final String message = "Student %s %s %s already exists.";
-
-    public StudentConflictException() {
-        super();
+    companion object {
+        private const val message = "Student %s %s %s already exists."
     }
-
-    public StudentConflictException(String s, Throwable cause) {
-        super(s, cause);
-    }
-
-    public StudentConflictException(Throwable cause) {
-        super(cause);
-    }
-
-    public StudentConflictException(String s) {
-        super(s);
-    }
-
-    public StudentConflictException (StudentDto studentDto){
-        super(message.formatted(studentDto.getFirstName(), studentDto.getLastName(), studentDto.getBirthDay().toString()));
-    }
-
 }

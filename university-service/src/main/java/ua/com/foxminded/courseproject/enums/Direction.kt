@@ -1,6 +1,6 @@
-package ua.com.foxminded.courseproject.enums;
+package ua.com.foxminded.courseproject.enums
 
-public enum Direction {
+enum class Direction {
     OUTPUT,
-    INPUT;
+    INPUT
 }
