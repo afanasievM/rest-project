@@ -6,8 +6,7 @@ import javax.validation.constraints.PositiveOrZero
 
 data class ClassRoomDto(
     var id: UUID? = null,
-    var number:
-    @NotNull
-    @PositiveOrZero(message = "Classroom number must be positive or equal 0.")
-    Int? = null
+    @field:NotNull
+    @field:PositiveOrZero(message = "Classroom number must be positive or equal 0.")
+    var number: Int? = null
 )

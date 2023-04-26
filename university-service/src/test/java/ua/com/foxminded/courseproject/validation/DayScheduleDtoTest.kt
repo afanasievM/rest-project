@@ -3,7 +3,6 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.DayScheduleDto
-import javax.validation.ConstraintViolation
 
 class DayScheduleDtoTest : ValidationSetupTest() {
     @Test
@@ -13,7 +12,7 @@ class DayScheduleDtoTest : ValidationSetupTest() {
         val expectedMessage = "must not be null"
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val constraintViolations = validator.validate(dayScheduleDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -28,7 +27,7 @@ class DayScheduleDtoTest : ValidationSetupTest() {
         val expectedMessage = "Weekday number should be greater than 0 and less than 8."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val constraintViolations = validator.validate(dayScheduleDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -43,7 +42,7 @@ class DayScheduleDtoTest : ValidationSetupTest() {
         val expectedMessage = "Weekday number should be greater than 0 and less than 8."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val constraintViolations = validator.validate(dayScheduleDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -57,7 +56,7 @@ class DayScheduleDtoTest : ValidationSetupTest() {
         dayScheduleDto.dayNumber = 1
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val constraintViolations = validator.validate(dayScheduleDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -69,7 +68,7 @@ class DayScheduleDtoTest : ValidationSetupTest() {
         dayScheduleDto.dayNumber = 7
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val constraintViolations = validator.validate(dayScheduleDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -81,7 +80,7 @@ class DayScheduleDtoTest : ValidationSetupTest() {
         dayScheduleDto.dayNumber = 5
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<DayScheduleDto>> = validator.validate<DayScheduleDto>(dayScheduleDto)
+        val constraintViolations = validator.validate(dayScheduleDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)

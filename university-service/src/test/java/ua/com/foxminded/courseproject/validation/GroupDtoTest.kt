@@ -3,7 +3,6 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.GroupDto
-import javax.validation.ConstraintViolation
 
 class GroupDtoTest : ValidationSetupTest() {
     @Test
@@ -13,7 +12,7 @@ class GroupDtoTest : ValidationSetupTest() {
         val expectedMessage = "must not be null"
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val constraintViolations = validator.validate(groupDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -28,7 +27,7 @@ class GroupDtoTest : ValidationSetupTest() {
         val expectedMessage = "Group name should be between 1 and 36."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val constraintViolations = validator.validate(groupDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -42,7 +41,7 @@ class GroupDtoTest : ValidationSetupTest() {
         groupDto.name = "s"
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val constraintViolations = validator.validate(groupDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -54,7 +53,7 @@ class GroupDtoTest : ValidationSetupTest() {
         groupDto.name = "sss"
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val constraintViolations = validator.validate(groupDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -66,7 +65,7 @@ class GroupDtoTest : ValidationSetupTest() {
         groupDto.name = "s".repeat(36)
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val constraintViolations = validator.validate(groupDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -79,7 +78,7 @@ class GroupDtoTest : ValidationSetupTest() {
         val expectedMessage = "Group name should be between 1 and 36."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<GroupDto>> = validator.validate<GroupDto>(groupDto)
+        val constraintViolations = validator.validate(groupDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 

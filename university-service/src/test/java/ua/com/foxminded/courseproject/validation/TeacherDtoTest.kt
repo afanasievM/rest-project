@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.TeacherDto
 import java.time.LocalDate
-import javax.validation.ConstraintViolation
 
 class TeacherDtoTest : PersonDtoTest<TeacherDto>() {
     @BeforeEach
@@ -27,7 +26,8 @@ class TeacherDtoTest : PersonDtoTest<TeacherDto>() {
         val expectedMessage = "must not be null"
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<TeacherDto?>> = validator.validate<TeacherDto?>(person)
+        val constraintViolations = validator.validate(person)
+        println(constraintViolations)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 

@@ -3,7 +3,6 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.ClassRoomDto
-import javax.validation.ConstraintViolation
 
 class ClassRoomDtoTest : ValidationSetupTest() {
     @Test
@@ -13,7 +12,7 @@ class ClassRoomDtoTest : ValidationSetupTest() {
         val expectedMessage = "must not be null"
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val constraintViolations = validator.validate(classRoomDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -28,7 +27,7 @@ class ClassRoomDtoTest : ValidationSetupTest() {
         val expectedMessage = "Classroom number must be positive or equal 0."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val constraintViolations = validator.validate(classRoomDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -42,7 +41,7 @@ class ClassRoomDtoTest : ValidationSetupTest() {
         classRoomDto.number = 0
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val constraintViolations = validator.validate(classRoomDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -54,7 +53,7 @@ class ClassRoomDtoTest : ValidationSetupTest() {
         classRoomDto.number = 1
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<ClassRoomDto>> = validator.validate<ClassRoomDto>(classRoomDto)
+        val constraintViolations = validator.validate(classRoomDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)

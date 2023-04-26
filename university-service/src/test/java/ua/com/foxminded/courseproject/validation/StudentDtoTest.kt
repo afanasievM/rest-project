@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.GroupDto
 import ua.com.foxminded.courseproject.dto.StudentDto
 import java.time.LocalDate
-import javax.validation.ConstraintViolation
 
 class StudentDtoTest : PersonDtoTest<StudentDto>() {
     @BeforeEach
@@ -26,7 +25,7 @@ class StudentDtoTest : PersonDtoTest<StudentDto>() {
         val expectedMessage = "must not be null"
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<StudentDto>> = validator.validate<StudentDto>(person)
+        val constraintViolations = validator.validate(person)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -40,7 +39,7 @@ class StudentDtoTest : PersonDtoTest<StudentDto>() {
         val expectedMessage = "Student course number be greater than or equals 1 and less or equals than 6."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<StudentDto>> = validator.validate<StudentDto>(person)
+        val constraintViolations = validator.validate(person)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -54,7 +53,7 @@ class StudentDtoTest : PersonDtoTest<StudentDto>() {
         val expectedMessage = "Student course number be greater than or equals 1 and less or equals than 6."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<StudentDto>> = validator.validate<StudentDto>(person)
+        val constraintViolations = validator.validate(person)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -67,7 +66,7 @@ class StudentDtoTest : PersonDtoTest<StudentDto>() {
         person.course = 1
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<StudentDto>> = validator.validate<StudentDto>(person)
+        val constraintViolations = validator.validate(person)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -78,7 +77,7 @@ class StudentDtoTest : PersonDtoTest<StudentDto>() {
         person.course = 5
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<StudentDto>> = validator.validate<StudentDto>(person)
+        val constraintViolations = validator.validate(person)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)

@@ -6,11 +6,10 @@ import javax.validation.constraints.NotNull
 
 data class StudentDto(
     var group: GroupDto? = null,
-    var course:
-    @NotNull
-    @Min(value = 1, message = "Student course number be greater than or equals 1 and less or equals than 6.")
-    @Max(value = 6, message = "Student course number be greater than or equals 1 and less or equals than 6.")
-    Int? = null,
+    @field:NotNull
+    @field:Min(value = 1, message = "Student course number be greater than or equals 1 and less or equals than 6.")
+    @field:Max(value = 6, message = "Student course number be greater than or equals 1 and less or equals than 6.")
+    var course: Int? = null,
     var captain: Boolean? = null
 
 ) : PersonDto()

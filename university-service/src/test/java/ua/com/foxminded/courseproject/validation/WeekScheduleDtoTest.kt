@@ -3,7 +3,6 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.WeekScheduleDto
-import javax.validation.ConstraintViolation
 
 class WeekScheduleDtoTest : ValidationSetupTest() {
     @Test
@@ -12,7 +11,7 @@ class WeekScheduleDtoTest : ValidationSetupTest() {
         weekScheduleDto.isOdd = null
         val expectedMessage = "must not be null"
         val expectedSize = 1
-        val constraintViolations: Set<ConstraintViolation<WeekScheduleDto>> = validator.validate<WeekScheduleDto>(weekScheduleDto)
+        val constraintViolations = validator.validate(weekScheduleDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
         Assertions.assertEquals(expectedMessage, actualMessage)
@@ -24,7 +23,7 @@ class WeekScheduleDtoTest : ValidationSetupTest() {
         val weekScheduleDto = WeekScheduleDto()
         weekScheduleDto.isOdd = true
         val expectedSize = 0
-        val constraintViolations: Set<ConstraintViolation<WeekScheduleDto>> = validator.validate<WeekScheduleDto>(weekScheduleDto)
+        val constraintViolations = validator.validate(weekScheduleDto)
         val actualSize = constraintViolations.size
         Assertions.assertEquals(expectedSize, actualSize)
     }

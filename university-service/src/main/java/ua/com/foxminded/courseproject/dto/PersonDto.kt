@@ -9,17 +9,16 @@ import javax.validation.constraints.Size
 
 open class PersonDto(
     var id: UUID? = null,
-    var firstName:
-    @NotNull
-    @Size(min = 1, max = 36, message = "Firstname should be between 1 and 36.")
-    String? = null,
-    var lastName:
-    @NotNull
-    @Size(min = 1, max = 36, message = "Lastname should be between 1 and 36.")
-    String? = null,
+    @field:NotNull
+    @field:Size(min = 1, max = 36, message = "Firstname should be between 1 and 36.")
+    var firstName: String? = null,
+    @field:NotNull
+    @field:Size(min = 1, max = 36, message = "Lastname should be between 1 and 36.")
+    var lastName: String? = null,
 
-    @Age(min = 16)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    var birthDay: @NotNull LocalDate? = null
+    @field:Age(min = 16)
+    @field:DateTimeFormat(pattern = "yyyy-MM-dd")
+    @field:NotNull
+    var birthDay: LocalDate? = null
 )
 

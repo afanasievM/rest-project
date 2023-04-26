@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.ClassRoomDto
 import ua.com.foxminded.courseproject.dto.LessonDto
 import ua.com.foxminded.courseproject.dto.SubjectDto
-import javax.validation.ConstraintViolation
 
 class LessonDtoTest : ValidationSetupTest() {
     private lateinit var lessonDto: LessonDto
@@ -24,7 +23,7 @@ class LessonDtoTest : ValidationSetupTest() {
         val expectedMessage = "Lesson subject should be not null."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -35,7 +34,7 @@ class LessonDtoTest : ValidationSetupTest() {
     @Test
     fun validation_shouldNotThrowException_whenSubjectClassroomNumberAreNotNullAndValid() {
         val expectedSize = 0
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -47,7 +46,7 @@ class LessonDtoTest : ValidationSetupTest() {
         val expectedMessage = "Lesson classroom should be not null."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -61,7 +60,7 @@ class LessonDtoTest : ValidationSetupTest() {
         val expectedMessage = "must not be null"
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -75,7 +74,7 @@ class LessonDtoTest : ValidationSetupTest() {
         val expectedMessage = "Lesson number should be greater than 0 and less than 5."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -89,7 +88,7 @@ class LessonDtoTest : ValidationSetupTest() {
         val expectedMessage = "Lesson number should be greater than 0 and less than 5."
         val expectedSize = 1
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -102,7 +101,7 @@ class LessonDtoTest : ValidationSetupTest() {
         lessonDto.number = 0
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -113,7 +112,7 @@ class LessonDtoTest : ValidationSetupTest() {
         lessonDto.number = 5
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
@@ -124,7 +123,7 @@ class LessonDtoTest : ValidationSetupTest() {
         lessonDto.number = 3
         val expectedSize = 0
 
-        val constraintViolations: Set<ConstraintViolation<LessonDto?>> = validator.validate<LessonDto?>(lessonDto)
+        val constraintViolations = validator.validate(lessonDto)
         val actualSize = constraintViolations.size
 
         Assertions.assertEquals(expectedSize, actualSize)
