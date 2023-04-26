@@ -104,13 +104,13 @@ internal class StudentControllerTest {
     fun createStudent_shouldReturnCreated_WhenStudentNotExists() {
         val firstName = "test1"
         val lastName = setStudents(pageableDefault).content[0].lastName
-        val birthDay = setStudents(pageableDefault).content[0].birthDay.minusYears(18)
+        val birthDay = setStudents(pageableDefault).content[0].birthDay?.minusYears(18)
         val courseNumber = "1"
         val captain = false
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
         params.add("firstName", firstName)
         params.add("lastName", lastName)
-        params.add("birthDay", birthDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("birthDay", birthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         params.add("captain", captain.toString())
         params.add("course", courseNumber)
         val studentDto = StudentDto()
@@ -135,11 +135,11 @@ internal class StudentControllerTest {
         val existedFirstName = existentStudent.firstName
         val existedLastName = existentStudent.lastName
         val courseNumber = "1"
-        val existedBirthDay = existentStudent.birthDay.minusYears(18)
+        val existedBirthDay = existentStudent.birthDay?.minusYears(18)
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
         params.add("firstName", existedFirstName)
         params.add("lastName", existedLastName)
-        params.add("birthDay", existedBirthDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("birthDay", existedBirthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         params.add("course", courseNumber)
 
         Mockito.`when`(studentService.findById(UUID.fromString(id))).thenReturn(existentStudent)

@@ -34,8 +34,8 @@ open class StudentServiceImpl @Autowired constructor(
 
     override fun personExists(personDto: StudentDto): Boolean {
         return repository.existsStudentByFirstNameAndLastNameAndBirthDay(
-            personDto.firstName,
-            personDto.lastName, personDto.birthDay
+            personDto.firstName!!,
+            personDto.lastName!!, personDto.birthDay!!
         )
     }
 }

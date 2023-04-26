@@ -30,6 +30,7 @@ abstract class PersonDtoTest<T : PersonDto> : ValidationSetupTest() {
         val expectedSize = 1
 
         val constraintViolations: Set<ConstraintViolation<T>> = validator.validate<T>(person)
+        println(constraintViolations.size)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
@@ -66,6 +67,7 @@ abstract class PersonDtoTest<T : PersonDto> : ValidationSetupTest() {
         val expectedSize = 1
 
         val constraintViolations: Set<ConstraintViolation<T>> = validator.validate<T>(person)
+
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 

@@ -17,7 +17,7 @@ class WeekScheduleMapper @Autowired constructor(private val dayScheduleMapper: D
         val dto = WeekScheduleDto()
         dto.id = entity.id
         dto.daysSchedule = entity.daysSchedule.stream().map { entity: DaySchedule? -> dayScheduleMapper.toDto(entity) }
-            .toList()
+            .toList() as List<DayScheduleDto>?
         dto.isOdd = entity.isOdd
         return dto
     }
@@ -28,8 +28,8 @@ class WeekScheduleMapper @Autowired constructor(private val dayScheduleMapper: D
         }
         val entity = WeekSchedule()
         entity.id = dto.id
-        entity.daysSchedule = dto.daysSchedule.stream().map { dto: DayScheduleDto? -> dayScheduleMapper.toEntity(dto) }
-            .toList() as MutableList<DaySchedule>
+        entity.daysSchedule = dto.daysSchedule?.stream()?.map { dto: DayScheduleDto? -> dayScheduleMapper.toEntity(dto) }
+            ?.toList() as MutableList<DaySchedule>
         entity.isOdd = dto.isOdd
         return entity
     }

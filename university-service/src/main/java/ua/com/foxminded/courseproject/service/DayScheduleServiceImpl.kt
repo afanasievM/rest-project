@@ -98,8 +98,8 @@ open class DayScheduleServiceImpl @Autowired constructor(
     }
 
     private fun filterStudentLessons(lessons: List<LessonDto>, studentDto: StudentDto): List<LessonDto> {
-        return lessons.stream()
-            .filter { l: LessonDto -> l.groups.contains(studentDto.group) }
+        return lessons
+            .filter { l: LessonDto -> l.groups!!.contains(studentDto.group) }
             .toList()
     }
 

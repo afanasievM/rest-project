@@ -17,7 +17,7 @@ class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonM
         val dto = DayScheduleDto()
         dto.id = entity.id
         dto.dayNumber = entity.dayNumber
-        dto.lessons = entity.lessons?.stream()?.map { entity: Lesson? -> lessonMapper.toDto(entity) }?.toList()
+        dto.lessons = entity.lessons?.stream()?.map { entity: Lesson? -> lessonMapper.toDto(entity) }?.toList() as List<LessonDto>?
         return dto
     }
 
@@ -28,7 +28,7 @@ class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonM
         val entity = DaySchedule()
         entity.id = dto.id
         entity.dayNumber = dto.dayNumber
-        entity.lessons = dto.lessons.stream().map { dto: LessonDto? -> lessonMapper.toEntity(dto) }.toList() as MutableList<Lesson>
+        entity.lessons = dto.lessons?.stream()?.map { dto: LessonDto? -> lessonMapper.toEntity(dto) }?.toList() as MutableList<Lesson>
         return entity
     }
 }

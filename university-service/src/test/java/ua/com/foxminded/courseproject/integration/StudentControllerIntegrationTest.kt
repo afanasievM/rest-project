@@ -125,11 +125,11 @@ internal open class StudentControllerIntegrationTest {
         val changedFirstname = "CHANGED"
         val existedLastName = existentStudent.lastName
         val courseNumber = "1"
-        val existedBirthDay = existentStudent.birthDay.minusYears(18)
+        val existedBirthDay = existentStudent.birthDay?.minusYears(18)
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
         params.add("firstName", changedFirstname)
         params.add("lastName", existedLastName)
-        params.add("birthDay", existedBirthDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("birthDay", existedBirthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         params.add("course", courseNumber)
 
         mockMvc.perform(MockMvcRequestBuilders.put("/students/{id}", id).params(params))

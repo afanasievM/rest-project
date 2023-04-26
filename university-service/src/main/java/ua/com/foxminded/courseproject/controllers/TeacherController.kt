@@ -52,7 +52,7 @@ class TeacherController @Autowired constructor(teacherService: TeacherServiceImp
     @PutMapping(value = ["/teachers/{id}"])
     @RolesAllowed(Role.ADMIN)
     fun updateTeacher(teacherDto: @Valid TeacherDto): ResponseEntity<*> {
-        getPersonById(teacherDto.id)
+        teacherDto.id?.let { getPersonById(it) }
         service.save(teacherDto)
         return ResponseEntity<Any>(HttpStatus.RESET_CONTENT)
     }

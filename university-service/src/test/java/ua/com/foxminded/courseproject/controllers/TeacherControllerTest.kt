@@ -133,13 +133,13 @@ internal class TeacherControllerTest {
         val id = existentTeacher.id.toString()
         val existedFirstName = existentTeacher.firstName
         val existedLastName = existentTeacher.lastName
-        val existedBirthDay = existentTeacher.birthDay.minusYears(18)
+        val existedBirthDay = existentTeacher.birthDay?.minusYears(18)
         val existedFirstDay = existentTeacher.firstDay
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
         params.add("firstName", existedFirstName)
         params.add("lastName", existedLastName)
-        params.add("birthDay", existedBirthDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-        params.add("firstDay", existedFirstDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("birthDay", existedBirthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("firstDay", existedFirstDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
 
         Mockito.`when`(teacherService.findById(UUID.fromString(id))).thenReturn(existentTeacher)
 

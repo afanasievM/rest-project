@@ -55,7 +55,7 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @PutMapping(value = ["/students/{id}"])
     @RolesAllowed(Role.ADMIN)
     fun updateStudent(studentDto: @Valid StudentDto): ResponseEntity<*> {
-        getPersonById(studentDto.id)
+        studentDto.id?.let { getPersonById(it) }
         service.save(studentDto)
         return ResponseEntity<Any>(HttpStatus.RESET_CONTENT)
     }

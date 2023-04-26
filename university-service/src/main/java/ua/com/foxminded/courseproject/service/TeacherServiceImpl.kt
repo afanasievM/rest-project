@@ -38,8 +38,8 @@ open class TeacherServiceImpl @Autowired constructor(
 
     override fun personExists(personDto: TeacherDto): Boolean {
         return repository.existsTeacherByFirstNameAndLastNameAndBirthDay(
-            personDto.firstName,
-            personDto.lastName, personDto.birthDay
+            personDto.firstName!!,
+            personDto.lastName!!, personDto.birthDay!!
         )
     }
 }
