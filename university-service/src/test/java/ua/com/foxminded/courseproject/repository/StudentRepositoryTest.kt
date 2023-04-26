@@ -63,7 +63,7 @@ internal open class StudentRepositoryTest {
 
         repository.save(expected)
 
-        Assertions.assertEquals(expected, repository.findById(expected.id).get())
+        Assertions.assertEquals(expected, expected.id?.let { repository.findById(it).get() })
     }
 
     @Test
@@ -73,7 +73,7 @@ internal open class StudentRepositoryTest {
 
         repository.save(expected)
 
-        Assertions.assertEquals(expected, repository.findById(expected.id).get())
+        Assertions.assertEquals(expected, expected.id?.let { repository.findById(it).get() })
     }
 
     @Test

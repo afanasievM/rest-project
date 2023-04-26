@@ -1,67 +1,20 @@
-package ua.com.foxminded.courseproject.entity;
+package ua.com.foxminded.courseproject.entity
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.UUID;
+import org.hibernate.annotations.GenericGenerator
+import org.hibernate.annotations.Type
+import java.util.*
+import javax.persistence.*
 
 @Entity
 @Table(name = "groups")
-public class Group {
+data class Group(
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
-    private UUID id;
+    var id: UUID? = null,
+
     @Column(name = "name")
-    private String name;
-
-    public Group() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Group{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Group group)) return false;
-
-        if (getId() != null ? !getId().equals(group.getId()) : group.getId() != null) return false;
-        return getName() != null ? getName().equals(group.getName()) : group.getName() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        return result;
-    }
-}
+    var name: String? = null
+)

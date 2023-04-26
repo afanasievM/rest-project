@@ -17,8 +17,8 @@ class ScheduleMapper @Autowired constructor(private val weekScheduleMapper: Week
         }
         val dto = ScheduleDto()
         dto.id = entity.id
-        dto.endDate = entity.endDate.toLocalDateTime()
-        dto.startDate = entity.startDate.toLocalDateTime()
+        dto.endDate = entity.endDate?.toLocalDateTime()
+        dto.startDate = entity.startDate?.toLocalDateTime()
         dto.weeks = entity.weeks.stream().map { entity: WeekSchedule? -> weekScheduleMapper.toDto(entity) }
             .toList()
         return dto
@@ -33,7 +33,7 @@ class ScheduleMapper @Autowired constructor(private val weekScheduleMapper: Week
         entity.endDate = Timestamp.valueOf(dto.endDate)
         entity.endDate = Timestamp.valueOf(dto.startDate)
         entity.weeks = dto.weeks.stream().map { dto: WeekScheduleDto? -> weekScheduleMapper.toEntity(dto) }
-            .toList()
+            .toList() as MutableList<WeekSchedule>
         return entity
     }
 }

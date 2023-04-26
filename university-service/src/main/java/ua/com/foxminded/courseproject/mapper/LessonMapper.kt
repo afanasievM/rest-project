@@ -44,7 +44,7 @@ class LessonMapper @Autowired constructor(
         entity.subject = subjectMapper.toEntity(dto.subject)
         entity.teacher = teacherMapper.toEntity(dto.teacher)
         entity.groups = dto.groups.stream().map { dto: GroupDto? -> groupMapper.toEntity(dto) }
-            .toList()
+            .toList() as MutableList<Group>
         return entity
     }
 }
