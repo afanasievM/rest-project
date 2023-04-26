@@ -1,12 +1,11 @@
-package ua.com.foxminded.restClient
+package ua.com.foxminded.courseproject
 
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class RestClientApplication
+class CourseProjectApplication
 
 fun main(args: Array<String>) {
-    runApplication<RestClientApplication>(*args)
+    runApplication<CourseProjectApplication>(*args)
 }

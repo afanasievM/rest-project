@@ -1,88 +1,77 @@
-package ua.com.foxminded.restClient.service;
+package ua.com.foxminded.restClient.service
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
-import ua.com.foxminded.restClient.dto.TransactionDto;
-import ua.com.foxminded.restClient.dto.Rate;
-import ua.com.foxminded.restClient.enums.Direction;
-import ua.com.foxminded.restClient.exceptions.CurrencyNotFoundException;
-
-import java.util.Currency;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.stereotype.Service
+import ua.com.foxminded.restClient.dto.Rate
+import ua.com.foxminded.restClient.dto.TransactionDto
+import ua.com.foxminded.restClient.enums.Direction
+import ua.com.foxminded.restClient.exceptions.CurrencyNotFoundException
+import java.util.*
 
 @Service
-public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
-    RateService rateService;
+class CurrencyExchangeServiceImpl @Autowired constructor(var rateService: RateService) : CurrencyExchangeService {
 
-    @Autowired
-    public CurrencyExchangeServiceImpl(RateService rateService) {
-        this.rateService = rateService;
-    }
-
-
-    @Override
-    public Page<TransactionDto> exchangeTo(Page<TransactionDto> transactions, Currency currency) {
-        List<Rate> rates = rateService.getRates();
-        transactions.map(t ->
-                {
-                    Currency transactionCurrency = Currency.getInstance(t.getCurrency());
-                    if (transactionCurrency.getCurrencyCode().equals(currency.getCurrencyCode())) {
-                        return t;
-                    }
-                    t.setCurrency(currency.getCurrencyCode());
-                    return exchange(t, chooseRate(transactionCurrency, currency, rates));
+    override fun exchangeTo(transactions: Page<TransactionDto>, currency: Currency): Page<TransactionDto> {
+        println(transactions.content)
+        val rates = rateService.rates
+        transactions.content
+            .map { t ->
+                println(t)
+                val transactionCurrency = Currency.getInstance(t.currency)
+                if (transactionCurrency.currencyCode == currency.currencyCode) {
+                    return@map t
                 }
-        );
-        return transactions;
+                t.currency = currency.currencyCode
+                exchange(t, chooseRate(transactionCurrency, currency, rates))
+            }
+        return transactions
     }
 
-    private TransactionDto exchange(TransactionDto transaction, Rate rate) {
-        if (transaction.getTransactionDirection() == Direction.OUTPUT) {
-            buy(transaction, rate);
-        } else if (transaction.getTransactionDirection() == Direction.INPUT) {
-            sell(transaction, rate);
+    private fun exchange(transaction: TransactionDto, rate: Rate): TransactionDto {
+        if (transaction.transactionDirection === Direction.OUTPUT) {
+            buy(transaction, rate)
+        } else if (transaction.transactionDirection === Direction.INPUT) {
+            sell(transaction, rate)
         }
-        return transaction;
+        return transaction
     }
 
-    private void sell(TransactionDto transaction, Rate rate) {
-        Currency transactionCurrency = Currency.getInstance(transaction.getCurrency());
-        double valueExchanged;
-        if (transactionCurrency.getNumericCode() == rate.getCurrencyCodeB()) {
-            valueExchanged = transaction.getValue() * rate.getRateSell();
+    private fun sell(transaction: TransactionDto, rate: Rate) {
+        val transactionCurrency: Currency = Currency.getInstance(transaction.currency)
+        val valueExchanged = if (transactionCurrency.numericCode == rate.currencyCodeB) {
+            transaction.value?.times(rate.rateSell!!)
         } else {
-            valueExchanged = transaction.getValue() * rate.getRateBuy();
+            transaction.value?.times(rate.rateBuy!!)
         }
-        transaction.setValue(valueExchanged);
+        transaction.value = valueExchanged
     }
 
-    private void buy(TransactionDto transaction, Rate rate) {
-        Currency transactionCurrency = Currency.getInstance(transaction.getCurrency());
-        double valueExchanged;
-        if (transactionCurrency.getNumericCode() == rate.getCurrencyCodeB()) {
-            valueExchanged = transaction.getValue() * rate.getRateBuy();
+    private fun buy(transaction: TransactionDto, rate: Rate) {
+        val transactionCurrency: Currency = Currency.getInstance(transaction.currency)
+        val valueExchanged = if (transactionCurrency.numericCode == rate.currencyCodeB) {
+            transaction.value?.times(rate.rateBuy!!)
         } else {
-            valueExchanged = transaction.getValue() * rate.getRateSell();
+            transaction.value?.times(rate.rateSell!!)
         }
-        transaction.setValue(valueExchanged);
+        transaction.value = valueExchanged
     }
 
-    private Rate chooseRate(Currency currencyFirst, Currency currencySecond, List<Rate> rates) {
+    private fun chooseRate(currencyFirst: Currency, currencySecond: Currency, rates: List<Rate>): Rate {
         return rates.stream()
-                .filter(rate -> {
-                            int codeA = rate.getCurrencyCodeA();
-                            int codeB = rate.getCurrencyCodeB();
-                            int codeAExpected = currencyFirst.getNumericCode();
-                            int codeBExpected = currencySecond.getNumericCode();
-                            return (codeA == codeAExpected || codeA == codeBExpected) &&
-                                    (codeB == codeAExpected || codeB == codeBExpected);
-                        }
-                ).findAny()
-                .orElseThrow(() -> new CurrencyNotFoundException(currencyFirst.getSymbol(), currencySecond.getSymbol()));
+            .filter { rate: Rate ->
+                val codeA: Int? = rate.currencyCodeA
+                val codeB: Int? = rate.currencyCodeB
+                val codeAExpected = currencyFirst.numericCode
+                val codeBExpected = currencySecond.numericCode
+                (codeA == codeAExpected || codeA == codeBExpected) &&
+                        (codeB == codeAExpected || codeB == codeBExpected)
+            }.findAny()
+            .orElseThrow<CurrencyNotFoundException> {
+                CurrencyNotFoundException(
+                    currencyFirst.symbol,
+                    currencySecond.symbol
+                )
+            }
     }
 }
-
-
-

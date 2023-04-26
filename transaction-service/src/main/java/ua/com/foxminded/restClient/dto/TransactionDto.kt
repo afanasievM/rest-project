@@ -1,35 +1,15 @@
-package ua.com.foxminded.restClient.dto;
+package ua.com.foxminded.restClient.dto
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import ua.com.foxminded.restClient.enums.Direction;
+import ua.com.foxminded.restClient.enums.Direction
+import java.time.LocalDateTime
+import java.util.*
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode
-public class TransactionDto {
-
-    private UUID id;
-
-    private UUID personId;
-
-    private LocalDateTime transactionTime;
-
-    private Direction transactionDirection;
-
-    private Double value;
-
-    private String currency;
-
-    private String iban;
-
-}
+data class TransactionDto(
+    var id: UUID? = null,
+    var personId: UUID? = null,
+    var transactionTime: LocalDateTime? = null,
+    var transactionDirection: Direction? = null,
+    var value: Double? = null,
+    var currency: String? = null,
+    var iban: String? = null
+)

@@ -1,50 +1,39 @@
-package ua.com.foxminded.restClient.entity;
+package ua.com.foxminded.restClient.entity
 
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-import ua.com.foxminded.restClient.enums.Direction;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
-import java.util.UUID;
+import org.hibernate.annotations.GenericGenerator
+import org.hibernate.annotations.Type
+import ua.com.foxminded.restClient.enums.Direction
+import java.time.LocalDateTime
+import java.util.*
+import javax.persistence.*
 
 @Entity
 @Table(name = "transactions")
-@Data
-public class Transaction {
-
+data class Transaction(
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
-    private UUID id;
+    private val id: UUID? = null,
 
     @Column(name = "person_id")
     @Type(type = "uuid-char")
-    private UUID personId;
+    private val personId: UUID? = null,
 
     @Column(name = "transaction_time")
-    private LocalDateTime transactionTime;
+    private val transactionTime: LocalDateTime? = null,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "transaction_direction")
-    private Direction transactionDirection;
+    private val transactionDirection: Direction? = null,
 
     @Column(name = "value", precision = 10, scale = 2)
-    private Double value;
+    private val value: Double? = null,
 
     @Column(name = "currency")
-    private String currency;
+    private val currency: String? = null,
 
     @Column(name = "iban")
-    private String iban;
-
-}
+    private val iban: String? = null
+)

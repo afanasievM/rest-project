@@ -13,7 +13,6 @@ val FLYWAY_CORE_VER = "8.5.13"
 
 
 plugins {
-    java
     id("org.springframework.boot") version "2.7.11"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     id("org.jetbrains.kotlin.plugin.spring") version "1.8.21"
