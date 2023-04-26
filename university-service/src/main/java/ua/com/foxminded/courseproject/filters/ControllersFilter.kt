@@ -1,47 +1,35 @@
-package ua.com.foxminded.courseproject.filters;
+package ua.com.foxminded.courseproject.filters
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-import org.springframework.web.util.ContentCachingRequestWrapper;
-import org.springframework.web.util.ContentCachingResponseWrapper;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Component
+import org.springframework.web.util.ContentCachingRequestWrapper
+import org.springframework.web.util.ContentCachingResponseWrapper
+import java.io.IOException
+import javax.servlet.*
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 @Component
-public class ControllersFilter implements Filter {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
+class ControllersFilter : Filter {
+    private val logger = LoggerFactory.getLogger(this.javaClass)
+    @Throws(ServletException::class)
+    override fun init(filterConfig: FilterConfig) {
+        super.init(filterConfig)
     }
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        ContentCachingRequestWrapper wreq = new ContentCachingRequestWrapper((HttpServletRequest) request);
-        ContentCachingResponseWrapper wres = new ContentCachingResponseWrapper((HttpServletResponse) response);
-        logger.info("{}: {}?{}",wreq.getMethod() ,wreq.getRequestURI(), wreq.getQueryString() != null ? wreq.getQueryString() : "");
-        chain.doFilter(wreq, wres);
-        while (wreq.getInputStream().read() >= 0) {
+    @Throws(IOException::class, ServletException::class)
+    override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
+        val wreq = ContentCachingRequestWrapper(request as HttpServletRequest)
+        val wres = ContentCachingResponseWrapper(response as HttpServletResponse)
+        logger.info("{}: {}?{}", wreq.method, wreq.requestURI, if (wreq.queryString != null) wreq.queryString else "")
+        chain.doFilter(wreq, wres)
+        while (wreq.inputStream.read() >= 0) {
         }
-        logger.info("Response: {}", new String(wres.getContentAsByteArray()));
-        wres.copyBodyToResponse();
+        logger.info("Response: {}", String(wres.contentAsByteArray))
+        wres.copyBodyToResponse()
     }
 
-    @Override
-    public void destroy() {
-        Filter.super.destroy();
+    override fun destroy() {
+        super.destroy()
     }
 }
