@@ -82,7 +82,7 @@ class LoggingAspect {
 
     @Around("deletePointcut() && repositoryPointcut()")
     @Throws(Throwable::class)
-    fun logAroundDelete(joinPoint: ProceedingJoinPoint): Any {
+    fun logAroundDelete(joinPoint: ProceedingJoinPoint): Any? {
         logger.info(
             "Delete {} from DB.\n{}",
             chooseStringObject(joinPoint),
