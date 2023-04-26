@@ -1,114 +1,134 @@
-package ua.com.foxminded.courseproject.aspects;
+package ua.com.foxminded.courseproject.aspects
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
+import org.aspectj.lang.JoinPoint
+import org.aspectj.lang.ProceedingJoinPoint
+import org.aspectj.lang.annotation.AfterThrowing
+import org.aspectj.lang.annotation.Around
+import org.aspectj.lang.annotation.Aspect
+import org.aspectj.lang.annotation.Pointcut
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Component
+import java.util.*
 
 @Aspect
 @Component
-public class LoggingAspect {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    private final String STUDENT_STRING = "student";
-    private final String TEACHER_STRING = "teacher";
-    private final String SCHEDULE_STRING = "schedule";
-
+class LoggingAspect {
+    private val logger = LoggerFactory.getLogger(this.javaClass)
+    private val STUDENT_STRING = "student"
+    private val TEACHER_STRING = "teacher"
+    private val SCHEDULE_STRING = "schedule"
     @Pointcut("execution(* *..findById(*))")
-    public void findByIdPointcut() {
+    fun findByIdPointcut() {
     }
+
     @Pointcut("execution(* *..findAll(*))")
-    public void findAllPointcut() {
+    fun findAllPointcut() {
     }
 
     @Pointcut("execution(* *..save(*))")
-    public void savePointcut() {
+    fun savePointcut() {
     }
 
     @Pointcut("execution(* *..delete(*))")
-    public void deletePointcut() {
+    fun deletePointcut() {
     }
 
     @Pointcut("execution(* *..exists*(String,..))")
-    public void existCheckPointcut() {
+    fun existCheckPointcut() {
     }
 
     @Pointcut("@within(org.springframework.stereotype.Repository)")
-    public void repositoryPointcut() {
+    fun repositoryPointcut() {
     }
 
-
     @Pointcut("within(@org.springframework.stereotype.Service *)")
-    public void servicePointcut() {
+    fun servicePointcut() {
     }
 
     @Around("findByIdPointcut() && repositoryPointcut()")
-    public Object logAroundFindBy(ProceedingJoinPoint joinPoint) throws Throwable {
-        logger.info("Find {} in DB with ID= {}", chooseStringObject(joinPoint), Arrays.stream(joinPoint.getArgs()).findAny().get());
-        Object result = joinPoint.proceed();
-        logger.info("Query result:\n{}", result.toString());
-        return result;
+    @Throws(Throwable::class)
+    fun logAroundFindBy(joinPoint: ProceedingJoinPoint): Any {
+        logger.info(
+            "Find {} in DB with ID= {}",
+            chooseStringObject(joinPoint),
+            Arrays.stream(joinPoint.args).findAny().get()
+        )
+        val result = joinPoint.proceed()
+        logger.info("Query result:\n{}", result.toString())
+        return result
     }
 
     @Around("findAllPointcut() && repositoryPointcut()")
-    public Object logAroundFindAll(ProceedingJoinPoint joinPoint) throws Throwable {
-        logger.info("Find all {}s in DB with Pageble parameters= {}", chooseStringObject(joinPoint), Arrays.stream(joinPoint.getArgs()).findAny().get());
-        Object result = joinPoint.proceed();
-        logger.info("Query result:\n{}", result.toString());
-        return result;
+    @Throws(Throwable::class)
+    fun logAroundFindAll(joinPoint: ProceedingJoinPoint): Any {
+        logger.info(
+            "Find all {}s in DB with Pageble parameters= {}",
+            chooseStringObject(joinPoint),
+            Arrays.stream(joinPoint.args).findAny().get()
+        )
+        val result = joinPoint.proceed()
+        logger.info("Query result:\n{}", result.toString())
+        return result
     }
 
     @Around("savePointcut() && repositoryPointcut()")
-    public Object logAroundSave(ProceedingJoinPoint joinPoint) throws Throwable {
-        logger.info("Save {} to DB.\n{}", chooseStringObject(joinPoint), Arrays.stream(joinPoint.getArgs()).findAny().get());
-        Object result = joinPoint.proceed();
-        logger.info("Query result:\n{}", result.toString());
-        return result;
+    @Throws(Throwable::class)
+    fun logAroundSave(joinPoint: ProceedingJoinPoint): Any {
+        logger.info("Save {} to DB.\n{}", chooseStringObject(joinPoint), Arrays.stream(joinPoint.args).findAny().get())
+        val result = joinPoint.proceed()
+        logger.info("Query result:\n{}", result.toString())
+        return result
     }
 
     @Around("deletePointcut() && repositoryPointcut()")
-    public Object logAroundDelete(ProceedingJoinPoint joinPoint) throws Throwable {
-        logger.info("Delete {} from DB.\n{}", chooseStringObject(joinPoint), Arrays.stream(joinPoint.getArgs()).findAny().get());
-        Object result = joinPoint.proceed();
-        logger.info("Deleted");
-        return result;
+    @Throws(Throwable::class)
+    fun logAroundDelete(joinPoint: ProceedingJoinPoint): Any {
+        logger.info(
+            "Delete {} from DB.\n{}",
+            chooseStringObject(joinPoint),
+            Arrays.stream(joinPoint.args).findAny().get()
+        )
+        val result = joinPoint.proceed()
+        logger.info("Deleted")
+        return result
     }
 
     @Around("existCheckPointcut() && repositoryPointcut()")
-    public Object logAroundExistsCheck(ProceedingJoinPoint joinPoint) throws Throwable {
-        logger.info("Check if {} exists.\n firstname={}, lastname={}, birthDay={}",
-                chooseStringObject(joinPoint), joinPoint.getArgs()[0], joinPoint.getArgs()[1], joinPoint.getArgs()[2]);
-        Object result = joinPoint.proceed();
-        logger.info("{} is existed: {}",chooseStringObject(joinPoint), result.toString().toUpperCase());
-        return result;
+    @Throws(Throwable::class)
+    fun logAroundExistsCheck(joinPoint: ProceedingJoinPoint): Any {
+        logger.info(
+            "Check if {} exists.\n firstname={}, lastname={}, birthDay={}",
+            chooseStringObject(joinPoint), joinPoint.args[0], joinPoint.args[1], joinPoint.args[2]
+        )
+        val result = joinPoint.proceed()
+        logger.info(
+            "{} is existed: {}",
+            chooseStringObject(joinPoint),
+            result.toString().uppercase(Locale.getDefault())
+        )
+        return result
     }
 
     @AfterThrowing(pointcut = "repositoryPointcut() || servicePointcut()", throwing = "e")
-    public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        logger.error("Exception in {}.{}(). \nException: {} \nMessage: {} \nCause = {}.", joinPoint.getSignature().getDeclaringTypeName(),
-                joinPoint.getSignature().getName(), e.getClass(), e.getMessage(), e.getCause() != null ? e.getCause() : "NULL");
+    fun logAfterThrowing(joinPoint: JoinPoint, e: Throwable) {
+        logger.error(
+            "Exception in {}.{}(). \nException: {} \nMessage: {} \nCause = {}.", joinPoint.signature.declaringTypeName,
+            joinPoint.signature.name, e.javaClass, e.message, if (e.cause != null) e.cause else "NULL"
+        )
     }
 
-    private String chooseStringObject(ProceedingJoinPoint joinPoint) {
-        String result = "";
-        String jpString = joinPoint.toLongString();
-        if (jpString.contains("Student")){
-            result = STUDENT_STRING;
+    private fun chooseStringObject(joinPoint: ProceedingJoinPoint): String {
+        var result = ""
+        val jpString = joinPoint.toLongString()
+        if (jpString.contains("Student")) {
+            result = STUDENT_STRING
         }
-        if (jpString.contains("Teacher")){
-            result = TEACHER_STRING;
+        if (jpString.contains("Teacher")) {
+            result = TEACHER_STRING
         }
-        if (jpString.contains("Schedule")){
-            result = SCHEDULE_STRING;
+        if (jpString.contains("Schedule")) {
+            result = SCHEDULE_STRING
         }
-        return result;
+        return result
     }
-
 }
