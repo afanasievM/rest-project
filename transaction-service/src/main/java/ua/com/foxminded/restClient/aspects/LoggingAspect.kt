@@ -17,11 +17,12 @@ class LoggingAspect {
     private val TEACHER_STRING = "teacher"
     private val SCHEDULE_STRING = "schedule"
 
-    @Pointcut("execution(* *..findAll*(*))")
+    @Pointcut("execution(* findAll*(..))")
+//    @Pointcut("target(ua.com.foxminded.restClient.service.TransactionServiceImpl)")
     fun findAllPointcut() {
     }
 
-    @Pointcut("execution(* *..getRate*(*))")
+    @Pointcut("execution(* getRate*(..))")
     fun ratePointcut() {
     }
 

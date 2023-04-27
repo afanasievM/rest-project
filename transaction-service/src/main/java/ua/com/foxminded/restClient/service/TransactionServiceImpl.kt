@@ -17,6 +17,7 @@ class TransactionServiceImpl @Autowired constructor(
     private val mapper: TransactionMapper,
     private val repository: TransactionRepository
 ) : TransactionService {
+
     override fun findAllByIdAndBetweenDate(
         id: UUID,
         start: LocalDateTime?,

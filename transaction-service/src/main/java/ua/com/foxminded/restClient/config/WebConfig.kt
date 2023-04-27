@@ -8,10 +8,10 @@ import org.springframework.http.client.ClientHttpRequestFactory
 import org.springframework.http.client.ClientHttpRequestInterceptor
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.web.client.RestTemplate
+import ua.com.foxminded.restClient.aspects.LoggingAspect
 import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors
 
 @Configuration
-@EnableAspectJAutoProxy(proxyTargetClass = true)
 class WebConfig {
     @Bean
     fun restTemplate(requestLoggingInterceptors: RequestLoggingInterceptors): RestTemplate {
