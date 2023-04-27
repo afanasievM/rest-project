@@ -13,9 +13,10 @@ val FLYWAY_CORE_VER = "8.5.13"
 
 
 plugins {
-    java
     id("org.springframework.boot") version "2.7.11"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.8.21"
+    kotlin("jvm") version "1.8.21"
 }
 
 repositories {
@@ -33,9 +34,11 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation(kotlin("test"))
 
 
 }
@@ -55,4 +58,7 @@ tasks.withType<JavaCompile>() {
 
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
+}
+kotlin {
+    jvmToolchain(17)
 }
