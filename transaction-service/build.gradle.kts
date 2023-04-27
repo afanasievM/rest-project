@@ -17,6 +17,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     kotlin("jvm") version "1.8.21"
     id("org.jetbrains.kotlin.kapt") version "1.8.21"
+    id("org.jetbrains.kotlin.plugin.allopen" ) version "1.8.21"
 
 }
 
@@ -30,6 +31,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
     implementation("org.flywaydb:flyway-core:$FLYWAY_CORE_VER")
     implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
     implementation("org.mapstruct:mapstruct:${MAPSTRUCT_VER}")
