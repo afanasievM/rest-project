@@ -17,23 +17,23 @@ class LoggingAspect {
     private val STUDENT_STRING = "student"
     private val TEACHER_STRING = "teacher"
     private val SCHEDULE_STRING = "schedule"
-    @Pointcut("execution(* *..findById(*))")
+    @Pointcut("execution(* findById*(..))")
     fun findByIdPointcut() {
     }
 
-    @Pointcut("execution(* *..findAll(*))")
+    @Pointcut("execution(* findAll*(..))")
     fun findAllPointcut() {
     }
 
-    @Pointcut("execution(* *..save(*))")
+    @Pointcut("execution(* save(..))")
     fun savePointcut() {
     }
 
-    @Pointcut("execution(* *..delete(*))")
+    @Pointcut("execution(* delete(..))")
     fun deletePointcut() {
     }
 
-    @Pointcut("execution(* *..exists*(String,..))")
+    @Pointcut("execution(* exists*(String,..))")
     fun existCheckPointcut() {
     }
 
