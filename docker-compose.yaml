@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   university:
-    platform: linux/arm64
+    platform: linux
     image: 'university-service'
     build:
       context: ./university-service
@@ -23,7 +23,7 @@ services:
       - "8081:8081"
 
   transaction:
-    platform: linux/arm64
+    platform: linux
     image: 'transaction-service'
     build:
       context: ./transaction-service
@@ -53,3 +53,14 @@ services:
       - ~/data:/var/lib/postgresql/data
     ports:
       - "5434:5432"
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: misha
+      MONGO_INITDB_ROOT_PASSWORD: 1111
+    volumes:
+        - ./data:/mongodata
