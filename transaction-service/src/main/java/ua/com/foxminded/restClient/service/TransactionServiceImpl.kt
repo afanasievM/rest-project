@@ -34,4 +34,8 @@ class TransactionServiceImpl @Autowired constructor(
             )
         }
     }
+
+    override fun findAll(): List<TransactionDto> {
+        return repository.findAll().map { mapper.entityToDto(it) }
+    }
 }

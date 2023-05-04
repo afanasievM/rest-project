@@ -30,13 +30,15 @@ class LoggingAspect {
     @Throws(Throwable::class)
     fun logAroundFindAll(joinPoint: ProceedingJoinPoint): Any {
         val args = joinPoint.args
-        log.info(
-            "Find transactions with person ID {} between {} and {}.\nPageable={}",
-            args[0],
-            args[1],
-            args[2],
-            args[3]
-        )
+        if (args.isNotEmpty()) {
+            log.info(
+                "Find transactions with person ID {} between {} and {}.\nPageable={}",
+                args[0],
+                args[1],
+                args[2],
+                args[3]
+            )
+        }
         val result = joinPoint.proceed()
         log.info("Query result:\n{}", result.toString())
         return result
