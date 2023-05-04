@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.entity.Transaction
+import ua.com.foxminded.restClient.enums.Direction
 import ua.com.foxminded.restClient.exceptions.PersonNotFoundException
 import ua.com.foxminded.restClient.mapper.TransactionMapper
 import ua.com.foxminded.restClient.repository.TransactionRepository
@@ -36,6 +37,16 @@ class TransactionServiceImpl @Autowired constructor(
     }
 
     override fun findAll(): List<TransactionDto> {
+        val transaction = Transaction(
+            personId = UUID.randomUUID(),
+            transactionTime = LocalDateTime.now(),
+            transactionDirection = Direction.INPUT,
+            value = 1.0,
+            currency = "USD",
+            iban = "aa"
+        )
+        println(transaction)
+        repository.save(transaction)
         return repository.findAll().map { mapper.entityToDto(it) }
     }
 }
