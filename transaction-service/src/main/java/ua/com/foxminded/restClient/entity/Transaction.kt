@@ -1,7 +1,5 @@
 package ua.com.foxminded.restClient.entity
 
-import org.hibernate.annotations.GenericGenerator
-import org.hibernate.annotations.Type
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field

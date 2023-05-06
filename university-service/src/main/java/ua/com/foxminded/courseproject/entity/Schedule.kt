@@ -1,32 +1,26 @@
 package ua.com.foxminded.courseproject.entity
 
-import org.hibernate.annotations.GenericGenerator
-import org.hibernate.annotations.Type
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import java.sql.Timestamp
 import java.util.*
-import javax.persistence.*
 
-@Entity
-@Table(name = "schedule")
+@Document("schedule")
 data class Schedule(
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
-    @Type(type = "uuid-char")
+    @Field("_id", targetType = FieldType.STRING)
     var id: UUID? = null,
 
-    @ManyToMany
-    @JoinTable(
-        name = "schedule_weeks",
-        joinColumns = [JoinColumn(name = "schedule_id")],
-        inverseJoinColumns = [JoinColumn(name = "week_id")]
-    )
+    @DBRef
+    @Field("weeks")
     var weeks: MutableList<WeekSchedule> = mutableListOf(),
 
-    @Column(name = "start_time")
+    @Field("start_time")
     var startDate: Timestamp? = null,
 
-    @Column(name = "end_time")
+    @Field("end_time")
     var endDate: Timestamp? = null
 )

@@ -35,18 +35,4 @@ class TransactionServiceImpl @Autowired constructor(
             )
         }
     }
-
-    override fun findAll(): List<TransactionDto> {
-        val transaction = Transaction(
-            personId = UUID.randomUUID(),
-            transactionTime = LocalDateTime.now(),
-            transactionDirection = Direction.INPUT,
-            value = 1.0,
-            currency = "USD",
-            iban = "aa"
-        )
-        println(transaction)
-        repository.save(transaction)
-        return repository.findAll().map { mapper.entityToDto(it) }
-    }
 }

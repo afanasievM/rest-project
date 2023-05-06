@@ -8,7 +8,6 @@
 val OPENAPI_VER = "1.6.13"
 val HTTP_CLIENT_VER = "4.5.13"
 val POSTGRES_VER = "42.5.1"
-val FLYWAY_CORE_VER = "8.5.13"
 
 
 
@@ -25,17 +24,14 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.flywaydb:flyway-core:$FLYWAY_CORE_VER")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.postgresql:postgresql:$POSTGRES_VER")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-validation:")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
-
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     implementation(kotlin("stdlib-jdk8"))

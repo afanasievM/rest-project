@@ -1,26 +1,26 @@
 package ua.com.foxminded.courseproject.entity
 
+import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
 import java.time.LocalDate
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
+import java.util.*
 
-@Entity
-@Table(name = "teachers")
+@Document("teachers")
 data class Teacher(
 
-    @Column(name = "degree")
+    @Field("degree")
     var degree: String? = null,
 
-    @Column(name = "salary")
+    @Field("salary")
     var salary: Int? = null,
 
-    @Column(name = "first_date")
+    @Field("first_date")
     var firstDay: LocalDate? = null,
 
-    @Column(name = "rank")
+    @Field("rank")
     var rank: String? = null,
 
-    @Column(name = "title")
+    @Field("title")
     var title: String? = null
 ) : Person()
+

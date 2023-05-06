@@ -15,5 +15,4 @@ interface TransactionService {
         pageable: Pageable
     ): Page<TransactionDto>
 
-    fun findAll(): List<TransactionDto>
 }

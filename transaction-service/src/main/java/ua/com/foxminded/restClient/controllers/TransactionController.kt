@@ -64,13 +64,4 @@ class TransactionController @Autowired constructor(
         }
         return transactions
     }
-
-    @GetMapping(value = ["getall"])
-    fun getTransactions(): ResponseEntity<*> {
-
-        return ResponseEntity<Any?>(
-            transactionService.findAll(),
-            HttpStatus.OK
-        )
-    }
 }
