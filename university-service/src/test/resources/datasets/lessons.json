@@ -1,0 +1,2116 @@
+[{
+  "_id": "1228e436-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324d34-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b556-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966c7a0-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228e5a8-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324e2e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966cb06-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228e6d4-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324e2e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966cb06-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228e7f6-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325f86-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b90c-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228e986-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793254be-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bace-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:05:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966ebae-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228ebe8-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325a72-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e97fe-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228f07a-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325b4e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c640-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228f1e2-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325b4e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e14a-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228f304-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325b4e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e14a-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228f494-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325eaa-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c8de-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d065e-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324f0a-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966d39e-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d0cf8-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324d34-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b556-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966cd04-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d0f96-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324d34-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b556-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966cd04-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d11d0-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325f86-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b90c-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d1766-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "7932677e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bace-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d19aa-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79326120-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bd9e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea302-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d1bd0-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325310-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966f270-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d1de2-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325590-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c640-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966ee06-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d1fe0-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793254be-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966f7c0-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d21ca-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793264fe-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705db4e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e9ed4-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "f94d21cb-4638-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793264fe-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705db4e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e9ed4-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228eada-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325590-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bd9e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966ee06-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2ba5a2-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325eaa-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea028-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2ba85e-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325eaa-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea028-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2ba9a8-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325234-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2baade-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "7932514e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b90c-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966d5a6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2baca0-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325a72-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bace-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e992a-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2badd6-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325a72-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bace-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e992a-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2baef8-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325748-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e90f6-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2bb010-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325b4e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c640-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966dc68-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2bb6b4-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793265d0-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c640-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966dc68-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "4d2bb808-4641-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325dce-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea028-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "349711d6-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79326210-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea424-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "3497169a-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79326210-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea424-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "34971e7e-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325310-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966daa6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "349720a4-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793253e2-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bd9e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966dc68-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "34972298-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324f0a-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966df56-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "349723ec-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325eaa-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "34972536-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325996-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bace-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:05:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e9466-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "34972662-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "7932514e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bd9e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e95a6-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "349727a2-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325310-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966daa6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "34972cac-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325cf2-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c640-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea154-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "34972e0a-4644-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325c16-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea154-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1443f580-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325234-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1443fa58-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325310-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b556-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea640-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1443fdfa-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793262f6-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966c7a0-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1443ff58-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "793253e2-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bace-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e14a-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1444007a-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324f0a-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705bd9e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e636-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "144401d8-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324f0a-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e636-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "14440430-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325eaa-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b90c-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea028-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1444084a-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325a72-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705d1f8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e97fe-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1444151a-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325996-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705d374-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e96c8-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "144416be-4648-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "7932566c-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705d482-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "1228e0bc-462f-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324b7c-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966c430-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "a0e9b044-464b-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79326698-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea028-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "a0e9b3fa-464b-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325b4e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "7ce41040-4650-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79326210-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705d374-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "7ce413b0-4650-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325c16-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b556-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "7ce415a4-4650-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325cf2-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "7ce41766-4650-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324e2e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705d482-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966cb06-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "7ce41b3a-4650-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79324b7c-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705d5a4-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea776-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "7ce41d06-4650-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79326698-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705da0e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea028-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "39f4d616-4664-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325748-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e90f6-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "39f4d97c-4664-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325dce-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea028-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373cb6-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "32e7d368-4665-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325a72-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 1,
+  "start_time": "05:00:00Z",
+  "end_time": "07:25:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966c7a0-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "32e7d610-4665-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79325234-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705da0e-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 2,
+  "start_time": "07:25:00Z",
+  "end_time": "09:00:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "32e7d750-4665-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "7932514e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b90c-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966e82a-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "0415e3c0-4667-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "79326120-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 4,
+  "start_time": "11:15:00Z",
+  "end_time": "12:50:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678ea302-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373e46-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "0415ece4-4667-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "7932677e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705dc70-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373fb8-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+},{
+  "_id": "0415ef5a-4667-11ed-b878-0242ac120002",
+  "subject": {
+    "$ref": "subjects",
+    "$id": "7932514e-434b-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "classroom": {
+    "$ref": "classrooms",
+    "$id": "6705ddce-462f-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "number": 3,
+  "start_time": "09:20:00Z",
+  "end_time": "10:55:00Z",
+  "teacher": {
+    "$ref": "teachers",
+    "$id": "678e95a6-4625-11ed-b878-0242ac120002",
+    "$db": "final"
+  },
+  "groups": [
+    {
+      "$ref": "groups",
+      "$id": "49373afe-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    }
+  ]
+}]

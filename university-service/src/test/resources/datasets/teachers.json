@@ -1,0 +1,477 @@
+[{
+  "_id": "e966f608-4621-11ed-b878-0242ac120002",
+  "firstname": "Yulia",
+  "lastname": "Chunyak",
+  "birthday": {
+    "$date": "1980-01-19T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2800,
+  "first_date": {
+    "$date": "2000-09-19T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966c430-4621-11ed-b878-0242ac120002",
+  "firstname": "Kateryna",
+  "lastname": "Kyrylenko",
+  "birthday": {
+    "$date": "1980-01-01T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1000,
+  "first_date": {
+    "$date": "2000-09-01T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966c7a0-4621-11ed-b878-0242ac120002",
+  "firstname": "Natalia",
+  "lastname": "Krasnoshapka",
+  "birthday": {
+    "$date": "1980-01-02T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1100,
+  "first_date": {
+    "$date": "2000-09-02T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966cb06-4621-11ed-b878-0242ac120002",
+  "firstname": "Konstyantyn",
+  "lastname": "Trubitsin",
+  "birthday": {
+    "$date": "1980-01-03T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1200,
+  "first_date": {
+    "$date": "2000-09-03T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966cd04-4621-11ed-b878-0242ac120002",
+  "firstname": "Oleksii",
+  "lastname": "Raychuk",
+  "birthday": {
+    "$date": "1980-01-04T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1300,
+  "first_date": {
+    "$date": "2000-09-04T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966d39e-4621-11ed-b878-0242ac120002",
+  "firstname": "Volodymyr",
+  "lastname": "Halikov",
+  "birthday": {
+    "$date": "1980-01-05T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1400,
+  "first_date": {
+    "$date": "2000-09-05T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966d5a6-4621-11ed-b878-0242ac120002",
+  "firstname": "Vasyl",
+  "lastname": "Budko",
+  "birthday": {
+    "$date": "1980-01-06T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1500,
+  "first_date": {
+    "$date": "2000-09-06T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966d77c-4621-11ed-b878-0242ac120002",
+  "firstname": "Petro",
+  "lastname": "Denysiuk",
+  "birthday": {
+    "$date": "1980-01-07T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1600,
+  "first_date": {
+    "$date": "2000-09-07T05:00:00.000Z"
+  },
+  "rank": "deputy dean",
+  "title": "phd"
+},{
+  "_id": "e966daa6-4621-11ed-b878-0242ac120002",
+  "firstname": "Tetiana",
+  "lastname": "Maslova",
+  "birthday": {
+    "$date": "1980-01-08T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1700,
+  "first_date": {
+    "$date": "2000-09-08T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966dc68-4621-11ed-b878-0242ac120002",
+  "firstname": "Vladyslav",
+  "lastname": "Ivanchuk",
+  "birthday": {
+    "$date": "1980-01-09T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1800,
+  "first_date": {
+    "$date": "2000-09-09T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966df56-4621-11ed-b878-0242ac120002",
+  "firstname": "Oksana",
+  "lastname": "Bohomolova",
+  "birthday": {
+    "$date": "1980-01-10T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 1900,
+  "first_date": {
+    "$date": "2000-09-10T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "e966e14a-4621-11ed-b878-0242ac120002",
+  "firstname": "Oleksandr",
+  "lastname": "Haevskiy",
+  "birthday": {
+    "$date": "1980-01-11T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2000,
+  "first_date": {
+    "$date": "2000-09-11T05:00:00.000Z"
+  },
+  "rank": "dean",
+  "title": "phd"
+},{
+  "_id": "e966e636-4621-11ed-b878-0242ac120002",
+  "firstname": "Naina",
+  "lastname": "Buslova",
+  "birthday": {
+    "$date": "1980-01-12T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2100,
+  "first_date": {
+    "$date": "2000-09-12T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966e82a-4621-11ed-b878-0242ac120002",
+  "firstname": "Oleksandr",
+  "lastname": "Melnyk",
+  "birthday": {
+    "$date": "1980-01-13T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2200,
+  "first_date": {
+    "$date": "2000-09-13T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966e9f6-4621-11ed-b878-0242ac120002",
+  "firstname": "Oleksandr",
+  "lastname": "Bondarenko",
+  "birthday": {
+    "$date": "1980-01-14T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2300,
+  "first_date": {
+    "$date": "2000-09-14T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966ebae-4621-11ed-b878-0242ac120002",
+  "firstname": "Daryna",
+  "lastname": "Lavrenova",
+  "birthday": {
+    "$date": "1980-01-15T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2400,
+  "first_date": {
+    "$date": "2000-09-15T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966ee06-4621-11ed-b878-0242ac120002",
+  "firstname": "Mykola",
+  "lastname": "Buryk",
+  "birthday": {
+    "$date": "1980-01-16T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2500,
+  "first_date": {
+    "$date": "2000-09-16T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966f0a4-4621-11ed-b878-0242ac120002",
+  "firstname": "Hanna",
+  "lastname": "Haevska",
+  "birthday": {
+    "$date": "1980-01-17T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2600,
+  "first_date": {
+    "$date": "2000-09-17T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966f270-4621-11ed-b878-0242ac120002",
+  "firstname": "Liudmyla",
+  "lastname": "Vlasyuk",
+  "birthday": {
+    "$date": "1980-01-18T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2700,
+  "first_date": {
+    "$date": "2000-09-18T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "e966f7c0-4621-11ed-b878-0242ac120002",
+  "firstname": "Valeriy",
+  "lastname": "Hlystov",
+  "birthday": {
+    "$date": "1980-01-20T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 2900,
+  "first_date": {
+    "$date": "2000-09-20T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "678e90f6-4625-11ed-b878-0242ac120002",
+  "firstname": "Yuriy",
+  "lastname": "Mateenko",
+  "birthday": {
+    "$date": "1980-01-21T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3000,
+  "first_date": {
+    "$date": "2000-09-21T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678e9466-4625-11ed-b878-0242ac120002",
+  "firstname": "Andriy",
+  "lastname": "Grechko",
+  "birthday": {
+    "$date": "1980-01-22T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3100,
+  "first_date": {
+    "$date": "2000-09-22T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678e95a6-4625-11ed-b878-0242ac120002",
+  "firstname": "Victor",
+  "lastname": "Shklyar",
+  "birthday": {
+    "$date": "1980-01-23T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3200,
+  "first_date": {
+    "$date": "2000-09-23T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678e96c8-4625-11ed-b878-0242ac120002",
+  "firstname": "Alisa",
+  "lastname": "Tsukanova",
+  "birthday": {
+    "$date": "1980-01-24T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3300,
+  "first_date": {
+    "$date": "2000-09-24T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678e97fe-4625-11ed-b878-0242ac120002",
+  "firstname": "Eugeniy",
+  "lastname": "Trotsenko",
+  "birthday": {
+    "$date": "1980-01-25T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3400,
+  "first_date": {
+    "$date": "2000-09-25T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678e992a-4625-11ed-b878-0242ac120002",
+  "firstname": "Bohdan",
+  "lastname": "Dergaliuk",
+  "birthday": {
+    "$date": "1980-01-26T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3500,
+  "first_date": {
+    "$date": "2000-09-26T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678e9a4c-4625-11ed-b878-0242ac120002",
+  "firstname": "Hanna",
+  "lastname": "Umanets",
+  "birthday": {
+    "$date": "1980-01-27T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3600,
+  "first_date": {
+    "$date": "2000-09-27T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678e9ed4-4625-11ed-b878-0242ac120002",
+  "firstname": "Iryna",
+  "lastname": "Blohina",
+  "birthday": {
+    "$date": "1980-01-28T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3700,
+  "first_date": {
+    "$date": "2000-09-28T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678ea028-4625-11ed-b878-0242ac120002",
+  "firstname": "Mykola",
+  "lastname": "Bolotniy",
+  "birthday": {
+    "$date": "1980-01-29T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3800,
+  "first_date": {
+    "$date": "2000-09-29T05:00:00.000Z"
+  },
+  "rank": "deputy dean",
+  "title": "phd"
+},{
+  "_id": "678ea154-4625-11ed-b878-0242ac120002",
+  "firstname": "Yevhen",
+  "lastname": "Bardyk",
+  "birthday": {
+    "$date": "1980-01-30T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 3900,
+  "first_date": {
+    "$date": "2000-09-30T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678ea302-4625-11ed-b878-0242ac120002",
+  "firstname": "Oleksandr",
+  "lastname": "Protsenko",
+  "birthday": {
+    "$date": "1980-01-31T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 4000,
+  "first_date": {
+    "$date": "2000-10-01T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "phd"
+},{
+  "_id": "678ea424-4625-11ed-b878-0242ac120002",
+  "firstname": "Roman",
+  "lastname": "Vozhakov",
+  "birthday": {
+    "$date": "1980-02-01T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 4100,
+  "first_date": {
+    "$date": "2000-10-02T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "678ea640-4625-11ed-b878-0242ac120002",
+  "firstname": "Viktoriya",
+  "lastname": "Shepelevich",
+  "birthday": {
+    "$date": "1980-02-02T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 4200,
+  "first_date": {
+    "$date": "2000-10-03T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+},{
+  "_id": "678ea776-4625-11ed-b878-0242ac120002",
+  "firstname": "Vsevolod",
+  "lastname": "Kyrylenko",
+  "birthday": {
+    "$date": "1980-02-03T09:00:00.000Z"
+  },
+  "degree": "NTUU KPI",
+  "salary": 4300,
+  "first_date": {
+    "$date": "2000-10-04T05:00:00.000Z"
+  },
+  "rank": "lecturer",
+  "title": "doctor"
+}]
