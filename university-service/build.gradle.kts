@@ -38,6 +38,10 @@ dependencies {
     testImplementation(kotlin("test"))
 
 
+    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+    testImplementation("io.projectreactor:reactor-test")
+
+
 }
 
 tasks.test {

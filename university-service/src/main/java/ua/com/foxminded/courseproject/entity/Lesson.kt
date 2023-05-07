@@ -26,10 +26,10 @@ data class Lesson(
     @Field("number")
     var number: Int? = null,
 
-    @Field("start_time")
+    @Field("start_time", targetType = FieldType.STRING)
     var startTime: LocalTime? = null,
 
-    @Field("end_time")
+    @Field("end_time", targetType = FieldType.STRING)
     var endTime: LocalTime? = null,
 
     @DBRef

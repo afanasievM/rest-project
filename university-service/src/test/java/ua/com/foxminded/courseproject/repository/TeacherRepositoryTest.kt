@@ -12,7 +12,7 @@ import java.time.LocalDate
 import java.util.*
 
 @SpringBootTest
-@Sql(value = ["classpath:initial_data.sql"])
+@DataSet(value = ["users.json"], cleanBefore = true, cleanAfter = true)
 @Transactional
 internal open class TeacherRepositoryTest {
     @Autowired
