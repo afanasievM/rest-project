@@ -1,4 +1,5 @@
 [{
+  "_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966f608-4621-11ed-b878-0242ac120002",
   "firstname": "Yulia",
   "lastname": "Chunyak",
@@ -12,7 +13,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966c430-4621-11ed-b878-0242ac120002",
   "firstname": "Kateryna",
   "lastname": "Kyrylenko",
@@ -26,7 +27,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966c7a0-4621-11ed-b878-0242ac120002",
   "firstname": "Natalia",
   "lastname": "Krasnoshapka",
@@ -40,7 +41,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966cb06-4621-11ed-b878-0242ac120002",
   "firstname": "Konstyantyn",
   "lastname": "Trubitsin",
@@ -54,7 +55,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966cd04-4621-11ed-b878-0242ac120002",
   "firstname": "Oleksii",
   "lastname": "Raychuk",
@@ -68,7 +69,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966d39e-4621-11ed-b878-0242ac120002",
   "firstname": "Volodymyr",
   "lastname": "Halikov",
@@ -82,7 +83,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966d5a6-4621-11ed-b878-0242ac120002",
   "firstname": "Vasyl",
   "lastname": "Budko",
@@ -96,7 +97,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966d77c-4621-11ed-b878-0242ac120002",
   "firstname": "Petro",
   "lastname": "Denysiuk",
@@ -110,7 +111,7 @@
   },
   "rank": "deputy dean",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966daa6-4621-11ed-b878-0242ac120002",
   "firstname": "Tetiana",
   "lastname": "Maslova",
@@ -124,7 +125,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966dc68-4621-11ed-b878-0242ac120002",
   "firstname": "Vladyslav",
   "lastname": "Ivanchuk",
@@ -138,7 +139,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966df56-4621-11ed-b878-0242ac120002",
   "firstname": "Oksana",
   "lastname": "Bohomolova",
@@ -152,7 +153,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966e14a-4621-11ed-b878-0242ac120002",
   "firstname": "Oleksandr",
   "lastname": "Haevskiy",
@@ -166,7 +167,7 @@
   },
   "rank": "dean",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966e636-4621-11ed-b878-0242ac120002",
   "firstname": "Naina",
   "lastname": "Buslova",
@@ -180,7 +181,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966e82a-4621-11ed-b878-0242ac120002",
   "firstname": "Oleksandr",
   "lastname": "Melnyk",
@@ -194,7 +195,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966e9f6-4621-11ed-b878-0242ac120002",
   "firstname": "Oleksandr",
   "lastname": "Bondarenko",
@@ -208,7 +209,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966ebae-4621-11ed-b878-0242ac120002",
   "firstname": "Daryna",
   "lastname": "Lavrenova",
@@ -222,7 +223,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966ee06-4621-11ed-b878-0242ac120002",
   "firstname": "Mykola",
   "lastname": "Buryk",
@@ -236,7 +237,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966f0a4-4621-11ed-b878-0242ac120002",
   "firstname": "Hanna",
   "lastname": "Haevska",
@@ -250,7 +251,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966f270-4621-11ed-b878-0242ac120002",
   "firstname": "Liudmyla",
   "lastname": "Vlasyuk",
@@ -264,7 +265,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "e966f7c0-4621-11ed-b878-0242ac120002",
   "firstname": "Valeriy",
   "lastname": "Hlystov",
@@ -278,7 +279,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e90f6-4625-11ed-b878-0242ac120002",
   "firstname": "Yuriy",
   "lastname": "Mateenko",
@@ -292,7 +293,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e9466-4625-11ed-b878-0242ac120002",
   "firstname": "Andriy",
   "lastname": "Grechko",
@@ -306,7 +307,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e95a6-4625-11ed-b878-0242ac120002",
   "firstname": "Victor",
   "lastname": "Shklyar",
@@ -320,7 +321,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e96c8-4625-11ed-b878-0242ac120002",
   "firstname": "Alisa",
   "lastname": "Tsukanova",
@@ -334,7 +335,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e97fe-4625-11ed-b878-0242ac120002",
   "firstname": "Eugeniy",
   "lastname": "Trotsenko",
@@ -348,7 +349,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e992a-4625-11ed-b878-0242ac120002",
   "firstname": "Bohdan",
   "lastname": "Dergaliuk",
@@ -362,7 +363,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e9a4c-4625-11ed-b878-0242ac120002",
   "firstname": "Hanna",
   "lastname": "Umanets",
@@ -376,7 +377,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678e9ed4-4625-11ed-b878-0242ac120002",
   "firstname": "Iryna",
   "lastname": "Blohina",
@@ -390,7 +391,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678ea028-4625-11ed-b878-0242ac120002",
   "firstname": "Mykola",
   "lastname": "Bolotniy",
@@ -404,7 +405,7 @@
   },
   "rank": "deputy dean",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678ea154-4625-11ed-b878-0242ac120002",
   "firstname": "Yevhen",
   "lastname": "Bardyk",
@@ -418,7 +419,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678ea302-4625-11ed-b878-0242ac120002",
   "firstname": "Oleksandr",
   "lastname": "Protsenko",
@@ -432,7 +433,7 @@
   },
   "rank": "lecturer",
   "title": "phd"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678ea424-4625-11ed-b878-0242ac120002",
   "firstname": "Roman",
   "lastname": "Vozhakov",
@@ -446,7 +447,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678ea640-4625-11ed-b878-0242ac120002",
   "firstname": "Viktoriya",
   "lastname": "Shepelevich",
@@ -460,7 +461,7 @@
   },
   "rank": "lecturer",
   "title": "doctor"
-},{
+},{"_class": "ua.com.foxminded.courseproject.entity.Teacher",
   "_id": "678ea776-4625-11ed-b878-0242ac120002",
   "firstname": "Vsevolod",
   "lastname": "Kyrylenko",

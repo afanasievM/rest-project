@@ -3,17 +3,21 @@ package ua.com.foxminded.courseproject.repository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
 import org.springframework.data.util.Streamable
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.transaction.annotation.Transactional
+import ua.com.foxminded.courseproject.config.RepositoryTestConfig
 import ua.com.foxminded.courseproject.entity.Teacher
 import java.time.LocalDate
 import java.util.*
 
-@SpringBootTest
-@DataSet(value = ["users.json"], cleanBefore = true, cleanAfter = true)
-@Transactional
+//@SpringBootTest
+@DataMongoTest
+@Import(RepositoryTestConfig::class)
+//@Transactional
 internal open class TeacherRepositoryTest {
     @Autowired
     private lateinit var repository: TeacherRepository

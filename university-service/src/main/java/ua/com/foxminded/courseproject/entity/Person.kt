@@ -10,7 +10,7 @@ import java.util.*
 abstract class Person(
     @Id
     @Field("_id", targetType = FieldType.STRING)
-    var id: UUID? = null,
+    var id: UUID? = UUID.randomUUID(),
 
     @Field("firstname")
     var firstName: String? = null,

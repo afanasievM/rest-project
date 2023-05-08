@@ -11,7 +11,7 @@ import java.util.*
 data class Subject(
     @Id
     @Field("_id", targetType = FieldType.STRING)
-    var id: UUID? = null,
+    var id: UUID? = UUID.randomUUID(),
 
     @Field("name")
     var name: String? = null

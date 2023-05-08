@@ -12,7 +12,7 @@ import java.util.*
 data class WeekSchedule(
     @Id
     @Field("_id", targetType = FieldType.STRING)
-    var id: UUID? = null,
+    var id: UUID? = UUID.randomUUID(),
 
     @DBRef
     @Field("days")

@@ -12,7 +12,7 @@ import java.util.*
 data class DaySchedule(
     @Id
     @Field("_id", targetType = FieldType.STRING)
-    var id: UUID? = null,
+    var id: UUID? = UUID.randomUUID(),
 
     @DBRef
     var lessons: MutableList<Lesson> = mutableListOf(),
