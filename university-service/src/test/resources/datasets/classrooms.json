@@ -1,121 +1,202 @@
-[{
-  "_id": "6705b1e6-462f-11ed-b878-0242ac120002",
-  "number": 1
-},{
-  "_id": "6705b556-462f-11ed-b878-0242ac120002",
-  "number": 2
-},{
-  "_id": "6705b6f0-462f-11ed-b878-0242ac120002",
-  "number": 3
-},{
-  "_id": "6705b90c-462f-11ed-b878-0242ac120002",
-  "number": 4
-},{
-  "_id": "6705bace-462f-11ed-b878-0242ac120002",
-  "number": 5
-},{
-  "_id": "6705bd9e-462f-11ed-b878-0242ac120002",
-  "number": 6
-},{
-  "_id": "6705c00a-462f-11ed-b878-0242ac120002",
-  "number": 7
-},{
-  "_id": "6705c640-462f-11ed-b878-0242ac120002",
-  "number": 8
-},{
-  "_id": "6705c7a8-462f-11ed-b878-0242ac120002",
-  "number": 9
-},{
-  "_id": "6705c8de-462f-11ed-b878-0242ac120002",
-  "number": 10
-},{
-  "_id": "6705c9f6-462f-11ed-b878-0242ac120002",
-  "number": 11
-},{
-  "_id": "6705cb04-462f-11ed-b878-0242ac120002",
-  "number": 12
-},{
-  "_id": "6705ce9c-462f-11ed-b878-0242ac120002",
-  "number": 13
-},{
-  "_id": "6705d036-462f-11ed-b878-0242ac120002",
-  "number": 14
-},{
-  "_id": "6705d1f8-462f-11ed-b878-0242ac120002",
-  "number": 15
-},{
-  "_id": "6705d374-462f-11ed-b878-0242ac120002",
-  "number": 16
-},{
-  "_id": "6705d482-462f-11ed-b878-0242ac120002",
-  "number": 17
-},{
-  "_id": "6705d5a4-462f-11ed-b878-0242ac120002",
-  "number": 18
-},{
-  "_id": "6705da0e-462f-11ed-b878-0242ac120002",
-  "number": 19
-},{
-  "_id": "6705db4e-462f-11ed-b878-0242ac120002",
-  "number": 20
-},{
-  "_id": "6705dc70-462f-11ed-b878-0242ac120002",
-  "number": 21
-},{
-  "_id": "6705ddce-462f-11ed-b878-0242ac120002",
-  "number": 22
-},{
-  "_id": "6705df18-462f-11ed-b878-0242ac120002",
-  "number": 23
-},{
-  "_id": "6705e22e-462f-11ed-b878-0242ac120002",
-  "number": 24
-},{
-  "_id": "6705e36e-462f-11ed-b878-0242ac120002",
-  "number": 25
-},{
-  "_id": "6705e47c-462f-11ed-b878-0242ac120002",
-  "number": 26
-},{
-  "_id": "6705e594-462f-11ed-b878-0242ac120002",
-  "number": 27
-},{
-  "_id": "6705e698-462f-11ed-b878-0242ac120002",
-  "number": 28
-},{
-  "_id": "6705e7ba-462f-11ed-b878-0242ac120002",
-  "number": 29
-},{
-  "_id": "6705ea62-462f-11ed-b878-0242ac120002",
-  "number": 30
-},{
-  "_id": "6705eddc-462f-11ed-b878-0242ac120002",
-  "number": 31
-},{
-  "_id": "6705ef9e-462f-11ed-b878-0242ac120002",
-  "number": 32
-},{
-  "_id": "6705f0de-462f-11ed-b878-0242ac120002",
-  "number": 33
-},{
-  "_id": "6705f71e-462f-11ed-b878-0242ac120002",
-  "number": 34
-},{
-  "_id": "6705f8a4-462f-11ed-b878-0242ac120002",
-  "number": 35
-},{
-  "_id": "6705f9c6-462f-11ed-b878-0242ac120002",
-  "number": 36
-},{
-  "_id": "6705fae8-462f-11ed-b878-0242ac120002",
-  "number": 37
-},{
-  "_id": "6705fbec-462f-11ed-b878-0242ac120002",
-  "number": 38
-},{
-  "_id": "6705ffac-462f-11ed-b878-0242ac120002",
-  "number": 39
-},{
-  "_id": "67060222-462f-11ed-b878-0242ac120002",
-  "number": 40
-}]
+[
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705b1e6-462f-11ed-b878-0242ac120002",
+    "number": 1
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705b556-462f-11ed-b878-0242ac120002",
+    "number": 2
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705b6f0-462f-11ed-b878-0242ac120002",
+    "number": 3
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705b90c-462f-11ed-b878-0242ac120002",
+    "number": 4
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705bace-462f-11ed-b878-0242ac120002",
+    "number": 5
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705bd9e-462f-11ed-b878-0242ac120002",
+    "number": 6
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705c00a-462f-11ed-b878-0242ac120002",
+    "number": 7
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705c640-462f-11ed-b878-0242ac120002",
+    "number": 8
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705c7a8-462f-11ed-b878-0242ac120002",
+    "number": 9
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705c8de-462f-11ed-b878-0242ac120002",
+    "number": 10
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705c9f6-462f-11ed-b878-0242ac120002",
+    "number": 11
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705cb04-462f-11ed-b878-0242ac120002",
+    "number": 12
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705ce9c-462f-11ed-b878-0242ac120002",
+    "number": 13
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705d036-462f-11ed-b878-0242ac120002",
+    "number": 14
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705d1f8-462f-11ed-b878-0242ac120002",
+    "number": 15
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705d374-462f-11ed-b878-0242ac120002",
+    "number": 16
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705d482-462f-11ed-b878-0242ac120002",
+    "number": 17
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705d5a4-462f-11ed-b878-0242ac120002",
+    "number": 18
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705da0e-462f-11ed-b878-0242ac120002",
+    "number": 19
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705db4e-462f-11ed-b878-0242ac120002",
+    "number": 20
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705dc70-462f-11ed-b878-0242ac120002",
+    "number": 21
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705ddce-462f-11ed-b878-0242ac120002",
+    "number": 22
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705df18-462f-11ed-b878-0242ac120002",
+    "number": 23
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705e22e-462f-11ed-b878-0242ac120002",
+    "number": 24
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705e36e-462f-11ed-b878-0242ac120002",
+    "number": 25
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705e47c-462f-11ed-b878-0242ac120002",
+    "number": 26
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705e594-462f-11ed-b878-0242ac120002",
+    "number": 27
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705e698-462f-11ed-b878-0242ac120002",
+    "number": 28
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705e7ba-462f-11ed-b878-0242ac120002",
+    "number": 29
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705ea62-462f-11ed-b878-0242ac120002",
+    "number": 30
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705eddc-462f-11ed-b878-0242ac120002",
+    "number": 31
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705ef9e-462f-11ed-b878-0242ac120002",
+    "number": 32
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705f0de-462f-11ed-b878-0242ac120002",
+    "number": 33
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705f71e-462f-11ed-b878-0242ac120002",
+    "number": 34
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705f8a4-462f-11ed-b878-0242ac120002",
+    "number": 35
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705f9c6-462f-11ed-b878-0242ac120002",
+    "number": 36
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705fae8-462f-11ed-b878-0242ac120002",
+    "number": 37
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705fbec-462f-11ed-b878-0242ac120002",
+    "number": 38
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "6705ffac-462f-11ed-b878-0242ac120002",
+    "number": 39
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.ClassRoom",
+    "_id": "67060222-462f-11ed-b878-0242ac120002",
+    "number": 40
+  }
+]

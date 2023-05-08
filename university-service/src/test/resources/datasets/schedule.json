@@ -1,4 +1,5 @@
 [{
+  "_class": "ua.com.foxminded.courseproject.entity.Schedule",
   "_id": "b5fd8224-47ba-11ed-b878-0242ac120002",
   "start_time": {
     "$date": "2022-09-01T05:00:00.000Z"

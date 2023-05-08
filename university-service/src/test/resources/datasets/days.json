@@ -1,578 +1,607 @@
-[{
-  "_id": "949694f0-4633-11ed-b878-0242ac120002",
-  "day_number": 1,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "1228e0bc-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e436-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e5a8-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e6d4-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e7f6-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e986-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228eada-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228ebe8-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f07a-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f1e2-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f304-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f494-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "94969946-4633-11ed-b878-0242ac120002",
-  "day_number": 2,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "f94d065e-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d0cf8-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d0f96-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d11d0-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d1766-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d19aa-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d1bd0-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d1de2-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d1fe0-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d21ca-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d21cb-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "94969afe-4633-11ed-b878-0242ac120002",
-  "day_number": 3,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "4d2ba5a2-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2ba85e-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2ba9a8-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2baade-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2baca0-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2badd6-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2baef8-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2bb010-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2bb6b4-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2bb808-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "94969c3e-4633-11ed-b878-0242ac120002",
-  "day_number": 4,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "349711d6-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "3497169a-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34971e7e-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "349720a4-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972298-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "349723ec-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972536-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972662-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "349727a2-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972cac-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972e0a-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "94969d7e-4633-11ed-b878-0242ac120002",
-  "day_number": 5,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "1443f580-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1443fa58-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1443fdfa-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1443ff58-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1444007a-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "144401d8-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "14440430-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1444084a-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1444151a-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "144416be-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "94969d8e-4633-11ed-b878-0242ac120002",
-  "day_number": 6
-},{
-  "_id": "94969d9e-4633-11ed-b878-0242ac120002",
-  "day_number": 7
-},{
-  "_id": "9496a616-4633-11ed-b878-0242ac120002",
-  "day_number": 1,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "1228e0bc-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e5a8-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e436-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "a0e9b044-464b-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f494-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228e986-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228eada-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "a0e9b3fa-464b-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f07a-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f1e2-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1228f304-462f-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "9496a878-4633-11ed-b878-0242ac120002",
-  "day_number": 2,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "f94d11d0-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d19aa-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "7ce41040-4650-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d1bd0-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d1de2-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "f94d1fe0-4638-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "7ce413b0-4650-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "7ce415a4-4650-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "7ce41766-4650-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "7ce41b3a-4650-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "7ce41d06-4650-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "9496aa62-4633-11ed-b878-0242ac120002",
-  "day_number": 3,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "4d2ba85e-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2ba9a8-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2baade-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2baef8-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "39f4d616-4664-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "4d2bb808-4641-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "39f4d97c-4664-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "9496acec-4633-11ed-b878-0242ac120002",
-  "day_number": 4,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "349711d6-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "3497169a-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "32e7d368-4665-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34971e7e-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "349723ec-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "32e7d610-4665-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "32e7d750-4665-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972536-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972662-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972cac-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "34972e0a-4644-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "9496ae22-4633-11ed-b878-0242ac120002",
-  "day_number": 5,
-  "lessons": [
-    {
-      "$ref": "lessons",
-      "$id": "1443fa58-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1443fdfa-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "0415e3c0-4667-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1443ff58-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "0415ece4-4667-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1444007a-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "144401d8-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "1444151a-4648-11ed-b878-0242ac120002",
-      "$db": "final"
-    },
-    {
-      "$ref": "lessons",
-      "$id": "0415ef5a-4667-11ed-b878-0242ac120002",
-      "$db": "final"
-    }
-  ]
-},{
-  "_id": "9496ae23-4633-11ed-b878-0242ac120002",
-  "day_number": 6
-},{
-  "_id": "9496ae24-4633-11ed-b878-0242ac120002",
-  "day_number": 7
-}]
+[
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "949694f0-4633-11ed-b878-0242ac120002",
+    "day_number": 1,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "1228e0bc-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e436-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e5a8-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e6d4-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e7f6-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e986-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228eada-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228ebe8-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f07a-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f1e2-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f304-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f494-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "94969946-4633-11ed-b878-0242ac120002",
+    "day_number": 2,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "f94d065e-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d0cf8-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d0f96-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d11d0-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d1766-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d19aa-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d1bd0-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d1de2-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d1fe0-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d21ca-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d21cb-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "94969afe-4633-11ed-b878-0242ac120002",
+    "day_number": 3,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "4d2ba5a2-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2ba85e-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2ba9a8-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2baade-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2baca0-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2badd6-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2baef8-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2bb010-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2bb6b4-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2bb808-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "94969c3e-4633-11ed-b878-0242ac120002",
+    "day_number": 4,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "349711d6-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "3497169a-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34971e7e-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "349720a4-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972298-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "349723ec-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972536-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972662-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "349727a2-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972cac-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972e0a-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "94969d7e-4633-11ed-b878-0242ac120002",
+    "day_number": 5,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "1443f580-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1443fa58-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1443fdfa-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1443ff58-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1444007a-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "144401d8-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "14440430-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1444084a-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1444151a-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "144416be-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "94969d8e-4633-11ed-b878-0242ac120002",
+    "day_number": 6
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "94969d9e-4633-11ed-b878-0242ac120002",
+    "day_number": 7
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "9496a616-4633-11ed-b878-0242ac120002",
+    "day_number": 1,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "1228e0bc-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e5a8-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e436-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "a0e9b044-464b-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f494-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228e986-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228eada-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "a0e9b3fa-464b-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f07a-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f1e2-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1228f304-462f-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "9496a878-4633-11ed-b878-0242ac120002",
+    "day_number": 2,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "f94d11d0-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d19aa-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "7ce41040-4650-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d1bd0-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d1de2-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "f94d1fe0-4638-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "7ce413b0-4650-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "7ce415a4-4650-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "7ce41766-4650-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "7ce41b3a-4650-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "7ce41d06-4650-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "9496aa62-4633-11ed-b878-0242ac120002",
+    "day_number": 3,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "4d2ba85e-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2ba9a8-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2baade-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2baef8-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "39f4d616-4664-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "4d2bb808-4641-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "39f4d97c-4664-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "9496acec-4633-11ed-b878-0242ac120002",
+    "day_number": 4,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "349711d6-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "3497169a-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "32e7d368-4665-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34971e7e-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "349723ec-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "32e7d610-4665-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "32e7d750-4665-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972536-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972662-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972cac-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "34972e0a-4644-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "9496ae22-4633-11ed-b878-0242ac120002",
+    "day_number": 5,
+    "lessons": [
+      {
+        "$ref": "lessons",
+        "$id": "1443fa58-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1443fdfa-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "0415e3c0-4667-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1443ff58-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "0415ece4-4667-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1444007a-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "144401d8-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "1444151a-4648-11ed-b878-0242ac120002",
+        "$db": "final"
+      },
+      {
+        "$ref": "lessons",
+        "$id": "0415ef5a-4667-11ed-b878-0242ac120002",
+        "$db": "final"
+      }
+    ]
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "9496ae23-4633-11ed-b878-0242ac120002",
+    "day_number": 6
+  },
+  {
+    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
+    "_id": "9496ae24-4633-11ed-b878-0242ac120002",
+    "day_number": 7
+  }
+]
