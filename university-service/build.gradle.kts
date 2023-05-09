@@ -32,6 +32,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.7.1")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     implementation(kotlin("stdlib-jdk8"))

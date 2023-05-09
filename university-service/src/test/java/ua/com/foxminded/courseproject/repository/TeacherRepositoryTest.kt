@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.context.annotation.Import
+import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.core.findAll
 import org.springframework.data.util.Streamable
 import ua.com.foxminded.courseproject.config.RepositoryTestConfig
 import ua.com.foxminded.courseproject.entity.Teacher
@@ -19,8 +21,8 @@ internal open class TeacherRepositoryTest {
     @Autowired
     private lateinit var repository: TeacherRepository
 
-//    @Autowired
-//    private lateinit var mongoTemplate: MongoTemplate
+    @Autowired
+    private lateinit var mongoTemplate: MongoTemplate
 //
 //    @AfterEach
 //    fun cleanUpDatabase() {
@@ -32,7 +34,10 @@ internal open class TeacherRepositoryTest {
         val expectedSize = 2
 
         val teachers = Streamable.of(repository.findAll()).toList()
-        println(teachers.get(0).id)
+        mongoTemplate.findAll<Teacher>().forEach{ println(it)}
+        mongoTemplate.db.getCollection("teachers")
+        println(mongoTemplate.db.getCollection("teachers").find().forEach{ println(it)})
+        teachers.forEach { println(it) }
 
         Assertions.assertEquals(expectedSize, teachers.size)
     }
@@ -59,8 +64,8 @@ internal open class TeacherRepositoryTest {
     @Test
     fun save_shouldAddTeacher_whenTeacherNotExists() {
         val testStr = "test"
-        val expected = Teacher()
-        expected.firstName = testStr
+        val expected = Teacher(firstName = testStr, id = UUID.randomUUID())
+//        expected.firstName = testStr
         expected.lastName = testStr
         expected.degree = testStr
         expected.firstDay = LocalDate.now()
@@ -98,7 +103,7 @@ internal open class TeacherRepositoryTest {
     @Test
     fun delete_shouldNotDeleteTeachers_whenTeacherNotExists() {
         val testStr = "test"
-        val teacher = Teacher()
+        val teacher = Teacher(firstName = testStr, id = UUID.randomUUID())
         teacher.firstName = testStr
         teacher.lastName = testStr
         teacher.degree = testStr

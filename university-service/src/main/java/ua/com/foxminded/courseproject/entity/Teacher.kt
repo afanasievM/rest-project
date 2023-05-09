@@ -1,12 +1,28 @@
 package ua.com.foxminded.courseproject.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
+import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import java.time.LocalDate
 import java.util.*
 
-@Document("teachers")
+@Document(collection = "teachers")
 data class Teacher(
+    @Id
+    @Field("_id", targetType = FieldType.STRING)
+    override var id: UUID? = UUID.randomUUID(),
+
+    @Field("firstname")
+    override var firstName: String? = null,
+
+    @Field("lastname")
+    override var lastName: String? = null,
+
+    @Field("birthday")
+    override var birthDay: LocalDate? = null,
 
     @Field("degree")
     var degree: String? = null,
