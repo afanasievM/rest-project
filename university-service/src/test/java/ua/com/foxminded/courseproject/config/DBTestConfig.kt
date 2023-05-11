@@ -25,7 +25,6 @@ open class DBTestConfig {
             val jsonFile = ClassPathResource(DATASET_PATH + it + ".json").file
             val jsonString = String(Files.readAllBytes(jsonFile.toPath()))
             val bsonDocuments = BsonArray.parse(jsonString)
-            println(bsonDocuments)
             mongoTemplate.insert(bsonDocuments, it)
         }
     }
@@ -33,7 +32,6 @@ open class DBTestConfig {
     @AfterEach
     fun dropData() {
         colections.forEach {
-            println(mongoTemplate.getCollection(it).find().toList())
             mongoTemplate.getCollection(it).drop()
         }
     }

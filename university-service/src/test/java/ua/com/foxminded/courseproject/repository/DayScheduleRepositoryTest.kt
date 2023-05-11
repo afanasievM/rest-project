@@ -3,16 +3,15 @@ package ua.com.foxminded.courseproject.repository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.data.util.Streamable
-import org.springframework.test.context.jdbc.Sql
-import org.springframework.transaction.annotation.Transactional
+import ua.com.foxminded.courseproject.config.DBTestConfig
 import java.util.*
 
-@SpringBootTest
-@Sql(value = ["classpath:initial_data.sql"])
-@Transactional
-internal open class DayScheduleRepositoryTest {
+@DataMongoTest
+@AutoConfigureDataMongo
+internal open class DayScheduleRepositoryTest : DBTestConfig() {
     @Autowired
     private lateinit var repository: DayScheduleRepository
 
