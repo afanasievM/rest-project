@@ -1,6 +1,5 @@
 [
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Teacher",
     "_id": "e966f608-4621-11ed-b878-0242ac120002",
     "firstname": "Yulia",
     "lastname": "Chunyak",
@@ -16,7 +15,6 @@
     "title": "doctor"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Teacher",
     "_id": "e966c430-4621-11ed-b878-0242ac120002",
     "firstname": "Kateryna",
     "lastname": "Kyrylenko",

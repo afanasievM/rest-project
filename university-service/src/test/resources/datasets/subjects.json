@@ -1,136 +1,109 @@
 [
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79324d34-434b-11ed-b878-0242ac120002",
     "name": "Electrical drive"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79324e2e-434b-11ed-b878-0242ac120002",
     "name": "Microprocessors"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79324f0a-434b-11ed-b878-0242ac120002",
     "name": "Electrical systems"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "7932514e-434b-11ed-b878-0242ac120002",
     "name": "Electricity production"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325234-434b-11ed-b878-0242ac120002",
     "name": "Hydroelectrical powerplants"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325310-434b-11ed-b878-0242ac120002",
     "name": "Foreign language"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "793253e2-434b-11ed-b878-0242ac120002",
     "name": "Photoelectrical powerplants"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "793254be-434b-11ed-b878-0242ac120002",
     "name": "Metrology"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325590-434b-11ed-b878-0242ac120002",
     "name": "Basics of electrical engineering"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325748-434b-11ed-b878-0242ac120002",
     "name": "Introduction to specialization"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325996-434b-11ed-b878-0242ac120002",
     "name": "Elements of operational calculus"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325a72-434b-11ed-b878-0242ac120002",
     "name": "Physical training"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325b4e-434b-11ed-b878-0242ac120002",
     "name": "Mathematical modeling"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325c16-434b-11ed-b878-0242ac120002",
     "name": "Models of the technical"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325cf2-434b-11ed-b878-0242ac120002",
     "name": "Intelligent systems "
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325dce-434b-11ed-b878-0242ac120002",
     "name": "Software tools for solving "
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325eaa-434b-11ed-b878-0242ac120002",
     "name": "Transient electromagnetic"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79325f86-434b-11ed-b878-0242ac120002",
     "name": "Electrical part of stations"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79326120-434b-11ed-b878-0242ac120002",
     "name": "High voltage technology"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79326210-434b-11ed-b878-0242ac120002",
     "name": "Operation and operating modes"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "793262f6-434b-11ed-b878-0242ac120002",
     "name": "Economics and organization of "
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "793264fe-434b-11ed-b878-0242ac120002",
     "name": "Pedagogy of high school"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "793265d0-434b-11ed-b878-0242ac120002",
     "name": "Mathematical optimazing mathods"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79326698-434b-11ed-b878-0242ac120002",
     "name": "Theory of automatic control"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "7932677e-434b-11ed-b878-0242ac120002",
     "name": "Management of power plants"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "79324b7c-434b-11ed-b878-0242ac120002",
     "name": "Geothermal energy"
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Subject",
     "_id": "7932566c-434b-11ed-b878-0242ac120002",
     "name": "Math problems of energy"
   }

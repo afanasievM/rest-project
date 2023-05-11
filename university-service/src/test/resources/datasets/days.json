@@ -1,6 +1,5 @@
 [
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "949694f0-4633-11ed-b878-0242ac120002",
     "day_number": 1,
     "lessons": [
@@ -67,7 +66,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "94969946-4633-11ed-b878-0242ac120002",
     "day_number": 2,
     "lessons": [
@@ -129,7 +127,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "94969afe-4633-11ed-b878-0242ac120002",
     "day_number": 3,
     "lessons": [
@@ -186,7 +183,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "94969c3e-4633-11ed-b878-0242ac120002",
     "day_number": 4,
     "lessons": [
@@ -248,7 +244,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "94969d7e-4633-11ed-b878-0242ac120002",
     "day_number": 5,
     "lessons": [
@@ -305,17 +300,14 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "94969d8e-4633-11ed-b878-0242ac120002",
     "day_number": 6
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "94969d9e-4633-11ed-b878-0242ac120002",
     "day_number": 7
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "9496a616-4633-11ed-b878-0242ac120002",
     "day_number": 1,
     "lessons": [
@@ -377,7 +369,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "9496a878-4633-11ed-b878-0242ac120002",
     "day_number": 2,
     "lessons": [
@@ -439,7 +430,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "9496aa62-4633-11ed-b878-0242ac120002",
     "day_number": 3,
     "lessons": [
@@ -481,7 +471,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "9496acec-4633-11ed-b878-0242ac120002",
     "day_number": 4,
     "lessons": [
@@ -543,7 +532,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "9496ae22-4633-11ed-b878-0242ac120002",
     "day_number": 5,
     "lessons": [
@@ -595,12 +583,10 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "9496ae23-4633-11ed-b878-0242ac120002",
     "day_number": 6
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.DaySchedule",
     "_id": "9496ae24-4633-11ed-b878-0242ac120002",
     "day_number": 7
   }

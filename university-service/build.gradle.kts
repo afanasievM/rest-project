@@ -32,9 +32,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8")
-    implementation("com.fasterxml.jackson.core:jackson-core:2.15.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")

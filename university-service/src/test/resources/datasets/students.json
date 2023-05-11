@@ -1,6 +1,5 @@
 [
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92afb9e-462a-11ed-b878-0242ac120002",
     "firstname": "Yura",
     "lastname": "Orlycia",
@@ -16,7 +15,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92afe3c-462a-11ed-b878-0242ac120002",
     "firstname": "Andriy",
     "lastname": "Lyseiko",
@@ -32,7 +30,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b0184-462a-11ed-b878-0242ac120002",
     "firstname": "Oleh",
     "lastname": "Sysoiev",
@@ -48,7 +45,6 @@
     "is_captain": true
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b02a6-462a-11ed-b878-0242ac120002",
     "firstname": "Vycheslav",
     "lastname": "Fedorchuk",
@@ -64,7 +60,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b03dc-462a-11ed-b878-0242ac120002",
     "firstname": "Ihor",
     "lastname": "Chernatynski",
@@ -80,7 +75,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b0512-462a-11ed-b878-0242ac120002",
     "firstname": "Anton",
     "lastname": "Davydenko",
@@ -96,7 +90,6 @@
     "is_captain": true
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b062a-462a-11ed-b878-0242ac120002",
     "firstname": "Serhii",
     "lastname": "Omelyashko",
@@ -112,7 +105,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b09c2-462a-11ed-b878-0242ac120002",
     "firstname": "Oleh",
     "lastname": "Bartian",
@@ -128,7 +120,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b0af8-462a-11ed-b878-0242ac120002",
     "firstname": "Stanislav",
     "lastname": "Poeta",
@@ -144,7 +135,6 @@
     "is_captain": true
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b0c06-462a-11ed-b878-0242ac120002",
     "firstname": "Vladislav",
     "lastname": "Voznyuk",
@@ -160,7 +150,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b0d28-462a-11ed-b878-0242ac120002",
     "firstname": "Andriy",
     "lastname": "Pobidash",
@@ -176,7 +165,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b0e36-462a-11ed-b878-0242ac120002",
     "firstname": "Volodymyr",
     "lastname": "Steblyk",
@@ -192,7 +180,6 @@
     "is_captain": true
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b0f62-462a-11ed-b878-0242ac120002",
     "firstname": "Dmytro",
     "lastname": "Zhydyk",
@@ -208,7 +195,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b120a-462a-11ed-b878-0242ac120002",
     "firstname": "Viktor",
     "lastname": "Lomachinskiy",
@@ -224,7 +210,6 @@
     "is_captain": false
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.Student",
     "_id": "f92b132c-462a-11ed-b878-0242ac120002",
     "firstname": "Yaroslav",
     "lastname": "Aseev",

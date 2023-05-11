@@ -1,6 +1,5 @@
 [
   {
-    "_class": "ua.com.foxminded.courseproject.entity.User",
     "_id": {
       "$oid": "64554e1fb3c6c2da6000fdd5"
     },

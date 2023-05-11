@@ -1,6 +1,5 @@
 [
   {
-    "_class": "ua.com.foxminded.courseproject.entity.WeekSchedule",
     "_id": "84c93306-47ba-11ed-b878-0242ac120002",
     "odd": false,
     "days": [
@@ -42,7 +41,6 @@
     ]
   },
   {
-    "_class": "ua.com.foxminded.courseproject.entity.WeekSchedule",
     "_id": "84c93586-47ba-11ed-b878-0242ac120002",
     "odd": true,
     "days": [
