@@ -1,13 +1,22 @@
 package ua.com.foxminded.courseproject.repository
 
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.context.annotation.Import
+import org.springframework.data.mongodb.MongoTransactionManager
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.findAll
+import org.springframework.data.repository.init.Jackson2RepositoryPopulatorFactoryBean
 import org.springframework.data.util.Streamable
+import org.springframework.test.annotation.DirtiesContext
+import org.springframework.test.context.junit.jupiter.SpringExtension
+import org.springframework.transaction.annotation.EnableTransactionManagement
+import org.springframework.transaction.annotation.Transactional
 import ua.com.foxminded.courseproject.config.RepositoryTestConfig
 import ua.com.foxminded.courseproject.entity.Teacher
 import java.time.LocalDate
@@ -16,28 +25,36 @@ import java.util.*
 
 @DataMongoTest
 @Import(RepositoryTestConfig::class)
+@AutoConfigureDataMongo
+//@Transactional
+@ExtendWith(SpringExtension::class)
+@EnableTransactionManagement
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 internal open class TeacherRepositoryTest {
 
     @Autowired
     private lateinit var repository: TeacherRepository
 
     @Autowired
-    private lateinit var mongoTemplate: MongoTemplate
-//
-//    @AfterEach
-//    fun cleanUpDatabase() {
-//        mongoTemplate.getDb().drop()
-//    }
+    lateinit var repositoryTestConfig: RepositoryTestConfig
+    @Autowired
+    lateinit var mongoTemplate: MongoTemplate
+
+
+
+    @AfterEach
+    fun cleanUpDatabase() {
+        repositoryTestConfig.cleanupRepositoryPopulator()
+        repository.findAll().forEach{ println(it)}
+    }
+
+
 
     @Test
     fun findAll_shouldReturnListTeachers() {
         val expectedSize = 2
 
         val teachers = Streamable.of(repository.findAll()).toList()
-        mongoTemplate.findAll<Teacher>().forEach{ println(it)}
-        mongoTemplate.db.getCollection("teachers")
-        println(mongoTemplate.db.getCollection("teachers").find().forEach{ println(it)})
-        teachers.forEach { println(it) }
 
         Assertions.assertEquals(expectedSize, teachers.size)
     }
@@ -47,6 +64,7 @@ internal open class TeacherRepositoryTest {
         val id = UUID.fromString("e966f608-4621-11ed-b878-0242ac120002")
         val expectedFirstname = "Yulia"
 
+        repository.findAll().forEach{ println(it)}
         val actual = repository.findById(id).get()
 
         Assertions.assertEquals(expectedFirstname, actual.firstName)
@@ -101,7 +119,7 @@ internal open class TeacherRepositoryTest {
     }
 
     @Test
-    fun delete_shouldNotDeleteTeachers_whenTeacherNotExists() {
+    open fun delete_shouldNotDeleteTeachers_whenTeacherNotExists() {
         val testStr = "test"
         val teacher = Teacher(firstName = testStr, id = UUID.randomUUID())
         teacher.firstName = testStr
