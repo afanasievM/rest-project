@@ -11,7 +11,7 @@ import java.nio.file.Files
 open class DBTestConfig {
 
     @Autowired
-    private lateinit var mongoTemplate: MongoTemplate
+    lateinit var mongoTemplate: MongoTemplate
 
     private val colections = arrayListOf(
         "classrooms", "days", "groups", "lessons", "schedule",

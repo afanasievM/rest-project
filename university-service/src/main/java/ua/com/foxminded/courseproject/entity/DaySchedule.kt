@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType
 import java.util.*
 
 
-@Document("day_schedule")
+@Document("days")
 data class DaySchedule(
     @Id
     @Field("_id", targetType = FieldType.STRING)

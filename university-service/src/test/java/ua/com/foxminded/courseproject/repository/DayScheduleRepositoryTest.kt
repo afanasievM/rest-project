@@ -62,6 +62,7 @@ internal open class DayScheduleRepositoryTest : DBTestConfig() {
 
         val actual = repository.findDayScheduleByDayNumberFromEvenWeek(number)
 
+
         Assertions.assertEquals(expected, actual)
     }
 
