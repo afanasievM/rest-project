@@ -21,13 +21,9 @@ internal open class StudentRepositoryTest : DBTestConfig() {
     @Test
     fun findAll_shouldReturnListStudents() {
         val expectedSize = 2
-        mongoTemplate.getCollection("students").find().forEach{ println(it)}
-        println("dsadadasdazxczcz")
+
         val students = Streamable.of(repository.findAll()).toList()
-        println("*".repeat(200))
-//        mongoTemplate.getCollection("students").find().forEach{ println(it)}
-        println(students)
-        println("*".repeat(200))
+
         Assertions.assertEquals(expectedSize, students.size)
     }
 
