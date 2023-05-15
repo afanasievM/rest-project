@@ -39,8 +39,11 @@ dependencies {
     testImplementation(kotlin("test"))
 
 
-    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
-    testImplementation("io.projectreactor:reactor-test")
+    testImplementation("org.testcontainers:testcontainers:1.18.1")
+    testImplementation("org.testcontainers:mongodb:1.18.1")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 
 
 }
