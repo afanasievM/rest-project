@@ -12,8 +12,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966c7a0-4621-11ed-b878-0242ac120002",
@@ -45,8 +49,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966cb06-4621-11ed-b878-0242ac120002",
@@ -73,8 +81,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966cb06-4621-11ed-b878-0242ac120002",
@@ -101,8 +113,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966d77c-4621-11ed-b878-0242ac120002",
@@ -134,8 +150,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:05:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:05:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966ebae-4621-11ed-b878-0242ac120002",
@@ -162,8 +182,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e97fe-4625-11ed-b878-0242ac120002",
@@ -190,8 +214,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
@@ -223,8 +251,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e14a-4621-11ed-b878-0242ac120002",
@@ -256,8 +288,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e14a-4621-11ed-b878-0242ac120002",
@@ -289,8 +325,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
@@ -322,8 +362,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966d39e-4621-11ed-b878-0242ac120002",
@@ -355,8 +399,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966cd04-4621-11ed-b878-0242ac120002",
@@ -398,8 +446,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966cd04-4621-11ed-b878-0242ac120002",
@@ -441,8 +493,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966d77c-4621-11ed-b878-0242ac120002",
@@ -484,8 +540,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
@@ -517,8 +577,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea302-4625-11ed-b878-0242ac120002",
@@ -550,8 +614,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966f270-4621-11ed-b878-0242ac120002",
@@ -583,8 +651,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966ee06-4621-11ed-b878-0242ac120002",
@@ -616,8 +688,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966f7c0-4621-11ed-b878-0242ac120002",
@@ -649,8 +725,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e9ed4-4625-11ed-b878-0242ac120002",
@@ -682,8 +762,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e9ed4-4625-11ed-b878-0242ac120002",
@@ -715,8 +799,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966ee06-4621-11ed-b878-0242ac120002",
@@ -743,8 +831,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea028-4625-11ed-b878-0242ac120002",
@@ -776,8 +868,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea028-4625-11ed-b878-0242ac120002",
@@ -819,8 +915,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966d77c-4621-11ed-b878-0242ac120002",
@@ -872,8 +972,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966d5a6-4621-11ed-b878-0242ac120002",
@@ -905,8 +1009,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e992a-4625-11ed-b878-0242ac120002",
@@ -938,8 +1046,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e992a-4625-11ed-b878-0242ac120002",
@@ -971,8 +1083,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e90f6-4625-11ed-b878-0242ac120002",
@@ -999,8 +1115,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966dc68-4621-11ed-b878-0242ac120002",
@@ -1027,8 +1147,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966dc68-4621-11ed-b878-0242ac120002",
@@ -1055,8 +1179,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea028-4625-11ed-b878-0242ac120002",
@@ -1083,8 +1211,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea424-4625-11ed-b878-0242ac120002",
@@ -1111,8 +1243,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea424-4625-11ed-b878-0242ac120002",
@@ -1139,8 +1275,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966daa6-4621-11ed-b878-0242ac120002",
@@ -1172,8 +1312,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966dc68-4621-11ed-b878-0242ac120002",
@@ -1205,8 +1349,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966df56-4621-11ed-b878-0242ac120002",
@@ -1233,8 +1381,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
@@ -1261,8 +1413,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:05:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:05:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e9466-4625-11ed-b878-0242ac120002",
@@ -1289,8 +1445,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e95a6-4625-11ed-b878-0242ac120002",
@@ -1317,8 +1477,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966daa6-4621-11ed-b878-0242ac120002",
@@ -1345,8 +1509,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea154-4625-11ed-b878-0242ac120002",
@@ -1373,8 +1541,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea154-4625-11ed-b878-0242ac120002",
@@ -1401,8 +1573,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
@@ -1429,8 +1605,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea640-4625-11ed-b878-0242ac120002",
@@ -1457,8 +1637,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966c7a0-4621-11ed-b878-0242ac120002",
@@ -1485,8 +1669,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e14a-4621-11ed-b878-0242ac120002",
@@ -1518,8 +1706,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e636-4621-11ed-b878-0242ac120002",
@@ -1546,8 +1738,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e636-4621-11ed-b878-0242ac120002",
@@ -1574,8 +1770,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea028-4625-11ed-b878-0242ac120002",
@@ -1602,8 +1802,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e97fe-4625-11ed-b878-0242ac120002",
@@ -1630,8 +1834,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e96c8-4625-11ed-b878-0242ac120002",
@@ -1658,8 +1866,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
@@ -1686,8 +1898,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966c430-4621-11ed-b878-0242ac120002",
@@ -1719,8 +1935,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea028-4625-11ed-b878-0242ac120002",
@@ -1747,8 +1967,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
@@ -1775,8 +1999,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
@@ -1803,8 +2031,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
@@ -1831,8 +2063,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
@@ -1859,8 +2095,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966cb06-4621-11ed-b878-0242ac120002",
@@ -1887,8 +2127,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea776-4625-11ed-b878-0242ac120002",
@@ -1920,8 +2164,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea028-4625-11ed-b878-0242ac120002",
@@ -1948,8 +2196,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e90f6-4625-11ed-b878-0242ac120002",
@@ -1976,8 +2228,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea028-4625-11ed-b878-0242ac120002",
@@ -2004,8 +2260,12 @@
       "$db": "final"
     },
     "number": 1,
-    "start_time": "05:00:00Z",
-    "end_time": "07:25:00Z",
+    "start_time": {
+      "$date": "2000-01-01T05:00:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966c7a0-4621-11ed-b878-0242ac120002",
@@ -2037,8 +2297,12 @@
       "$db": "final"
     },
     "number": 2,
-    "start_time": "07:25:00Z",
-    "end_time": "09:00:00Z",
+    "start_time": {
+      "$date": "2000-01-01T07:25:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T09:00:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e9f6-4621-11ed-b878-0242ac120002",
@@ -2080,8 +2344,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966e82a-4621-11ed-b878-0242ac120002",
@@ -2113,8 +2381,12 @@
       "$db": "final"
     },
     "number": 4,
-    "start_time": "11:15:00Z",
-    "end_time": "12:50:00Z",
+    "start_time": {
+      "$date": "2000-01-01T11:15:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T12:50:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678ea302-4625-11ed-b878-0242ac120002",
@@ -2141,8 +2413,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "e966f0a4-4621-11ed-b878-0242ac120002",
@@ -2169,8 +2445,12 @@
       "$db": "final"
     },
     "number": 3,
-    "start_time": "09:20:00Z",
-    "end_time": "10:55:00Z",
+    "start_time": {
+      "$date": "2000-01-01T09:20:00Z"
+    },
+    "end_time": {
+      "$date": "2000-01-01T10:55:00Z"
+    },
     "teacher": {
       "$ref": "teachers",
       "$id": "678e95a6-4625-11ed-b878-0242ac120002",

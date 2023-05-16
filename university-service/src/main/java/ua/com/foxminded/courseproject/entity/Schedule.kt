@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
 import org.springframework.data.mongodb.core.mapping.FieldType
-import java.sql.Timestamp
+import java.time.LocalDateTime
 import java.util.*
 
 @Document("schedule")
@@ -19,8 +19,8 @@ data class Schedule(
     var weeks: MutableList<WeekSchedule> = mutableListOf(),
 
     @Field("start_time")
-    var startDate: Timestamp? = null,
+    var startDate: LocalDateTime? = null,
 
     @Field("end_time")
-    var endDate: Timestamp? = null
+    var endDate: LocalDateTime? = null
 )

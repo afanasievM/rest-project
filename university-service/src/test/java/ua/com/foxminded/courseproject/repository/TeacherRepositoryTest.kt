@@ -3,7 +3,6 @@ package ua.com.foxminded.courseproject.repository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.data.mongo.AutoConfigureDataMongo
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.data.util.Streamable
 import ua.com.foxminded.courseproject.config.DBTestConfig
@@ -13,7 +12,6 @@ import java.util.*
 
 
 @DataMongoTest
-@AutoConfigureDataMongo
 internal open class TeacherRepositoryTest : DBTestConfig() {
 
     @Autowired
