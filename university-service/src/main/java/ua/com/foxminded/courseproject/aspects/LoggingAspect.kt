@@ -22,6 +22,10 @@ class LoggingAspect {
     fun findByIdPointcut() {
     }
 
+    @Pointcut("execution(* findDay*(..))")
+    fun findDayPointcut() {
+    }
+
     @Pointcut("execution(* findAll*(..))")
     fun findAllPointcut() {
     }

@@ -81,4 +81,14 @@ internal open class DayScheduleRepositoryTest : DBTestConfig() {
 
         Assertions.assertEquals(null, actual)
     }
+
+    @Test
+    fun findAllODD_shouldReturnListDays() {
+        val expectedSize = 7
+
+        println(repository.findAllWeeks())
+        val days = Streamable.of(repository.findDaysWithOddWeek()).toList()
+        println(days)
+        Assertions.assertEquals(expectedSize, days.size)
+    }
 }
