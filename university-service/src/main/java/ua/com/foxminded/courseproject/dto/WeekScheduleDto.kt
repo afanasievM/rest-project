@@ -4,8 +4,8 @@ import java.util.*
 import javax.validation.constraints.NotNull
 
 data class WeekScheduleDto(
-    var id: UUID? = null,
-    var daysSchedule: List<DayScheduleDto>? = null,
+    var id: UUID? = UUID.randomUUID(),
+    var daysSchedule: List<DayScheduleDto>? = mutableListOf(),
     @field:NotNull
     var isOdd: Boolean? = null
 )

@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 data class TransactionDto(
-    var id: UUID? = null,
+    var id: UUID? = UUID.randomUUID(),
     var personId: UUID? = null,
 
     @field:DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

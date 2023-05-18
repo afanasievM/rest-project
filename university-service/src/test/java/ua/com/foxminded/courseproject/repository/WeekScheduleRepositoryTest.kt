@@ -35,7 +35,7 @@ internal open class WeekScheduleRepositoryTest : DBTestConfig() {
     @Test
     fun findDayScheduleByDayNumberFromOddWeek_shouldReturnDay_whenNumberExistsAndWeekOdd() {
         val idExpected = UUID.fromString("9496a616-4633-11ed-b878-0242ac120002")
-        val expected = mongoTemplate.findById(idExpected,DaySchedule::class.java)
+        val expected = mongoTemplate.findById(idExpected, DaySchedule::class.java)
         val number = 1
 
         val actual = repository.findDayScheduleByDayNumberFromOddWeek(number)
@@ -46,7 +46,7 @@ internal open class WeekScheduleRepositoryTest : DBTestConfig() {
     @Test
     fun findDayScheduleByDayNumberFromEvenWeek_shouldReturnDay_whenNumberExistsAndWeekEven() {
         val idExpected = UUID.fromString("949694f0-4633-11ed-b878-0242ac120002")
-        val expected = mongoTemplate.findById(idExpected,DaySchedule::class.java)
+        val expected = mongoTemplate.findById(idExpected, DaySchedule::class.java)
         val number = 1
 
         val actual = repository.findDayScheduleByDayNumberFromEvenWeek(number)

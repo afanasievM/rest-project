@@ -7,7 +7,7 @@ import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
 data class LessonDto(
-    var id: UUID? = null,
+    var id: UUID? = UUID.randomUUID(),
     @field:NotNull(message = "Lesson subject should be not null.")
     var subject: SubjectDto? = null,
     @field:NotNull(message = "Lesson classroom should be not null.")
@@ -19,6 +19,6 @@ data class LessonDto(
     var startTime: LocalTime? = null,
     var endTime: LocalTime? = null,
     var teacher: TeacherDto? = null,
-    var groups: List<GroupDto>? = null
+    var groups: List<GroupDto>? = mutableListOf()
 )
 

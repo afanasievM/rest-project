@@ -4,7 +4,6 @@ import org.bson.BsonDocument
 import org.json.JSONArray
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.core.io.ClassPathResource
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.testcontainers.containers.DockerComposeContainer
@@ -12,8 +11,6 @@ import org.testcontainers.junit.jupiter.Testcontainers
 import java.nio.file.Files
 
 @Testcontainers
-@DataMongoTest
-//@TestPropertySource(locations = ["classpath:application.properties"])
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 open class DBTestConfig {
 

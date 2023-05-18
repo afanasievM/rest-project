@@ -31,7 +31,7 @@ internal open class TeacherRepositoryTest : DBTestConfig() {
         val id = UUID.fromString("e966f608-4621-11ed-b878-0242ac120002")
         val expectedFirstname = "Yulia"
 
-        repository.findAll().forEach{ println(it)}
+        repository.findAll().forEach { println(it) }
         val actual = repository.findById(id).get()
 
         Assertions.assertEquals(expectedFirstname, actual.firstName)

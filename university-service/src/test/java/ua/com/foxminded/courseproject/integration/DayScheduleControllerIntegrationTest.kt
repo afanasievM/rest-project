@@ -5,22 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
+import ua.com.foxminded.courseproject.config.DBTestConfig
 import ua.com.foxminded.courseproject.service.DayScheduleService
 import java.time.LocalDate
 import java.util.*
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql(value = ["classpath:initial_data.sql"])
-@Transactional
-internal open class DayScheduleControllerIntegrationTest {
+internal open class DayScheduleControllerIntegrationTest : DBTestConfig() {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
@@ -38,8 +35,8 @@ internal open class DayScheduleControllerIntegrationTest {
         params["startdate"] = listOf(startDate.toString())
 
         mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -51,14 +48,16 @@ internal open class DayScheduleControllerIntegrationTest {
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
         val teacherId = "e966f608-4621-11ed-b878-0242ac120002"
         val dayScheduleDtoMap = service
-                .getTeacherDaysSchedule(startDate, endDate, UUID.fromString(teacherId))
+            .getTeacherDaysSchedule(startDate, endDate, UUID.fromString(teacherId))
         params["startdate"] = listOf(startDate.toString())
         params["enddate"] = listOf(endDate.toString())
 
         mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.$startDate.id").value(dayScheduleDtoMap[startDate]?.id.toString()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.$endDate.id").value(dayScheduleDtoMap[endDate]?.id.toString()))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.$startDate.id").value(dayScheduleDtoMap[startDate]?.id.toString())
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.$endDate.id").value(dayScheduleDtoMap[endDate]?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -74,8 +73,8 @@ internal open class DayScheduleControllerIntegrationTest {
         params["enddate"] = listOf(endDate.toString())
 
         mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}/schedule", teacherId).params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -89,8 +88,8 @@ internal open class DayScheduleControllerIntegrationTest {
         params["startdate"] = listOf(startDate.toString())
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", studentId).params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -102,13 +101,15 @@ internal open class DayScheduleControllerIntegrationTest {
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
         val studentId = "f92afb9e-462a-11ed-b878-0242ac120002"
         val dayScheduleDtoMap = service
-                .getStudentDaysSchedule(startDate, endDate, UUID.fromString(studentId))
+            .getStudentDaysSchedule(startDate, endDate, UUID.fromString(studentId))
         params["startdate"] = listOf(startDate.toString())
         params["enddate"] = listOf(endDate.toString())
         mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", studentId).params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.$startDate.id").value(dayScheduleDtoMap[startDate]?.id.toString()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.$endDate.id").value(dayScheduleDtoMap[endDate]?.id.toString()))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(
+                MockMvcResultMatchers.jsonPath("$.$startDate.id").value(dayScheduleDtoMap[startDate]?.id.toString())
+            )
+            .andExpect(MockMvcResultMatchers.jsonPath("$.$endDate.id").value(dayScheduleDtoMap[endDate]?.id.toString()))
     }
 
     @Throws(Exception::class)
@@ -124,7 +125,7 @@ internal open class DayScheduleControllerIntegrationTest {
         params["enddate"] = listOf(endDate.toString())
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}/schedule", studentId).params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(daySchedule?.id.toString()))
     }
 }
