@@ -6,30 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.data.util.Streamable
 import ua.com.foxminded.courseproject.config.DBTestConfig
+import ua.com.foxminded.courseproject.entity.DaySchedule
 import java.util.*
 
 @DataMongoTest
-internal open class DayScheduleRepositoryTest : DBTestConfig() {
+internal open class WeekScheduleRepositoryTest : DBTestConfig() {
     @Autowired
-    private lateinit var repository: DayScheduleRepository
+    private lateinit var repository: WeekScheduleRepository
 
     @Test
-    fun findAll_shouldReturnListDays() {
-        val expectedSize = 14
+    fun findAll_shouldReturnListWeeks() {
+        val expectedSize = 2
 
         val days = Streamable.of(repository.findAll()).toList()
 
         Assertions.assertEquals(expectedSize, days.size)
-    }
-
-    @Test
-    fun findById_shouldReturnDay_whenIdExists() {
-        val id = UUID.fromString("949694f0-4633-11ed-b878-0242ac120002")
-        val expectedNumber = 1
-
-        val actual = repository.findById(id).get()
-
-        Assertions.assertEquals(expectedNumber, actual.dayNumber)
     }
 
     @Test
@@ -43,8 +34,8 @@ internal open class DayScheduleRepositoryTest : DBTestConfig() {
 
     @Test
     fun findDayScheduleByDayNumberFromOddWeek_shouldReturnDay_whenNumberExistsAndWeekOdd() {
-        val idExpected = UUID.fromString("949694f0-4633-11ed-b878-0242ac120002")
-        val expected = repository.findById(idExpected).get()
+        val idExpected = UUID.fromString("9496a616-4633-11ed-b878-0242ac120002")
+        val expected = mongoTemplate.findById(idExpected,DaySchedule::class.java)
         val number = 1
 
         val actual = repository.findDayScheduleByDayNumberFromOddWeek(number)
@@ -54,8 +45,8 @@ internal open class DayScheduleRepositoryTest : DBTestConfig() {
 
     @Test
     fun findDayScheduleByDayNumberFromEvenWeek_shouldReturnDay_whenNumberExistsAndWeekEven() {
-        val idExpected = UUID.fromString("9496a616-4633-11ed-b878-0242ac120002")
-        val expected = repository.findById(idExpected).get()
+        val idExpected = UUID.fromString("949694f0-4633-11ed-b878-0242ac120002")
+        val expected = mongoTemplate.findById(idExpected,DaySchedule::class.java)
         val number = 1
 
         val actual = repository.findDayScheduleByDayNumberFromEvenWeek(number)
@@ -82,13 +73,4 @@ internal open class DayScheduleRepositoryTest : DBTestConfig() {
         Assertions.assertEquals(null, actual)
     }
 
-    @Test
-    fun findAllODD_shouldReturnListDays() {
-        val expectedSize = 7
-
-        println(repository.findAllWeeks())
-        val days = Streamable.of(repository.findDaysWithOddWeek()).toList()
-        println(days)
-        Assertions.assertEquals(expectedSize, days.size)
-    }
 }
