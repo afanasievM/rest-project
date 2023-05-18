@@ -1,26 +1,40 @@
 package ua.com.foxminded.courseproject.entity
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import java.time.LocalDate
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
+import java.util.*
 
-@Entity
-@Table(name = "teachers")
+@Document(collection = "teachers")
 data class Teacher(
+    @Id
+    @Field("_id", targetType = FieldType.STRING)
+    override var id: UUID? = UUID.randomUUID(),
 
-    @Column(name = "degree")
+    @Field("firstname")
+    override var firstName: String? = null,
+
+    @Field("lastname")
+    override var lastName: String? = null,
+
+    @Field("birthday")
+    override var birthDay: LocalDate? = null,
+
+    @Field("degree")
     var degree: String? = null,
 
-    @Column(name = "salary")
+    @Field("salary")
     var salary: Int? = null,
 
-    @Column(name = "first_date")
+    @Field("first_date")
     var firstDay: LocalDate? = null,
 
-    @Column(name = "rank")
+    @Field("rank")
     var rank: String? = null,
 
-    @Column(name = "title")
+    @Field("title")
     var title: String? = null
 ) : Person()
+

@@ -6,8 +6,6 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 val MAPSTRUCT_VER = "1.5.3.Final"
 val OPENAPI_VER = "1.6.14"
 val HTTP_CLIENT_VER = "4.5.13"
-val POSTGRES_VER = "42.5.1"
-val FLYWAY_CORE_VER = "8.5.13"
 val SPRINGBOOT_VER = "2.7.4"
 
 plugins {
@@ -29,10 +27,10 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-web:$SPRINGBOOT_VER")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
-    implementation("org.flywaydb:flyway-core:$FLYWAY_CORE_VER")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
     implementation("org.mapstruct:mapstruct:${MAPSTRUCT_VER}")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
@@ -41,7 +39,6 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("ch.qos.logback:logback-classic:1.2.9")
     implementation("org.projectlombok:lombok:1.18.20")
-    runtimeOnly("org.postgresql:postgresql:$POSTGRES_VER")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))

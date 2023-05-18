@@ -1,23 +1,26 @@
 package ua.com.foxminded.courseproject.entity
 
+import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
 import ua.com.foxminded.courseproject.enums.Role
-import javax.persistence.*
+import java.util.*
 
-@Entity
-@Table(name = "users")
+@Document("users")
 data class User(
-    @Id
-    @Column(name = "username", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+
+    @Field("username")
     var username: String? = null,
 
-    @Column(name = "password")
+    @Field("password")
     var password: String? = null,
 
-    @OneToOne
-    @JoinColumn(name = "person_id")
+    @Field("person_id")
+    @DBRef
     var person: Person? = null,
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
+    @Field("role")
     var role: Role? = null
 )
+
+

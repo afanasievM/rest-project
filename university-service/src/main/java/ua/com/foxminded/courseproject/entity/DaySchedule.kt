@@ -1,29 +1,23 @@
 package ua.com.foxminded.courseproject.entity
 
-import org.hibernate.annotations.GenericGenerator
-import org.hibernate.annotations.Type
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import java.util.*
-import javax.persistence.*
 
-@Entity
-@Table(name = "day_schedule")
+
+@Document("days")
 data class DaySchedule(
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
-    @Type(type = "uuid-char")
-    var id: UUID? = null,
+    @Field("_id", targetType = FieldType.STRING)
+    var id: UUID? = UUID.randomUUID(),
 
-    @ManyToMany
-    @JoinTable(
-        name = "days_lessons",
-        joinColumns = [JoinColumn(name = "day_id")],
-        inverseJoinColumns = [JoinColumn(name = "lesson_id")]
-    )
+    @DBRef
     var lessons: MutableList<Lesson> = mutableListOf(),
 
-    @Column(name = "day_number")
+    @Field("day_number")
     var dayNumber: Int? = null
 
 )

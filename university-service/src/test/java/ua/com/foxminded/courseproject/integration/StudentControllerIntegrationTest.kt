@@ -9,14 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
+import ua.com.foxminded.courseproject.config.DBTestConfig
 import ua.com.foxminded.courseproject.service.StudentServiceImpl
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -24,9 +23,7 @@ import java.util.*
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql(value = ["classpath:initial_data.sql"])
-@Transactional
-internal open class StudentControllerIntegrationTest {
+internal open class StudentControllerIntegrationTest : DBTestConfig() {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
@@ -37,7 +34,7 @@ internal open class StudentControllerIntegrationTest {
     private var sizeDefault: Int = 0
 
     @BeforeEach
-    fun setUp() {
+    fun setUpDefaults() {
         pageDefault = 0
         sizeDefault = 1
         pageableDefault = PageRequest.of(pageDefault, sizeDefault)
@@ -50,9 +47,9 @@ internal open class StudentControllerIntegrationTest {
         val expectedSize = 2
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expectedSize))
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expectedSize))
     }
 
     @Throws(Exception::class)
@@ -65,10 +62,10 @@ internal open class StudentControllerIntegrationTest {
         params["page"] = listOf(pageDefault.toString())
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students").params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageDefault))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(sizeDefault))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.content[0].id").value(expectedId))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageDefault))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(sizeDefault))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.content[0].id").value(expectedId))
     }
 
     @Throws(Exception::class)
@@ -83,11 +80,11 @@ internal open class StudentControllerIntegrationTest {
         params["page"] = listOf(pageNumber)
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students").params(params))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageNumber))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(size))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expectedElements))
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageNumber))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(size))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expectedElements))
     }
 
     @Test
@@ -111,7 +108,7 @@ internal open class StudentControllerIntegrationTest {
         val expectedSize = 3
 
         mockMvc.perform(MockMvcRequestBuilders.post("/students").queryParams(params))
-                .andExpect(MockMvcResultMatchers.status().isCreated())
+            .andExpect(MockMvcResultMatchers.status().isCreated())
 
         Assertions.assertEquals(expectedSize, studentService.findAll(pageable).content.size)
     }
@@ -133,7 +130,7 @@ internal open class StudentControllerIntegrationTest {
         params.add("course", courseNumber)
 
         mockMvc.perform(MockMvcRequestBuilders.put("/students/{id}", id).params(params))
-                .andExpect(MockMvcResultMatchers.status().isResetContent())
+            .andExpect(MockMvcResultMatchers.status().isResetContent())
 
         Assertions.assertEquals(changedFirstname, studentService.findById(UUID.fromString(id)).firstName)
     }
@@ -146,9 +143,9 @@ internal open class StudentControllerIntegrationTest {
         val id = existentStudent.id.toString()
 
         mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}", id))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id))
+            .andExpect(MockMvcResultMatchers.status().isOk())
     }
 
     @Test
@@ -163,8 +160,8 @@ internal open class StudentControllerIntegrationTest {
         val expectedSize = 1
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/students/{id}", id))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isNoContent())
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(MockMvcResultMatchers.status().isNoContent())
 
         Assertions.assertEquals(expectedSize, studentService.findAll(pageable).content.size)
     }

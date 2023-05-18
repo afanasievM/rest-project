@@ -1,39 +1,30 @@
 package ua.com.foxminded.restClient.entity
 
-import org.hibernate.annotations.GenericGenerator
-import org.hibernate.annotations.Type
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import ua.com.foxminded.restClient.enums.Direction
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
-@Entity
-@Table(name = "transactions")
+
+@Document("transactions")
 data class Transaction(
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
-    @Type(type = "uuid-char")
-    var id: UUID? = null,
-
-    @Column(name = "person_id")
-    @Type(type = "uuid-char")
+    @Field("_id", targetType = FieldType.STRING)
+    var id: UUID? = UUID.randomUUID(),
+    @Field("person_id", targetType = FieldType.STRING)
     var personId: UUID? = null,
-
-    @Column(name = "transaction_time")
+    @Field("transaction_time")
     var transactionTime: LocalDateTime? = null,
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "transaction_direction")
+    @Field("transaction_direction")
     var transactionDirection: Direction? = null,
-
-    @Column(name = "value", precision = 10, scale = 2)
+    @Field("value")
     var value: Double? = null,
-
-    @Column(name = "currency")
+    @Field("currency")
     var currency: String? = null,
-
-    @Column(name = "iban")
+    @Field("iban")
     var iban: String? = null
 )

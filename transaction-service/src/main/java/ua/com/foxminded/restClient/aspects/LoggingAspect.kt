@@ -18,11 +18,10 @@ class LoggingAspect {
     private val SCHEDULE_STRING = "schedule"
 
     @Pointcut("execution(* findAll*(..))")
-//    @Pointcut("target(ua.com.foxminded.restClient.service.TransactionServiceImpl)")
     fun findAllPointcut() {
     }
 
-    @Pointcut("execution(* getRate*(..))")
+    @Pointcut("execution(* chooseRate(..))")
     fun ratePointcut() {
     }
 
@@ -30,13 +29,15 @@ class LoggingAspect {
     @Throws(Throwable::class)
     fun logAroundFindAll(joinPoint: ProceedingJoinPoint): Any {
         val args = joinPoint.args
-        log.info(
-            "Find transactions with person ID {} between {} and {}.\nPageable={}",
-            args[0],
-            args[1],
-            args[2],
-            args[3]
-        )
+        if (args.isNotEmpty()) {
+            log.info(
+                "Find transactions with person ID {} between {} and {}.\nPageable={}",
+                args[0],
+                args[1],
+                args[2],
+                args[3]
+            )
+        }
         val result = joinPoint.proceed()
         log.info("Query result:\n{}", result.toString())
         return result
@@ -46,6 +47,7 @@ class LoggingAspect {
     @Throws(Throwable::class)
     fun logAroundGetRate(joinPoint: ProceedingJoinPoint): Any {
         val args = joinPoint.args
+        println(args)
         log.info("Get currency rate between {} and {}", args[0].toString(), args[1].toString())
         val result = joinPoint.proceed()
         log.info("Query result:\n{}", result.toString())

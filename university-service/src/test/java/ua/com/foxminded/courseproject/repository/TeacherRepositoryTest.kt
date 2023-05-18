@@ -3,18 +3,17 @@ package ua.com.foxminded.courseproject.repository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.data.util.Streamable
-import org.springframework.test.context.jdbc.Sql
-import org.springframework.transaction.annotation.Transactional
+import ua.com.foxminded.courseproject.config.DBTestConfig
 import ua.com.foxminded.courseproject.entity.Teacher
 import java.time.LocalDate
 import java.util.*
 
-@SpringBootTest
-@Sql(value = ["classpath:initial_data.sql"])
-@Transactional
-internal open class TeacherRepositoryTest {
+
+@DataMongoTest
+internal open class TeacherRepositoryTest : DBTestConfig() {
+
     @Autowired
     private lateinit var repository: TeacherRepository
 
@@ -32,6 +31,7 @@ internal open class TeacherRepositoryTest {
         val id = UUID.fromString("e966f608-4621-11ed-b878-0242ac120002")
         val expectedFirstname = "Yulia"
 
+        repository.findAll().forEach { println(it) }
         val actual = repository.findById(id).get()
 
         Assertions.assertEquals(expectedFirstname, actual.firstName)
@@ -86,7 +86,7 @@ internal open class TeacherRepositoryTest {
     }
 
     @Test
-    fun delete_shouldNotDeleteTeachers_whenTeacherNotExists() {
+    open fun delete_shouldNotDeleteTeachers_whenTeacherNotExists() {
         val testStr = "test"
         val teacher = Teacher()
         teacher.firstName = testStr

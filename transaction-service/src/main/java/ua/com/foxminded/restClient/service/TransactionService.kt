@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable
 import ua.com.foxminded.restClient.dto.TransactionDto
 import java.time.LocalDateTime
 import java.util.*
+import kotlin.collections.List
 
 interface TransactionService {
     fun findAllByIdAndBetweenDate(
@@ -13,4 +14,5 @@ interface TransactionService {
         end: LocalDateTime,
         pageable: Pageable
     ): Page<TransactionDto>
+
 }

@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - 27018:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: misha
+      MONGO_INITDB_ROOT_PASSWORD: 1111

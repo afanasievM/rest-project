@@ -6,7 +6,7 @@ import ua.com.foxminded.courseproject.dto.*
 import ua.com.foxminded.courseproject.entity.DaySchedule
 import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
 import ua.com.foxminded.courseproject.mapper.Mapper
-import ua.com.foxminded.courseproject.repository.DayScheduleRepository
+import ua.com.foxminded.courseproject.repository.WeekScheduleRepository
 import java.time.LocalDate
 import java.time.temporal.ChronoField
 import java.time.temporal.ChronoUnit
@@ -14,11 +14,11 @@ import java.util.*
 
 @Service
 open class DayScheduleServiceImpl @Autowired constructor(
-    mapper: DayScheduleMapper, repository: DayScheduleRepository,
+    mapper: DayScheduleMapper, repository: WeekScheduleRepository,
     teacherService: TeacherServiceImpl, studentService: StudentServiceImpl
 ) : DayScheduleService {
     private val mapper: Mapper<DayScheduleDto?, DaySchedule?>
-    private val repository: DayScheduleRepository
+    private val repository: WeekScheduleRepository
     private val teacherService: TeacherServiceImpl
     private val studentService: StudentServiceImpl
 

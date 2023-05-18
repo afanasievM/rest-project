@@ -17,8 +17,13 @@ class LoggingAspect {
     private val STUDENT_STRING = "student"
     private val TEACHER_STRING = "teacher"
     private val SCHEDULE_STRING = "schedule"
+
     @Pointcut("execution(* findById*(..))")
     fun findByIdPointcut() {
+    }
+
+    @Pointcut("execution(* findDay*(..))")
+    fun findDayPointcut() {
     }
 
     @Pointcut("execution(* findAll*(..))")
@@ -61,11 +66,16 @@ class LoggingAspect {
     @Around("findAllPointcut() && repositoryPointcut()")
     @Throws(Throwable::class)
     fun logAroundFindAll(joinPoint: ProceedingJoinPoint): Any {
-        logger.info(
-            "Find all {}s in DB with Pageble parameters= {}",
-            chooseStringObject(joinPoint),
-            Arrays.stream(joinPoint.args).findAny().get()
-        )
+        val args = joinPoint.args
+        if (args.isNotEmpty()) {
+            logger.info(
+                "Find all {}s in DB with Pageble parameters= {}",
+                chooseStringObject(joinPoint),
+                Arrays.stream(joinPoint.args).findAny().get()
+            )
+        } else {
+            logger.info("Find all {}s in DB", chooseStringObject(joinPoint))
+        }
         val result = joinPoint.proceed()
         logger.info("Query result:\n{}", result.toString())
         return result

@@ -1,47 +1,42 @@
 package ua.com.foxminded.courseproject.entity
 
-import org.hibernate.annotations.GenericGenerator
-import org.hibernate.annotations.Type
+
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import java.time.LocalTime
 import java.util.*
-import javax.persistence.*
 
-@Entity
-@Table(name = "lessons")
+@Document("lessons")
 data class Lesson(
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
-    @Type(type = "uuid-char")
-    var id: UUID? = null,
+    @Field("_id", targetType = FieldType.STRING)
+    var id: UUID? = UUID.randomUUID(),
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subject")
+    @DBRef
+    @Field("subject")
     var subject: Subject? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "classroom")
+    @DBRef
+    @Field("classroom")
     var classRoom: ClassRoom? = null,
 
-    @Column(name = "number")
+    @Field("number")
     var number: Int? = null,
 
-    @Column(name = "start_time")
+    @Field("start_time")
     var startTime: LocalTime? = null,
 
-    @Column(name = "end_time")
+    @Field("end_time")
     var endTime: LocalTime? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher")
+    @DBRef
+    @Field("teacher")
     var teacher: Teacher? = null,
 
-    @ManyToMany
-    @JoinTable(
-        name = "lessons_groups",
-        joinColumns = [JoinColumn(name = "lesson_id")],
-        inverseJoinColumns = [JoinColumn(name = "group_id")]
-    )
+    @DBRef
+    @Field("groups")
     var groups: MutableList<Group> = mutableListOf()
 )

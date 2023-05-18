@@ -11,16 +11,18 @@ import org.springframework.web.client.RestTemplate
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 import ua.com.foxminded.courseproject.interceptors.RequestLoggingInterceptors
 
+
 @Configuration
 @EnableWebMvc
-open class WebConfig {
+class WebConfig {
+
     @Bean
-    open fun grantedAuthorityDefaults(): GrantedAuthorityDefaults {
+    fun grantedAuthorityDefaults(): GrantedAuthorityDefaults {
         return GrantedAuthorityDefaults("")
     }
 
     @Bean
-    open fun restTemplate(requestLoggingInterceptors: RequestLoggingInterceptors): RestTemplate {
+    fun restTemplate(requestLoggingInterceptors: RequestLoggingInterceptors): RestTemplate {
         val factory: ClientHttpRequestFactory =
             BufferingClientHttpRequestFactory(HttpComponentsClientHttpRequestFactory())
         val restTemplate = RestTemplate(factory)

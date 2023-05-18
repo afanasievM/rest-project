@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.entity.Transaction
+import ua.com.foxminded.restClient.enums.Direction
 import ua.com.foxminded.restClient.exceptions.PersonNotFoundException
 import ua.com.foxminded.restClient.mapper.TransactionMapper
 import ua.com.foxminded.restClient.repository.TransactionRepository
