@@ -39,6 +39,8 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("ch.qos.logback:logback-classic:1.2.9")
     implementation("org.projectlombok:lombok:1.18.20")
+    implementation ("io.nats:jnats:2.11.2")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))
@@ -57,6 +59,9 @@ group = "ua.com.foxminded"
 version = "0.0.1-SNAPSHOT"
 description = "restClient"
 
+tasks.test {
+    useJUnitPlatform()
+}
 
 tasks.withType<JavaCompile>() {
     options.encoding = "UTF-8"
