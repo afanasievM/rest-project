@@ -15,13 +15,16 @@ plugins {
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     kotlin("jvm") version "1.8.21"
     id("org.jetbrains.kotlin.kapt") version "1.8.21"
-    id("org.jetbrains.kotlin.plugin.allopen" ) version "1.8.21"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.8.21"
 
 }
 
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://oss.sonatype.org/content/repositories/")
+    }
 }
 
 dependencies {
@@ -39,13 +42,12 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("ch.qos.logback:logback-classic:1.2.9")
     implementation("org.projectlombok:lombok:1.18.20")
-    implementation ("io.nats:jnats:2.11.2")
+    implementation("io.nats:jnats:2.16.8")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
-
 
 
 }
