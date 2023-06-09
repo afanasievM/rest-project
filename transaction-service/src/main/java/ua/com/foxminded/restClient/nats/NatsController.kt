@@ -29,7 +29,8 @@ import javax.validation.Payload
 class NatsController @Autowired constructor(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
-    private val dispatcher: Dispatcher) {
+    private val dispatcher: Dispatcher
+) {
 
     init {
         dispatcher.subscribe("get.transactions") { msg -> handleMessage(msg) }
@@ -37,10 +38,18 @@ class NatsController @Autowired constructor(
 
 
     fun handleMessage(message: Message) {
-//        message.
-//        val transactions = findTransactions(id, startDate, endDate, pageable)
-        val jsonMap: Map<String, Any> = GsonJsonParser().parseMap(message.data.decodeToString())
+        println(message)
+        val jsonMap: Map<String, Any?> =
+            GsonJsonParser().parseMap(message.data.decodeToString())
         println(jsonMap)
+        val id = UUID.fromString(jsonMap.get("id").toString())
+        val currency = jsonMap.get("currency")
+        val startDate = LocalDateTime.parse("startDate")
+        val endDate = LocalDateTime.parse("endDate")
+        val page = Integer.parseInt(jsonMap.get("page").toString())
+        val size = Integer.parseInt(jsonMap.get("size").toString())
+
+        println(findTransactions(id, startDate, endDate, Pageable.ofSize(size).withPage(page)))
     }
 
     private fun findTransactions(
@@ -53,5 +62,6 @@ class NatsController @Autowired constructor(
         }
         return transactions
     }
+
 
 }
