@@ -43,6 +43,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.2.9")
     implementation("org.projectlombok:lombok:1.18.20")
     implementation("io.nats:jnats:2.16.8")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
