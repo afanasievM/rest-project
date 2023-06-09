@@ -1,5 +1,6 @@
 package ua.com.foxminded.restClient.config
 
+import io.nats.client.Connection
 import io.nats.client.Dispatcher
 import io.nats.client.Nats
 import org.springframework.context.annotation.Bean
@@ -23,8 +24,7 @@ class WebConfig {
     }
 
     @Bean
-    fun natsDispatcher(): Dispatcher {
-        val nc = Nats.connect("nats://0.0.0.0:4222")
-        return nc.createDispatcher()
+    fun natsConncetion(): Connection {
+        return Nats.connect("nats://0.0.0.0:4222")
     }
 }

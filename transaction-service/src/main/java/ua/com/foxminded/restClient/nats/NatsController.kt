@@ -3,6 +3,7 @@ package ua.com.foxminded.restClient.nats
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import io.nats.client.Connection
 import io.nats.client.Dispatcher
 import io.nats.client.Message
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,30 +20,31 @@ import java.util.*
 class NatsController @Autowired constructor(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
-    private val dispatcher: Dispatcher
+    private val natsConnection: Connection
 ) {
+    private val identificator = "transactions"
 
     init {
-        dispatcher.subscribe("get.transactions") { msg -> handleMessage(msg) }
+        val dispatcher = natsConnection.createDispatcher()
+        dispatcher.subscribe("get.transactions") {
+//            if (it.replyTo != identificator)
+                handleMessage(it)
+        }
     }
 
 
     fun handleMessage(message: Message) {
-        println(message)
         println(message.data.decodeToString())
         val mapper = jacksonObjectMapper()
-        val jsonMap = mapper.readValue<Map<String,String>>(message.data.decodeToString())
-
-        println(jsonMap)
-        println("parsed")
-//        val id = UUID.fromString(jsonMap["id"].toString())
+        val jsonMap = mapper.readValue<Map<String, String>>(message.data.decodeToString())
+        val id = UUID.fromString(jsonMap["id"])
         val currency = jsonMap["currency"]
-        val startDate = LocalDateTime.parse("startDate")
-        val endDate = LocalDateTime.parse("endDate")
-        val page = Integer.parseInt(jsonMap["page"].toString())
-        val size = Integer.parseInt(jsonMap["size"].toString())
-
-//        println(findTransactions(id, startDate, endDate, Pageable.ofSize(size).withPage(page)))
+        val startDate = LocalDateTime.parse(jsonMap["startDate"])
+        val endDate = LocalDateTime.parse(jsonMap["endDate"])
+        val page = Integer.parseInt(jsonMap["page"])
+        val size = Integer.parseInt(jsonMap["size"])
+        natsConnection.publish(message.replyTo, message.subject, "dsadad".toByteArray())
+        println(findTransactions(id, startDate, endDate, Pageable.ofSize(size).withPage(page)))
     }
 
     private fun findTransactions(
