@@ -1,8 +1,14 @@
 version: '3.9'
 
 services:
+  nats:
+      container_name: 'nats'
+      image: 'nats'
+      ports:
+        - "4222:4222"
+        - "8222:8222"
+
   university:
-    # platform: linux/amd64
     image: 'university-service'
     build:
       context: ./university-service
@@ -10,20 +16,14 @@ services:
     restart: on-failure
     container_name: 'university-service'
     depends_on:
-      - db
+      - mongodb
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/final"
-      SPRING_DATASOURCE_USERNAME: "misha"
-      SPRING_DATASOURCE_PASSWORD: "1111"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "none"
-      spring.flyway.url: "jdbc:postgresql://db:5432/final"
       university.service.URL: http://transaction:8082/transactions/
-
+      SPRING.DATA.MONGODB.HOST: mongodb
     ports:
       - "8081:8081"
 
   transaction:
-    # platform: linux/amd64
     image: 'transaction-service'
     build:
       context: ./transaction-service
@@ -31,28 +31,11 @@ services:
     restart: on-failure
     container_name: 'transaction-service'
     depends_on:
-      - db
+      - mongodb
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/final"
-      SPRING_DATASOURCE_USERNAME: "misha"
-      SPRING_DATASOURCE_PASSWORD: "1111"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "none"
-      spring.flyway.url: "jdbc:postgresql://db:5432/final"
-
+        SPRING.DATA.MONGODB.HOST: mongodb
     ports:
       - "8082:8082"
-
-  db:
-    image: 'postgres:13.1-alpine'
-    container_name: db
-    environment:
-      POSTGRES_DB: "final"
-      POSTGRES_USER: "misha"
-      POSTGRES_PASSWORD: "1111"
-    volumes:
-      - ~/data:/var/lib/postgresql/data
-    ports:
-      - "5434:5432"
 
   mongodb:
     image: mongo
