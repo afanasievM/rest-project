@@ -1,5 +1,8 @@
 package ua.com.foxminded.restClient.config
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.nats.client.Connection
 import io.nats.client.Dispatcher
 import io.nats.client.Nats
@@ -17,6 +20,7 @@ import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors
 class WebConfig {
     @Value("\${nats.url}")
     private lateinit var natsUrl: String
+
     @Bean
     fun restTemplate(requestLoggingInterceptors: RequestLoggingInterceptors): RestTemplate {
         val factory: ClientHttpRequestFactory =
@@ -29,5 +33,12 @@ class WebConfig {
     @Bean
     fun natsConncetion(): Connection {
         return Nats.connect(natsUrl)
+    }
+
+    @Bean
+    fun mapper(): ObjectMapper {
+        return jacksonObjectMapper().apply {
+            registerModule(JavaTimeModule())
+        }
     }
 }

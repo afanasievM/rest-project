@@ -1,6 +1,7 @@
 package ua.com.foxminded.restClient.nats
 
 import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
@@ -24,7 +25,8 @@ import java.util.*
 class NatsController @Autowired constructor(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
-    private val natsConnection: Connection
+    private val natsConnection: Connection,
+    private val mapper: ObjectMapper
 ) {
     private val identificator = "transactions.service"
 
@@ -39,19 +41,18 @@ class NatsController @Autowired constructor(
 
     fun handleMessage(message: Message) {
         println(message.data.decodeToString())
-        val request = jacksonObjectMapper().apply {
-            registerModule(JavaTimeModule())
-        }.readValue<TransactionNatsDto>(message.data.decodeToString())
-        val transactions = findTransactions(request.id!!,
-            request.startDate!!,
-            request.endDate,
-            Pageable.ofSize(request.size!!).withPage(request.page!!))
-        natsConnection.publish(message.replyTo, identificator,
+        val request = mapper.readValue<TransactionNatsDto>(message.data.decodeToString())
+        val transactions = findTransactions(
+            request.id!!, request.startDate!!, request.endDate,
+            Pageable.ofSize(request.size!!).withPage(request.page!!)
+        )
+        natsConnection.publish(
+            message.replyTo, identificator,
             exchangeService.exchangeTo(transactions, Currency.getInstance(request.currency))
-            .toList()
-            .toString()
-            .toByteArray())
-
+                .toList()
+                .toString()
+                .toByteArray()
+        )
     }
 
     private fun findTransactions(
