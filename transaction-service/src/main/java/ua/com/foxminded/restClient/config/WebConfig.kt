@@ -3,6 +3,7 @@ package ua.com.foxminded.restClient.config
 import io.nats.client.Connection
 import io.nats.client.Dispatcher
 import io.nats.client.Nats
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.BufferingClientHttpRequestFactory
@@ -14,6 +15,8 @@ import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors
 
 @Configuration
 class WebConfig {
+    @Value("\${nats.url}")
+    private lateinit var natsUrl: String
     @Bean
     fun restTemplate(requestLoggingInterceptors: RequestLoggingInterceptors): RestTemplate {
         val factory: ClientHttpRequestFactory =
@@ -25,6 +28,6 @@ class WebConfig {
 
     @Bean
     fun natsConncetion(): Connection {
-        return Nats.connect("nats://0.0.0.0:4222")
+        return Nats.connect(natsUrl)
     }
 }

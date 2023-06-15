@@ -1,6 +1,9 @@
 package ua.com.foxminded.restClient.nats
 
 import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.nats.client.Connection
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import ua.com.foxminded.restClient.dto.TransactionDto
+import ua.com.foxminded.restClient.dto.TransactionNatsDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 import java.time.LocalDateTime
@@ -22,12 +26,12 @@ class NatsController @Autowired constructor(
     private val exchangeService: CurrencyExchangeService,
     private val natsConnection: Connection
 ) {
-    private val identificator = "transactions"
+    private val identificator = "transactions.service"
 
     init {
         val dispatcher = natsConnection.createDispatcher()
         dispatcher.subscribe("get.transactions") {
-//            if (it.replyTo != identificator)
+            if (it.replyTo != identificator)
                 handleMessage(it)
         }
     }
@@ -35,16 +39,19 @@ class NatsController @Autowired constructor(
 
     fun handleMessage(message: Message) {
         println(message.data.decodeToString())
-        val mapper = jacksonObjectMapper()
-        val jsonMap = mapper.readValue<Map<String, String>>(message.data.decodeToString())
-        val id = UUID.fromString(jsonMap["id"])
-        val currency = jsonMap["currency"]
-        val startDate = LocalDateTime.parse(jsonMap["startDate"])
-        val endDate = LocalDateTime.parse(jsonMap["endDate"])
-        val page = Integer.parseInt(jsonMap["page"])
-        val size = Integer.parseInt(jsonMap["size"])
-        natsConnection.publish(message.replyTo, message.subject, "dsadad".toByteArray())
-        println(findTransactions(id, startDate, endDate, Pageable.ofSize(size).withPage(page)))
+        val request = jacksonObjectMapper().apply {
+            registerModule(JavaTimeModule())
+        }.readValue<TransactionNatsDto>(message.data.decodeToString())
+        val transactions = findTransactions(request.id!!,
+            request.startDate!!,
+            request.endDate,
+            Pageable.ofSize(request.size!!).withPage(request.page!!))
+        natsConnection.publish(message.replyTo, identificator,
+            exchangeService.exchangeTo(transactions, Currency.getInstance(request.currency))
+            .toList()
+            .toString()
+            .toByteArray())
+
     }
 
     private fun findTransactions(
