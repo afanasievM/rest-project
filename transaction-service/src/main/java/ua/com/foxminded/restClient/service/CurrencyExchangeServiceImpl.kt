@@ -56,8 +56,6 @@ class CurrencyExchangeServiceImpl @Autowired constructor(var rateService: RateSe
     }
 
     private fun chooseRate(currencyFirst: Currency, currencySecond: Currency, rates: List<Rate>): Rate {
-        println("*******")
-        println(rates)
         return rates.stream()
             .filter { rate: Rate ->
                 val codeA: Int? = rate.currencyCodeA
