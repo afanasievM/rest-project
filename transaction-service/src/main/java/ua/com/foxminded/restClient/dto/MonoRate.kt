@@ -1,8 +1,8 @@
 package ua.com.foxminded.restClient.dto
 
-import java.time.Instant
+import java.time.ZonedDateTime
 
 data class MonoRate(
-    val date: Instant? = null,
+    val date: ZonedDateTime? = null,
     val rateCross: Float? = null
 ) : Rate()

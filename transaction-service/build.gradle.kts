@@ -33,7 +33,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$SPRINGBOOT_VER")
     implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
     implementation("org.mapstruct:mapstruct:${MAPSTRUCT_VER}")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
@@ -44,6 +44,7 @@ dependencies {
     implementation("org.projectlombok:lombok:1.18.20")
     implementation("io.nats:jnats:2.16.8")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis:$SPRINGBOOT_VER")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
