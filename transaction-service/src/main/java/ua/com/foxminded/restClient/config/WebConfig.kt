@@ -48,11 +48,6 @@ class WebConfig {
         }
     }
 
-//    @Bean
-//    fun redisConnectionFactory(): LettuceConnectionFactory {
-//        return LettuceConnectionFactory()
-//    }
-
     @Bean
     fun redisCacheManagerBuilderCustomizer(): RedisCacheManagerBuilderCustomizer {
         return RedisCacheManagerBuilderCustomizer { builder: RedisCacheManager.RedisCacheManagerBuilder ->
@@ -73,9 +68,6 @@ class WebConfig {
                                 )
                             )
                         )
-//                        .serializeValuesWith(
-//                            RedisSerializationContext.SerializationPair.fromSerializer(StringRedisSerializer())
-//                        )
                 )
         }
     }

@@ -34,6 +34,8 @@ services:
       - mongodb
     environment:
         SPRING.DATA.MONGODB.HOST: mongodb
+        SPRING.REDIS.HOST: localhost
+        SPRING.REDIS.PORT: 6379
     ports:
       - "8082:8082"
 
