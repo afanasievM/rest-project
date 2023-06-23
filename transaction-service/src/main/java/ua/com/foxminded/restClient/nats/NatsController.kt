@@ -1,14 +1,8 @@
 package ua.com.foxminded.restClient.nats
 
-import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.nats.client.Connection
-import io.nats.client.Dispatcher
 import io.nats.client.Message
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
