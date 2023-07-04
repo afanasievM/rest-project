@@ -1,41 +1,112 @@
 package ua.com.foxminded.restClient.filters
 
+import org.reactivestreams.Publisher
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.boot.web.reactive.filter.OrderedWebFilter
+import org.springframework.core.Ordered
+import org.springframework.core.annotation.Order
+import org.springframework.core.io.buffer.DataBuffer
+import org.springframework.http.HttpMethod
+import org.springframework.http.server.reactive.ServerHttpRequest
+import org.springframework.http.server.reactive.ServerHttpRequestDecorator
+import org.springframework.http.server.reactive.ServerHttpResponse
+import org.springframework.http.server.reactive.ServerHttpResponseDecorator
 import org.springframework.stereotype.Component
+import org.springframework.util.StringUtils
+import org.springframework.web.server.ServerWebExchange
+import org.springframework.web.server.ServerWebExchangeDecorator
+import org.springframework.web.server.WebFilter
+import org.springframework.web.server.WebFilterChain
 import org.springframework.web.util.ContentCachingRequestWrapper
 import org.springframework.web.util.ContentCachingResponseWrapper
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import reactor.core.scheduler.Schedulers
+import java.io.ByteArrayOutputStream
 import java.io.IOException
-import javax.servlet.*
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import java.nio.channels.Channels
+import java.util.*
+
 
 @Component
-class ControllersFilter : Filter {
+class ControllersFilter : WebFilter {
     private val log = LoggerFactory.getLogger(ControllersFilter::class.java)
 
-    @Throws(ServletException::class)
-    override fun init(filterConfig: FilterConfig) {
-        super.init(filterConfig)
+    override fun filter(
+        exchange: ServerWebExchange,
+        chain: WebFilterChain
+    ) = chain.filter(LoggingWebExchange(log, exchange))
+
+}
+
+class LoggingWebExchange(log: Logger, delegate: ServerWebExchange) : ServerWebExchangeDecorator(delegate) {
+    private val requestDecorator: LoggingRequestDecorator = LoggingRequestDecorator(log, delegate.request)
+    private val responseDecorator: LoggingResponseDecorator = LoggingResponseDecorator(log, delegate.response)
+    override fun getRequest(): ServerHttpRequest {
+        return requestDecorator
     }
 
-    @Throws(IOException::class, ServletException::class)
-    override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
-        val wreq = ContentCachingRequestWrapper(request as HttpServletRequest)
-        val wres = ContentCachingResponseWrapper(response as HttpServletResponse)
+    override fun getResponse(): ServerHttpResponse {
+        println("resp")
+        println(responseDecorator)
+        return responseDecorator
+    }
+}
+
+class LoggingResponseDecorator internal constructor(val log: Logger, delegate: ServerHttpResponse) :
+    ServerHttpResponseDecorator(delegate) {
+
+    override fun writeWith(body: Publisher<out DataBuffer>): Mono<Void> {
+        println("wrint")
+        return super.writeWith(
+            Flux.from(body)
+                .publishOn(Schedulers.boundedElastic())
+                .doOnNext { buffer: DataBuffer ->
+//                if (log.isDebugEnabled) {
+                    val bodyStream = ByteArrayOutputStream()
+                    Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
+                    log.info(
+                        "{}: {} - {} : {}",
+                        "response",
+                        String(bodyStream.toByteArray()),
+                        "header",
+                        delegate.headers
+                    )
+//                }
+                })
+    }
+}
+
+class LoggingRequestDecorator internal constructor(log: Logger, delegate: ServerHttpRequest) :
+    ServerHttpRequestDecorator(delegate) {
+
+    private val body: Flux<DataBuffer>?
+
+    override fun getBody(): Flux<DataBuffer> {
+        println("body")
+        return body!!
+    }
+
+    init {
+//        if (log.isDebugEnabled) {
+        val path = delegate.uri.path
+        val query = delegate.uri.query
+        val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name
+        val headers = delegate.headers
         log.info(
-            "{}: {}?{}",
-            wreq.method,
-            wreq.requestURI,
-            if (wreq.queryString != null) wreq.queryString else ""
+            "{} {}\n {}", method, path + (if (StringUtils.hasText(query)) "?$query" else ""), headers
         )
-        chain.doFilter(wreq, wres)
-        while (wreq.inputStream.read() >= 0) {
-        }
-        log.info("Response: {}", String(wres.contentAsByteArray))
-        wres.copyBodyToResponse()
-    }
-
-    override fun destroy() {
-        super.destroy()
+        body = super.getBody()
+            .publishOn(Schedulers.boundedElastic())
+            .doOnNext { buffer: DataBuffer ->
+                val bodyStream = ByteArrayOutputStream()
+                Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
+                println(buffer.asByteBuffer().asReadOnlyBuffer().get())
+                log.info("{}: {}", "request", String(bodyStream.toByteArray()))
+            }
+//        } else {
+//            body = super.getBody()
+//        }
     }
 }

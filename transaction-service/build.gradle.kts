@@ -29,7 +29,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$SPRINGBOOT_VER")
-    implementation("org.springframework.boot:spring-boot-starter-web:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-webflux:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")

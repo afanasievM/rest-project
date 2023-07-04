@@ -11,16 +11,22 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.http.codec.ServerSentEvent
+import org.springframework.http.codec.ServerSentEventHttpMessageWriter
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 import ua.com.foxminded.restClient.utils.PageableTransaction
+import java.time.Duration
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.util.*
 
 @RestController
@@ -63,5 +69,15 @@ class TransactionController @Autowired constructor(
             transactionService.findAllByIdAndBetweenDate(id, startDate, LocalDateTime.now(), pageable)
         }
         return transactions
+    }
+
+
+    @GetMapping(value = ["transactions/gt"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
+    fun get(): Flux<String> {
+        return Flux.interval(Duration.ofMillis(100)).take(50)
+            .onBackpressureBuffer()
+            .map { it.toString()  }
+
+//            .map("Flux - " + LocalTime.now().toString())
     }
 }
