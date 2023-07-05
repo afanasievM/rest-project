@@ -76,8 +76,6 @@ class TransactionController @Autowired constructor(
     fun get(): Flux<String> {
         return Flux.interval(Duration.ofMillis(100)).take(50)
             .onBackpressureBuffer()
-            .map { it.toString()  }
-
-//            .map("Flux - " + LocalTime.now().toString())
+            .map { it.toString() }
     }
 }

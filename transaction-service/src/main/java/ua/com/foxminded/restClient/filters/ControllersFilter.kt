@@ -23,6 +23,7 @@ import reactor.core.scheduler.Schedulers
 import java.io.ByteArrayOutputStream
 import java.nio.channels.Channels
 import java.util.*
+import java.util.function.Function
 
 
 @Component
@@ -44,8 +45,6 @@ class LoggingWebExchange(log: Logger, delegate: ServerWebExchange) : ServerWebEx
     }
 
     override fun getResponse(): ServerHttpResponse {
-        println("resp")
-        println(responseDecorator)
         return responseDecorator
     }
 }
@@ -54,7 +53,6 @@ class LoggingResponseDecorator internal constructor(val log: Logger, delegate: S
     ServerHttpResponseDecorator(delegate) {
 
     override fun writeWith(body: Publisher<out DataBuffer>): Mono<Void> {
-        println("wrint")
         return super.writeWith(
             Flux.from(body)
                 .publishOn(Schedulers.boundedElastic())
@@ -62,52 +60,33 @@ class LoggingResponseDecorator internal constructor(val log: Logger, delegate: S
                     val bodyStream = ByteArrayOutputStream()
                     Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
                     log.info(
-                        "{}: {} - {} : {}",
+                        "{}: {}",
                         "response",
-                        String(bodyStream.toByteArray()),
-                        "header",
-                        delegate.headers
+                        String(bodyStream.toByteArray())
                     )
                 })
     }
 
     override fun writeAndFlushWith(body: Publisher<out Publisher<out DataBuffer>>): Mono<Void> {
         return super.writeAndFlushWith(
-            Flux.from(body).doOnNext {
-                it.toMono()
-            }
-
-//                .doOnNext {it.toFlux().log()
-//                Flux.from(it).doOnNext { buffer: DataBuffer ->
-//                        val bodyStream = ByteArrayOutputStream()
-//                        Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
-//                        log.info(
-//                            "{}: {} - {} : {}",
-//                            "response",
-//                            String(bodyStream.toByteArray()),
-//                            "header",
-//                            delegate.headers
-//                        )
-//                    }
-//                }
-//                .log()
+            Flux.merge(body)
+                .publishOn(Schedulers.boundedElastic())
+//                    body.toFlux().flatMap(Function.identity())
+                .doOnNext { buffer: DataBuffer ->
+                    val bodyStream = ByteArrayOutputStream()
+                    Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
+                    log.info(
+                        "{}: {}",
+                        "response",
+                        String(bodyStream.toByteArray()).strip(),
+                    )
+                }.window(1)
         )
-//                .doOnNext { buffer: DataBuffer ->
-////                if (log.isDebugEnabled) {
-//                    val bodyStream = ByteArrayOutputStream()
-//                    Channels.newChannel(bodyStream).write(buffer.asByteBuffer().asReadOnlyBuffer())
-//                    log.info(
-//                        "{}: {} - {} : {}",
-//                        "response",
-//                        String(bodyStream.toByteArray()),
-//                        "header",
-//                        delegate.headers
-//                    )
-////                }
-//                })
 
     }
+
 }
+
 
 class LoggingRequestDecorator internal constructor(log: Logger, delegate: ServerHttpRequest) :
     ServerHttpRequestDecorator(delegate) {
@@ -123,9 +102,8 @@ class LoggingRequestDecorator internal constructor(log: Logger, delegate: Server
         val path = delegate.uri.path
         val query = delegate.uri.query
         val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name
-        val headers = delegate.headers
         log.info(
-            "{} {}\n {}", method, path + (if (StringUtils.hasText(query)) "?$query" else ""), headers
+            "{} {}", method, path + (if (StringUtils.hasText(query)) "?$query" else "")
         )
         body = super.getBody()
             .publishOn(Schedulers.boundedElastic())
