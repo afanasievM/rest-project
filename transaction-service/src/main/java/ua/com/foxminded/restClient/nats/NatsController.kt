@@ -42,7 +42,8 @@ class NatsController @Autowired constructor(
         )
         natsConnection.publish(
             message.replyTo, identificator,
-            exchangeService.exchangeTo(transactions, Currency.getInstance(request.currency))
+            transactions.stream()
+                .map { exchangeService.exchangeTo(it, Currency.getInstance(request.currency)) }
                 .toList()
                 .toString()
                 .toByteArray()
@@ -51,13 +52,13 @@ class NatsController @Autowired constructor(
 
     private fun findTransactions(
         id: UUID, startDate: LocalDateTime, endDate: LocalDateTime?, pageable: Pageable
-    ): Page<TransactionDto> {
+    ): List<TransactionDto> {
         val transactions = if (endDate != null && endDate.isAfter(startDate)) {
             transactionService.findAllByIdAndBetweenDate(id, startDate, endDate, pageable)
         } else {
             transactionService.findAllByIdAndBetweenDate(id, startDate, LocalDateTime.now(), pageable)
         }
-        return transactions
+        return transactions.toStream().toList()
     }
 
 

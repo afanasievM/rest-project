@@ -1,9 +1,9 @@
 package ua.com.foxminded.restClient.service
 
-import org.springframework.data.domain.Page
+import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
 import java.util.*
 
 interface CurrencyExchangeService {
-    fun exchangeTo(transactions: Page<TransactionDto>, currency: Currency): Page<TransactionDto>
+    fun exchangeTo(transactions: TransactionDto, currency: Currency): TransactionDto
 }

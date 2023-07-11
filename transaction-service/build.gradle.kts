@@ -34,7 +34,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$SPRINGBOOT_VER")
     implementation("org.springdoc:springdoc-openapi-webflux-ui:$OPENAPI_VER")
     implementation("org.springdoc:springdoc-openapi-webflux-core:$OPENAPI_VER")
     implementation("org.mapstruct:mapstruct:${MAPSTRUCT_VER}")

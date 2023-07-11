@@ -51,17 +51,17 @@ class TransactionController @Autowired constructor(
         @RequestParam(name = "enddate", required = false)
         @DateTimeFormat(fallbackPatterns = ["yyyy-MM-dd HH:mm:ss"]) endDate: LocalDateTime?,
         @ParameterObject @PageableDefault(page = 0, size = 5) pageable: Pageable
-    ): ResponseEntity<Any> {
+    ): ResponseEntity<Flux<TransactionDto>> {
         val transactions = findTransactions(id, startDate, endDate, pageable)
-        return ResponseEntity<Any>(
-            exchangeService.exchangeTo(transactions, Currency.getInstance(currency)),
+        return ResponseEntity<Flux<TransactionDto>>(
+            transactions.map { exchangeService.exchangeTo(it, Currency.getInstance(currency)) },
             HttpStatus.OK
         )
     }
 
     private fun findTransactions(
         id: UUID, startDate: LocalDateTime, endDate: LocalDateTime?, pageable: Pageable
-    ): Page<TransactionDto> {
+    ): Flux<TransactionDto> {
         val transactions = if (endDate != null && endDate.isAfter(startDate)) {
             transactionService.findAllByIdAndBetweenDate(id, startDate, endDate, pageable)
         } else {

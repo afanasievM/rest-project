@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.entity.Transaction
 import ua.com.foxminded.restClient.exceptions.PersonNotFoundException
@@ -23,15 +25,11 @@ class TransactionServiceImpl @Autowired constructor(
         start: LocalDateTime?,
         end: LocalDateTime,
         pageable: Pageable
-    ): Page<TransactionDto> {
-        val transactions = repository.findAllByPersonIdAndTransactionTimeBetween(id, start!!, end, pageable)
-        if (transactions.isEmpty) {
-            throw PersonNotFoundException(id)
-        }
-        return transactions.map { transaction: Transaction? ->
-            mapper.entityToDto(
-                transaction!!
-            )
-        }
+    ): Flux<TransactionDto> {
+        return repository.findAllByPersonIdAndTransactionTimeBetween(id, start!!, end, pageable)
+            .onErrorMap { PersonNotFoundException(id) }
+            .map { mapper.entityToDto(it) }
+
+
     }
 }

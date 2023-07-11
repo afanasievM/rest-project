@@ -1,7 +1,6 @@
 package ua.com.foxminded.restClient.service
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import ua.com.foxminded.restClient.dto.Rate
 import ua.com.foxminded.restClient.dto.TransactionDto
@@ -11,19 +10,15 @@ import java.util.*
 
 @Service
 class CurrencyExchangeServiceImpl @Autowired constructor(var rateService: RateService) : CurrencyExchangeService {
+    private val rates = rateService.rates
 
-    override fun exchangeTo(transactions: Page<TransactionDto>, currency: Currency): Page<TransactionDto> {
-        val rates = rateService.rates
-        transactions.content
-            .map { t ->
-                val transactionCurrency = Currency.getInstance(t.currency)
-                if (transactionCurrency.currencyCode == currency.currencyCode) {
-                    return@map t
-                }
-                t.currency = currency.currencyCode
-                exchange(t, chooseRate(transactionCurrency, currency, rates))
-            }
-        return transactions
+    override fun exchangeTo(transaction: TransactionDto, currency: Currency): TransactionDto {
+        val transactionCurrency = Currency.getInstance(transaction.currency)
+        if (transactionCurrency.currencyCode == currency.currencyCode) {
+            return transaction
+        }
+        transaction.currency = currency.currencyCode
+        return exchange(transaction, chooseRate(transactionCurrency, currency, rates))
     }
 
     private fun exchange(transaction: TransactionDto, rate: Rate): TransactionDto {
