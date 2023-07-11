@@ -14,16 +14,24 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration
 import org.springframework.data.redis.cache.RedisCacheManager
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver
+import org.springframework.data.web.ReactivePageableHandlerMethodArgumentResolver
+import org.springframework.data.web.config.EnableSpringDataWebSupport
 import org.springframework.http.client.BufferingClientHttpRequestFactory
 import org.springframework.http.client.ClientHttpRequestFactory
 import org.springframework.http.client.ClientHttpRequestInterceptor
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.web.client.RestTemplate
+import org.springframework.web.method.support.HandlerMethodArgumentResolver
+import org.springframework.web.reactive.config.WebFluxConfigurer
+import org.springframework.web.reactive.result.method.annotation.ArgumentResolverConfigurer
 import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors
 import java.time.Duration
 
+
 @Configuration
-class WebConfig {
+@EnableSpringDataWebSupport
+class WebConfig: WebFluxConfigurer {
     @Value("\${nats.url}")
     private lateinit var natsUrl: String
 
@@ -70,5 +78,9 @@ class WebConfig {
                         )
                 )
         }
+    }
+
+    override fun configureArgumentResolvers(configurer: ArgumentResolverConfigurer) {
+        configurer.addCustomResolver(ReactivePageableHandlerMethodArgumentResolver())
     }
 }

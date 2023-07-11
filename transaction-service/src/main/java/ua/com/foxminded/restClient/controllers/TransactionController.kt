@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import reactor.core.publisher.toMono
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
@@ -52,9 +54,9 @@ class TransactionController @Autowired constructor(
         @RequestParam(name = "enddate", required = false)
         @DateTimeFormat(fallbackPatterns = ["yyyy-MM-dd HH:mm:ss"]) endDate: LocalDateTime?,
         @ParameterObject @PageableDefault(page = 0, size = 5) pageable: Pageable
-    ): ResponseEntity<*> {
+    ): ResponseEntity<Any> {
         val transactions = findTransactions(id, startDate, endDate, pageable)
-        return ResponseEntity<Any?>(
+        return ResponseEntity<Any>(
             exchangeService.exchangeTo(transactions, Currency.getInstance(currency)),
             HttpStatus.OK
         )
@@ -73,9 +75,10 @@ class TransactionController @Autowired constructor(
 
 
     @GetMapping(value = ["transactions/gt"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
-    fun get(): Flux<String> {
-        return Flux.interval(Duration.ofMillis(100)).take(50)
+    fun get(): Mono<String> {
+        return Flux.interval(Duration.ofMillis(100)).take(1)
             .onBackpressureBuffer()
             .map { it.toString() }
+            .toMono()
     }
 }
