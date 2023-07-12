@@ -29,7 +29,8 @@ class TransactionServiceImpl @Autowired constructor(
     ): Flux<TransactionDto> {
         return repository
             .findAllByPersonIdAndTransactionTimeBetween(id, start!!, end, pageable)
-            .map { mapper.entityToDto(it) }
             .switchIfEmpty(Flux.error(PersonNotFoundException(id)))
+            .map { mapper.entityToDto(it) }
+
     }
 }

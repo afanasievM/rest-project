@@ -23,6 +23,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.reactive.config.EnableWebFlux
 import org.springframework.web.reactive.config.WebFluxConfigurer
+import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.result.method.annotation.ArgumentResolverConfigurer
 import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors
 import java.time.Duration
