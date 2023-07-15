@@ -10,7 +10,6 @@ import java.util.*
 
 @Service
 class CurrencyExchangeServiceImpl @Autowired constructor(var rateService: RateService) : CurrencyExchangeService {
-    private val rates = rateService.rates
 
     override fun exchangeTo(transaction: TransactionDto, currency: Currency): TransactionDto {
         val transactionCurrency = Currency.getInstance(transaction.currency)
@@ -18,7 +17,7 @@ class CurrencyExchangeServiceImpl @Autowired constructor(var rateService: RateSe
             return transaction
         }
         transaction.currency = currency.currencyCode
-        return exchange(transaction, chooseRate(transactionCurrency, currency, rates))
+        return exchange(transaction, chooseRate(transactionCurrency, currency, rateService.rates()))
     }
 
     private fun exchange(transaction: TransactionDto, rate: Rate): TransactionDto {
