@@ -17,13 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
-import reactor.core.publisher.Mono
-import reactor.core.publisher.toMono
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 import ua.com.foxminded.restClient.utils.PageableTransaction
-import java.time.Duration
 import java.time.LocalDateTime
 import java.util.*
 
@@ -41,7 +38,7 @@ class TransactionController @Autowired constructor(
             schema = Schema(implementation = PageableTransaction::class)
         )]
     )
-    @GetMapping(value = ["transactions/{id}/{currency}"])
+    @GetMapping(value = ["transactions/{id}/{currency}"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
     fun getTransactions(
         @PathVariable(name = "id", required = true) id: UUID,
         @PathVariable(name = "currency", required = true) currency: String,
@@ -67,14 +64,5 @@ class TransactionController @Autowired constructor(
             transactionService.findAllByIdAndBetweenDate(id, startDate, LocalDateTime.now(), pageable)
         }
         return transactions
-    }
-
-
-    @GetMapping(value = ["transactions/gt"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
-    fun get(): Mono<String> {
-        return Flux.interval(Duration.ofMillis(100)).take(1)
-            .onBackpressureBuffer()
-            .map { it.toString() }
-            .toMono()
     }
 }

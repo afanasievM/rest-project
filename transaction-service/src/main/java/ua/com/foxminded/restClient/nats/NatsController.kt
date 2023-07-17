@@ -5,16 +5,13 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import io.nats.client.Connection
 import io.nats.client.Message
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.data.redis.connection.ReactiveSubscription
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.dto.TransactionNatsDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
-import java.time.Duration
 import java.time.LocalDateTime
 import java.util.*
 
@@ -29,25 +26,10 @@ class NatsController @Autowired constructor(
 
     init {
         val dispatcher = natsConnection.createDispatcher()
-        natsConnection
-        dispatcher.subscribe("hello") { message ->
-            println(message.replyTo)
-            val msg = Flux
-                .interval(Duration.ofSeconds(1))
-                .take(10)
-
-                .subscribe {
-                    println(it)
-                    natsConnection.publish(message.replyTo, it.toString().toByteArray())
-                }
-
-        }
-
         dispatcher.subscribe("get.transactions") {
             if (it.replyTo != identificator)
                 handleMessage(it)
         }
-
     }
 
 
