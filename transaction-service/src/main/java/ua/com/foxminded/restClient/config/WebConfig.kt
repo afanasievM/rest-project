@@ -15,17 +15,9 @@ import org.springframework.data.redis.cache.RedisCacheManager
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext
 import org.springframework.data.web.ReactivePageableHandlerMethodArgumentResolver
-import org.springframework.data.web.config.EnableSpringDataWebSupport
-import org.springframework.http.client.BufferingClientHttpRequestFactory
-import org.springframework.http.client.ClientHttpRequestFactory
-import org.springframework.http.client.ClientHttpRequestInterceptor
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
-import org.springframework.web.client.RestTemplate
 import org.springframework.web.reactive.config.EnableWebFlux
 import org.springframework.web.reactive.config.WebFluxConfigurer
-import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.result.method.annotation.ArgumentResolverConfigurer
-import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors
 import java.time.Duration
 
 
@@ -34,15 +26,6 @@ import java.time.Duration
 class WebConfig: WebFluxConfigurer {
     @Value("\${nats.url}")
     private lateinit var natsUrl: String
-
-    @Bean
-    fun restTemplate(requestLoggingInterceptors: RequestLoggingInterceptors): RestTemplate {
-        val factory: ClientHttpRequestFactory =
-            BufferingClientHttpRequestFactory(HttpComponentsClientHttpRequestFactory())
-        val restTemplate = RestTemplate(factory)
-        restTemplate.interceptors = listOf<ClientHttpRequestInterceptor>(requestLoggingInterceptors)
-        return restTemplate
-    }
 
     @Bean
     fun natsConncetion(): Connection {
