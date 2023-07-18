@@ -1,20 +1,21 @@
 package ua.com.foxminded.courseproject.repository
 
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.data.repository.PagingAndSortingRepository
+import org.springframework.data.repository.reactive.ReactiveSortingRepository
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.entity.Student
 import java.time.LocalDate
 import java.util.*
 
-interface StudentRepository : PagingAndSortingRepository<Student, UUID> {
-    override fun findById(id: UUID): Optional<Student>
-    override fun findAll(pageable: Pageable): Page<Student>
-    fun save(student: Student): Student
-    override fun delete(student: Student)
+interface StudentRepository : ReactiveSortingRepository<Student, UUID> {
+    override fun findById(id: UUID): Mono<Student>
+    fun findAll(pageable: Pageable): Flux<Student>
+    fun save(student: Student): Mono<Student>
+    override fun delete(student: Student): Mono<Void>
     fun existsStudentByFirstNameAndLastNameAndBirthDay(
         firstName: String,
         lastName: String,
         birthDay: LocalDate
-    ): Boolean
+    ): Mono<Boolean>
 }

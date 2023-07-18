@@ -10,10 +10,10 @@ import ua.com.foxminded.courseproject.exceptions.UserNotFoundException
 import ua.com.foxminded.courseproject.repository.UserRepository
 
 @Service
-open class UserServiceImpl @Autowired constructor(private val repository: UserRepository) : UserService {
+class UserServiceImpl @Autowired constructor(private val repository: UserRepository) : UserService {
     @Throws(UserNotFoundException::class)
     override fun loadUserByUsername(username: String): UserDetails {
-        val user = repository.findByUsername(username) ?: throw UserNotFoundException()
+        val user = repository.findByUsername(username).block() ?: throw UserNotFoundException()
         val authorities: MutableList<GrantedAuthority> = ArrayList()
         authorities.add(SimpleGrantedAuthority(user.role.toString()))
         return User(user.username, user.password, authorities)

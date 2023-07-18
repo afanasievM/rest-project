@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import ua.com.foxminded.courseproject.exceptions.*
 import java.util.*
 
 @ControllerAdvice
-class ResponseExceptionHandler : ResponseEntityExceptionHandler() {
+class ResponseExceptionHandler {
     private val logger = LoggerFactory.getLogger(ResponseExceptionHandler::class.java)
+
     @ExceptionHandler(StudentNotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ApiResponse(responseCode = "404", description = "Student isn't found.", content = [Content()])

@@ -1,12 +1,13 @@
 package ua.com.foxminded.courseproject.repository
 
 import org.springframework.data.mongodb.repository.Aggregation
-import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.data.repository.reactive.ReactiveSortingRepository
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.entity.DaySchedule
 import ua.com.foxminded.courseproject.entity.WeekSchedule
 import java.util.*
 
-interface WeekScheduleRepository : MongoRepository<WeekSchedule, UUID> {
+interface WeekScheduleRepository : ReactiveSortingRepository<WeekSchedule, UUID> {
     @Aggregation(
         pipeline = [
             "{\$match: {odd: true}}",
@@ -18,7 +19,7 @@ interface WeekScheduleRepository : MongoRepository<WeekSchedule, UUID> {
             "{ \$limit: 1 }"
         ]
     )
-    fun findDayScheduleByDayNumberFromOddWeek(number: Int): DaySchedule?
+    fun findDayScheduleByDayNumberFromOddWeek(number: Int): Mono<DaySchedule>
 
     @Aggregation(
         pipeline = [
@@ -31,9 +32,7 @@ interface WeekScheduleRepository : MongoRepository<WeekSchedule, UUID> {
             "{ \$limit: 1 }"
         ]
     )
-    fun findDayScheduleByDayNumberFromEvenWeek(number: Int): DaySchedule?
-
-
+    fun findDayScheduleByDayNumberFromEvenWeek(number: Int): Mono<DaySchedule>
 
 }
 
