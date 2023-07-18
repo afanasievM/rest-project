@@ -2,6 +2,7 @@ package ua.com.foxminded.courseproject.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.dto.*
 import ua.com.foxminded.courseproject.entity.DaySchedule
 import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
@@ -13,7 +14,7 @@ import java.time.temporal.ChronoUnit
 import java.util.*
 
 @Service
-open class DayScheduleServiceImpl @Autowired constructor(
+class DayScheduleServiceImpl @Autowired constructor(
     mapper: DayScheduleMapper, repository: WeekScheduleRepository,
     teacherService: TeacherServiceImpl, studentService: StudentServiceImpl
 ) : DayScheduleService {
@@ -45,7 +46,7 @@ open class DayScheduleServiceImpl @Autowired constructor(
         return getDaysSchedule(startDay, endDay, teacherService.findById(id))
     }
 
-    override fun getStudentOneDaySchedule(date: LocalDate, id: UUID): DayScheduleDto? {
+    override fun getStudentOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto> {
         return getPersonDaySchedule(date, studentService.findById(id))
     }
 
