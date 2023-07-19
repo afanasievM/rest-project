@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import org.springdoc.api.annotations.ParameterObject
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
@@ -34,8 +35,11 @@ class TeacherController @Autowired constructor(teacherService: TeacherServiceImp
     )
     @GetMapping(value = ["/teachers"])
     @RolesAllowed(Role.ADMIN)
-    fun getTeachers(@ParameterObject @PageableDefault(page = 0, size = 5) pageable: Pageable): ResponseEntity<*> {
-        return getPersons(pageable)
+    fun getTeachers(
+        @RequestParam(defaultValue = "0") page: Int,
+        @RequestParam(defaultValue = "5") size: Int
+    ): ResponseEntity<*> {
+        return getPersons(PageRequest.of(page,size))
     }
 
     @Operation(summary = "Create new teacher.")

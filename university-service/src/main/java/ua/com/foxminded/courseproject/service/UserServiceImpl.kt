@@ -17,9 +17,15 @@ class UserServiceImpl @Autowired constructor(private val repository: UserReposit
 
     @Throws(UserNotFoundException::class)
     override fun findByUsername(username: String?): Mono<UserDetails> {
-        val user = repository.findByUsername(username!!).block() ?: throw UserNotFoundException()
-        val authorities: MutableList<GrantedAuthority> = ArrayList()
-        authorities.add(SimpleGrantedAuthority(user.role.toString()))
-        return User(user.username, user.password, authorities).toMono()
+        val user = repository.findByUsername(username!!)
+            .switchIfEmpty(Mono.error(UserNotFoundException()))
+            .map {
+                User(
+                    it.username,
+                    it.password,
+                    listOf(SimpleGrantedAuthority(it.role.toString()))
+                ) as UserDetails
+            }
+        return user
     }
 }

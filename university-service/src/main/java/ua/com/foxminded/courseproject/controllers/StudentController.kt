@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import org.springdoc.api.annotations.ParameterObject
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
@@ -21,7 +22,8 @@ import javax.annotation.security.RolesAllowed
 import javax.validation.Valid
 
 @RestController
-class StudentController @Autowired constructor(studentService: StudentServiceImpl) : PersonController<StudentDto, StudentServiceImpl>() {
+class StudentController @Autowired constructor(studentService: StudentServiceImpl) :
+    PersonController<StudentDto, StudentServiceImpl>() {
     init {
         service = studentService
     }
@@ -34,8 +36,11 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     )
     @GetMapping(value = ["/students"])
     @RolesAllowed(value = [Role.ADMIN, Role.TEACHER])
-    fun getStudents(@ParameterObject @PageableDefault(page = 0, size = 5) pageable: Pageable): ResponseEntity<*> {
-        return getPersons(pageable)
+    fun getStudents(
+        @RequestParam(defaultValue = "0") page: Int,
+        @RequestParam(defaultValue = "5") size: Int
+    ): ResponseEntity<*> {
+        return getPersons(PageRequest.of(page,size))
     }
 
     @Operation(summary = "Create new student.")
