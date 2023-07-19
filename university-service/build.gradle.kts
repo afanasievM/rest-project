@@ -36,7 +36,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
-    testImplementation("org.springframework.security:spring-security-test:$SPRINGBOOT_VER")
+    testImplementation("org.springframework.security:spring-security-test")
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
 

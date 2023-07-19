@@ -24,7 +24,7 @@ class StudentServiceImpl @Autowired constructor(
     }
 
     override fun findAll(pageable: Pageable): Flux<StudentDto> {
-        return repository.findAll(pageable).map { mapper.toDto(it) }
+        return repository.findAll().map { mapper.toDto(it) }
     }
 
     override fun save(student: StudentDto): Mono<StudentDto> {

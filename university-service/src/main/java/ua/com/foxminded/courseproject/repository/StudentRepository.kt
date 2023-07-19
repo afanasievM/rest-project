@@ -10,7 +10,7 @@ import java.util.*
 
 interface StudentRepository : ReactiveSortingRepository<Student, UUID> {
     override fun findById(id: UUID): Mono<Student>
-    fun findAll(pageable: Pageable): Flux<Student>
+    override fun findAll(): Flux<Student>
     fun save(student: Student): Mono<Student>
     override fun delete(student: Student): Mono<Void>
     fun existsStudentByFirstNameAndLastNameAndBirthDay(

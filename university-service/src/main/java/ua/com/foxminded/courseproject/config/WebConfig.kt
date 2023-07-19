@@ -8,12 +8,12 @@ import org.springframework.http.client.ClientHttpRequestInterceptor
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.security.config.core.GrantedAuthorityDefaults
 import org.springframework.web.client.RestTemplate
-import org.springframework.web.servlet.config.annotation.EnableWebMvc
+import org.springframework.web.reactive.config.EnableWebFlux
 import ua.com.foxminded.courseproject.interceptors.RequestLoggingInterceptors
 
 
 @Configuration
-@EnableWebMvc
+@EnableWebFlux
 class WebConfig {
 
     @Bean

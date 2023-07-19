@@ -28,7 +28,7 @@ class TeacherServiceImpl @Autowired constructor(
     }
 
     override fun findAll(pageable: Pageable): Flux<TeacherDto> {
-        return repository.findAll(pageable).map { mapper.toDto(it) }
+        return repository.findAll().map { mapper.toDto(it) }
     }
 
     override fun save(teacher: TeacherDto): Mono<TeacherDto> {

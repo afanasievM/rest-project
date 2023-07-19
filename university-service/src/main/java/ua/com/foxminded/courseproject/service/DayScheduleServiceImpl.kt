@@ -2,7 +2,9 @@ package ua.com.foxminded.courseproject.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import reactor.core.publisher.toFlux
 import ua.com.foxminded.courseproject.dto.*
 import ua.com.foxminded.courseproject.entity.DaySchedule
 import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
@@ -34,41 +36,41 @@ class DayScheduleServiceImpl @Autowired constructor(
         startDay: LocalDate,
         endDay: LocalDate,
         id: UUID
-    ): Map<LocalDate, DayScheduleDto?> {
-        return getDaysSchedule(startDay, endDay, studentService.findById(id))
+    ): Flux<Pair<LocalDate, DayScheduleDto?>> {
+        return studentService.findById(id).flux().flatMap { getDaysSchedule(startDay, endDay, it) }
+
     }
 
     override fun getTeacherDaysSchedule(
         startDay: LocalDate,
         endDay: LocalDate,
         id: UUID
-    ): Map<LocalDate, DayScheduleDto?> {
-        return getDaysSchedule(startDay, endDay, teacherService.findById(id))
+    ): Flux<Pair<LocalDate, DayScheduleDto?>> {
+        return teacherService.findById(id).flux().flatMap { getDaysSchedule(startDay, endDay, it) }
     }
 
-    override fun getStudentOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto> {
-        return getPersonDaySchedule(date, studentService.findById(id))
+    override fun getStudentOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto?> {
+        return studentService.findById(id).flatMap { getPersonDaySchedule(date, it) }
     }
 
-    override fun getTeacherOneDaySchedule(date: LocalDate, id: UUID): DayScheduleDto? {
-        return getPersonDaySchedule(date, teacherService.findById(id))
+    override fun getTeacherOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto?> {
+        return teacherService.findById(id).flatMap { getPersonDaySchedule(date, it) }
+
     }
 
     private fun getDaysSchedule(
         startDay: LocalDate,
         endDay: LocalDate,
         personDto: PersonDto
-    ): Map<LocalDate, DayScheduleDto?> {
-        val result: MutableMap<LocalDate, DayScheduleDto?> = HashMap()
-        val dayDifference = ChronoUnit.DAYS.between(startDay, endDay)
-        for (i in 0..dayDifference) {
-            val dayScheduleDto = getPersonDaySchedule(startDay.plusDays(i), personDto)
-            result[startDay.plusDays(i)] = dayScheduleDto
-        }
-        return result
+    ): Flux<Pair<LocalDate, DayScheduleDto?>> {
+        return Flux.range(0, ChronoUnit.DAYS.between(startDay, endDay).toInt())
+            .map { startDay.plusDays(it.toLong()) }
+            .map { Pair(it, getPersonDaySchedule(it, personDto).block()) }
+
+
     }
 
-    private fun getDaySchedule(date: LocalDate): DayScheduleDto? {
+    private fun getDaySchedule(date: LocalDate): Mono<DayScheduleDto?> {
         val weekNumber = date[ChronoField.ALIGNED_WEEK_OF_YEAR]
         val dayNumber = date.dayOfWeek.value
         val daySchedule = if (weekNumber % 2 == 0) {
@@ -76,15 +78,16 @@ class DayScheduleServiceImpl @Autowired constructor(
         } else {
             repository.findDayScheduleByDayNumberFromEvenWeek(dayNumber)
         }
-        return mapper.toDto(daySchedule)
+        return daySchedule.map { mapper.toDto(it) }
     }
 
-    private fun getPersonDaySchedule(date: LocalDate, personDto: PersonDto): DayScheduleDto? {
-        val dayScheduleDto = getDaySchedule(date)
-        return if (personDto is StudentDto) {
-            getStudentDaySchedule(dayScheduleDto, personDto)
-        } else {
-            getTeacherDaySchedule(dayScheduleDto, personDto as TeacherDto)
+    private fun getPersonDaySchedule(date: LocalDate, personDto: PersonDto): Mono<DayScheduleDto?> {
+        return getDaySchedule(date).map {
+            return@map if (personDto is StudentDto) {
+                getStudentDaySchedule(it, personDto)
+            } else {
+                getTeacherDaySchedule(it, personDto as TeacherDto)
+            }
         }
     }
 
