@@ -1,11 +1,12 @@
 package ua.com.foxminded.courseproject.mapper
 
+import org.bson.Document
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.ClassRoomDto
 import ua.com.foxminded.courseproject.entity.ClassRoom
 
 @Component
-class ClassRoomMapper : Mapper<ClassRoomDto?, ClassRoom?> {
+class ClassRoomMapper : Mapper<ClassRoomDto?, ClassRoom?, Document> {
     override fun toDto(entity: ClassRoom?): ClassRoomDto? {
         if (entity == null) {
             return null
@@ -25,4 +26,14 @@ class ClassRoomMapper : Mapper<ClassRoomDto?, ClassRoom?> {
         entity.number = dto.number
         return entity
     }
+
+    override fun documentToEntity(doc: Document): ClassRoom? {
+        TODO("Not yet implemented")
+    }
+
+    override fun entityToDocument(entity: ClassRoom?): ClassRoomDto? {
+        TODO("Not yet implemented")
+    }
+
+
 }

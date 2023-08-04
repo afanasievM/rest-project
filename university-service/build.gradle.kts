@@ -34,6 +34,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security:$SPRINGBOOT_VER")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
+    implementation("com.google.code.gson:gson:2.9.0")
+
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     testImplementation("org.springframework.security:spring-security-test")

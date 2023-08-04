@@ -23,7 +23,7 @@ data class Student(
     @Field("birthday")
     override var birthDay: LocalDate? = null,
 
-    @DBRef
+//    @DBRef
     @Field("group_id")
     var group: Group? = null,
 

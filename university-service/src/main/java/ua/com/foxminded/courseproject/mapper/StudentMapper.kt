@@ -1,12 +1,20 @@
 package ua.com.foxminded.courseproject.mapper
 
+import org.bson.Document
+import org.hibernate.exception.DataException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.StudentDto
+import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Student
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 @Component
-class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper) : Mapper<StudentDto?, Student?> {
+class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper) :
+    Mapper<StudentDto?, Student?, Document> {
     override fun toDto(entity: Student?): StudentDto? {
         if (entity == null) {
             return null
@@ -35,5 +43,21 @@ class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper)
         entity.firstName = dto.firstName
         entity.lastName = dto.lastName
         return entity
+    }
+
+    override fun documentToEntity(doc: Document): Student {
+        val entity = Student()
+        entity.id = UUID.fromString(doc.getString("_id"))
+        entity.captain = doc.getBoolean("captain")
+        entity.course = doc.getInteger("course")
+        entity.group = doc["group"] as Group?
+        entity.birthDay = doc.getDate("birthday").toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+        entity.firstName = doc.getString("firstname")
+        entity.lastName = doc.getString("lastname")
+        return entity
+    }
+
+    override fun entityToDocument(entity: Student?): StudentDto? {
+        TODO("Not yet implemented")
     }
 }

@@ -1,5 +1,6 @@
 package ua.com.foxminded.courseproject.mapper
 
+import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.GroupDto
@@ -13,7 +14,7 @@ class LessonMapper @Autowired constructor(
     private val subjectMapper: SubjectMapper,
     private val teacherMapper: TeacherMapper,
     private val groupMapper: GroupMapper
-) : Mapper<LessonDto?, Lesson?> {
+) : Mapper<LessonDto?, Lesson?, Document> {
     override fun toDto(entity: Lesson?): LessonDto? {
         if (entity == null) {
             return null
@@ -47,4 +48,14 @@ class LessonMapper @Autowired constructor(
             ?.toList() as MutableList<Group>
         return entity
     }
+
+    override fun documentToEntity(doc: Document): Lesson? {
+        TODO("Not yet implemented")
+    }
+
+    override fun entityToDocument(entity: Lesson?): LessonDto? {
+        TODO("Not yet implemented")
+    }
+
+
 }

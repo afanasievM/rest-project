@@ -9,13 +9,13 @@ import ua.com.foxminded.courseproject.dto.StudentDto
 import ua.com.foxminded.courseproject.exceptions.StudentConflictException
 import ua.com.foxminded.courseproject.exceptions.StudentNotFoundException
 import ua.com.foxminded.courseproject.mapper.StudentMapper
-import ua.com.foxminded.courseproject.repository.StudentRepository
+import ua.com.foxminded.courseproject.repository.StudentRepositoryImp
 import java.util.*
 
 @Service
 class StudentServiceImpl @Autowired constructor(
     private val mapper: StudentMapper,
-    private val repository: StudentRepository
+    private val repository: StudentRepositoryImp
 ) : PersonService<StudentDto> {
     override fun findById(id: UUID): Mono<StudentDto> {
         return repository.findById(id)

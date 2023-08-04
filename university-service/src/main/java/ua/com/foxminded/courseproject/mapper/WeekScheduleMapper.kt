@@ -1,5 +1,6 @@
 package ua.com.foxminded.courseproject.mapper
 
+import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.DayScheduleDto
@@ -9,7 +10,7 @@ import ua.com.foxminded.courseproject.entity.WeekSchedule
 
 @Component
 class WeekScheduleMapper @Autowired constructor(private val dayScheduleMapper: DayScheduleMapper) :
-    Mapper<WeekScheduleDto?, WeekSchedule?> {
+    Mapper<WeekScheduleDto?, WeekSchedule?, Document> {
     override fun toDto(entity: WeekSchedule?): WeekScheduleDto? {
         if (entity == null) {
             return null
@@ -32,5 +33,14 @@ class WeekScheduleMapper @Autowired constructor(private val dayScheduleMapper: D
             ?.toList() as MutableList<DaySchedule>
         entity.isOdd = dto.isOdd
         return entity
+    }
+
+
+    override fun documentToEntity(doc: Document): WeekSchedule? {
+        TODO("Not yet implemented")
+    }
+
+    override fun entityToDocument(entity: WeekSchedule?): WeekScheduleDto? {
+        TODO("Not yet implemented")
     }
 }

@@ -1,5 +1,6 @@
 package ua.com.foxminded.courseproject.service
 
+import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -20,7 +21,7 @@ class DayScheduleServiceImpl @Autowired constructor(
     mapper: DayScheduleMapper, repository: WeekScheduleRepository,
     teacherService: TeacherServiceImpl, studentService: StudentServiceImpl
 ) : DayScheduleService {
-    private val mapper: Mapper<DayScheduleDto?, DaySchedule?>
+    private val mapper: Mapper<DayScheduleDto?, DaySchedule?, Document>
     private val repository: WeekScheduleRepository
     private val teacherService: TeacherServiceImpl
     private val studentService: StudentServiceImpl

@@ -1,11 +1,12 @@
 package ua.com.foxminded.courseproject.mapper
 
+import org.bson.Document
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.SubjectDto
 import ua.com.foxminded.courseproject.entity.Subject
 
 @Component
-class SubjectMapper : Mapper<SubjectDto?, Subject?> {
+class SubjectMapper : Mapper<SubjectDto?, Subject?, Document> {
     override fun toDto(entity: Subject?): SubjectDto? {
         if (entity == null) {
             return null
@@ -25,4 +26,14 @@ class SubjectMapper : Mapper<SubjectDto?, Subject?> {
         entity.name = dto.name
         return entity
     }
+
+    override fun documentToEntity(doc: Document): Subject? {
+        TODO("Not yet implemented")
+    }
+
+    override fun entityToDocument(entity: Subject?): SubjectDto? {
+        TODO("Not yet implemented")
+    }
+
+
 }
