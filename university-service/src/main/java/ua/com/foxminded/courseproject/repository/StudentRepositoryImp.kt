@@ -48,9 +48,9 @@ class StudentRepositoryImp(@Autowired var template: ReactiveMongoTemplate, @Auto
     override fun save(student: Student): Mono<Student> {
         println(student)
 //        template.
-        return template.insert(mapper.entityToDocument(student), COLLECTION_NAME)
+        return template.save(mapper.entityToDocument(student).toJson(), COLLECTION_NAME)
             .log()
-            .map { mapper.documentToEntity(it) }
+            .map { mapper.documentToEntity(Document.parse(it)) }
 
     }
 

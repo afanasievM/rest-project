@@ -67,6 +67,7 @@ class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper)
         doc["birthday"] = Date.from(Instant.now())
         doc["firstname"] = entity.firstName
         doc["lastname"] = entity.lastName
+        println(doc)
         return doc
     }
 }

@@ -48,9 +48,9 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @PostMapping(value = ["/students"])
     @RolesAllowed(Role.ADMIN)
     fun createStudent(studentDto: @Valid StudentDto): ResponseEntity<*> {
-        if (service.personExists(studentDto).block() == true) {
-            throw StudentConflictException(studentDto)
-        }
+//        if (service.personExists(studentDto).block() == true) {
+//            throw StudentConflictException(studentDto)
+//        }
         service.save(studentDto)
         return ResponseEntity<Any>(HttpStatus.CREATED)
     }
