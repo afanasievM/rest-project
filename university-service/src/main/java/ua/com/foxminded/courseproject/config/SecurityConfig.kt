@@ -30,6 +30,7 @@ class SecurityConfig {
             .and()
             .httpBasic()
             .and()
+            .csrf { it.disable() }
             .build()
     }
 

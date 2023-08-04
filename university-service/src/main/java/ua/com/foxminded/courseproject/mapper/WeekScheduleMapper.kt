@@ -40,7 +40,7 @@ class WeekScheduleMapper @Autowired constructor(private val dayScheduleMapper: D
         TODO("Not yet implemented")
     }
 
-    override fun entityToDocument(entity: WeekSchedule?): WeekScheduleDto? {
+    override fun entityToDocument(entity: WeekSchedule?): Document {
         TODO("Not yet implemented")
     }
 }

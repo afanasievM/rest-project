@@ -31,7 +31,7 @@ class GroupMapper : Mapper<GroupDto?, Group?, Document> {
         TODO("Not yet implemented")
     }
 
-    override fun entityToDocument(entity: Group?): GroupDto? {
+    override fun entityToDocument(entity: Group?): Document {
         TODO("Not yet implemented")
     }
 

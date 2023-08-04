@@ -42,7 +42,7 @@ class ScheduleMapper @Autowired constructor(private val weekScheduleMapper: Week
         TODO("Not yet implemented")
     }
 
-    override fun entityToDocument(entity: Schedule?): ScheduleDto? {
+    override fun entityToDocument(entity: Schedule?): Document {
         TODO("Not yet implemented")
     }
 

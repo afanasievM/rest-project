@@ -4,6 +4,7 @@ import org.bson.Document
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.ClassRoomDto
 import ua.com.foxminded.courseproject.entity.ClassRoom
+import javax.print.Doc
 
 @Component
 class ClassRoomMapper : Mapper<ClassRoomDto?, ClassRoom?, Document> {
@@ -31,7 +32,7 @@ class ClassRoomMapper : Mapper<ClassRoomDto?, ClassRoom?, Document> {
         TODO("Not yet implemented")
     }
 
-    override fun entityToDocument(entity: ClassRoom?): ClassRoomDto? {
+    override fun entityToDocument(entity: ClassRoom?): Document {
         TODO("Not yet implemented")
     }
 

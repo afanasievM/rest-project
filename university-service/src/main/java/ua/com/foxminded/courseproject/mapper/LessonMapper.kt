@@ -53,7 +53,7 @@ class LessonMapper @Autowired constructor(
         TODO("Not yet implemented")
     }
 
-    override fun entityToDocument(entity: Lesson?): LessonDto? {
+    override fun entityToDocument(entity: Lesson?): Document {
         TODO("Not yet implemented")
     }
 

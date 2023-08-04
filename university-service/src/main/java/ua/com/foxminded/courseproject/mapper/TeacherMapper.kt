@@ -46,7 +46,7 @@ class TeacherMapper : Mapper<TeacherDto?, Teacher?, Document> {
         TODO("Not yet implemented")
     }
 
-    override fun entityToDocument(entity: Teacher?): TeacherDto? {
+    override fun entityToDocument(entity: Teacher?): Document {
         TODO("Not yet implemented")
     }
 }

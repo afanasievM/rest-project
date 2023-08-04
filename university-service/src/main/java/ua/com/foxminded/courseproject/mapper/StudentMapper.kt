@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.StudentDto
 import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Student
+import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -14,7 +15,7 @@ import java.util.*
 
 @Component
 class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper) :
-    Mapper<StudentDto?, Student?, Document> {
+    Mapper<StudentDto?, Student, Document> {
     override fun toDto(entity: Student?): StudentDto? {
         if (entity == null) {
             return null
@@ -57,7 +58,15 @@ class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper)
         return entity
     }
 
-    override fun entityToDocument(entity: Student?): StudentDto? {
-        TODO("Not yet implemented")
+    override fun entityToDocument(entity: Student): Document {
+        val doc = Document()
+        doc["_id"] = entity.id.toString()
+        doc["captain"] = entity.captain
+        doc["course"] = entity.course
+//        doc["group_id"] = entity.group!!.id
+        doc["birthday"] = Date.from(Instant.now())
+        doc["firstname"] = entity.firstName
+        doc["lastname"] = entity.lastName
+        return doc
     }
 }

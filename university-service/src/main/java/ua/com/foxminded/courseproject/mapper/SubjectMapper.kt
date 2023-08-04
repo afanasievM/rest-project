@@ -31,7 +31,7 @@ class SubjectMapper : Mapper<SubjectDto?, Subject?, Document> {
         TODO("Not yet implemented")
     }
 
-    override fun entityToDocument(entity: Subject?): SubjectDto? {
+    override fun entityToDocument(entity: Subject?): Document {
         TODO("Not yet implemented")
     }
 

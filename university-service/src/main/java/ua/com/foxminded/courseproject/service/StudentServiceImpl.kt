@@ -39,9 +39,10 @@ class StudentServiceImpl @Autowired constructor(
     }
 
     override fun personExists(personDto: StudentDto): Mono<Boolean> {
-        return repository.existsStudentByFirstNameAndLastNameAndBirthDay(
-            personDto.firstName!!,
-            personDto.lastName!!, personDto.birthDay!!
-        )
+//        return repository.existsStudentByFirstNameAndLastNameAndBirthDay(
+//            personDto.firstName!!,
+//            personDto.lastName!!, personDto.birthDay!!
+//        )
+        return Mono.just(false)
     }
 }

@@ -46,7 +46,12 @@ class StudentRepositoryImp(@Autowired var template: ReactiveMongoTemplate, @Auto
     }
 
     override fun save(student: Student): Mono<Student> {
-        TODO("Not yet implemented")
+        println(student)
+//        template.
+        return template.insert(mapper.entityToDocument(student), COLLECTION_NAME)
+            .log()
+            .map { mapper.documentToEntity(it) }
+
     }
 
     override fun delete(student: Student): Mono<Void> {
