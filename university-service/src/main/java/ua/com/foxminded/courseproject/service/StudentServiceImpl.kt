@@ -28,10 +28,18 @@ class StudentServiceImpl @Autowired constructor(
     }
 
     override fun save(student: StudentDto): Mono<StudentDto> {
-        if (personExists(student).block() == true) {
-            throw StudentConflictException(student)
+//        if (personExists(student).block() == true) {
+//            throw StudentConflictException(student)
+//        }
+        return personExists(student).flatMap {
+            if (it == true) {
+                Mono.error(StudentConflictException(student))
+            } else {
+                repository.save(mapper.toEntity(student)!!).map { mapper.toDto(it) }
+            }
         }
-        return repository.save(mapper.toEntity(student)!!).map { mapper.toDto(it) }
+
+
     }
 
     override fun delete(id: UUID) {
@@ -39,10 +47,9 @@ class StudentServiceImpl @Autowired constructor(
     }
 
     override fun personExists(personDto: StudentDto): Mono<Boolean> {
-//        return repository.existsStudentByFirstNameAndLastNameAndBirthDay(
-//            personDto.firstName!!,
-//            personDto.lastName!!, personDto.birthDay!!
-//        )
-        return Mono.just(false)
+        return repository.existsStudentByFirstNameAndLastNameAndBirthDay(
+            personDto.firstName!!,
+            personDto.lastName!!, personDto.birthDay!!
+        )
     }
 }

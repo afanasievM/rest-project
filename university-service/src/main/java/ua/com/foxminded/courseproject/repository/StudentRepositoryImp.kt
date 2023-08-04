@@ -48,7 +48,14 @@ class StudentRepositoryImp(@Autowired var template: ReactiveMongoTemplate, @Auto
         lastName: String,
         birthDay: LocalDate
     ): Mono<Boolean> {
-        TODO("Not yet implemented")
+        val query = Query()
+        query.addCriteria(
+            Criteria
+                .where("birthday").`is`(birthDay)
+                .and("firstname").`is`(firstName)
+                .and("lastname").`is`(lastName)
+        )
+        return template.exists(query, COLLECTION_NAME)
     }
 
     private fun studentMapper(doc: Document): Mono<Student> {

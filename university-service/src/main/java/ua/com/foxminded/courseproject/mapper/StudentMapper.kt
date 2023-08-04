@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.StudentDto
 import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Student
-import java.time.Instant
 import java.time.ZoneId
 import java.util.*
 
@@ -60,11 +59,10 @@ class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper)
         doc["_id"] = entity.id.toString()
         doc["is_captain"] = entity.captain
         doc["course"] = entity.course
-//        doc["group_id"] = entity.group!!.id
-        doc["birthday"] = Date.from(Instant.now())
+        doc["group_id"] = entity.group?.let { it.id.toString() }
+        doc["birthday"] = entity.birthDay
         doc["firstname"] = entity.firstName
         doc["lastname"] = entity.lastName
-        println(doc)
         return doc
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.dto.StudentDto
 import ua.com.foxminded.courseproject.service.StudentServiceImpl
 import ua.com.foxminded.courseproject.utils.PageableStudent
@@ -36,26 +37,24 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
         @RequestParam(defaultValue = "0") page: Int,
         @RequestParam(defaultValue = "5") size: Int
     ): ResponseEntity<*> {
-        return getPersons(PageRequest.of(page,size))
+        return getPersons(PageRequest.of(page, size))
     }
 
     @Operation(summary = "Create new student.")
     @ApiResponse(responseCode = "201", description = "Student is created.", content = [Content()])
     @PostMapping(value = ["/students"])
     @RolesAllowed(Role.ADMIN)
-    fun createStudent(studentDto: @Valid StudentDto): ResponseEntity<*> {
-        service.save(studentDto).block()
-        return ResponseEntity<Any>(HttpStatus.CREATED)
+    fun createStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
+        return service.save(studentDto).map { ResponseEntity<Any>(HttpStatus.CREATED) }
     }
 
     @Operation(summary = "Update student.")
     @ApiResponse(responseCode = "205", description = "Student is updated.", content = [Content()])
     @PutMapping(value = ["/students/{id}"])
     @RolesAllowed(Role.ADMIN)
-    fun updateStudent(studentDto: @Valid StudentDto): ResponseEntity<*> {
+    fun updateStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
         studentDto.id?.let { getPersonById(it) }
-        service.save(studentDto)
-        return ResponseEntity<Any>(HttpStatus.RESET_CONTENT)
+        return service.save(studentDto).map { ResponseEntity<Any>(HttpStatus.RESET_CONTENT) }
     }
 
     @Operation(summary = "Get student by id.")
