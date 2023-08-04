@@ -4,16 +4,12 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import org.springdoc.api.annotations.ParameterObject
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Pageable
-import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import ua.com.foxminded.courseproject.dto.StudentDto
-import ua.com.foxminded.courseproject.exceptions.StudentConflictException
 import ua.com.foxminded.courseproject.service.StudentServiceImpl
 import ua.com.foxminded.courseproject.utils.PageableStudent
 import ua.com.foxminded.courseproject.utils.Role
@@ -48,10 +44,7 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @PostMapping(value = ["/students"])
     @RolesAllowed(Role.ADMIN)
     fun createStudent(studentDto: @Valid StudentDto): ResponseEntity<*> {
-//        if (service.personExists(studentDto).block() == true) {
-//            throw StudentConflictException(studentDto)
-//        }
-        service.save(studentDto)
+        service.save(studentDto).block()
         return ResponseEntity<Any>(HttpStatus.CREATED)
     }
 

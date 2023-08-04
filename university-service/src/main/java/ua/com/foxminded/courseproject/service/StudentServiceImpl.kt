@@ -35,7 +35,7 @@ class StudentServiceImpl @Autowired constructor(
     }
 
     override fun delete(id: UUID) {
-        repository.findById(id).subscribe { repository.delete(it) }
+        repository.findById(id).subscribe { repository.delete(it).subscribe() }
     }
 
     override fun personExists(personDto: StudentDto): Mono<Boolean> {

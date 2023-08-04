@@ -1,16 +1,13 @@
 package ua.com.foxminded.courseproject.mapper
 
 import org.bson.Document
-import org.hibernate.exception.DataException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.StudentDto
 import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Student
 import java.time.Instant
-import java.time.LocalDate
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Component
@@ -49,7 +46,7 @@ class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper)
     override fun documentToEntity(doc: Document): Student {
         val entity = Student()
         entity.id = UUID.fromString(doc.getString("_id"))
-        entity.captain = doc.getBoolean("captain")
+        entity.captain = doc.getBoolean("is_captain")
         entity.course = doc.getInteger("course")
         entity.group = doc["group"] as Group?
         entity.birthDay = doc.getDate("birthday").toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
@@ -61,7 +58,7 @@ class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper)
     override fun entityToDocument(entity: Student): Document {
         val doc = Document()
         doc["_id"] = entity.id.toString()
-        doc["captain"] = entity.captain
+        doc["is_captain"] = entity.captain
         doc["course"] = entity.course
 //        doc["group_id"] = entity.group!!.id
         doc["birthday"] = Date.from(Instant.now())

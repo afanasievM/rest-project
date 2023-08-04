@@ -1,6 +1,5 @@
 package ua.com.foxminded.courseproject.config
 
-import com.google.gson.GsonBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.BufferingClientHttpRequestFactory
@@ -11,7 +10,6 @@ import org.springframework.security.config.core.GrantedAuthorityDefaults
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.reactive.config.EnableWebFlux
 import ua.com.foxminded.courseproject.interceptors.RequestLoggingInterceptors
-import java.time.LocalDate
 
 
 @Configuration
