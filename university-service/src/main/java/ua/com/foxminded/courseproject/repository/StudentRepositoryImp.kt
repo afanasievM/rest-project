@@ -17,8 +17,10 @@ import java.time.LocalDate
 import java.util.*
 
 @Repository
-@Primary
-class StudentRepositoryImp(@Autowired var template: ReactiveMongoTemplate, @Autowired val mapper: StudentMapper) :
+class StudentRepositoryImp(
+    @Autowired var template: ReactiveMongoTemplate,
+    @Autowired val mapper: StudentMapper
+) :
     StudentRepository {
     private val COLLECTION_NAME = "students"
     override fun findById(id: UUID): Mono<Student> {

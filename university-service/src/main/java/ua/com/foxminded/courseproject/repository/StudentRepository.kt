@@ -1,7 +1,5 @@
 package ua.com.foxminded.courseproject.repository
 
-import org.springframework.data.repository.reactive.ReactiveSortingRepository
-import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.entity.Student
