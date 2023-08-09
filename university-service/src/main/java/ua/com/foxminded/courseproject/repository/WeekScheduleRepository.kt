@@ -15,7 +15,7 @@ interface WeekScheduleRepository{
 //            "{ \$limit: 1 }"
 //        ]
 //    )
-    fun findDayScheduleByDayNumberFromOddWeek(number: Int): Mono<DaySchedule>
+    fun findDayScheduleByDayNumberFromOddWeek(number: Int): Mono<DaySchedule?>
 
 //    @Aggregation(
 //        pipeline = [
@@ -28,7 +28,7 @@ interface WeekScheduleRepository{
 //            "{ \$limit: 1 }"
 //        ]
 //    )
-    fun findDayScheduleByDayNumberFromEvenWeek(number: Int): Mono<DaySchedule>
+    fun findDayScheduleByDayNumberFromEvenWeek(number: Int): Mono<DaySchedule?>
 
 }
 
