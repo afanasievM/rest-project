@@ -24,13 +24,17 @@ class StudentRepositoryImp(
     StudentRepository {
     private val COLLECTION_NAME = "students"
     override fun findById(id: UUID): Mono<Student> {
-        return template.findById(id.toString(), Document::class.java, COLLECTION_NAME).flatMap { studentMapper(it) }
+        return template
+            .findById(id.toString(), Document::class.java, COLLECTION_NAME)
+            .flatMap { studentDBRefsMapper(it) }
+            .map { mapper.documentToEntity(it) }
     }
 
 
     override fun findAll(): Flux<Student> {
         return template.findAll(Document::class.java, COLLECTION_NAME)
-            .flatMap { studentMapper(it) }
+            .flatMap { studentDBRefsMapper(it) }
+            .map { mapper.documentToEntity(it) }
     }
 
     override fun save(student: Student): Mono<Student> {
@@ -60,18 +64,18 @@ class StudentRepositoryImp(
         return template.exists(query, COLLECTION_NAME)
     }
 
-    private fun studentMapper(doc: Document): Mono<Student> {
+    private fun studentDBRefsMapper(doc: Document): Mono<Document> {
         val dbRef = doc.get("group_id", DBRef::class.java)
         return if (dbRef == null) {
             Mono.just(doc)
-                .map { mapper.documentToEntity(it) }
+                .map { it }
         } else {
             Mono.just(doc)
                 .zipWith(template.findById(dbRef.id, Group::class.java, dbRef.collectionName))
                 .map {
                     it.t1["group"] = it.t2
                     it.t1.remove("group_id")
-                    return@map mapper.documentToEntity(it.t1)
+                    return@map it.t1
                 }
         }
     }
