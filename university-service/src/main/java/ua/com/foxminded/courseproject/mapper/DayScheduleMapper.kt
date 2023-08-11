@@ -2,11 +2,16 @@ package ua.com.foxminded.courseproject.mapper
 
 import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.DayScheduleDto
 import ua.com.foxminded.courseproject.dto.LessonDto
-import ua.com.foxminded.courseproject.entity.DaySchedule
-import ua.com.foxminded.courseproject.entity.Lesson
+import ua.com.foxminded.courseproject.entity.*
+import java.time.ZoneId
+import java.util.*
 
 @Component
 class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonMapper) :
@@ -34,7 +39,12 @@ class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonM
     }
 
     override fun documentToEntity(doc: Document): DaySchedule? {
-        TODO("Not yet implemented")
+        println(doc)
+        val entity = DaySchedule()
+        entity.id = UUID.fromString(doc.getString("_id"))
+        entity.dayNumber = doc.getInteger("day_number")
+        entity.lessons = doc.getList("lessons", Lesson::class.java)
+        return entity
     }
 
     override fun entityToDocument(entity: DaySchedule?): Document {

@@ -74,11 +74,8 @@ class DayScheduleServiceImpl @Autowired constructor(
     private fun getDaySchedule(date: LocalDate): Mono<DayScheduleDto?> {
         val weekNumber = date[ChronoField.ALIGNED_WEEK_OF_YEAR]
         val dayNumber = date.dayOfWeek.value
-        val daySchedule = if (weekNumber % 2 == 0) {
-            repository.findDayScheduleByDayNumberFromOddWeek(dayNumber)
-        } else {
-            repository.findDayScheduleByDayNumberFromEvenWeek(dayNumber)
-        }
+        val odd = weekNumber % 2 == 0
+        val daySchedule = repository.findDayScheduleByDayNumberAndOddWeek(dayNumber, odd)
         return daySchedule.map { mapper.toDto(it) }
     }
 

@@ -2,11 +2,17 @@ package ua.com.foxminded.courseproject.mapper
 
 import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.data.mongodb.core.mapping.FieldType
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.GroupDto
 import ua.com.foxminded.courseproject.dto.LessonDto
-import ua.com.foxminded.courseproject.entity.Group
-import ua.com.foxminded.courseproject.entity.Lesson
+import ua.com.foxminded.courseproject.entity.*
+import java.time.LocalTime
+import java.time.ZoneId
+import java.util.*
 
 @Component
 class LessonMapper @Autowired constructor(
@@ -50,7 +56,16 @@ class LessonMapper @Autowired constructor(
     }
 
     override fun documentToEntity(doc: Document): Lesson? {
-        TODO("Not yet implemented")
+        val entity = Lesson()
+        entity.id = UUID.fromString(doc.getString("_id"))
+        entity.subject = doc.get("subject") as Subject
+        entity.classRoom = doc.get("classroom") as ClassRoom
+        entity.number = doc.getInteger("number")
+        entity.startTime = doc.getDate("start_time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime()
+        entity.endTime = doc.getDate("end_time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime()
+        entity.teacher = doc.get("teacher") as Teacher
+        entity.groups = doc.getList("groups", Group::class.java)
+        return entity
     }
 
     override fun entityToDocument(entity: Lesson?): Document {
