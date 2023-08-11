@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -33,11 +32,8 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     )
     @GetMapping(value = ["/students"])
     @RolesAllowed(value = [Role.ADMIN, Role.TEACHER])
-    fun getStudents(
-        @RequestParam(defaultValue = "0") page: Int,
-        @RequestParam(defaultValue = "5") size: Int
-    ): ResponseEntity<*> {
-        return getPersons(PageRequest.of(page, size))
+    fun getStudents(): ResponseEntity<*> {
+        return getPersons()
     }
 
     @Operation(summary = "Create new student.")

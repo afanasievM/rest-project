@@ -29,16 +29,6 @@
 //
 //    @Autowired
 //    private lateinit var teacherService: TeacherServiceImpl
-//    private lateinit var pageableDefault: Pageable
-//    private var pageDefault: Int = 0
-//    private var sizeDefault: Int = 0
-//
-//    @BeforeEach
-//    fun setUpDefaults() {
-//        pageDefault = 0
-//        sizeDefault = 1
-//        pageableDefault = PageRequest.of(pageDefault, sizeDefault)
-//    }
 //
 //    @Throws(Exception::class)
 //    @WithMockUser(username = "admin", authorities = ["ADMIN"])
@@ -58,13 +48,9 @@
 //    fun teachers_shouldReturnTeachersPageAndOk_WhenRequestWithCorrectParameters() {
 //        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
 //        val expectedId = "e966f608-4621-11ed-b878-0242ac120002"
-//        params["size"] = listOf(sizeDefault.toString())
-//        params["page"] = listOf(pageDefault.toString())
 //
 //        mockMvc.perform(MockMvcRequestBuilders.get("/teachers").params(params))
 //            .andExpect(MockMvcResultMatchers.status().isOk())
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageDefault))
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(sizeDefault))
 //            .andExpect(MockMvcResultMatchers.jsonPath("$.content[0].id").value(expectedId))
 //    }
 //
@@ -73,17 +59,11 @@
 //    @Test
 //    fun teachers_shouldReturnPageWithAllTeachersAndOk_WhenPageSizeMoreTeachersNumber() {
 //        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-//        val pageNumber = "0"
-//        val size = "10"
 //        val expectedElements = "2"
-//        params["size"] = listOf(size)
-//        params["page"] = listOf(pageNumber)
 //
 //        mockMvc.perform(MockMvcRequestBuilders.get("/teachers").params(params))
 //            .andDo(MockMvcResultHandlers.print())
 //            .andExpect(MockMvcResultMatchers.status().isOk())
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageNumber))
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(size))
 //            .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expectedElements))
 //    }
 //

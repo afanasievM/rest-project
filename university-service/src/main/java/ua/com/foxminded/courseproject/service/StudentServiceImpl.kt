@@ -1,7 +1,6 @@
 package ua.com.foxminded.courseproject.service
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -23,14 +22,11 @@ class StudentServiceImpl @Autowired constructor(
             .map { mapper.toDto(it) }
     }
 
-    override fun findAll(pageable: Pageable): Flux<StudentDto> {
+    override fun findAll(): Flux<StudentDto> {
         return repository.findAll().map { mapper.toDto(it) }
     }
 
     override fun save(student: StudentDto): Mono<StudentDto> {
-//        if (personExists(student).block() == true) {
-//            throw StudentConflictException(student)
-//        }
         return personExists(student).flatMap {
             if (it == true) {
                 Mono.error(StudentConflictException(student))
@@ -38,8 +34,6 @@ class StudentServiceImpl @Autowired constructor(
                 repository.save(mapper.toEntity(student)!!).map { mapper.toDto(it) }
             }
         }
-
-
     }
 
     override fun delete(id: UUID) {

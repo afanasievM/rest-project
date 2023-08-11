@@ -1,6 +1,5 @@
 package ua.com.foxminded.courseproject.controllers
 
-import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
@@ -11,8 +10,8 @@ import java.util.*
 open class PersonController<T : PersonDto, S : PersonService<*>> {
 
     lateinit var service: S
-    protected fun getPersons(pageable: Pageable): ResponseEntity<*> {
-        return ResponseEntity<Any?>(service.findAll(pageable), HttpStatus.OK)
+    protected fun getPersons(): ResponseEntity<*> {
+        return ResponseEntity<Any?>(service.findAll(), HttpStatus.OK)
     }
 
     protected fun getPersonById(id: UUID): ResponseEntity<*> {
