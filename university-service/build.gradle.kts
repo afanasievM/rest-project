@@ -35,6 +35,8 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
+
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")

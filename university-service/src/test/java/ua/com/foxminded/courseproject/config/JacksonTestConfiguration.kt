@@ -9,7 +9,12 @@ import org.springframework.context.annotation.Import
 import org.springframework.http.codec.ServerCodecConfigurer
 import org.springframework.http.codec.json.Jackson2JsonDecoder
 import org.springframework.http.codec.json.Jackson2JsonEncoder
+import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.util.MimeType
 import org.springframework.web.reactive.config.WebFluxConfigurer
+import ua.com.foxminded.courseproject.controllers.DayScheduleController
+import ua.com.foxminded.courseproject.controllers.StudentController
+import ua.com.foxminded.courseproject.controllers.TeacherController
 
 @Configuration
 @Import(JacksonAutoConfiguration::class)
@@ -25,21 +30,20 @@ class JacksonTestConfiguration {
         }
     }
 
-//    @Bean
-//    fun webTestClient(
-//        dayScheduleController: DayScheduleController,
-//        studentController: StudentController, teacherController: TeacherController,objectMapper: ObjectMapper?
-//    ):WebTestClient {
-//        return WebTestClient.bindToController(dayScheduleController, studentController, teacherController)
-//            .httpMessageCodecs {
-//                val defaults = it.defaultCodecs()
-//                defaults.jackson2JsonDecoder(Jackson2JsonDecoder(objectMapper, *arrayOfNulls<MimeType>(0)))
-//                defaults.jackson2JsonEncoder(Jackson2JsonEncoder(objectMapper, *arrayOfNulls<MimeType>(0)))
-//
-//            }
-//            .configureClient()
-//            .build()
-//    }
+    @Bean
+    fun webTestClient(
+        dayScheduleController: DayScheduleController,
+        studentController: StudentController, teacherController: TeacherController, objectMapper: ObjectMapper?
+    ): WebTestClient {
+        return WebTestClient.bindToController(dayScheduleController, studentController, teacherController)
+            .httpMessageCodecs {
+                val defaults = it.defaultCodecs()
+                defaults.jackson2JsonDecoder(Jackson2JsonDecoder(objectMapper, *arrayOfNulls<MimeType>(0)))
+                defaults.jackson2JsonEncoder(Jackson2JsonEncoder(objectMapper, *arrayOfNulls<MimeType>(0)))
 
+            }
+            .configureClient()
+            .build()
+    }
 
 }
