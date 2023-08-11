@@ -43,9 +43,11 @@ dependencies {
     testImplementation(kotlin("test"))
 
 
-    testImplementation("org.testcontainers:testcontainers:1.18.1")
-    testImplementation("org.testcontainers:mongodb:1.18.1")
-    testImplementation("org.testcontainers:junit-jupiter:1.18.1")
+    testImplementation("org.testcontainers:testcontainers:1.18.3")
+    testImplementation("org.testcontainers:mongodb:1.18.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.3")
+    testImplementation("io.projectreactor:reactor-test")
+
 
 
 

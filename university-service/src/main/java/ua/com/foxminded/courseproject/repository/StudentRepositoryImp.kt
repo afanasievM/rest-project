@@ -3,7 +3,6 @@ package ua.com.foxminded.courseproject.repository
 import com.mongodb.DBRef
 import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Primary
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
@@ -19,9 +18,9 @@ import java.util.*
 @Repository
 class StudentRepositoryImp(
     @Autowired var template: ReactiveMongoTemplate,
+    @Autowired val groupRepository: GroupRepository,
     @Autowired val mapper: StudentMapper
-) :
-    StudentRepository {
+) : StudentRepository {
     private val COLLECTION_NAME = "students"
     override fun findById(id: UUID): Mono<Student> {
         return template
@@ -39,6 +38,7 @@ class StudentRepositoryImp(
 
     override fun save(student: Student): Mono<Student> {
         return template.save(mapper.entityToDocument(student), COLLECTION_NAME)
+            .flatMap { studentDBRefsMapper(it) }
             .map { mapper.documentToEntity(it) }
     }
 
@@ -71,7 +71,7 @@ class StudentRepositoryImp(
                 .map { it }
         } else {
             Mono.just(doc)
-                .zipWith(template.findById(dbRef.id, Group::class.java, dbRef.collectionName))
+                .zipWith(groupRepository.findById(UUID.fromString(dbRef.id.toString())))
                 .map {
                     it.t1["group"] = it.t2
                     it.t1.remove("group_id")

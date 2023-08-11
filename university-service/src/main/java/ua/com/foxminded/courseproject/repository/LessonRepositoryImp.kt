@@ -51,7 +51,6 @@ class LessonRepositoryImp(
         repository: ReactiveSortingRepository<T, UUID>,
         fieldName: String
     ): Mono<Document> {
-        println(doc)
         val dbRef = doc.get(fieldName, DBRef::class.java)
         return if (dbRef == null) {
             Mono.just(doc)
