@@ -22,7 +22,7 @@ import java.util.*
 internal open class StudentRepositoryTest : DBTestConfig() {
 
     @Autowired
-    private lateinit var repository: StudentRepositoryImp
+    private lateinit var repository: StudentRepository
 
     @Test
     fun findAll_shouldReturnFluxStudents() {
