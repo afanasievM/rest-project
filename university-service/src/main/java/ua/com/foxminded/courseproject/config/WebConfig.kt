@@ -1,8 +1,5 @@
 package ua.com.foxminded.courseproject.config
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.BufferingClientHttpRequestFactory
@@ -33,10 +30,4 @@ class WebConfig {
         return restTemplate
     }
 
-    @Bean
-    fun mapper(): ObjectMapper {
-        return jacksonObjectMapper().apply {
-            registerModule(JavaTimeModule())
-        }
-    }
 }

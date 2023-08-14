@@ -7,10 +7,10 @@ import javax.validation.constraints.NotNull
 data class TeacherDto(
     var degree: String? = null,
     var salary: Int? = null,
-
-    @field:DateTimeFormat(pattern = "yyyy-MM-dd")
-    @field:NotNull
-    var firstDay: LocalDate? = null,
     var rank: String? = null,
     var title: String? = null
-) : PersonDto()
+) : PersonDto(){
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
+    var firstDay: LocalDate? = null
+}

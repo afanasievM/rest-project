@@ -41,7 +41,11 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @PostMapping(value = ["/students"])
     @RolesAllowed(Role.ADMIN)
     fun createStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
-        return service.save(studentDto).map { ResponseEntity<Any>(HttpStatus.CREATED) }
+        val studentMono = service.save(studentDto)
+        println(studentMono)
+        return studentMono
+            .map { ResponseEntity<Any>(HttpStatus.CREATED) }
+
     }
 
     @Operation(summary = "Update student.")
@@ -50,7 +54,10 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @RolesAllowed(Role.ADMIN)
     fun updateStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
         studentDto.id?.let { getPersonById(it) }
-        return service.save(studentDto).map { ResponseEntity<Any>(HttpStatus.RESET_CONTENT) }
+        val studentMono = service.save(studentDto)
+        println(studentMono)
+        return studentMono
+            .map { ResponseEntity<Any>(HttpStatus.RESET_CONTENT) }
     }
 
     @Operation(summary = "Get student by id.")

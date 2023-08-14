@@ -35,6 +35,7 @@ internal class TeacherControllerTest {
     @Test
     fun teachers_shouldReturnAllTeachersAndOk_WhenRequestWithoutParameters() {
         val expected = setTeachers()
+        val expectedSize = 3
 
         Mockito.`when`(teacherService.findAll()).thenReturn(expected)
 
@@ -44,32 +45,26 @@ internal class TeacherControllerTest {
             .exchange()
             .expectStatus().isOk()
             .expectBodyList(TeacherDto::class.java)
-            .hasSize(3)
+            .hasSize(expectedSize)
     }
 
     @Test
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Throws(Exception::class)
     fun createTeacher_shouldReturnCreated_WhenTeacherNotExists() {
-        val firstName = "test1"
-        val lastName = "test2"
-        val birthDay = LocalDate.now().minusYears(18)
-        val degree = "NTUU KPI"
-        val firstDay = LocalDate.now()
-        val rank = "phd"
-        val salary = 1000
-        val title = "teacher"
+        val teacher = setTeachers().blockFirst()
+        teacher.firstName = "test1"
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        params.add("firstName", firstName)
-        params.add("lastName", lastName)
-        params.add("birthDay", birthDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-        params.add("rank", rank)
-        params.add("degree", degree)
-        params.add("firstDay", firstDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-        params.add("salary", salary.toString())
-        params.add("title", title)
+        params.add("firstName", teacher.firstName)
+        params.add("lastName", teacher.lastName)
+        params.add("birthDay", teacher.birthDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("rank", teacher.rank)
+        params.add("degree", teacher.degree)
+        params.add("firstDay", teacher.firstDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("salary", teacher.salary.toString())
+        params.add("title", teacher.title)
 
-        Mockito.`when`(teacherService.findAll()).thenReturn(setTeachers())
+        Mockito.`when`(teacherService.save(teacher)).thenReturn(Mono.just(teacher))
 
         webTestClient.post()
             .uri("/teachers")
@@ -82,22 +77,23 @@ internal class TeacherControllerTest {
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Throws(Exception::class)
     fun updateTeacher_shouldReturnResetContent_WhenTeacherExists() {
-        val existentTeacher = setTeachers().blockFirst()
-        val id = existentTeacher.id.toString()
-        val existedFirstName = existentTeacher.firstName
-        val existedLastName = existentTeacher.lastName
-        val existedBirthDay = existentTeacher.birthDay?.minusYears(18)
-        val existedFirstDay = existentTeacher.firstDay
+        val teacher = setTeachers().blockFirst()
+        teacher.firstName = "test1"
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        params.add("firstName", existedFirstName)
-        params.add("lastName", existedLastName)
-        params.add("birthDay", existedBirthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-        params.add("firstDay", existedFirstDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("firstName", teacher.firstName)
+        params.add("lastName", teacher.lastName)
+        params.add("birthDay", teacher.birthDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("rank", teacher.rank)
+        params.add("degree", teacher.degree)
+        params.add("firstDay", teacher.firstDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("salary", teacher.salary.toString())
+        params.add("title", teacher.title)
 
-        Mockito.`when`(teacherService.findById(UUID.fromString(id))).thenReturn(Mono.just(existentTeacher))
+        Mockito.`when`(teacherService.findById(teacher!!.id!!)).thenReturn(Mono.just(teacher))
+        Mockito.`when`(teacherService.save(teacher)).thenReturn(Mono.just(teacher))
 
         webTestClient.put()
-            .uri("/teachers/{id}", id)
+            .uri("/teachers/{id}", teacher.id)
             .body(BodyInserters.fromMultipartData(params))
             .exchange()
             .expectStatus().is2xxSuccessful
