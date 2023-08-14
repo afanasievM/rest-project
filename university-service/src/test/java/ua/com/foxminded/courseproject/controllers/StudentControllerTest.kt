@@ -20,6 +20,8 @@ import ua.com.foxminded.courseproject.service.StudentServiceImpl
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
+
 
 @SpringBootTest
 @AutoConfigureWebTestClient
@@ -61,12 +63,10 @@ internal class StudentControllerTest {
         params.add("birthDay", student.birthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         params.add("captain", student.captain.toString())
         params.add("course", student.course.toString())
-        println(student)
 
         Mockito.`when`(studentService.save(student)).thenReturn(Mono.just(student))
 
-        webTestClient
-            .post()
+        webTestClient.post()
             .uri("/students")
             .body(BodyInserters.fromMultipartData(params))
             .exchange()
