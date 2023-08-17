@@ -40,7 +40,7 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @ApiResponse(responseCode = "201", description = "Student is created.", content = [Content()])
     @PostMapping(value = ["/students"])
     @RolesAllowed(Role.ADMIN)
-    fun createStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
+    public fun createStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
         return service.save(studentDto).map { ResponseEntity<Any>(HttpStatus.CREATED) }
 
     }

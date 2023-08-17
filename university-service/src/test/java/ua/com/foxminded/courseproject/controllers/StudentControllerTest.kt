@@ -2,6 +2,8 @@ package ua.com.foxminded.courseproject.controllers
 
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doReturn
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
@@ -64,7 +66,7 @@ internal class StudentControllerTest {
         params.add("captain", student.captain.toString())
         params.add("course", student.course.toString())
 
-        Mockito.`when`(studentService.save(student)).thenReturn(Mono.just(student))
+        Mockito.`when`(studentService.save(any<StudentDto>())).thenReturn(Mono.just(student))
 
         webTestClient.post()
             .uri("/students")
@@ -86,8 +88,8 @@ internal class StudentControllerTest {
         params.add("course", "2")
         params.add("captain", existentStudent.captain.toString())
 
-        Mockito.`when`(studentService.findById(existentStudent!!.id!!)).thenReturn(Mono.just(existentStudent))
-        Mockito.`when`(studentService.save(existentStudent)).thenReturn(Mono.just(existentStudent))
+        Mockito.`when`(studentService.findById(any())).thenReturn(Mono.just(existentStudent))
+        Mockito.`when`(studentService.save(any<StudentDto>())).thenReturn(Mono.just(existentStudent))
 
         webTestClient
             .put()

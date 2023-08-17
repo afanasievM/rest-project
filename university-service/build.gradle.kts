@@ -41,6 +41,7 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.1.0")
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
 
