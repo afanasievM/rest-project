@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Flux
+import reactor.core.publisher.toFlux
 import ua.com.foxminded.courseproject.service.DayScheduleService
 import ua.com.foxminded.courseproject.utils.Role
 import ua.com.foxminded.courseproject.utils.ScheduleMap
@@ -37,11 +39,11 @@ class DayScheduleController @Autowired constructor(private val service: DaySched
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) startDate: LocalDate,
         @RequestParam(name = "enddate", required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) endDate: LocalDate?
-    ): ResponseEntity<*> {
+    ): Flux<ResponseEntity<Any?>> {
         return if (endDate != null && endDate.isAfter(startDate)) {
-            ResponseEntity(service.getTeacherDaysSchedule(startDate, endDate, id), HttpStatus.OK)
+            service.getTeacherDaysSchedule(startDate, endDate, id).map { ResponseEntity(it, HttpStatus.OK) }
         } else {
-            ResponseEntity(service.getTeacherOneDaySchedule(startDate, id), HttpStatus.OK)
+            service.getTeacherOneDaySchedule(startDate, id).map { ResponseEntity(it, HttpStatus.OK) }.toFlux()
         }
     }
 
@@ -60,6 +62,7 @@ class DayScheduleController @Autowired constructor(private val service: DaySched
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) endDate: LocalDate?
     ): ResponseEntity<*> {
         return if (endDate != null && endDate.isAfter(startDate)) {
+
             ResponseEntity(service.getStudentDaysSchedule(startDate, endDate, id), HttpStatus.OK)
         } else {
             ResponseEntity(service.getStudentOneDaySchedule(startDate, id), HttpStatus.OK)
