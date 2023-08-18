@@ -123,6 +123,8 @@ internal class StudentControllerTest {
     fun deleteStudent_shouldReturnNoContent() {
         val id = UUID.randomUUID().toString()
 
+        Mockito.`when`(studentService.delete(UUID.fromString(id))).thenReturn(Mono.empty<Void?>().then())
+
         webTestClient
             .delete()
             .uri("/students/{id}", id)
