@@ -9,6 +9,6 @@ import java.util.*
 interface DayScheduleService {
     fun getStudentDaysSchedule(startDay: LocalDate, endDay: LocalDate, id: UUID): Flux<Pair<LocalDate, DayScheduleDto?>>
     fun getTeacherDaysSchedule(startDay: LocalDate, endDay: LocalDate, id: UUID): Flux<Pair<LocalDate, DayScheduleDto?>>
-    fun getStudentOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto?>
-    fun getTeacherOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto?>
+    fun getStudentOneDaySchedule(date: LocalDate, id: UUID): Mono<Pair<LocalDate,DayScheduleDto?>>
+    fun getTeacherOneDaySchedule(date: LocalDate, id: UUID): Mono<Pair<LocalDate,DayScheduleDto?>>
 }

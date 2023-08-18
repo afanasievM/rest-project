@@ -46,15 +46,19 @@ internal class DayScheduleControllerTest {
         params["startdate"] = listOf(startDate.toString())
 
         Mockito.`when`(service.getTeacherOneDaySchedule(any<LocalDate>(), any<UUID>()))
-            .thenReturn(Mono.just(daySchedule))
+            .thenReturn(Mono.just(Pair(startDate, daySchedule)))
 
         webTestClient
             .get()
-            .uri("/teachers/{id}/schedule", teacherId)
-            .attributes { params }
+            .uri {
+                it.path("/teachers/{id}/schedule")
+                    .queryParams(params)
+                    .build(teacherId)
+            }
             .exchange()
             .expectStatus().isOk
-            .expectBody().jsonPath("$.id").isEqualTo(daySchedule?.id.toString())
+            .expectBody()
+            .jsonPath("$.[0].second.id").isEqualTo(daySchedule?.id.toString())
     }
 
     @Throws(Exception::class)
@@ -75,13 +79,16 @@ internal class DayScheduleControllerTest {
 
         webTestClient
             .get()
-            .uri("/teachers/{id}/schedule", teacherId)
-            .attributes { params }
+            .uri {
+                it.path("/teachers/{id}/schedule")
+                    .queryParams(params)
+                    .build(teacherId)
+            }
             .exchange()
             .expectStatus().isOk
             .expectBody()
-            .jsonPath("\$.$startDate.id").isEqualTo(dayScheduleStart?.id.toString())
-            .jsonPath("$.$endDate.id").isEqualTo(dayScheduleEnd?.id.toString())
+            .jsonPath("$.[0].second.id").isEqualTo(dayScheduleStart?.id.toString())
+            .jsonPath("$.[1].second.id").isEqualTo(dayScheduleEnd?.id.toString())
     }
 
     @Throws(Exception::class)
@@ -97,16 +104,19 @@ internal class DayScheduleControllerTest {
         params["enddate"] = listOf(endDate.toString())
 
         Mockito.`when`(service.getTeacherOneDaySchedule(startDate, UUID.fromString(teacherId)))
-            .thenReturn(Mono.just(daySchedule))
+            .thenReturn(Mono.just(Pair(startDate, daySchedule)))
 
         webTestClient
             .get()
-            .uri("/teachers/{id}/schedule", teacherId)
-            .attributes { params }
+            .uri {
+                it.path("/teachers/{id}/schedule")
+                    .queryParams(params)
+                    .build(teacherId)
+            }
             .exchange()
             .expectStatus().isOk
             .expectBody()
-            .jsonPath("$.id").isEqualTo(daySchedule?.id.toString())
+            .jsonPath("$.[0].second.id").isEqualTo(daySchedule?.id.toString())
     }
 
     @Throws(Exception::class)
@@ -120,16 +130,19 @@ internal class DayScheduleControllerTest {
         params["startdate"] = listOf(startDate.toString())
 
         Mockito.`when`(service.getStudentOneDaySchedule(startDate, UUID.fromString(teacherId)))
-            .thenReturn(Mono.just(daySchedule))
+            .thenReturn(Mono.just(Pair(startDate, daySchedule)))
 
         webTestClient
             .get()
-            .uri("/students/{id}/schedule", teacherId)
-            .attributes { params }
+            .uri { it
+                .path("/students/{id}/schedule")
+                .queryParams(params)
+                .build(teacherId)
+            }
             .exchange()
             .expectStatus().isOk
             .expectBody()
-            .jsonPath("$.id").isEqualTo(daySchedule?.id.toString())
+            .jsonPath("$.[0].second.id").isEqualTo(daySchedule?.id.toString())
     }
 
     @Throws(Exception::class)
@@ -150,13 +163,16 @@ internal class DayScheduleControllerTest {
 
         webTestClient
             .get()
-            .uri("/students/{id}/schedule", studentId)
-            .attributes { params }
+            .uri { it
+                .path("/students/{id}/schedule")
+                .queryParams(params)
+                .build(studentId)
+            }
             .exchange()
             .expectStatus().isOk
             .expectBody()
-            .jsonPath("$.$startDate.id").isEqualTo(dayScheduleStart?.id.toString())
-            .jsonPath("$.$endDate.id").isEqualTo(dayScheduleEnd?.id.toString())
+            .jsonPath("$.[0].second.id").isEqualTo(dayScheduleStart?.id.toString())
+            .jsonPath("$.[1].second.id").isEqualTo(dayScheduleEnd?.id.toString())
     }
 
     @Throws(Exception::class)
@@ -172,15 +188,19 @@ internal class DayScheduleControllerTest {
         params["enddate"] = listOf(endDate.toString())
 
         Mockito.`when`(service.getStudentOneDaySchedule(startDate, UUID.fromString(studentId)))
-            .thenReturn(Mono.just(daySchedule))
+            .thenReturn(Mono.just(Pair(startDate, daySchedule)))
 
         webTestClient
             .get()
-            .uri("/students/{id}/schedule", studentId)
-            .attributes { params }
+            .uri {
+                it
+                    .path("/students/{id}/schedule")
+                    .queryParams(params)
+                    .build(studentId)
+            }
             .exchange()
             .expectStatus().isOk
-            .expectBody().jsonPath("$.id").isEqualTo(daySchedule?.id.toString())
+            .expectBody().jsonPath("$.[0].second.id").isEqualTo(daySchedule?.id.toString())
     }
 
     private fun setDaySchedule() {

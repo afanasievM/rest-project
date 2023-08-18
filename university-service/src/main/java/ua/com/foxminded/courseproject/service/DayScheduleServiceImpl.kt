@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import reactor.core.publisher.toFlux
 import ua.com.foxminded.courseproject.dto.*
 import ua.com.foxminded.courseproject.entity.DaySchedule
 import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
@@ -50,12 +49,12 @@ class DayScheduleServiceImpl @Autowired constructor(
         return teacherService.findById(id).flux().flatMap { getDaysSchedule(startDay, endDay, it) }
     }
 
-    override fun getStudentOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto?> {
-        return studentService.findById(id).flatMap { getPersonDaySchedule(date, it) }
+    override fun getStudentOneDaySchedule(date: LocalDate, id: UUID): Mono<Pair<LocalDate, DayScheduleDto?>> {
+        return studentService.findById(id).flatMap { getPersonDaySchedule(date, it) }.map { Pair(date, it) }
     }
 
-    override fun getTeacherOneDaySchedule(date: LocalDate, id: UUID): Mono<DayScheduleDto?> {
-        return teacherService.findById(id).flatMap { getPersonDaySchedule(date, it) }
+    override fun getTeacherOneDaySchedule(date: LocalDate, id: UUID): Mono<Pair<LocalDate, DayScheduleDto?>> {
+        return teacherService.findById(id).flatMap { getPersonDaySchedule(date, it) }.map { Pair(date, it) }
 
     }
 
