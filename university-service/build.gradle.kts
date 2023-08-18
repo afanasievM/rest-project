@@ -5,9 +5,9 @@
  */
 
 
-val OPENAPI_VER = "1.6.13"
+val OPENAPI_VER = "1.7.0"
 val HTTP_CLIENT_VER = "4.5.13"
-val POSTGRES_VER = "42.5.1"
+val SPRINGBOOT_VER = "2.7.4"
 
 
 
@@ -23,27 +23,35 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation("org.springframework.boot:spring-boot-starter-validation:")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springdoc:springdoc-openapi-ui:$OPENAPI_VER")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-webflux:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-validation:$SPRINGBOOT_VER")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
+    implementation("org.springdoc:springdoc-openapi-webflux-ui:$OPENAPI_VER")
+    implementation("org.springdoc:springdoc-openapi-webflux-core:$OPENAPI_VER")
+    implementation("org.springframework.boot:spring-boot-starter-security:$SPRINGBOOT_VER")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
+    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.1.0")
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
 
 
-    testImplementation("org.testcontainers:testcontainers:1.18.1")
-    testImplementation("org.testcontainers:mongodb:1.18.1")
-    testImplementation("org.testcontainers:junit-jupiter:1.18.1")
-//    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-//    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("org.testcontainers:testcontainers:1.18.3")
+    testImplementation("org.testcontainers:mongodb:1.18.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.3")
+    testImplementation("io.projectreactor:reactor-test")
+
+
 
 
 }

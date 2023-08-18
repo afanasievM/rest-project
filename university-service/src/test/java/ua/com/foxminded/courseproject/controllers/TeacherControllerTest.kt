@@ -1,23 +1,19 @@
 package ua.com.foxminded.courseproject.controllers
 
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.PageImpl
-import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Pageable
+import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
+import org.springframework.web.reactive.function.BodyInserters
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.dto.TeacherDto
 import ua.com.foxminded.courseproject.service.TeacherServiceImpl
 import java.time.LocalDate
@@ -25,141 +21,99 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureWebTestClient
 internal class TeacherControllerTest {
     @Autowired
-    private lateinit var mockMvc: MockMvc
+    private lateinit var webTestClient: WebTestClient
 
     @MockBean
     private lateinit var teacherService: TeacherServiceImpl
-    private lateinit var pageableDefault: Pageable
-    private var pageDefault: Int = 0
-    private var sizeDefault: Int = 0
 
-    @BeforeEach
-    fun setUp() {
-        pageDefault = 0
-        sizeDefault = 5
-        pageableDefault = PageRequest.of(pageDefault, sizeDefault)
-    }
 
     @Throws(Exception::class)
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
     fun teachers_shouldReturnAllTeachersAndOk_WhenRequestWithoutParameters() {
-        val expected = setTeachers(pageableDefault)
+        val expected = setTeachers()
+        val expectedSize = 3
 
-        Mockito.`when`(teacherService.findAll(pageableDefault)).thenReturn(expected)
+        Mockito.`when`(teacherService.findAll()).thenReturn(expected)
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/teachers"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expected.totalElements))
-    }
-
-    @Throws(Exception::class)
-    @WithMockUser(username = "admin", authorities = ["ADMIN"])
-    @Test
-    fun teachers_shouldReturnTeachersPageAndOk_WhenRequestWithCorrectParameters() {
-        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        val expected = setTeachers(pageableDefault)
-        params["size"] = listOf(sizeDefault.toString())
-        params["page"] = listOf(pageDefault.toString())
-
-        Mockito.`when`(teacherService.findAll(pageableDefault)).thenReturn(expected)
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/teachers").params(params))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageDefault))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(sizeDefault))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.content[0].id").value(expected.content[0].id.toString()))
-    }
-
-    @Throws(Exception::class)
-    @WithMockUser(username = "admin", authorities = ["ADMIN"])
-    @Test
-    fun teachers_shouldReturnPageWithAllTeachersAndOk_WhenPageSizeMoreTeachersNumber() {
-        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        val pageNumber = "0"
-        val size = "10"
-        val pageable: Pageable = PageRequest.of(pageNumber.toInt(), size.toInt())
-        val expected = setTeachers(pageable)
-        params["size"] = listOf(size)
-        params["page"] = listOf(pageNumber)
-
-        Mockito.`when`(teacherService.findAll(pageable)).thenReturn(expected)
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/teachers").params(params))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageNumber))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(size))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expected.totalElements))
+        webTestClient.get()
+            .uri("/teachers")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBodyList(TeacherDto::class.java)
+            .hasSize(expectedSize)
     }
 
     @Test
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Throws(Exception::class)
     fun createTeacher_shouldReturnCreated_WhenTeacherNotExists() {
-        val firstName = "test1"
-        val lastName = "test2"
-        val birthDay = LocalDate.now().minusYears(18)
-        val degree = "NTUU KPI"
-        val firstDay = LocalDate.now()
-        val rank = "phd"
-        val salary = 1000
-        val title = "teacher"
+        val teacher = setTeachers().blockFirst()
+        teacher.firstName = "test1"
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        params.add("firstName", firstName)
-        params.add("lastName", lastName)
-        params.add("birthDay", birthDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-        params.add("rank", rank)
-        params.add("degree", degree)
-        params.add("firstDay", firstDay.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-        params.add("salary", salary.toString())
-        params.add("title", title)
+        params.add("firstName", teacher.firstName)
+        params.add("lastName", teacher.lastName)
+        params.add("birthDay", teacher.birthDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("rank", teacher.rank)
+        params.add("degree", teacher.degree)
+        params.add("firstDay", teacher.firstDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("salary", teacher.salary.toString())
+        params.add("title", teacher.title)
 
-        Mockito.`when`(teacherService.findAll(pageableDefault)).thenReturn(setTeachers(pageableDefault))
+        Mockito.`when`(teacherService.save(teacher)).thenReturn(Mono.just(teacher))
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/teachers").params(params))
-                .andExpect(MockMvcResultMatchers.status().isCreated())
+        webTestClient.post()
+            .uri("/teachers")
+            .body(BodyInserters.fromMultipartData(params))
+            .exchange()
+            .expectStatus().isCreated
     }
 
     @Test
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Throws(Exception::class)
     fun updateTeacher_shouldReturnResetContent_WhenTeacherExists() {
-        val existentTeacher = setTeachers(pageableDefault).content[0]
-        val id = existentTeacher.id.toString()
-        val existedFirstName = existentTeacher.firstName
-        val existedLastName = existentTeacher.lastName
-        val existedBirthDay = existentTeacher.birthDay?.minusYears(18)
-        val existedFirstDay = existentTeacher.firstDay
+        val teacher = setTeachers().blockFirst()
+        teacher.firstName = "test1"
         val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        params.add("firstName", existedFirstName)
-        params.add("lastName", existedLastName)
-        params.add("birthDay", existedBirthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-        params.add("firstDay", existedFirstDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("firstName", teacher.firstName)
+        params.add("lastName", teacher.lastName)
+        params.add("birthDay", teacher.birthDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("rank", teacher.rank)
+        params.add("degree", teacher.degree)
+        params.add("firstDay", teacher.firstDay!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+        params.add("salary", teacher.salary.toString())
+        params.add("title", teacher.title)
 
-        Mockito.`when`(teacherService.findById(UUID.fromString(id))).thenReturn(existentTeacher)
+        Mockito.`when`(teacherService.findById(teacher!!.id!!)).thenReturn(Mono.just(teacher))
+        Mockito.`when`(teacherService.save(teacher)).thenReturn(Mono.just(teacher))
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/teachers/{id}", id).params(params))
-                .andExpect(MockMvcResultMatchers.status().isResetContent())
+        webTestClient.put()
+            .uri("/teachers/{id}", teacher.id)
+            .body(BodyInserters.fromMultipartData(params))
+            .exchange()
+            .expectStatus().is2xxSuccessful
     }
 
     @Throws(Exception::class)
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
     fun teacher_shouldReturnTeacherAndOk_WhenTeacherExists() {
-        val existentTeacher = setTeachers(pageableDefault).content[0]
+        val existentTeacher = setTeachers().blockFirst()
         val id = existentTeacher.id.toString()
 
-        Mockito.`when`(teacherService.findById(UUID.fromString(id))).thenReturn(existentTeacher)
+        Mockito.`when`(teacherService.findById(UUID.fromString(id))).thenReturn(Mono.just(existentTeacher))
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/teachers/{id}", id))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+        webTestClient.get()
+            .uri("/teachers/{id}", id)
+            .exchange()
+            .expectStatus().isOk
+            .expectBody()
+            .jsonPath("$.id").isEqualTo(id)
     }
 
     @Test
@@ -168,12 +122,15 @@ internal class TeacherControllerTest {
     fun deleteTeacher_shouldReturnNoContent() {
         val id = UUID.randomUUID().toString()
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/teachers/{id}", id))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isNoContent())
+        Mockito.`when`(teacherService.delete(UUID.fromString(id))).thenReturn(Mono.empty<Void?>().then())
+
+        webTestClient.delete()
+            .uri("/teachers/{id}", id)
+            .exchange()
+            .expectStatus().isNoContent
     }
 
-    private fun setTeachers(pageable: Pageable): Page<TeacherDto> {
+    private fun setTeachers(): Flux<TeacherDto> {
         val teacherDtos: MutableList<TeacherDto> = ArrayList()
         for (i in 0..2) {
             val teacher = TeacherDto()
@@ -188,6 +145,6 @@ internal class TeacherControllerTest {
             teacher.degree = "NTUU KPI"
             teacherDtos.add(teacher)
         }
-        return PageImpl(teacherDtos, pageable, teacherDtos.size.toLong())
+        return Flux.fromIterable(teacherDtos)
     }
 }

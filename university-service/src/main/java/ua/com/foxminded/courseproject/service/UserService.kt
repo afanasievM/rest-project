@@ -1,8 +1,10 @@
 package ua.com.foxminded.courseproject.service
 
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
+import reactor.core.publisher.Mono
 
-interface UserService : UserDetailsService {
-    override fun loadUserByUsername(username: String): UserDetails
+interface UserService : ReactiveUserDetailsService {
+    override fun findByUsername(username: String?): Mono<UserDetails>
 }

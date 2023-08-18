@@ -5,9 +5,9 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import io.nats.client.Connection
 import io.nats.client.Message
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
+import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.dto.TransactionNatsDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
@@ -40,18 +40,17 @@ class NatsController @Autowired constructor(
             request.id!!, request.startDate!!, request.endDate,
             Pageable.ofSize(request.size!!).withPage(request.page!!)
         )
-        natsConnection.publish(
-            message.replyTo, identificator,
-            exchangeService.exchangeTo(transactions, Currency.getInstance(request.currency))
-                .toList()
-                .toString()
-                .toByteArray()
-        )
+        transactions
+            .map { exchangeService.exchangeTo(it, Currency.getInstance(request.currency)) }
+            .subscribe {
+                natsConnection.publish(message.replyTo, identificator, it.toString().toByteArray())
+            }
+
     }
 
     private fun findTransactions(
         id: UUID, startDate: LocalDateTime, endDate: LocalDateTime?, pageable: Pageable
-    ): Page<TransactionDto> {
+    ): Flux<TransactionDto> {
         val transactions = if (endDate != null && endDate.isAfter(startDate)) {
             transactionService.findAllByIdAndBetweenDate(id, startDate, endDate, pageable)
         } else {

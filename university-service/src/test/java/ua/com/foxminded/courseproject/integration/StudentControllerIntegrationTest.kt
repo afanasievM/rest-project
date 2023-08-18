@@ -1,44 +1,34 @@
 package ua.com.foxminded.courseproject.integration
 
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
+import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithMockUser
-import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
+import org.springframework.web.reactive.function.BodyInserters
+import reactor.test.StepVerifier
 import ua.com.foxminded.courseproject.config.DBTestConfig
+import ua.com.foxminded.courseproject.dto.StudentDto
 import ua.com.foxminded.courseproject.service.StudentServiceImpl
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 @SpringBootTest
-@AutoConfigureMockMvc
-internal open class StudentControllerIntegrationTest : DBTestConfig() {
+@AutoConfigureWebTestClient
+internal class StudentControllerIntegrationTest : DBTestConfig() {
     @Autowired
-    private lateinit var mockMvc: MockMvc
+    private lateinit var webTestClient: WebTestClient
 
     @Autowired
     private lateinit var studentService: StudentServiceImpl
-    private lateinit var pageableDefault: Pageable
-    private var pageDefault: Int = 0
-    private var sizeDefault: Int = 0
 
-    @BeforeEach
-    fun setUpDefaults() {
-        pageDefault = 0
-        sizeDefault = 1
-        pageableDefault = PageRequest.of(pageDefault, sizeDefault)
-    }
 
     @Throws(Exception::class)
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
@@ -46,45 +36,13 @@ internal open class StudentControllerIntegrationTest : DBTestConfig() {
     fun students_shouldReturnAllStudentsAndOk_WhenRequestWithoutParameters() {
         val expectedSize = 2
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/students"))
-            .andDo(MockMvcResultHandlers.print())
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expectedSize))
-    }
-
-    @Throws(Exception::class)
-    @WithMockUser(username = "admin", authorities = ["ADMIN"])
-    @Test
-    fun students_shouldReturnStudentsPageAndOk_WhenRequestWithCorrectParameters() {
-        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        val expectedId = "f92afb9e-462a-11ed-b878-0242ac120002"
-        params["size"] = listOf(sizeDefault.toString())
-        params["page"] = listOf(pageDefault.toString())
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/students").params(params))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageDefault))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(sizeDefault))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.content[0].id").value(expectedId))
-    }
-
-    @Throws(Exception::class)
-    @WithMockUser(username = "admin", authorities = ["ADMIN"])
-    @Test
-    fun students_shouldReturnPageWithAllStudentsAndOk_WhenPageSizeMoreStudentsNumber() {
-        val params: MultiValueMap<String, String> = LinkedMultiValueMap()
-        val pageNumber = "0"
-        val size = "10"
-        val expectedElements = "2"
-        params["size"] = listOf(size)
-        params["page"] = listOf(pageNumber)
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/students").params(params))
-            .andDo(MockMvcResultHandlers.print())
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageNumber").value(pageNumber))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.pageable.pageSize").value(size))
-            .andExpect(MockMvcResultMatchers.jsonPath("$.totalElements").value(expectedElements))
+        webTestClient.get()
+            .uri("/students")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk()
+            .expectBodyList(StudentDto::class.java)
+            .hasSize(expectedSize)
     }
 
     @Test
@@ -102,22 +60,24 @@ internal open class StudentControllerIntegrationTest : DBTestConfig() {
         params.add("birthDay", birthDay.toString())
         params.add("course", courseNumber)
         params.add("captain", captain.toString())
-        val pageNumber = 0
-        val size = 10
-        val pageable: Pageable = PageRequest.of(pageNumber, size)
         val expectedSize = 3
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/students").queryParams(params))
-            .andExpect(MockMvcResultMatchers.status().isCreated())
+        webTestClient.post()
+            .uri("/students")
+            .body(BodyInserters.fromMultipartData(params))
+            .exchange()
+            .expectStatus().isCreated
 
-        Assertions.assertEquals(expectedSize, studentService.findAll(pageable).content.size)
+        StepVerifier.create(studentService.findAll())
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
     }
 
     @Test
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Throws(Exception::class)
     fun updateStudent_shouldReturnResetContentAndUpdateStudent_WhenStudentExists() {
-        val existentStudent = studentService.findAll(pageableDefault).content[0]
+        val existentStudent = studentService.findAll().blockFirst()
         val id = existentStudent.id.toString()
         val changedFirstname = "CHANGED"
         val existedLastName = existentStudent.lastName
@@ -129,40 +89,47 @@ internal open class StudentControllerIntegrationTest : DBTestConfig() {
         params.add("birthDay", existedBirthDay?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
         params.add("course", courseNumber)
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/students/{id}", id).params(params))
-            .andExpect(MockMvcResultMatchers.status().isResetContent())
+        webTestClient.put()
+            .uri("/students/{id}", existentStudent.id)
+            .body(BodyInserters.fromMultipartData(params))
+            .exchange()
+            .expectStatus().is2xxSuccessful
 
-        Assertions.assertEquals(changedFirstname, studentService.findById(UUID.fromString(id)).firstName)
+        StepVerifier.create(studentService.findById(UUID.fromString(id)).log())
+            .expectNextMatches { changedFirstname == it.firstName }
+            .verifyComplete()
     }
 
     @Throws(Exception::class)
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Test
     fun student_shouldReturnStudentAndOk_WhenStudentExists() {
-        val existentStudent = studentService.findAll(pageableDefault).content[0]
+        val existentStudent = studentService.findAll().blockFirst()
         val id = existentStudent.id.toString()
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/students/{id}", id))
-            .andDo(MockMvcResultHandlers.print())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id))
-            .andExpect(MockMvcResultMatchers.status().isOk())
+        webTestClient.get()
+            .uri("/students/{id}", id)
+            .exchange()
+            .expectStatus().isOk
+            .expectBody()
+            .jsonPath("$.id").isEqualTo(id)
     }
 
     @Test
     @WithMockUser(username = "admin", authorities = ["ADMIN"])
     @Throws(Exception::class)
     fun deleteStudent_shouldReturnNoContentAndDelete_WhenStudentExists() {
-        val existentStudent = studentService.findAll(pageableDefault).content[0]
+        val existentStudent = studentService.findAll().blockFirst()
         val id = existentStudent.id.toString()
-        val pageNumber = 0
-        val size = 10
-        val pageable: Pageable = PageRequest.of(pageNumber, size)
         val expectedSize = 1
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/students/{id}", id))
-            .andDo(MockMvcResultHandlers.print())
-            .andExpect(MockMvcResultMatchers.status().isNoContent())
+        webTestClient.delete()
+            .uri("/students/{id}", id)
+            .exchange()
+            .expectStatus().isNoContent
 
-        Assertions.assertEquals(expectedSize, studentService.findAll(pageable).content.size)
+        StepVerifier.create(studentService.findAll())
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
     }
 }

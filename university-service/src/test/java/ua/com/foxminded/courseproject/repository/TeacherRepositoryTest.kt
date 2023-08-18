@@ -1,10 +1,9 @@
 package ua.com.foxminded.courseproject.repository
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
-import org.springframework.data.util.Streamable
+import reactor.test.StepVerifier
 import ua.com.foxminded.courseproject.config.DBTestConfig
 import ua.com.foxminded.courseproject.entity.Teacher
 import java.time.LocalDate
@@ -18,12 +17,16 @@ internal open class TeacherRepositoryTest : DBTestConfig() {
     private lateinit var repository: TeacherRepository
 
     @Test
-    fun findAll_shouldReturnListTeachers() {
+    fun findAll_shouldReturnFluxTeachers() {
         val expectedSize = 2
 
-        val teachers = Streamable.of(repository.findAll()).toList()
+        val teachers = repository.findAll()
 
-        Assertions.assertEquals(expectedSize, teachers.size)
+        StepVerifier.create(teachers)
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
+
+
     }
 
     @Test
@@ -31,19 +34,22 @@ internal open class TeacherRepositoryTest : DBTestConfig() {
         val id = UUID.fromString("e966f608-4621-11ed-b878-0242ac120002")
         val expectedFirstname = "Yulia"
 
-        repository.findAll().forEach { println(it) }
-        val actual = repository.findById(id).get()
+        val actual = repository.findById(id)
 
-        Assertions.assertEquals(expectedFirstname, actual.firstName)
+        StepVerifier.create(actual)
+            .expectNextMatches { expectedFirstname == it.firstName }
+            .verifyComplete()
     }
 
     @Test
-    fun findById_shouldReturnEmptyOptional_whenIdNotExists() {
+    fun findById_shouldReturnEmptyMono_whenIdNotExists() {
         val id = UUID.fromString("e966f7c0-4621-11ed-b838-0242ac120002")
 
         val actual = repository.findById(id)
 
-        Assertions.assertEquals(true, actual.isEmpty)
+        StepVerifier.create(actual)
+            .expectNextCount(0)
+            .verifyComplete()
     }
 
     @Test
@@ -59,30 +65,39 @@ internal open class TeacherRepositoryTest : DBTestConfig() {
         expected.title = testStr
         expected.salary = 1111
 
-        repository.save(expected)
+        repository.save(expected).block()
 
-        Assertions.assertEquals(expected, expected.id?.let { repository.findById(it).get() })
+        expected.id?.let { repository.findById(it) }?.let {
+            StepVerifier.create(it)
+                .expectNextMatches { it.equals(expected) }
+                .verifyComplete()
+        }
     }
 
     @Test
     fun save_shouldChangeTeacher_whenTeacherExists() {
-        val expected = Streamable.of(repository.findAll()).stream().findAny().get()
+        val expected = repository.findAll().blockFirst()
         expected.lastName = "test"
 
-        repository.save(expected)
+        repository.save(expected).block()
 
-        Assertions.assertEquals(expected, expected.id?.let { repository.findById(it).get() })
+        expected.id?.let { repository.findById(it) }?.let {
+            StepVerifier.create(it)
+                .expectNextMatches { it.equals(expected) }
+                .verifyComplete()
+        }
     }
 
     @Test
     fun delete_shouldDeleteTeacher_whenTeacherExists() {
-        val teacher = Streamable.of(repository.findAll()).stream().findAny().get()
+        val teacher = repository.findAll().blockFirst()
         val expectedSize = 1
 
-        repository.delete(teacher)
-        val teachers = Streamable.of(repository.findAll()).stream().toList()
+        repository.delete(teacher).block()
 
-        Assertions.assertEquals(expectedSize, teachers.size)
+        StepVerifier.create(repository.findAll())
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
     }
 
     @Test
@@ -99,9 +114,10 @@ internal open class TeacherRepositoryTest : DBTestConfig() {
         teacher.salary = 1111
         val expectedSize = 2
 
-        repository.delete(teacher)
-        val teachers = Streamable.of(repository.findAll()).toList()
+        repository.delete(teacher).block()
 
-        Assertions.assertEquals(expectedSize, teachers.size)
+        StepVerifier.create(repository.findAll())
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
     }
 }

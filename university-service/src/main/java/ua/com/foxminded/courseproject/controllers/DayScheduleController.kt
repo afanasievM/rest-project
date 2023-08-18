@@ -6,12 +6,14 @@ import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.format.annotation.DateTimeFormat
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Flux
+import reactor.core.publisher.toFlux
+import ua.com.foxminded.courseproject.dto.DayScheduleDto
 import ua.com.foxminded.courseproject.service.DayScheduleService
 import ua.com.foxminded.courseproject.utils.Role
 import ua.com.foxminded.courseproject.utils.ScheduleMap
@@ -37,11 +39,11 @@ class DayScheduleController @Autowired constructor(private val service: DaySched
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) startDate: LocalDate,
         @RequestParam(name = "enddate", required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) endDate: LocalDate?
-    ): ResponseEntity<*> {
+    ): ResponseEntity<Flux<Pair<LocalDate, DayScheduleDto?>>> {
         return if (endDate != null && endDate.isAfter(startDate)) {
-            ResponseEntity(service.getTeacherDaysSchedule(startDate, endDate, id), HttpStatus.OK)
+            ResponseEntity.ok().body(service.getTeacherDaysSchedule(startDate, endDate, id))
         } else {
-            ResponseEntity(service.getTeacherOneDaySchedule(startDate, id), HttpStatus.OK)
+            ResponseEntity.ok().body(service.getTeacherOneDaySchedule(startDate, id).toFlux())
         }
     }
 
@@ -58,12 +60,11 @@ class DayScheduleController @Autowired constructor(private val service: DaySched
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) startDate: LocalDate,
         @RequestParam(name = "enddate", required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) endDate: LocalDate?
-    ): ResponseEntity<*> {
+    ): ResponseEntity<Flux<Pair<LocalDate, DayScheduleDto?>>>{
         return if (endDate != null && endDate.isAfter(startDate)) {
-            ResponseEntity(service.getStudentDaysSchedule(startDate, endDate, id), HttpStatus.OK)
+            ResponseEntity.ok().body(service.getStudentDaysSchedule(startDate, endDate, id))
         } else {
-            ResponseEntity(service.getStudentOneDaySchedule(startDate, id), HttpStatus.OK)
+            ResponseEntity.ok().body(service.getStudentOneDaySchedule(startDate, id).toFlux())
         }
-
     }
 }

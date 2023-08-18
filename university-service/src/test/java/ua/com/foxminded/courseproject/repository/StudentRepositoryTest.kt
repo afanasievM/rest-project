@@ -1,28 +1,38 @@
 package ua.com.foxminded.courseproject.repository
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
+import org.junit.runner.RunWith
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
-import org.springframework.data.util.Streamable
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
+import org.springframework.test.context.junit4.SpringRunner
+import reactor.test.StepVerifier
 import ua.com.foxminded.courseproject.config.DBTestConfig
 import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Student
+import ua.com.foxminded.courseproject.mapper.GroupMapper
+import ua.com.foxminded.courseproject.mapper.StudentMapper
 import java.time.LocalDate
 import java.util.*
 
+
 @DataMongoTest
+@Import(StudentRepositoryImp::class, StudentMapper::class, GroupMapper::class)
 internal open class StudentRepositoryTest : DBTestConfig() {
+
     @Autowired
     private lateinit var repository: StudentRepository
 
     @Test
-    fun findAll_shouldReturnListStudents() {
+    fun findAll_shouldReturnFluxStudents() {
         val expectedSize = 2
 
-        val students = Streamable.of(repository.findAll()).toList()
+        val students = repository.findAll()
 
-        Assertions.assertEquals(expectedSize, students.size)
+        StepVerifier.create(students)
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
     }
 
     @Test
@@ -30,18 +40,22 @@ internal open class StudentRepositoryTest : DBTestConfig() {
         val id = UUID.fromString("f92afb9e-462a-11ed-b878-0242ac120002")
         val expectedFirstname = "Yura"
 
-        val actual = repository.findById(id).get()
+        val actual = repository.findById(id)
 
-        Assertions.assertEquals(expectedFirstname, actual.firstName)
+        StepVerifier.create(actual)
+            .expectNextMatches { expectedFirstname == it.firstName }
+            .verifyComplete()
     }
 
     @Test
-    fun findById_shouldReturnEmptyOptional_whenIdNotExists() {
+    fun findById_shouldReturnEmptyMono_whenIdNotExists() {
         val id = UUID.fromString("e966f7c0-4621-11ed-b838-0242ac120002")
 
         val actual = repository.findById(id)
 
-        Assertions.assertEquals(true, actual.isEmpty)
+        StepVerifier.create(actual)
+            .expectNextCount(0)
+            .verifyComplete()
     }
 
     @Test
@@ -58,30 +72,40 @@ internal open class StudentRepositoryTest : DBTestConfig() {
         expected.course = 4
         expected.captain = false
 
-        repository.save(expected)
+        repository.save(expected).block()
 
-        Assertions.assertEquals(expected, expected.id?.let { repository.findById(it).get() })
+
+        StepVerifier.create(repository.findById(expected.id!!))
+            .expectNextMatches { it.firstName == expected.firstName }
+            .verifyComplete()
+
     }
+
 
     @Test
     fun save_shouldChangeStudent_whenStudentExists() {
-        val expected = Streamable.of(repository.findAll()).stream().findAny().get()
+        val expected = repository.findAll().blockFirst()
         expected.lastName = "test"
 
-        repository.save(expected)
+        repository.save(expected).block()
 
-        Assertions.assertEquals(expected, expected.id?.let { repository.findById(it).get() })
+        expected.id?.let { repository.findById(it) }?.let {
+            StepVerifier.create(it)
+                .expectNextMatches { it.equals(expected) }
+                .verifyComplete()
+        }
     }
 
     @Test
     fun delete_shouldDeleteStudent_whenStudentExists() {
-        val student = Streamable.of(repository.findAll()).stream().findAny().get()
+        val student = repository.findAll().blockFirst()
         val expectedSize = 1
 
-        repository.delete(student)
-        val students = Streamable.of(repository.findAll()).toList()
+        repository.delete(student).block()
 
-        Assertions.assertEquals(expectedSize, students.size)
+        StepVerifier.create(repository.findAll())
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
     }
 
     @Test
@@ -99,9 +123,10 @@ internal open class StudentRepositoryTest : DBTestConfig() {
         student.captain = false
         val expectedSize = 2
 
-        repository.delete(student)
-        val students = Streamable.of(repository.findAll()).toList()
+        repository.delete(student).block()
 
-        Assertions.assertEquals(expectedSize, students.size)
+        StepVerifier.create(repository.findAll())
+            .expectNextCount(expectedSize.toLong())
+            .verifyComplete()
     }
 }

@@ -14,27 +14,18 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration
 import org.springframework.data.redis.cache.RedisCacheManager
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext
-import org.springframework.http.client.BufferingClientHttpRequestFactory
-import org.springframework.http.client.ClientHttpRequestFactory
-import org.springframework.http.client.ClientHttpRequestInterceptor
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
-import org.springframework.web.client.RestTemplate
-import ua.com.foxminded.restClient.interceptors.RequestLoggingInterceptors
+import org.springframework.data.web.ReactivePageableHandlerMethodArgumentResolver
+import org.springframework.web.reactive.config.EnableWebFlux
+import org.springframework.web.reactive.config.WebFluxConfigurer
+import org.springframework.web.reactive.result.method.annotation.ArgumentResolverConfigurer
 import java.time.Duration
 
+
 @Configuration
-class WebConfig {
+@EnableWebFlux
+class WebConfig: WebFluxConfigurer {
     @Value("\${nats.url}")
     private lateinit var natsUrl: String
-
-    @Bean
-    fun restTemplate(requestLoggingInterceptors: RequestLoggingInterceptors): RestTemplate {
-        val factory: ClientHttpRequestFactory =
-            BufferingClientHttpRequestFactory(HttpComponentsClientHttpRequestFactory())
-        val restTemplate = RestTemplate(factory)
-        restTemplate.interceptors = listOf<ClientHttpRequestInterceptor>(requestLoggingInterceptors)
-        return restTemplate
-    }
 
     @Bean
     fun natsConncetion(): Connection {
@@ -70,5 +61,9 @@ class WebConfig {
                         )
                 )
         }
+    }
+
+    override fun configureArgumentResolvers(configurer: ArgumentResolverConfigurer) {
+        configurer.addCustomResolver(ReactivePageableHandlerMethodArgumentResolver())
     }
 }

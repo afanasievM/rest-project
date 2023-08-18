@@ -12,4 +12,9 @@ data class StudentDto(
     var course: Int? = null,
     var captain: Boolean? = null
 
-) : PersonDto()
+) : PersonDto() {
+    override fun toString(): String {
+        return "StudentDto(id=$id, firstName=$firstName, lastName=$lastName, birthDay=$birthDay, group=$group," +
+                " course=$course, captain=$captain)"
+    }
+}

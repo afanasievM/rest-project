@@ -8,14 +8,14 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.client.HttpClientErrorException
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import ua.com.foxminded.restClient.exceptions.CurrencyNotFoundException
 import ua.com.foxminded.restClient.exceptions.PersonNotFoundException
 import java.util.*
 
 @ControllerAdvice
-class ResponseExceptionHandler : ResponseEntityExceptionHandler() {
+class ResponseExceptionHandler {
     private val logger = LoggerFactory.getLogger(ResponseExceptionHandler::class.java)
     @ExceptionHandler(PersonNotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

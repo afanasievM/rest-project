@@ -1,11 +1,10 @@
 package ua.com.foxminded.courseproject.service
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.dto.TeacherDto
-import ua.com.foxminded.courseproject.entity.Teacher
 import ua.com.foxminded.courseproject.exceptions.TeacherConflictException
 import ua.com.foxminded.courseproject.exceptions.TeacherNotFoundException
 import ua.com.foxminded.courseproject.mapper.TeacherMapper
@@ -13,30 +12,35 @@ import ua.com.foxminded.courseproject.repository.TeacherRepository
 import java.util.*
 
 @Service
-open class TeacherServiceImpl @Autowired constructor(
+class TeacherServiceImpl @Autowired constructor(
     private val mapper: TeacherMapper,
     private val repository: TeacherRepository
 ) : PersonService<TeacherDto> {
-    override fun findById(id: UUID): TeacherDto {
-        return mapper.toDto(repository.findById(id).orElseThrow { TeacherNotFoundException(id) })!!
+    override fun findById(id: UUID): Mono<TeacherDto> {
+        return repository.findById(id)
+            .switchIfEmpty(Mono.error(TeacherNotFoundException(id)))
+            .map { mapper.toDto(it) }
     }
 
-    override fun findAll(pageable: Pageable): Page<TeacherDto> {
-        return repository.findAll(pageable).map { entity: Teacher? -> mapper.toDto(entity) }
+    override fun findAll(): Flux<TeacherDto> {
+        return repository.findAll().map { mapper.toDto(it) }
     }
 
-    override fun save(teacher: TeacherDto): TeacherDto {
-        if (personExists(teacher)) {
-            throw TeacherConflictException(teacher)
+    override fun save(teacher: TeacherDto): Mono<TeacherDto> {
+        return personExists(teacher).flatMap {
+            if (it == true) {
+                Mono.error(TeacherConflictException(teacher))
+            } else {
+                repository.save(mapper.toEntity(teacher)).map { mapper.toDto(it) }
+            }
         }
-        return mapper.toDto(repository.save(mapper.toEntity(teacher)))!!
     }
 
-    override fun delete(id: UUID) {
-        repository.delete(repository.findById(id).get())
+    override fun delete(id: UUID): Mono<Void> {
+        return repository.findById(id).flatMap { repository.delete(it) }
     }
 
-    override fun personExists(personDto: TeacherDto): Boolean {
+    override fun personExists(personDto: TeacherDto): Mono<Boolean> {
         return repository.existsTeacherByFirstNameAndLastNameAndBirthDay(
             personDto.firstName!!,
             personDto.lastName!!, personDto.birthDay!!

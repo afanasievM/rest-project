@@ -5,9 +5,10 @@ import org.json.JSONArray
 import org.junit.jupiter.api.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.ClassPathResource
-import org.springframework.data.mongodb.core.MongoTemplate
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.junit.jupiter.Testcontainers
+import reactor.core.publisher.toMono
 import java.nio.file.Files
 
 @Testcontainers
@@ -15,7 +16,7 @@ import java.nio.file.Files
 open class DBTestConfig {
 
     @Autowired
-    lateinit var mongoTemplate: MongoTemplate
+    lateinit var mongoTemplate: ReactiveMongoTemplate
     private val DATASET_PATH = "datasets/"
     private lateinit var mongoContainer: DockerComposeContainer<*>
 
@@ -46,7 +47,7 @@ open class DBTestConfig {
             val jsonArray = JSONArray(jsonString)
             for (i in 0 until jsonArray.length()) {
                 val document = BsonDocument.parse(jsonArray.getJSONObject(i).toString())
-                mongoTemplate.insert(document, it)
+                mongoTemplate.insert(document, it).block()
             }
         }
     }
@@ -54,7 +55,7 @@ open class DBTestConfig {
     @AfterEach
     fun dropData() {
         colections.forEach {
-            mongoTemplate.getCollection(it).drop()
+            mongoTemplate.getCollection(it).block().drop().toMono().block()
         }
     }
 

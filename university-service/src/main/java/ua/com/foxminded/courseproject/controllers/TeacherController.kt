@@ -4,13 +4,11 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
-import org.springdoc.api.annotations.ParameterObject
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Pageable
-import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.dto.TeacherDto
 import ua.com.foxminded.courseproject.service.TeacherServiceImpl
 import ua.com.foxminded.courseproject.utils.PageableTeacher
@@ -34,27 +32,25 @@ class TeacherController @Autowired constructor(teacherService: TeacherServiceImp
     )
     @GetMapping(value = ["/teachers"])
     @RolesAllowed(Role.ADMIN)
-    fun getTeachers(@ParameterObject @PageableDefault(page = 0, size = 5) pageable: Pageable): ResponseEntity<*> {
-        return getPersons(pageable)
+    fun getTeachers(): ResponseEntity<*> {
+        return getPersons()
     }
 
     @Operation(summary = "Create new teacher.")
     @ApiResponse(responseCode = "201", description = "Teacher is created.", content = [Content()])
     @PostMapping(value = ["/teachers"])
     @RolesAllowed(Role.ADMIN)
-    fun createTeacher(teacherDto: @Valid TeacherDto): ResponseEntity<*> {
-        service.save(teacherDto)
-        return ResponseEntity<Any>(HttpStatus.CREATED)
+    fun createTeacher(teacherDto: @Valid TeacherDto): Mono<ResponseEntity<*>> {
+        return service.save(teacherDto).map { ResponseEntity<Any>(HttpStatus.CREATED) }
     }
 
     @Operation(summary = "Update teacher.")
     @ApiResponse(responseCode = "205", description = "Teacher is updated.", content = [Content()])
     @PutMapping(value = ["/teachers/{id}"])
     @RolesAllowed(Role.ADMIN)
-    fun updateTeacher(teacherDto: @Valid TeacherDto): ResponseEntity<*> {
+    fun updateTeacher(teacherDto: @Valid TeacherDto): Mono<ResponseEntity<*>> {
         teacherDto.id?.let { getPersonById(it) }
-        service.save(teacherDto)
-        return ResponseEntity<Any>(HttpStatus.RESET_CONTENT)
+        return service.save(teacherDto).map { ResponseEntity<Any>(HttpStatus.RESET_CONTENT) }
     }
 
     @Operation(summary = "Get teacher by id.")
@@ -73,7 +69,7 @@ class TeacherController @Autowired constructor(teacherService: TeacherServiceImp
     @ApiResponse(responseCode = "204", description = "Teacher is deleted.", content = [Content()])
     @DeleteMapping(value = ["/teachers/{id}"])
     @RolesAllowed(Role.ADMIN)
-    fun deleteTeacher(@PathVariable(name = "id", required = true) id: UUID): ResponseEntity<*> {
+    fun deleteTeacher(@PathVariable(name = "id", required = true) id: UUID): Mono<ResponseEntity<*>> {
         return deletePersonById(id)
     }
 }

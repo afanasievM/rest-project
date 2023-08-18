@@ -1,11 +1,12 @@
 package ua.com.foxminded.courseproject.mapper
 
+import org.bson.Document
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.TeacherDto
 import ua.com.foxminded.courseproject.entity.Teacher
 
 @Component
-class TeacherMapper : Mapper<TeacherDto?, Teacher?> {
+class TeacherMapper : Mapper<TeacherDto?, Teacher?, Document> {
     override fun toDto(entity: Teacher?): TeacherDto? {
         if (entity == null) {
             return null
@@ -38,5 +39,14 @@ class TeacherMapper : Mapper<TeacherDto?, Teacher?> {
         entity.title = dto.title
         entity.firstDay = dto.firstDay
         return entity
+    }
+
+
+    override fun documentToEntity(doc: Document): Teacher? {
+        TODO("Not yet implemented")
+    }
+
+    override fun entityToDocument(entity: Teacher?): Document {
+        TODO("Not yet implemented")
     }
 }
