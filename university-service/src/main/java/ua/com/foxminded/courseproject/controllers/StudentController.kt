@@ -40,7 +40,7 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @ApiResponse(responseCode = "201", description = "Student is created.", content = [Content()])
     @PostMapping(value = ["/students"])
     @RolesAllowed(Role.ADMIN)
-    public fun createStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
+    fun createStudent(studentDto: @Valid StudentDto): Mono<ResponseEntity<*>> {
         return service.save(studentDto).map { ResponseEntity<Any>(HttpStatus.CREATED) }
 
     }
@@ -70,7 +70,7 @@ class StudentController @Autowired constructor(studentService: StudentServiceImp
     @ApiResponse(responseCode = "204", description = "Student is deleted.", content = [Content()])
     @DeleteMapping(value = ["/students/{id}"])
     @RolesAllowed(Role.ADMIN)
-    fun deleteStudent(@PathVariable(name = "id", required = true) id: UUID): ResponseEntity<*> {
+    fun deleteStudent(@PathVariable(name = "id", required = true) id: UUID): Mono<ResponseEntity<*>> {
         return deletePersonById(id)
     }
 }

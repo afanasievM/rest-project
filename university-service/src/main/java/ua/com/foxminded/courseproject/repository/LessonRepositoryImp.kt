@@ -10,6 +10,9 @@ import org.springframework.data.repository.reactive.ReactiveSortingRepository
 import org.springframework.stereotype.Repository
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import reactor.core.publisher.onErrorReturn
+import reactor.core.publisher.switchIfEmpty
+import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Lesson
 import ua.com.foxminded.courseproject.entity.Subject
 import ua.com.foxminded.courseproject.mapper.LessonMapper
@@ -44,6 +47,7 @@ class LessonRepositoryImp(
             .flatMap { dBRefMapper(it, teacherRepository, "teacher") }
             .flatMap { listDBRefMapper(it, groupRepository, "groups") }
             .map { mapper.documentToEntity(it) }
+
     }
 
     private fun <T> dBRefMapper(
@@ -52,15 +56,18 @@ class LessonRepositoryImp(
         fieldName: String
     ): Mono<Document> {
         val dbRef = doc.get(fieldName, DBRef::class.java)
-        return if (dbRef == null) {
+        return if (dbRef.id == "null") {
             Mono.just(doc)
                 .map { it }
         } else {
-            Mono.just(doc)
-                .zipWith(repository.findById(UUID.fromString(dbRef.id.toString())))
+            repository.findById(UUID.fromString(dbRef.id.toString()))
                 .map {
-                    it.t1[fieldName] = it.t2
-                    return@map it.t1
+                    doc[fieldName] = it
+                    return@map doc
+                }
+                .switchIfEmpty {
+                    doc[fieldName] = null
+                    return@switchIfEmpty Mono.just(doc)
                 }
         }
     }
@@ -73,7 +80,10 @@ class LessonRepositoryImp(
         val dbRefs = doc.get(fieldName, ArrayList<DBRef>())
         return if (dbRefs.isEmpty()) {
             Mono.just(doc)
-                .map { it }
+                .map {
+                    it["groups"] = emptyList<Group>()
+                    return@map it
+                }
         } else {
             Mono.just(doc)
                 .zipWith(repository.findAllById(dbRefs.map { UUID.fromString(it.id.toString()) }).collectList())

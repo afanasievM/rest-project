@@ -69,7 +69,7 @@ class TeacherController @Autowired constructor(teacherService: TeacherServiceImp
     @ApiResponse(responseCode = "204", description = "Teacher is deleted.", content = [Content()])
     @DeleteMapping(value = ["/teachers/{id}"])
     @RolesAllowed(Role.ADMIN)
-    fun deleteTeacher(@PathVariable(name = "id", required = true) id: UUID): ResponseEntity<*> {
+    fun deleteTeacher(@PathVariable(name = "id", required = true) id: UUID): Mono<ResponseEntity<*>> {
         return deletePersonById(id)
     }
 }

@@ -63,11 +63,13 @@ class DayScheduleServiceImpl @Autowired constructor(
         endDay: LocalDate,
         personDto: PersonDto
     ): Flux<Pair<LocalDate, DayScheduleDto?>> {
-        return Flux.range(0, ChronoUnit.DAYS.between(startDay, endDay).toInt())
+        return Flux.range(0, ChronoUnit.DAYS.between(startDay, endDay).toInt() + 1)
             .map { startDay.plusDays(it.toLong()) }
-            .map { Pair(it, getPersonDaySchedule(it, personDto).block()) }
-
-
+            .flatMap {
+                Mono.just(it)
+                    .zipWith(getPersonDaySchedule(it, personDto))
+                    .map { Pair(it.t1, it.t2) }
+            }
     }
 
     private fun getDaySchedule(date: LocalDate): Mono<DayScheduleDto?> {

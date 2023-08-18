@@ -39,7 +39,6 @@ class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonM
     }
 
     override fun documentToEntity(doc: Document): DaySchedule? {
-        println(doc)
         val entity = DaySchedule()
         entity.id = UUID.fromString(doc.getString("_id"))
         entity.dayNumber = doc.getInteger("day_number")

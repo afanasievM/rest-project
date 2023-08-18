@@ -66,7 +66,7 @@ class StudentRepositoryImp(
 
     private fun studentDBRefsMapper(doc: Document): Mono<Document> {
         val dbRef = doc.get("group_id", DBRef::class.java)
-        return if (dbRef == null) {
+        return if (dbRef.id == "null") {
             Mono.just(doc)
                 .map { it }
         } else {

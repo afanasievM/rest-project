@@ -9,8 +9,12 @@ data class TeacherDto(
     var salary: Int? = null,
     var rank: String? = null,
     var title: String? = null
-) : PersonDto(){
+) : PersonDto() {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     var firstDay: LocalDate? = null
+    override fun toString(): String {
+        return "TeacherDto(id=$id, firstName=$firstName, lastName=$lastName, birthDay=$birthDay, " +
+                "degree=$degree, salary=$salary, rank=$rank, title=$title, firstDay=$firstDay)"
+    }
 }

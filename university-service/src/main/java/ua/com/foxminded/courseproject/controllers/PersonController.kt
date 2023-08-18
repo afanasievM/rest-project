@@ -3,6 +3,7 @@ package ua.com.foxminded.courseproject.controllers
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import reactor.core.publisher.Mono
+import reactor.core.publisher.toMono
 import ua.com.foxminded.courseproject.dto.PersonDto
 import ua.com.foxminded.courseproject.service.PersonService
 import java.util.*
@@ -19,8 +20,7 @@ open class PersonController<T : PersonDto, S : PersonService<*>> {
         return ResponseEntity(person, HttpStatus.OK)
     }
 
-    protected fun deletePersonById(id: UUID): ResponseEntity<*> {
-        service.delete(id)
-        return ResponseEntity<Any>(HttpStatus.NO_CONTENT)
+    protected fun deletePersonById(id: UUID): Mono<ResponseEntity<*>> {
+        return service.delete(id).thenReturn(ResponseEntity.status(HttpStatus.NO_CONTENT).build<Void>())
     }
 }

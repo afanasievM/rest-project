@@ -40,8 +40,6 @@ class DayScheduleController @Autowired constructor(private val service: DaySched
         @RequestParam(name = "enddate", required = false)
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) endDate: LocalDate?
     ): ResponseEntity<Flux<Pair<LocalDate, DayScheduleDto?>>> {
-        println(startDate)
-        println(endDate)
         return if (endDate != null && endDate.isAfter(startDate)) {
             ResponseEntity.ok().body(service.getTeacherDaysSchedule(startDate, endDate, id))
         } else {

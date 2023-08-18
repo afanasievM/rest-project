@@ -58,12 +58,12 @@ class LessonMapper @Autowired constructor(
     override fun documentToEntity(doc: Document): Lesson? {
         val entity = Lesson()
         entity.id = UUID.fromString(doc.getString("_id"))
-        entity.subject = doc.get("subject") as Subject
-        entity.classRoom = doc.get("classroom") as ClassRoom
+        entity.subject = doc.get("subject") as Subject?
+        entity.classRoom = doc.get("classroom") as ClassRoom?
         entity.number = doc.getInteger("number")
         entity.startTime = doc.getDate("start_time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime()
         entity.endTime = doc.getDate("end_time").toInstant().atZone(ZoneId.systemDefault()).toLocalTime()
-        entity.teacher = doc.get("teacher") as Teacher
+        entity.teacher = doc.get("teacher") as Teacher?
         entity.groups = doc.getList("groups", Group::class.java)
         return entity
     }

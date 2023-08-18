@@ -59,7 +59,10 @@ class WeekScheduleRepositoryImp(
         val dbRefs = doc.get("lessons", ArrayList<DBRef>())
         return if (dbRefs.isEmpty()) {
             Flux.just(doc)
-                .map { it }
+                .map {
+                    it["lessons"] = emptyList<Lesson>()
+                    return@map it
+                }
         } else {
             Flux.just(doc)
                 .zipWith(
