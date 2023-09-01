@@ -23,5 +23,5 @@ class MonoRateServiceImpl @Autowired constructor(
         .uri(URL)
         .retrieve()
         .bodyToMono<List<MonoRate>>()
-        .block() ?: emptyList()
+        .block().orEmpty()
 }

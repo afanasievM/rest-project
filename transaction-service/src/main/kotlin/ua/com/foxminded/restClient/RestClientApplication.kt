@@ -11,5 +11,5 @@ import org.springframework.web.reactive.config.EnableWebFlux
 class RestClientApplication
 
 fun main(args: Array<String>) {
-    runApplication<RestClientApplication>(*args)
+    runApplication<RestClientApplication>(args = args)
 }

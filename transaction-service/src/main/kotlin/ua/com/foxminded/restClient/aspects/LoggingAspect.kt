@@ -6,16 +6,14 @@ import org.aspectj.lang.annotation.AfterThrowing
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.annotation.Pointcut
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 @Aspect
 @Component
 class LoggingAspect {
-    private val log = LoggerFactory.getLogger(LoggingAspect::class.java)
-    private val STUDENT_STRING = "student"
-    private val TEACHER_STRING = "teacher"
-    private val SCHEDULE_STRING = "schedule"
+    val log: Logger = LoggerFactory.getLogger(LoggingAspect::class.java)
 
     @Pointcut("execution(* findAll*(..))")
     fun findAllPointcut() {

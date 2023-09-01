@@ -7,8 +7,6 @@ import org.springframework.data.mongodb.core.mapping.FieldType
 import ua.com.foxminded.restClient.enums.Direction
 import java.time.LocalDateTime
 import java.util.*
-import javax.persistence.*
-
 
 @Document("transactions")
 data class Transaction(
