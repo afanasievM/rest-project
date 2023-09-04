@@ -15,10 +15,12 @@ import org.springframework.stereotype.Component
 class LoggingAspect {
     val log: Logger = LoggerFactory.getLogger(LoggingAspect::class.java)
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* findAll*(..))")
     fun findAllPointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* chooseRate(..))")
     fun ratePointcut() {
     }
@@ -30,10 +32,10 @@ class LoggingAspect {
         if (args.isNotEmpty()) {
             log.info(
                 "Find transactions with person ID {} between {} and {}.\nPageable={}",
-                args[0],
-                args[1],
-                args[2],
-                args[3]
+                args[PERSON_ID_NUMBER],
+                args[START_DATE_NUMBER],
+                args[END_DATE_NUMBER],
+                args[PAGEABLE_NUMBER]
             )
         }
         val result = joinPoint.proceed()
@@ -45,7 +47,6 @@ class LoggingAspect {
     @Throws(Throwable::class)
     fun logAroundGetRate(joinPoint: ProceedingJoinPoint): Any {
         val args = joinPoint.args
-        println(args)
         log.info("Get currency rate between {} and {}", args[0].toString(), args[1].toString())
         val result = joinPoint.proceed()
         log.info("Query result:\n{}", result.toString())
@@ -58,5 +59,12 @@ class LoggingAspect {
             "Exception in {}.{}(). \nException: {} \nMessage: {} \nCause = {}.", joinPoint.signature.declaringTypeName,
             joinPoint.signature.name, e.javaClass, e.message, if (e.cause != null) e.cause else "NULL"
         )
+    }
+
+    companion object {
+        const val PERSON_ID_NUMBER = 0
+        const val START_DATE_NUMBER = 1
+        const val END_DATE_NUMBER = 2
+        const val PAGEABLE_NUMBER = 3
     }
 }

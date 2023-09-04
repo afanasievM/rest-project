@@ -1,18 +1,17 @@
 package ua.com.foxminded.courseproject.mapper
 
 import com.mongodb.DBRef
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.UUID
 import org.bson.Document
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.StudentDto
 import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Student
-import java.time.LocalDate
-import java.time.ZoneId
-import java.util.*
 
 @Component
-class StudentMapper @Autowired constructor(private val groupMapper: GroupMapper) :
+class StudentMapper(private val groupMapper: GroupMapper) :
     Mapper<StudentDto?, Student, Document> {
     override fun toDto(entity: Student?): StudentDto? {
         if (entity == null) {

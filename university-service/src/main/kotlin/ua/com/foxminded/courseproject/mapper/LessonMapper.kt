@@ -1,21 +1,19 @@
 package ua.com.foxminded.courseproject.mapper
 
+import java.time.ZoneId
+import java.util.UUID
 import org.bson.Document
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.annotation.Id
-import org.springframework.data.mongodb.core.mapping.DBRef
-import org.springframework.data.mongodb.core.mapping.Field
-import org.springframework.data.mongodb.core.mapping.FieldType
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.GroupDto
 import ua.com.foxminded.courseproject.dto.LessonDto
-import ua.com.foxminded.courseproject.entity.*
-import java.time.LocalTime
-import java.time.ZoneId
-import java.util.*
+import ua.com.foxminded.courseproject.entity.ClassRoom
+import ua.com.foxminded.courseproject.entity.Group
+import ua.com.foxminded.courseproject.entity.Lesson
+import ua.com.foxminded.courseproject.entity.Subject
+import ua.com.foxminded.courseproject.entity.Teacher
 
 @Component
-class LessonMapper @Autowired constructor(
+class LessonMapper(
     private val classRoomMapper: ClassRoomMapper,
     private val subjectMapper: SubjectMapper,
     private val teacherMapper: TeacherMapper,

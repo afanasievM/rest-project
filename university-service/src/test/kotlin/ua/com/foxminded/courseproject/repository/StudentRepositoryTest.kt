@@ -1,12 +1,9 @@
 package ua.com.foxminded.courseproject.repository
 
 import org.junit.jupiter.api.Test
-import org.junit.runner.RunWith
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.context.annotation.Import
-import org.springframework.test.context.junit4.SpringRunner
 import reactor.test.StepVerifier
 import ua.com.foxminded.courseproject.config.DBTestConfig
 import ua.com.foxminded.courseproject.entity.Group

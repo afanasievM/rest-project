@@ -2,7 +2,7 @@ package ua.com.foxminded.courseproject.entity
 
 
 import java.time.LocalTime
-import java.util.*
+import java.util.UUID
 
 data class Lesson(
     var id: UUID? = UUID.randomUUID(),

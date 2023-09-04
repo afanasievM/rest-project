@@ -1,6 +1,6 @@
 package ua.com.foxminded.courseproject.dto
 
-import java.util.*
+import java.util.UUID
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull

@@ -1,15 +1,14 @@
 package ua.com.foxminded.restClient.service
 
-import org.springframework.beans.factory.annotation.Autowired
+import java.util.Currency
 import org.springframework.stereotype.Service
 import ua.com.foxminded.restClient.dto.Rate
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.enums.Direction
 import ua.com.foxminded.restClient.exceptions.CurrencyNotFoundException
-import java.util.*
 
 @Service
-class CurrencyExchangeServiceImpl @Autowired constructor(var rateService: RateService) : CurrencyExchangeService {
+class CurrencyExchangeServiceImpl(var rateService: RateService) : CurrencyExchangeService {
 
     override fun exchangeTo(transaction: TransactionDto, currency: Currency): TransactionDto {
         val transactionCurrency = Currency.getInstance(transaction.currency)

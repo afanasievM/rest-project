@@ -13,7 +13,8 @@ import ua.com.foxminded.restClient.dto.TransactionNatsDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 import java.time.LocalDateTime
-import java.util.*
+import java.util.Currency
+import java.util.UUID
 
 @Component
 class NatsController @Autowired constructor(

@@ -4,8 +4,8 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
+import java.time.LocalDateTime
 import org.springdoc.api.annotations.ParameterObject
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.HttpStatus
@@ -16,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ua.com.foxminded.courseproject.service.TransactionService
 import ua.com.foxminded.courseproject.utils.PageableTransaction
-import java.time.LocalDateTime
 
 @RestController
-class TransactionController @Autowired constructor(private val transactionService: TransactionService) {
+class TransactionController(private val transactionService: TransactionService) {
 
     @Operation(summary = "Get all transaction by ID with currency between dates.")
     @ApiResponse(

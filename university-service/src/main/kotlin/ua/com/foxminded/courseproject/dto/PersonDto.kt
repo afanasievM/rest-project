@@ -3,7 +3,7 @@ package ua.com.foxminded.courseproject.dto
 import org.springframework.format.annotation.DateTimeFormat
 import ua.com.foxminded.courseproject.validation.Age
 import java.time.LocalDate
-import java.util.*
+import java.util.UUID
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 

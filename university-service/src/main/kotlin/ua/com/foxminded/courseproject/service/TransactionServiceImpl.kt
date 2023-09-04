@@ -1,6 +1,8 @@
 package ua.com.foxminded.courseproject.service
 
-import org.springframework.beans.factory.annotation.Autowired
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Optional
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.data.domain.Page
@@ -13,17 +15,15 @@ import org.springframework.web.client.exchange
 import org.springframework.web.util.UriComponentsBuilder
 import ua.com.foxminded.courseproject.dto.TransactionDto
 import ua.com.foxminded.courseproject.utils.PaginatedResponse
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 @Service
-open class TransactionServiceImpl @Autowired constructor(private val restTemplate: RestTemplate) : TransactionService {
-    @Value("\${university.service.URL}")
-    private lateinit var URL: String
-
+class TransactionServiceImpl(private val restTemplate: RestTemplate) : TransactionService {
     @Value("\${spring.mvc.format.date-time}")
-    private lateinit var DATE_TIME_FORMAT: String
+    lateinit var dateTimeFormat: String
+
+    @Value("\${university.service.URL}")
+    private lateinit var url: String
+    
 
     override fun getTransactions(
         id: String,
@@ -48,16 +48,18 @@ open class TransactionServiceImpl @Autowired constructor(private val restTemplat
         endDate: LocalDateTime,
         pageable: Pageable
     ): String {
-        val uriComponents = UriComponentsBuilder.fromUriString(URL)
+        val uriComponents = UriComponentsBuilder.fromUriString(url)
             .pathSegment(id)
             .pathSegment(currency)
             .queryParamIfPresent(
-                "startdate", Optional.ofNullable(startDate?.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
+                "startdate",
+                Optional.ofNullable(startDate?.format(DateTimeFormatter.ofPattern(dateTimeFormat)))
             )
-            .queryParam("enddate", endDate.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
+            .queryParam("enddate", endDate.format(DateTimeFormatter.ofPattern(dateTimeFormat)))
             .queryParam("size", pageable.pageSize)
             .queryParam("page", pageable.pageNumber)
             .build()
         return uriComponents.toString()
     }
+    
 }

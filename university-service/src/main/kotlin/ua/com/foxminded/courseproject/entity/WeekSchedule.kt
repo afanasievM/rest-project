@@ -1,6 +1,6 @@
 package ua.com.foxminded.courseproject.entity
 
-import java.util.*
+import java.util.UUID
 
 data class WeekSchedule(
     var id: UUID? = UUID.randomUUID(),

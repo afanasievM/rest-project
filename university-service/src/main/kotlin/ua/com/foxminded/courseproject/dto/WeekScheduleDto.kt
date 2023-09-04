@@ -1,6 +1,6 @@
 package ua.com.foxminded.courseproject.dto
 
-import java.util.*
+import java.util.UUID
 import javax.validation.constraints.NotNull
 
 data class WeekScheduleDto(

@@ -8,7 +8,7 @@ class StudentConflictException : RuntimeException {
     constructor(cause: Throwable) : super(cause)
     constructor(s: String) : super(s)
     constructor(studentDto: StudentDto) : super(
-        Companion.message.format(
+        MESSAGE.format(
             studentDto.firstName,
             studentDto.lastName,
             studentDto.birthDay.toString()
@@ -16,6 +16,6 @@ class StudentConflictException : RuntimeException {
     )
 
     companion object {
-        private const val message = "Student %s %s %s already exists."
+        private const val MESSAGE = "Student %s %s %s already exists."
     }
 }

@@ -1,7 +1,7 @@
 package ua.com.foxminded.courseproject.dto
 
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 data class ScheduleDto(
     var id: UUID? = UUID.randomUUID(),

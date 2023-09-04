@@ -1,20 +1,15 @@
 package ua.com.foxminded.courseproject.mapper
 
+import java.util.UUID
 import org.bson.Document
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.annotation.Id
-import org.springframework.data.mongodb.core.mapping.DBRef
-import org.springframework.data.mongodb.core.mapping.Field
-import org.springframework.data.mongodb.core.mapping.FieldType
 import org.springframework.stereotype.Component
 import ua.com.foxminded.courseproject.dto.DayScheduleDto
 import ua.com.foxminded.courseproject.dto.LessonDto
-import ua.com.foxminded.courseproject.entity.*
-import java.time.ZoneId
-import java.util.*
+import ua.com.foxminded.courseproject.entity.DaySchedule
+import ua.com.foxminded.courseproject.entity.Lesson
 
 @Component
-class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonMapper) :
+class DayScheduleMapper(private val lessonMapper: LessonMapper) :
     Mapper<DayScheduleDto?, DaySchedule?, Document> {
     override fun toDto(entity: DaySchedule?): DayScheduleDto? {
         if (entity == null) {
@@ -23,7 +18,8 @@ class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonM
         val dto = DayScheduleDto()
         dto.id = entity.id
         dto.dayNumber = entity.dayNumber
-        dto.lessons = entity.lessons?.stream()?.map { entity: Lesson? -> lessonMapper.toDto(entity) }?.toList() as List<LessonDto>?
+        dto.lessons = entity.lessons?.stream()?.map { entity: Lesson? -> lessonMapper.toDto(entity) }
+            ?.toList() as List<LessonDto>?
         return dto
     }
 
@@ -34,7 +30,8 @@ class DayScheduleMapper @Autowired constructor(private val lessonMapper: LessonM
         val entity = DaySchedule()
         entity.id = dto.id
         entity.dayNumber = dto.dayNumber
-        entity.lessons = dto.lessons?.stream()?.map { dto: LessonDto? -> lessonMapper.toEntity(dto) }?.toList() as MutableList<Lesson>
+        entity.lessons = dto.lessons?.stream()?.map { dto: LessonDto? -> lessonMapper.toEntity(dto) }
+            ?.toList() as MutableList<Lesson>
         return entity
     }
 

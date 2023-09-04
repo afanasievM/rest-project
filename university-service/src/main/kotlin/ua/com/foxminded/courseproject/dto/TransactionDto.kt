@@ -1,9 +1,9 @@
 package ua.com.foxminded.courseproject.dto
 
+import java.time.LocalDateTime
+import java.util.UUID
 import org.springframework.format.annotation.DateTimeFormat
 import ua.com.foxminded.courseproject.enums.Direction
-import java.time.LocalDateTime
-import java.util.*
 
 data class TransactionDto(
     var id: UUID? = UUID.randomUUID(),

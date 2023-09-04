@@ -6,8 +6,13 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
 import org.springframework.context.annotation.Import
 import reactor.test.StepVerifier
 import ua.com.foxminded.courseproject.config.DBTestConfig
-import ua.com.foxminded.courseproject.entity.DaySchedule
-import ua.com.foxminded.courseproject.mapper.*
+import ua.com.foxminded.courseproject.mapper.ClassRoomMapper
+import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
+import ua.com.foxminded.courseproject.mapper.GroupMapper
+import ua.com.foxminded.courseproject.mapper.LessonMapper
+import ua.com.foxminded.courseproject.mapper.StudentMapper
+import ua.com.foxminded.courseproject.mapper.SubjectMapper
+import ua.com.foxminded.courseproject.mapper.TeacherMapper
 import java.util.*
 
 @DataMongoTest

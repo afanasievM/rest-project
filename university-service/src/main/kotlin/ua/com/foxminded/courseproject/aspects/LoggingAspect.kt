@@ -1,5 +1,7 @@
 package ua.com.foxminded.courseproject.aspects
 
+import java.util.Arrays
+import java.util.Locale
 import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.AfterThrowing
@@ -8,44 +10,49 @@ import org.aspectj.lang.annotation.Aspect
 import org.aspectj.lang.annotation.Pointcut
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Aspect
 @Component
+@Suppress("TooManyFunctions")
 class LoggingAspect {
     private val logger = LoggerFactory.getLogger(this.javaClass)
-    private val STUDENT_STRING = "student"
-    private val TEACHER_STRING = "teacher"
-    private val SCHEDULE_STRING = "schedule"
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* findById*(..))")
     fun findByIdPointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* findDay*(..))")
     fun findDayPointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* findAll*(..))")
     fun findAllPointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* save(..))")
     fun savePointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* delete(..))")
     fun deletePointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("execution(* exists*(String,..))")
     fun existCheckPointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("@within(org.springframework.stereotype.Repository)")
     fun repositoryPointcut() {
     }
 
+    @Suppress("EmptyFunctionBlock")
     @Pointcut("within(@org.springframework.stereotype.Service *)")
     fun servicePointcut() {
     }
@@ -140,5 +147,11 @@ class LoggingAspect {
             result = SCHEDULE_STRING
         }
         return result
+    }
+
+    companion object {
+        const val SCHEDULE_STRING = "schedule"
+        const val STUDENT_STRING = "student"
+        const val TEACHER_STRING = "teacher"
     }
 }

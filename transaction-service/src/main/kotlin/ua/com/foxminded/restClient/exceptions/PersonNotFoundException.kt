@@ -1,6 +1,6 @@
 package ua.com.foxminded.restClient.exceptions
 
-import java.util.*
+import java.util.UUID
 
 class PersonNotFoundException : RuntimeException {
     constructor() : super()

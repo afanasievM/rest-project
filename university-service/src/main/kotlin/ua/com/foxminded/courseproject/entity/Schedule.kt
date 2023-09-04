@@ -1,12 +1,12 @@
 package ua.com.foxminded.courseproject.entity
 
+import java.time.LocalDateTime
+import java.util.UUID
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
 import org.springframework.data.mongodb.core.mapping.FieldType
-import java.time.LocalDateTime
-import java.util.*
 
 @Document("schedule")
 data class Schedule(
@@ -24,3 +24,4 @@ data class Schedule(
     @Field("end_time")
     var endDate: LocalDateTime? = null
 )
+

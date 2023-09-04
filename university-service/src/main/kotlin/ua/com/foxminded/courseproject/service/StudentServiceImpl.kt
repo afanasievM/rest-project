@@ -1,5 +1,6 @@
 package ua.com.foxminded.courseproject.service
 
+import java.util.UUID
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -9,7 +10,6 @@ import ua.com.foxminded.courseproject.exceptions.StudentConflictException
 import ua.com.foxminded.courseproject.exceptions.StudentNotFoundException
 import ua.com.foxminded.courseproject.mapper.StudentMapper
 import ua.com.foxminded.courseproject.repository.StudentRepositoryImp
-import java.util.*
 
 @Service
 class StudentServiceImpl @Autowired constructor(

@@ -4,7 +4,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
 import ua.com.foxminded.courseproject.enums.Role
-import java.util.*
 
 @Document("users")
 data class User(

@@ -14,6 +14,7 @@ import java.nio.channels.Channels
 class LoggingResponseDecorator internal constructor(val log: Logger, delegate: ServerHttpResponse) :
     ServerHttpResponseDecorator(delegate) {
 
+    @Suppress("OnlyForLogs")
     override fun writeWith(body: Publisher<out DataBuffer>): Mono<Void> {
         return super.writeWith(
             Flux.from(body)
@@ -29,6 +30,7 @@ class LoggingResponseDecorator internal constructor(val log: Logger, delegate: S
                 })
     }
 
+    @Suppress("OnlyForLogs")
     override fun writeAndFlushWith(body: Publisher<out Publisher<out DataBuffer>>): Mono<Void> {
         return super.writeAndFlushWith(
             Flux.merge(body)

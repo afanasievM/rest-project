@@ -2,7 +2,7 @@ package ua.com.foxminded.restClient.dto
 
 import ua.com.foxminded.restClient.enums.Direction
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 data class TransactionDto(
     var id: UUID? = null,

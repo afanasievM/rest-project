@@ -1,11 +1,11 @@
 package ua.com.foxminded.courseproject.repository
 
+import java.time.LocalDate
+import java.util.UUID
 import org.springframework.data.repository.reactive.ReactiveSortingRepository
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.entity.Teacher
-import java.time.LocalDate
-import java.util.*
 
 interface TeacherRepository : ReactiveSortingRepository<Teacher, UUID> {
     override fun findAll(): Flux<Teacher>

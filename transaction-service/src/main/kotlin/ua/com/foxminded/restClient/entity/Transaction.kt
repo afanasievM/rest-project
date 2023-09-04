@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Field
 import org.springframework.data.mongodb.core.mapping.FieldType
 import ua.com.foxminded.restClient.enums.Direction
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 @Document("transactions")
 data class Transaction(

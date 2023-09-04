@@ -1,6 +1,6 @@
 package ua.com.foxminded.courseproject.service
 
-import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -9,10 +9,9 @@ import ua.com.foxminded.courseproject.exceptions.TeacherConflictException
 import ua.com.foxminded.courseproject.exceptions.TeacherNotFoundException
 import ua.com.foxminded.courseproject.mapper.TeacherMapper
 import ua.com.foxminded.courseproject.repository.TeacherRepository
-import java.util.*
 
 @Service
-class TeacherServiceImpl @Autowired constructor(
+class TeacherServiceImpl(
     private val mapper: TeacherMapper,
     private val repository: TeacherRepository
 ) : PersonService<TeacherDto> {

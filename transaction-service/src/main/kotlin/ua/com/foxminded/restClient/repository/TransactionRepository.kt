@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.entity.Transaction
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 
 @Repository
 interface TransactionRepository : ReactiveSortingRepository<Transaction, UUID> {

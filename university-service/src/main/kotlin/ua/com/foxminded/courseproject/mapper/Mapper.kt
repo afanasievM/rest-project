@@ -6,3 +6,4 @@ interface Mapper<D, E, M> {
     fun documentToEntity(doc: M): E
     fun entityToDocument(entity: E): M
 }
+

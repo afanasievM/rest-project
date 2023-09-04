@@ -8,8 +8,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
-import ua.com.foxminded.courseproject.exceptions.*
-import java.util.*
+import ua.com.foxminded.courseproject.exceptions.StudentConflictException
+import ua.com.foxminded.courseproject.exceptions.StudentNotFoundException
+import ua.com.foxminded.courseproject.exceptions.TeacherConflictException
+import ua.com.foxminded.courseproject.exceptions.TeacherNotFoundException
+import ua.com.foxminded.courseproject.exceptions.UserNotFoundException
+import java.util.Arrays
 
 @ControllerAdvice
 class ResponseExceptionHandler {

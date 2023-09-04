@@ -4,9 +4,9 @@ class UserNotFoundException : NoSuchElementException {
     constructor() : super()
     constructor(s: String, cause: Throwable) : super(s, cause)
     constructor(cause: Throwable) : super(cause)
-    constructor(s: String) : super(Companion.message.format(s))
+    constructor(s: String) : super(MESSAGE.format(s))
 
     companion object {
-        private const val message = "Can't find user with username - '%s'"
+        private const val MESSAGE = "Can't find user with username - '%s'"
     }
 }

@@ -6,13 +6,10 @@ class CurrencyNotFoundException : RuntimeException {
     constructor(cause: Throwable?) : super(cause)
     constructor(s: String?) : super(s)
     constructor(firstCurrency: String?, secondCurrency: String?) : super(
-        Companion.message.format(
-            firstCurrency,
-            secondCurrency
-        )
+        MESSAGE.format(firstCurrency, secondCurrency)
     )
 
     companion object {
-        private const val message = "Currency rate between %s and %s not found."
+        private const val MESSAGE = "Currency rate between %s and %s not found."
     }
 }

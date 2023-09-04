@@ -2,7 +2,11 @@ package ua.com.foxminded.courseproject.config
 
 import org.bson.BsonDocument
 import org.json.JSONArray
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.core.io.ClassPathResource
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
@@ -17,7 +21,7 @@ open class DBTestConfig {
 
     @Autowired
     lateinit var mongoTemplate: ReactiveMongoTemplate
-    private val DATASET_PATH = "datasets/"
+
     private lateinit var mongoContainer: DockerComposeContainer<*>
 
 
@@ -42,7 +46,7 @@ open class DBTestConfig {
     @BeforeEach
     fun loadData() {
         colections.forEach {
-            val jsonFile = ClassPathResource(DATASET_PATH + it + ".json").file
+            val jsonFile = ClassPathResource(Companion.DATASET_PATH + it + ".json").file
             val jsonString = String(Files.readAllBytes(jsonFile.toPath()))
             val jsonArray = JSONArray(jsonString)
             for (i in 0 until jsonArray.length()) {
@@ -57,6 +61,10 @@ open class DBTestConfig {
         colections.forEach {
             mongoTemplate.getCollection(it).block().drop().toMono().block()
         }
+    }
+
+    companion object {
+        const val DATASET_PATH = "datasets/"
     }
 
 }

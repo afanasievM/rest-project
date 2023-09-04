@@ -1,9 +1,7 @@
 package ua.com.foxminded.restClient.dto
 
-import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.UUID
 
 data class TransactionNatsDto(
     var id: UUID? = null,

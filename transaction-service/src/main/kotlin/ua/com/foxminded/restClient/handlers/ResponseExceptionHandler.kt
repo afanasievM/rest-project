@@ -2,21 +2,21 @@ package ua.com.foxminded.restClient.handlers
 
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.responses.ApiResponse
+import java.util.Arrays
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.client.HttpClientErrorException
 import ua.com.foxminded.restClient.exceptions.CurrencyNotFoundException
 import ua.com.foxminded.restClient.exceptions.PersonNotFoundException
-import java.util.*
 
 @ControllerAdvice
 class ResponseExceptionHandler {
     private val logger = LoggerFactory.getLogger(ResponseExceptionHandler::class.java)
+
     @ExceptionHandler(PersonNotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ApiResponse(responseCode = "404", description = "Person isn't found.", content = [Content()])

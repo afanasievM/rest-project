@@ -1,43 +1,40 @@
 package ua.com.foxminded.courseproject.repository
 
 import com.mongodb.DBRef
+import java.time.LocalDate
+import java.util.UUID
 import org.bson.Document
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Repository
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Student
 import ua.com.foxminded.courseproject.mapper.StudentMapper
-import java.time.LocalDate
-import java.util.*
 
 @Repository
 class StudentRepositoryImp(
-    @Autowired var template: ReactiveMongoTemplate,
-    @Autowired val groupRepository: GroupRepository,
-    @Autowired val mapper: StudentMapper
+    var template: ReactiveMongoTemplate,
+    val groupRepository: GroupRepository,
+    val mapper: StudentMapper
 ) : StudentRepository {
-    private val COLLECTION_NAME = "students"
     override fun findById(id: UUID): Mono<Student> {
         return template
-            .findById(id.toString(), Document::class.java, COLLECTION_NAME)
+            .findById(id.toString(), Document::class.java, Companion.COLLECTION_NAME)
             .flatMap { studentDBRefsMapper(it) }
             .map { mapper.documentToEntity(it) }
     }
 
 
     override fun findAll(): Flux<Student> {
-        return template.findAll(Document::class.java, COLLECTION_NAME)
+        return template.findAll(Document::class.java, Companion.COLLECTION_NAME)
             .flatMap { studentDBRefsMapper(it) }
             .map { mapper.documentToEntity(it) }
     }
 
     override fun save(student: Student): Mono<Student> {
-        return template.save(mapper.entityToDocument(student), COLLECTION_NAME)
+        return template.save(mapper.entityToDocument(student), Companion.COLLECTION_NAME)
             .flatMap { studentDBRefsMapper(it) }
             .map { mapper.documentToEntity(it) }
     }
@@ -45,7 +42,7 @@ class StudentRepositoryImp(
     override fun delete(student: Student): Mono<Void> {
         val query = Query()
         query.addCriteria(Criteria.where("_id").`is`(student.id.toString()))
-        return template.remove(query, COLLECTION_NAME)
+        return template.remove(query, Companion.COLLECTION_NAME)
             .then()
     }
 
@@ -61,7 +58,7 @@ class StudentRepositoryImp(
                 .and("firstname").`is`(firstName)
                 .and("lastname").`is`(lastName)
         )
-        return template.exists(query, COLLECTION_NAME)
+        return template.exists(query, Companion.COLLECTION_NAME)
     }
 
     private fun studentDBRefsMapper(doc: Document): Mono<Document> {
@@ -79,9 +76,8 @@ class StudentRepositoryImp(
                 }
         }
     }
+
+    companion object {
+        const val COLLECTION_NAME = "students"
+    }
 }
-
-
-
-
-

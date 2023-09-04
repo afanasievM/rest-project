@@ -1,7 +1,7 @@
 package ua.com.foxminded.courseproject.entity
 
 import java.time.LocalDate
-import java.util.*
+import java.util.UUID
 
 
 abstract class Person {

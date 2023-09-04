@@ -1,22 +1,26 @@
 package ua.com.foxminded.courseproject.service
 
+import java.time.LocalDate
+import java.time.temporal.ChronoField
+import java.time.temporal.ChronoUnit
+import java.util.UUID
 import org.bson.Document
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import ua.com.foxminded.courseproject.dto.*
+import ua.com.foxminded.courseproject.dto.DayScheduleDto
+import ua.com.foxminded.courseproject.dto.LessonDto
+import ua.com.foxminded.courseproject.dto.PersonDto
+import ua.com.foxminded.courseproject.dto.StudentDto
+import ua.com.foxminded.courseproject.dto.TeacherDto
 import ua.com.foxminded.courseproject.entity.DaySchedule
 import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
 import ua.com.foxminded.courseproject.mapper.Mapper
 import ua.com.foxminded.courseproject.repository.WeekScheduleRepository
-import java.time.LocalDate
-import java.time.temporal.ChronoField
-import java.time.temporal.ChronoUnit
-import java.util.*
 
 @Service
-class DayScheduleServiceImpl @Autowired constructor(
+@Suppress("TooManyFunctions")
+class DayScheduleServiceImpl(
     mapper: DayScheduleMapper, repository: WeekScheduleRepository,
     teacherService: TeacherServiceImpl, studentService: StudentServiceImpl
 ) : DayScheduleService {

@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import org.springdoc.api.annotations.ParameterObject
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.format.annotation.DateTimeFormat
@@ -22,10 +21,11 @@ import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 import ua.com.foxminded.restClient.utils.PageableTransaction
 import java.time.LocalDateTime
-import java.util.*
+import java.util.Currency
+import java.util.UUID
 
 @RestController
-class TransactionController @Autowired constructor(
+class TransactionController(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService
 ) {
