@@ -55,6 +55,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
     implementation("org.springframework.boot:spring-boot-starter-data-redis:$SPRINGBOOT_VER")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
+    implementation("redis.clients:jedis")
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")

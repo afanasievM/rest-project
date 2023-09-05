@@ -7,7 +7,6 @@ import org.springframework.cache.annotation.EnableCaching
 import org.springframework.web.reactive.config.EnableWebFlux
 
 @SpringBootApplication
-@EnableCaching
 class RestClientApplication
 
 fun main(args: Array<String>) {
