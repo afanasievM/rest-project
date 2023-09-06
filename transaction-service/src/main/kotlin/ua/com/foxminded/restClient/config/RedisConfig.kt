@@ -17,22 +17,22 @@ import org.springframework.data.redis.serializer.RedisSerializationContext
 class RedisConfig {
     @Bean
     fun cacheManager(redisConnectionFactory: RedisConnectionFactory, mapper: ObjectMapper): CacheManager {
+        val jackson2JsonRedisSerializer = GenericJackson2JsonRedisSerializer(
+            mapper.copy()
+                .enableDefaultTyping(
+                    ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY
+                )
+        )
+        val redisSerializationContext = RedisSerializationContext
+            .SerializationPair
+            .fromSerializer(jackson2JsonRedisSerializer)
         return RedisCacheManager.builder(redisConnectionFactory)
             .cacheDefaults(
-                RedisCacheConfiguration.defaultCacheConfig()
+                RedisCacheConfiguration
+                    .defaultCacheConfig()
                     .entryTtl(Duration.ofMinutes(1))
                     .disableCachingNullValues()
-                    .serializeValuesWith(
-                        RedisSerializationContext.SerializationPair.fromSerializer(
-                            GenericJackson2JsonRedisSerializer(
-                                mapper
-                                    .copy()
-                                    .enableDefaultTyping(
-                                        ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY
-                                    )
-                            )
-                        )
-                    )
+                    .serializeValuesWith(redisSerializationContext)
             )
             .build()
     }

@@ -3,8 +3,9 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.DayScheduleDto
+import validation.ValidationTestFixture.Companion.validator
 
-class DayScheduleDtoTest : ValidationSetupTest() {
+class DayScheduleDtoTest {
     @Test
     fun dayNumberValidation_shouldThrowException_whenNumberIsNull() {
         val dayScheduleDto = DayScheduleDto()

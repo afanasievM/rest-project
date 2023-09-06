@@ -5,5 +5,3 @@ package ua.com.foxminded.restClient.annotation
 annotation class CustomCacheable(
     val value: String
 )
-
-

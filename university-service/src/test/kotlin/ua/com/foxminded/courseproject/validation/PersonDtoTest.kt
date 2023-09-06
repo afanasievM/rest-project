@@ -1,11 +1,12 @@
 package ua.com.foxminded.courseproject.validation
 
+import java.time.LocalDate
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.PersonDto
-import java.time.LocalDate
+import validation.ValidationTestFixture.Companion.validator
 
-abstract class PersonDtoTest<T : PersonDto> : ValidationSetupTest() {
+abstract class PersonDtoTest<T : PersonDto> {
     protected lateinit var person: T
 
     @Test

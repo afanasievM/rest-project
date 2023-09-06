@@ -3,8 +3,9 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.SubjectDto
+import validation.ValidationTestFixture.Companion.validator
 
-class SubjectDtoTest : ValidationSetupTest() {
+class SubjectDtoTest {
     @Test
     fun nameValidation_shouldThrowException_whenNameIsNull() {
         val subjectDto = SubjectDto()

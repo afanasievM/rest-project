@@ -16,12 +16,10 @@ import org.springframework.web.reactive.result.method.annotation.ArgumentResolve
 
 @Configuration
 @EnableWebFlux
-class WebConfig: WebFluxConfigurer {
-    @Value("\${nats.url}")
-    private lateinit var natsUrl: String
+class WebConfig : WebFluxConfigurer {
 
     @Bean
-    fun natsConncetion(): Connection {
+    fun natsConncetion(@Value("\${nats.url}") natsUrl: String): Connection {
         return Nats.connect(natsUrl)
     }
 

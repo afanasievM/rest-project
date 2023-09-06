@@ -3,8 +3,9 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.ClassRoomDto
+import validation.ValidationTestFixture.Companion.validator
 
-class ClassRoomDtoTest : ValidationSetupTest() {
+class ClassRoomDtoTest {
     @Test
     fun numberValidation_shouldThrowException_whenNumberIsNull() {
         val classRoomDto = ClassRoomDto()

@@ -3,8 +3,9 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.GroupDto
+import validation.ValidationTestFixture.Companion.validator
 
-class GroupDtoTest : ValidationSetupTest() {
+class GroupDtoTest {
     @Test
     fun nameValidation_shouldThrowException_whenNameIsNull() {
         val groupDto = GroupDto()

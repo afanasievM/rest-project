@@ -1,10 +1,11 @@
 package ua.com.foxminded.courseproject.validation
 
+import java.time.LocalDate
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.TeacherDto
-import java.time.LocalDate
+import validation.ValidationTestFixture.Companion.validator
 
 class TeacherDtoTest : PersonDtoTest<TeacherDto>() {
     @BeforeEach
@@ -27,7 +28,6 @@ class TeacherDtoTest : PersonDtoTest<TeacherDto>() {
         val expectedSize = 1
 
         val constraintViolations = validator.validate(person)
-        println(constraintViolations)
         val actualSize = constraintViolations.size
         val actualMessage = constraintViolations.iterator().next().message
 
