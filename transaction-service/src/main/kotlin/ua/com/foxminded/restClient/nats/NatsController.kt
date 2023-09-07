@@ -38,7 +38,7 @@ class NatsController @Autowired constructor(
 
 
     fun handleMessage(message: Message) {
-        val request = ProtoMessage.TransactionRequestProto.newBuilder().mergeFrom(message.data).build()
+        val request = ProtoMessage.TransactionRequestProto.parseFrom(message.data)
         findTransactions(
             UUID.fromString(request.personId),
             LocalDateTime.ofEpochSecond(request.startDate.seconds, request.endDate.nanos, ZoneOffset.UTC),
@@ -59,10 +59,10 @@ class NatsController @Autowired constructor(
             .setPersonId(dto.personId.toString())
             .setTransactionTime(
                 Timestamp.newBuilder()
-                    .setSeconds(dto.transactionTime!!.toEpochSecond(ZoneOffset.UTC))
-                    .setNanos(dto.transactionTime!!.nano)
+                    .setSeconds(dto.transactionTime?.toEpochSecond(ZoneOffset.UTC) ?: 0)
+                    .setNanos(dto.transactionTime?.nano ?: 0)
             )
-            .setValue(dto.value!!)
+            .setValue(dto.value ?: 0.0)
             .setCurrency(dto.currency)
             .setIban(dto.iban)
             .build()
