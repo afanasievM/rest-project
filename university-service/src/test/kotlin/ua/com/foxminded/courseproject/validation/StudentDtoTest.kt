@@ -1,11 +1,12 @@
 package ua.com.foxminded.courseproject.validation
 
+import java.time.LocalDate
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.GroupDto
 import ua.com.foxminded.courseproject.dto.StudentDto
-import java.time.LocalDate
+import validation.ValidationTestFixture.Companion.validator
 
 class StudentDtoTest : PersonDtoTest<StudentDto>() {
     @BeforeEach
