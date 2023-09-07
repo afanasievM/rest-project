@@ -1,7 +1,5 @@
 package ua.com.foxminded.restClient.nats
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.convertValue
 import com.google.protobuf.Timestamp
 import io.nats.client.Connection
 import io.nats.client.Message
@@ -16,15 +14,12 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.util.Currency
 import java.util.UUID
-import kotlin.reflect.jvm.internal.impl.metadata.ProtoBuf
-import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter
 
 @Component
 class NatsController @Autowired constructor(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
-    private val natsConnection: Connection,
-    private val mapper: ObjectMapper
+    private val natsConnection: Connection
 ) {
     private val identificator = "transactions.service"
 

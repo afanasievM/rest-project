@@ -62,7 +62,10 @@ dependencies {
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
-
+    testImplementation("org.testcontainers:testcontainers:1.18.3")
+    testImplementation("io.nats:jnats:2.16.8")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.3")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.1.0")
 
 }
 sourceSets {
