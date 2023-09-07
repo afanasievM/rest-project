@@ -56,7 +56,7 @@ class NatsControllerTest {
 
     @Test
     fun nats_shouldReturnFluxTransactions_whenInputCorrect() {
-        val request = getTransactionRequest()
+        val request: ProtoMessage.TransactionRequestProto = getTransactionRequest()
         val latch = CountDownLatch(2)
         val responseMessages: MutableList<Message> = mutableListOf()
         val expectedSize = 2
