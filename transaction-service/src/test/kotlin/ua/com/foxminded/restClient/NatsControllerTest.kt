@@ -55,7 +55,7 @@ class NatsControllerTest {
     }
 
     @Test
-    fun nats_shouldReturnFluxTransactions_whenInputCorrect() {
+    fun `nats should return flux transactions when input correct`(){
         val request: ProtoMessage.TransactionRequestProto = getTransactionRequest()
         val latch = CountDownLatch(2)
         val responseMessages: MutableList<Message> = mutableListOf()
@@ -93,7 +93,7 @@ class NatsControllerTest {
         nats.stop()
     }
 
-    fun getTransactionRequest(): ProtoMessage.TransactionRequestProto {
+    private fun getTransactionRequest(): ProtoMessage.TransactionRequestProto {
         val startDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
         val endDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
         return ProtoMessage.TransactionRequestProto.newBuilder()
@@ -106,7 +106,7 @@ class NatsControllerTest {
             .build()
     }
 
-    fun getListTransactions(): List<TransactionDto> {
+    private fun getListTransactions(): List<TransactionDto> {
         val dto1 = TransactionDto(
             id = UUID.fromString("e966f601-4621-11ed-b878-0242ac120002"),
             personId = UUID.fromString("e966f608-4621-11ed-b878-0242ac120002"),
