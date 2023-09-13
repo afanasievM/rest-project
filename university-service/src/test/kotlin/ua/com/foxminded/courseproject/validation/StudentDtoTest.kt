@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.GroupDto
 import ua.com.foxminded.courseproject.dto.StudentDto
-import validation.ValidationTestFixture.Companion.validator
+import validation.Validations.validator
 
 class StudentDtoTest : PersonDtoTest<StudentDto>() {
     @BeforeEach

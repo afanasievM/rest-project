@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.ClassRoomDto
 import ua.com.foxminded.courseproject.dto.LessonDto
 import ua.com.foxminded.courseproject.dto.SubjectDto
-import validation.ValidationTestFixture.Companion.validator
+import validation.Validations.validator
 
 class LessonDtoTest {
     private lateinit var lessonDto: LessonDto

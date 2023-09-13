@@ -3,7 +3,7 @@ package ua.com.foxminded.courseproject.validation
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import ua.com.foxminded.courseproject.dto.SubjectDto
-import validation.ValidationTestFixture.Companion.validator
+import validation.Validations.validator
 
 class SubjectDtoTest {
     @Test
