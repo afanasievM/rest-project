@@ -96,14 +96,14 @@ class NatsControllerTest {
     private fun getTransactionRequest(): ProtoMessage.TransactionRequestProto {
         val startDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
         val endDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
-        return ProtoMessage.TransactionRequestProto.newBuilder()
-            .setPersonId("e966f608-4621-11ed-b878-0242ac120002")
-            .setCurrency("UAH")
-            .setStartDate(Timestamp.newBuilder().setSeconds(startDate.epochSecond).setNanos(startDate.nano).build())
-            .setEndDate(Timestamp.newBuilder().setSeconds(endDate.epochSecond).setNanos(endDate.nano).build())
-            .setPage(0)
-            .setSize(2)
-            .build()
+        return ProtoMessage.TransactionRequestProto.newBuilder().apply {
+            personId = "e966f608-4621-11ed-b878-0242ac120002"
+            currency = "UAH"
+            startDateBuilder.setSeconds(startDate.epochSecond).setNanos(startDate.nano)   
+            endDateBuilder.setSeconds(endDate.epochSecond).setNanos(endDate.nano)
+            page = 0
+            size = 2
+         }.build()
     }
 
     private fun getListTransactions(): List<TransactionDto> {
