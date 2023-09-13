@@ -1,5 +1,6 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+import com.google.protobuf.gradle.*
 
 val MAPSTRUCT_VER = "1.5.3.Final"
 val OPENAPI_VER = "1.7.0"
@@ -15,6 +16,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt") version "1.8.21"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.8.21"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("com.google.protobuf") version "0.9.4"
 
 }
 
@@ -53,18 +55,25 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis:$SPRINGBOOT_VER")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
     implementation("redis.clients:jedis")
+    implementation("com.google.protobuf:protobuf-kotlin:3.19.6")
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test"))
-
+    testImplementation("org.testcontainers:testcontainers:1.18.3")
+    testImplementation("io.nats:jnats:2.16.8")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.3")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.1.0")
 
 }
 sourceSets {
     main {
         java.srcDirs.add(File("build/generated/source/apt/main"))
+        proto {
+            srcDir("src/main/protobuf")
+        }
     }
 }
 
@@ -91,6 +100,19 @@ kapt {
     correctErrorTypes = true
     arguments {
         arg("mapstruct.nullValueCheckStrategy", "ALWAYS")
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.19.6"
+    }
+    generateProtoTasks {
+        all().forEach {
+            it.builtins {
+                id("kotlin")
+            }
+        }
     }
 }
 
