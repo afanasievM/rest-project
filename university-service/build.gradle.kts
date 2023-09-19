@@ -1,9 +1,15 @@
+
+import com.google.protobuf.gradle.id
+import com.google.protobuf.gradle.proto
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+
 
 val OPENAPI_VER = "1.7.0"
 val HTTP_CLIENT_VER = "4.5.13"
 val SPRINGBOOT_VER = "2.7.4"
+val GRPC_VER = "1.53.0"
+val REACTIVE_GRPC_VER = "1.2.3"
 
 plugins {
     java
@@ -13,6 +19,7 @@ plugins {
     kotlin("jvm") version "1.8.21"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
     `java-test-fixtures`
+    id("com.google.protobuf") version "0.9.4"
 }
 
 repositories {
@@ -38,7 +45,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
-
+    implementation("com.google.protobuf:protobuf-kotlin:3.24.3")
+    implementation("io.grpc:protoc-gen-grpc-kotlin:1.3.1")
+    implementation("io.grpc:grpc-all:$GRPC_VER")
+    implementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
+    implementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
@@ -53,8 +64,15 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter:1.18.3")
     testImplementation("io.projectreactor:reactor-test")
     testFixturesImplementation("org.springframework.boot:spring-boot-starter-validation:$SPRINGBOOT_VER")
+}
 
-
+sourceSets {
+    main {
+        java.srcDirs.add(File("build/generated/source/apt/main"))
+        proto {
+            srcDir("src/main/kotlin/protobuf")
+        }
+    }
 }
 
 tasks.test {
@@ -83,4 +101,29 @@ tasks.withType<Detekt>().configureEach {
 
 tasks.withType<DetektCreateBaselineTask>().configureEach {
     jvmTarget = "17"
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.24.3"
+    }
+    plugins {
+        id("grpc") {
+            artifact = "io.grpc:protoc-gen-grpc-java:${GRPC_VER}"
+        }
+        id("reactor-grpc") {
+            artifact = "com.salesforce.servicelibs:reactor-grpc:${REACTIVE_GRPC_VER}"
+        }
+    }
+    generateProtoTasks {
+        all().forEach {
+            it.plugins {
+                id("grpc")
+                id("reactor-grpc")
+            }
+            it.builtins {
+                id("kotlin")
+            }
+        }
+    }
 }

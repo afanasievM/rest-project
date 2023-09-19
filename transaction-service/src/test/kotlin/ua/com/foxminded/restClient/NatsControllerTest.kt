@@ -1,6 +1,5 @@
 package ua.com.foxminded.restClient
 
-import com.google.protobuf.Timestamp
 import io.nats.client.Connection
 import io.nats.client.Message
 import io.nats.client.Nats
