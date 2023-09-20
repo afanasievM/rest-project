@@ -8,7 +8,6 @@ import java.util.UUID
 import org.springframework.data.domain.Pageable
 import protobuf.ProtoMessage
 import protobuf.ReactorTransactionsServiceGrpc
-import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
@@ -22,7 +21,7 @@ class TransactionGRPCService(
 
     override fun getTransactions(
         request: Mono<ProtoMessage.TransactionRequestProto>
-    ): Flux<ProtoMessage.TransactionResponseProto> {
+    ): Mono<ProtoMessage.TransactionResponseListProto>? {
         var currency = ""
         return request
             .doOnNext { currency = it.currency }
@@ -36,7 +35,14 @@ class TransactionGRPCService(
             }
             .map { exchangeService.exchangeTo(it, Currency.getInstance(currency)) }
             .map(this::mapTransactionDtoToResponse)
+            .collectList()
+            .map {
+                ProtoMessage.TransactionResponseListProto.newBuilder()
+                    .addAllTransaction(it)
+                    .build()
+            }
     }
+
     private fun mapTransactionDtoToResponse(dto: TransactionDto): ProtoMessage.TransactionResponseProto {
         return ProtoMessage.TransactionResponseProto.newBuilder().apply {
             id = dto.id.toString()

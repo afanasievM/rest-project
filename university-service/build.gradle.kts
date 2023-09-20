@@ -70,7 +70,7 @@ sourceSets {
     main {
         java.srcDirs.add(File("build/generated/source/apt/main"))
         proto {
-            srcDir("src/main/kotlin/protobuf")
+            srcDir(rootDir.path + "/protobuf")
         }
     }
 }

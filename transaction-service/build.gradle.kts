@@ -64,7 +64,6 @@ dependencies {
     implementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
     implementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
 
-
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))
@@ -79,7 +78,7 @@ sourceSets {
     main {
         java.srcDirs.add(File("build/generated/source/apt/main"))
         proto {
-            srcDir("src/main/kotlin/protobuf")
+            srcDir(rootDir.path + "/protobuf")
         }
     }
 }

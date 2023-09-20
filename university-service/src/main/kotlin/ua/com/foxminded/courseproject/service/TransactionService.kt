@@ -3,6 +3,7 @@ package ua.com.foxminded.courseproject.service
 import java.time.LocalDateTime
 import org.springframework.data.domain.Pageable
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.dto.TransactionDto
 
 interface TransactionService {
@@ -12,6 +13,6 @@ interface TransactionService {
         startDate: LocalDateTime,
         endDate: LocalDateTime,
         pageable: Pageable
-    ): Flux<TransactionDto>
+    ): Mono<List<TransactionDto>>
 }
 

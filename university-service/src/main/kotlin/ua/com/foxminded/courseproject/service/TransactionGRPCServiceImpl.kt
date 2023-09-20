@@ -5,6 +5,7 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 import java.util.UUID
 import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
 import protobuf.ProtoMessage
 import protobuf.ReactorTransactionsServiceGrpc
@@ -24,10 +25,12 @@ class TransactionGRPCServiceImpl(
         startDate: LocalDateTime,
         endDate: LocalDateTime,
         pageable: Pageable
-    ): Flux<TransactionDto> {
+    ): Mono<List<TransactionDto>> {
         return stub
             .getTransactions(Mono.just(buildTransactionRequest(id, currency, startDate, endDate, pageable)))
-            .map { transactionResponseToDto(it) }
+            .map {
+                it.transactionList.map { transaction -> transactionResponseToDto(transaction) }
+            }
     }
 
     private fun buildTransactionRequest(

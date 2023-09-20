@@ -29,3 +29,7 @@ message TransactionResponseProto {
   string currency = 6;
   string iban = 7;
 }
+
+message TransactionResponseListProto{
+  repeated TransactionResponseProto transaction = 1;
+}
