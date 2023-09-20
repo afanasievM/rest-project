@@ -33,7 +33,7 @@ class NatsController @Autowired constructor(
 
 
     fun handleMessage(message: Message) {
-        val request = ProtoMessage.TransactionRequestProto.parseFrom(message.data)
+        val request = ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.parseFrom(message.data)
         transactionService.findAllByIdAndBetweenDate(
             UUID.fromString(request.personId),
             LocalDateTime.ofEpochSecond(request.startDate.seconds, request.endDate.nanos, ZoneOffset.UTC),
@@ -48,8 +48,10 @@ class NatsController @Autowired constructor(
 
     }
 
-    private fun mapTransactionDtoToResponse(dto: TransactionDto): ProtoMessage.TransactionResponseProto {
-        return ProtoMessage.TransactionResponseProto.newBuilder()
+    private fun mapTransactionDtoToResponse(
+        dto: TransactionDto
+    ): ProtoMessage.FindTransactionsByPersonIdAndTimeResponse {
+        return ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.newBuilder()
             .setId(dto.id.toString())
             .setPersonId(dto.personId.toString())
             .setTransactionTime(

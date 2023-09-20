@@ -5,5 +5,6 @@ package protobuf;
 import "ProtoMessage.proto";
 
 service TransactionsService{
-  rpc getTransactions (TransactionRequestProto) returns (TransactionResponseListProto);
+  rpc findTransactionsByPersonIdAndTime (FindTransactionsByPersonIdAndTimeRequest)
+      returns (FindTransactionsByPersonIdAndTimeListResponse);
 }

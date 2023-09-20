@@ -27,7 +27,9 @@ class TransactionGRPCServiceImpl(
         pageable: Pageable
     ): Mono<List<TransactionDto>> {
         return stub
-            .getTransactions(Mono.just(buildTransactionRequest(id, currency, startDate, endDate, pageable)))
+            .findTransactionsByPersonIdAndTime(
+                Mono.just(buildTransactionRequest(id, currency, startDate, endDate, pageable))
+            )
             .map {
                 it.transactionList.map { transaction -> transactionResponseToDto(transaction) }
             }
@@ -39,10 +41,10 @@ class TransactionGRPCServiceImpl(
         startDate: LocalDateTime,
         endDate: LocalDateTime,
         pageable: Pageable
-    ): ProtoMessage.TransactionRequestProto {
+    ): ProtoMessage.FindTransactionsByPersonIdAndTimeRequest {
         val startDate = startDate.atZone(ZoneId.systemDefault()).toInstant()
         val endDate = endDate.atZone(ZoneId.systemDefault()).toInstant()
-        return ProtoMessage.TransactionRequestProto.newBuilder().apply {
+        return ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.newBuilder().apply {
             personId = id
             currency = cur
             startDateBuilder.setSeconds(startDate.epochSecond).setNanos(startDate.nano)
@@ -52,7 +54,9 @@ class TransactionGRPCServiceImpl(
         }.build()
     }
 
-    private fun transactionResponseToDto(responseProto: ProtoMessage.TransactionResponseProto): TransactionDto {
+    private fun transactionResponseToDto(
+        responseProto: ProtoMessage.FindTransactionsByPersonIdAndTimeResponse
+    ): TransactionDto {
         return TransactionDto().apply {
             id = UUID.fromString(responseProto.id)
             personId = UUID.fromString(responseProto.personId)

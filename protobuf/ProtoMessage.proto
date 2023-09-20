@@ -4,7 +4,7 @@ package protobuf;
 
 import "google/protobuf/timestamp.proto";
 
-message TransactionRequestProto {
+message FindTransactionsByPersonIdAndTimeRequest {
   string person_id = 1;
   google.protobuf.Timestamp start_date = 2;
   google.protobuf.Timestamp end_date = 3;
@@ -14,7 +14,7 @@ message TransactionRequestProto {
   int32 size = 7;
 }
 
-message TransactionResponseProto {
+message FindTransactionsByPersonIdAndTimeResponse {
   string id = 1;
   string person_id = 2;
   google.protobuf.Timestamp transaction_time = 3;
@@ -30,6 +30,6 @@ message TransactionResponseProto {
   string iban = 7;
 }
 
-message TransactionResponseListProto{
-  repeated TransactionResponseProto transaction = 1;
+message FindTransactionsByPersonIdAndTimeListResponse{
+  repeated FindTransactionsByPersonIdAndTimeResponse transaction = 1;
 }

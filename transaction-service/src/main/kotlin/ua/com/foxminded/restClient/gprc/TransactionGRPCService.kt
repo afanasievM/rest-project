@@ -19,9 +19,9 @@ class TransactionGRPCService(
     private val exchangeService: CurrencyExchangeService,
 ) : ReactorTransactionsServiceGrpc.TransactionsServiceImplBase() {
 
-    override fun getTransactions(
-        request: Mono<ProtoMessage.TransactionRequestProto>
-    ): Mono<ProtoMessage.TransactionResponseListProto>? {
+    override fun findTransactionsByPersonIdAndTime(
+        request: Mono<ProtoMessage.FindTransactionsByPersonIdAndTimeRequest>
+    ): Mono<ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse>? {
         var currency = ""
         return request
             .doOnNext { currency = it.currency }
@@ -37,14 +37,16 @@ class TransactionGRPCService(
             .map(this::mapTransactionDtoToResponse)
             .collectList()
             .map {
-                ProtoMessage.TransactionResponseListProto.newBuilder()
+                ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse.newBuilder()
                     .addAllTransaction(it)
                     .build()
             }
     }
 
-    private fun mapTransactionDtoToResponse(dto: TransactionDto): ProtoMessage.TransactionResponseProto {
-        return ProtoMessage.TransactionResponseProto.newBuilder().apply {
+    private fun mapTransactionDtoToResponse(
+        dto: TransactionDto
+    ): ProtoMessage.FindTransactionsByPersonIdAndTimeResponse {
+        return ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.newBuilder().apply {
             id = dto.id.toString()
             personId = dto.personId.toString()
             transactionTimeBuilder
