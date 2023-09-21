@@ -18,7 +18,6 @@ plugins {
     id("org.jetbrains.kotlin.kapt") version "1.8.21"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.8.21"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
-//    id("res") version "0.9.4"
 
 }
 
@@ -77,9 +76,6 @@ dependencies {
 sourceSets {
     main {
         java.srcDirs.add(File("build/generated/source/apt/main"))
-//        proto {
-//            srcDir(rootDir.path + "/protobuf")
-//        }
     }
 }
 
@@ -108,31 +104,6 @@ kapt {
         arg("mapstruct.nullValueCheckStrategy", "ALWAYS")
     }
 }
-
-//protobuf {
-//    protoc {
-//        artifact = "com.google.protobuf:protoc:3.24.3"
-//    }
-//    plugins {
-//        id("grpc") {
-//            artifact = "io.grpc:protoc-gen-grpc-java:${GRPC_VER}"
-//        }
-//        id("reactor-grpc") {
-//            artifact = "com.salesforce.servicelibs:reactor-grpc:${REACTIVE_GRPC_VER}"
-//        }
-//    }
-//    generateProtoTasks {
-//        all().forEach {
-//            it.plugins {
-//                id("grpc")
-//                id("reactor-grpc")
-//            }
-//            it.builtins {
-//                id("kotlin")
-//            }
-//        }
-//    }
-//}
 
 tasks.withType<Detekt>().configureEach {
     jvmTarget = "17"
