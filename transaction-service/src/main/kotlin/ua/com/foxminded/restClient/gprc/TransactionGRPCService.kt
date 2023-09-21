@@ -57,5 +57,4 @@ class TransactionGRPCService(
             iban = dto.iban
         }.build()
     }
-
 }
