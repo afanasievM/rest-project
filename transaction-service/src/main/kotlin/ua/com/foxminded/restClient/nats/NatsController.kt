@@ -10,7 +10,7 @@ import java.util.UUID
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
-import protobuf.ProtoMessage
+import proto.ProtoMessage
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService

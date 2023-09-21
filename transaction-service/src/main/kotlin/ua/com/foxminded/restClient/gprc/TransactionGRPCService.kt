@@ -6,8 +6,8 @@ import java.time.ZoneOffset
 import java.util.Currency
 import java.util.UUID
 import org.springframework.data.domain.Pageable
-import protobuf.ProtoMessage
-import protobuf.ReactorTransactionsServiceGrpc
+import proto.ProtoMessage
+import proto.ReactorTransactionsServiceGrpc
 import reactor.core.publisher.Mono
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService

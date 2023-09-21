@@ -5,11 +5,9 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 import java.util.UUID
 import org.springframework.data.domain.Pageable
-import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
-import protobuf.ProtoMessage
-import protobuf.ReactorTransactionsServiceGrpc
-import reactor.core.publisher.Flux
+import proto.ProtoMessage
+import proto.ReactorTransactionsServiceGrpc
 import reactor.core.publisher.Mono
 import ua.com.foxminded.courseproject.dto.TransactionDto
 import ua.com.foxminded.courseproject.enums.Direction
