@@ -19,7 +19,7 @@ import org.mockito.kotlin.eq
 import org.springframework.data.domain.Pageable
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Testcontainers
-import protobuf.ProtoMessage
+import proto.ProtoMessage
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.enums.Direction
