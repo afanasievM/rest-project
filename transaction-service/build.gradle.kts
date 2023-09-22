@@ -77,6 +77,12 @@ dependencies {
     testFixturesImplementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
     testFixturesImplementation(project(":protobuf"))
 
+    testFixturesImplementation("com.google.protobuf:protobuf-kotlin:3.24.3")
+    testFixturesImplementation("io.grpc:grpc-all:$GRPC_VER")
+    testFixturesImplementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
+    testFixturesImplementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
+    testFixturesImplementation(project(":protobuf"))
+
 }
 sourceSets {
     main {
