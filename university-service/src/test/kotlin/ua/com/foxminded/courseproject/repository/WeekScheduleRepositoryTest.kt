@@ -1,5 +1,6 @@
 package ua.com.foxminded.courseproject.repository
 
+import java.util.UUID
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest
@@ -13,7 +14,6 @@ import ua.com.foxminded.courseproject.mapper.LessonMapper
 import ua.com.foxminded.courseproject.mapper.StudentMapper
 import ua.com.foxminded.courseproject.mapper.SubjectMapper
 import ua.com.foxminded.courseproject.mapper.TeacherMapper
-import java.util.*
 
 @DataMongoTest
 @Import(
@@ -70,5 +70,4 @@ internal open class WeekScheduleRepositoryTest : DBTestConfig() {
             .expectNextCount(0)
             .verifyComplete()
     }
-
 }

@@ -1,9 +1,6 @@
 import com.google.protobuf.gradle.id
 import com.google.protobuf.gradle.proto
 
-
-
-
 val GRPC_VER = "1.53.0"
 val REACTIVE_GRPC_VER = "1.2.4"
 

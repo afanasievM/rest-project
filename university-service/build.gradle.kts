@@ -1,7 +1,6 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
-
 val OPENAPI_VER = "1.7.0"
 val HTTP_CLIENT_VER = "4.5.13"
 val SPRINGBOOT_VER = "2.7.4"
