@@ -1,11 +1,12 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import com.google.protobuf.gradle.*
 
 val MAPSTRUCT_VER = "1.5.3.Final"
 val OPENAPI_VER = "1.7.0"
 val HTTP_CLIENT_VER = "4.5.13"
 val SPRINGBOOT_VER = "2.7.4"
+val GRPC_VER = "1.42.1"
+val REACTIVE_GRPC_VER = "1.2.4"
 
 plugins {
     java
@@ -16,7 +17,6 @@ plugins {
     id("org.jetbrains.kotlin.kapt") version "1.8.21"
     id("org.jetbrains.kotlin.plugin.allopen") version "1.8.21"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
-    id("com.google.protobuf") version "0.9.4"
 
 }
 
@@ -55,7 +55,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-redis:$SPRINGBOOT_VER")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
     implementation("redis.clients:jedis")
-    implementation("com.google.protobuf:protobuf-kotlin:3.19.6")
+    implementation("com.google.protobuf:protobuf-kotlin:3.24.3")
+    implementation("io.grpc:grpc-all:$GRPC_VER")
+    implementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
+    implementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
+    implementation(project(":protobuf"))
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
@@ -65,20 +69,15 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers:1.18.3")
     testImplementation("io.nats:jnats:2.16.8")
     testImplementation("org.testcontainers:junit-jupiter:1.18.3")
-    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
 
 }
 sourceSets {
     main {
         java.srcDirs.add(File("build/generated/source/apt/main"))
-        proto {
-            srcDir("src/main/protobuf")
-        }
     }
 }
 
-group = "ua.com.foxminded"
-version = "0.0.1-SNAPSHOT"
 description = "restClient"
 
 tasks.test {
@@ -100,19 +99,6 @@ kapt {
     correctErrorTypes = true
     arguments {
         arg("mapstruct.nullValueCheckStrategy", "ALWAYS")
-    }
-}
-
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.19.6"
-    }
-    generateProtoTasks {
-        all().forEach {
-            it.builtins {
-                id("kotlin")
-            }
-        }
     }
 }
 

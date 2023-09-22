@@ -1,6 +1,5 @@
 package ua.com.foxminded.restClient
 
-import com.google.protobuf.Timestamp
 import io.nats.client.Connection
 import io.nats.client.Message
 import io.nats.client.Nats
@@ -20,6 +19,7 @@ import org.mockito.kotlin.eq
 import org.springframework.data.domain.Pageable
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Testcontainers
+import protobuf.ProtoMessage
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.enums.Direction
@@ -55,8 +55,8 @@ class NatsControllerTest {
     }
 
     @Test
-    fun `nats should return flux transactions when input correct`(){
-        val request: ProtoMessage.TransactionRequestProto = getTransactionRequest()
+    fun `nats should return flux transactions when input correct`() {
+        val request: ProtoMessage.FindTransactionsByPersonIdAndTimeRequest = getTransactionRequest()
         val latch = CountDownLatch(2)
         val responseMessages: MutableList<Message> = mutableListOf()
         val expectedSize = 2
@@ -81,7 +81,8 @@ class NatsControllerTest {
             .thenReturn(testDtos[1])
         natsConnection.publish(NATS_REQUEST_TOPIC, NATS_RESPONSE_TOPIC, request.toByteArray())
         latch.await()
-        val responseIds = responseMessages.map { ProtoMessage.TransactionResponseProto.parseFrom(it.data).id }
+        val responseIds = responseMessages
+            .map { ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.parseFrom(it.data).id }
 
         assertEquals(expectedSize, responseMessages.size)
         assertEquals(responseIds.contains(testDtos[0].id.toString()), true)
@@ -93,17 +94,17 @@ class NatsControllerTest {
         nats.stop()
     }
 
-    private fun getTransactionRequest(): ProtoMessage.TransactionRequestProto {
+    private fun getTransactionRequest(): ProtoMessage.FindTransactionsByPersonIdAndTimeRequest {
         val startDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
         val endDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
-        return ProtoMessage.TransactionRequestProto.newBuilder().apply {
+        return ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.newBuilder().apply {
             personId = "e966f608-4621-11ed-b878-0242ac120002"
             currency = "UAH"
-            startDateBuilder.setSeconds(startDate.epochSecond).setNanos(startDate.nano)   
+            startDateBuilder.setSeconds(startDate.epochSecond).setNanos(startDate.nano)
             endDateBuilder.setSeconds(endDate.epochSecond).setNanos(endDate.nano)
             page = 0
             size = 2
-         }.build()
+        }.build()
     }
 
     private fun getListTransactions(): List<TransactionDto> {

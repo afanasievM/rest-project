@@ -8,3 +8,9 @@ university-service/target
 university-service/build
 university-service/.idea
 
+protobuf/build
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
