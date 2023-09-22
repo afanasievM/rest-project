@@ -1,0 +1,48 @@
+package utils
+
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.UUID
+import proto.ProtoMessage
+import ua.com.foxminded.restClient.dto.TransactionDto
+import ua.com.foxminded.restClient.enums.Direction
+
+object Transactions {
+
+    val transactionRequest = getTransactionRequest()
+    val transactionList = getListTransactions()
+    private fun getTransactionRequest(): ProtoMessage.FindTransactionsByPersonIdAndTimeRequest {
+        val startDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
+        val endDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
+        return ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.newBuilder().apply {
+            personId = "e966f608-4621-11ed-b878-0242ac120002"
+            currency = "UAH"
+            startDateBuilder.setSeconds(startDate.epochSecond).setNanos(startDate.nano)
+            endDateBuilder.setSeconds(endDate.epochSecond).setNanos(endDate.nano)
+            page = 0
+            size = 2
+        }.build()
+    }
+
+    private fun getListTransactions(): List<TransactionDto> {
+        val dto1 = TransactionDto(
+            id = UUID.fromString("e966f601-4621-11ed-b878-0242ac120002"),
+            personId = UUID.fromString("e966f608-4621-11ed-b878-0242ac120002"),
+            transactionTime = LocalDateTime.parse("2022-12-01T12:00"),
+            transactionDirection = Direction.OUTPUT,
+            value = 36650.001525878906,
+            currency = "UAH",
+            iban = "GB29NWBK60161331926819"
+        )
+        val dto2 = TransactionDto(
+            id = UUID.fromString("e966f602-4621-11ed-b878-0242ac120002"),
+            personId = UUID.fromString("e966f608-4621-11ed-b878-0242ac120002"),
+            transactionTime = LocalDateTime.parse("2022-12-02T12:00"),
+            transactionDirection = Direction.OUTPUT,
+            value = 36650.001525878906,
+            currency = "UAH",
+            iban = "GB29NWBK60161331926819"
+        )
+        return listOf(dto1, dto2)
+    }
+}
