@@ -73,8 +73,6 @@ tasks.test {
     useJUnitPlatform()
 }
 
-group = "ua.com.foxminded"
-version = "0.0.1-SNAPSHOT"
 description = "university-service"
 java.sourceCompatibility = JavaVersion.VERSION_17
 

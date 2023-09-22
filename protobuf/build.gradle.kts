@@ -37,8 +37,6 @@ sourceSets {
     }
 }
 
-group = "ua.com.foxminded"
-version = "0.0.1-SNAPSHOT"
 description = "protobuf"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
