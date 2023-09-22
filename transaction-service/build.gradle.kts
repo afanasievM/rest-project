@@ -69,6 +69,7 @@ dependencies {
     testImplementation("io.nats:jnats:2.16.8")
     testImplementation("org.testcontainers:junit-jupiter:1.18.3")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    testImplementation("io.projectreactor:reactor-test")
 
     testFixturesImplementation("com.google.protobuf:protobuf-kotlin:3.24.3")
     testFixturesImplementation("io.grpc:grpc-all:$GRPC_VER")
