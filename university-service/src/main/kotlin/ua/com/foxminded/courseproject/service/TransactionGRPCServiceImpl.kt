@@ -69,5 +69,4 @@ class TransactionGRPCServiceImpl(
             iban = responseProto.iban
         }
     }
-
 }
