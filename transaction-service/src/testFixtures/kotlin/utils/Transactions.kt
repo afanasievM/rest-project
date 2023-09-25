@@ -1,11 +1,17 @@
 package utils
 
+import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.UUID
+import org.springframework.core.io.ClassPathResource
 import proto.ProtoMessage
+import ua.com.foxminded.restClient.dto.MonoRate
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.enums.Direction
+
 
 object Transactions {
 
@@ -44,5 +50,12 @@ object Transactions {
                 iban = "GB29NWBK60161331926819"
             )
             return listOf(dto1, dto2)
+        }
+
+    val rates: List<MonoRate>
+        get() {
+            val jsonString = ClassPathResource("rates.json").file.readText()
+            val mapper =  jacksonObjectMapper().apply { registerModule(JavaTimeModule()) }
+            return mapper.readValue(jsonString, object : TypeReference<ArrayList<MonoRate>>() {})
         }
 }

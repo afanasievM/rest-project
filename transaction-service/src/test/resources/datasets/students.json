@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "f92afb9e-462a-11ed-b878-0242ac120002",
+    "firstname": "Yura",
+    "lastname": "Orlycia",
+    "birthday": {
+      "$date": "1980-01-01T09:00:00.000Z"
+    },
+    "group_id": {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    "course": 1,
+    "is_captain": false
+  },
+  {
+    "_id": "f92afe3c-462a-11ed-b878-0242ac120002",
+    "firstname": "Andriy",
+    "lastname": "Lyseiko",
+    "birthday": {
+      "$date": "1980-01-02T09:00:00.000Z"
+    },
+    "group_id": {
+      "$ref": "groups",
+      "$id": "4937378e-4620-11ed-b878-0242ac120002",
+      "$db": "final"
+    },
+    "course": 1,
+    "is_captain": false
+  }
+]

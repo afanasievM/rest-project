@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "e966f608-4621-11ed-b878-0242ac120002",
+    "firstname": "Yulia",
+    "lastname": "Chunyak",
+    "birthday": {
+      "$date": "1980-01-19T09:00:00.000Z"
+    },
+    "degree": "NTUU KPI",
+    "salary": 2800,
+    "first_date": {
+      "$date": "2000-09-19T05:00:00.000Z"
+    },
+    "rank": "lecturer",
+    "title": "doctor"
+  },
+  {
+    "_id": "e966c430-4621-11ed-b878-0242ac120002",
+    "firstname": "Kateryna",
+    "lastname": "Kyrylenko",
+    "birthday": {
+      "$date": "1980-01-01T09:00:00.000Z"
+    },
+    "degree": "NTUU KPI",
+    "salary": 1000,
+    "first_date": {
+      "$date": "2000-09-01T05:00:00.000Z"
+    },
+    "rank": "lecturer",
+    "title": "phd"
+  }
+]
