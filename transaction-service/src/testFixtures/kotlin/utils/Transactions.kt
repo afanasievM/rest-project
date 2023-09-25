@@ -18,7 +18,7 @@ object Transactions {
     val transactionRequest: ProtoMessage.FindTransactionsByPersonIdAndTimeRequest
         get() {
             val startDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
-            val endDate = LocalDateTime.parse("2022-11-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
+            val endDate = LocalDateTime.parse("2022-12-01T12:00:00").atZone(ZoneId.systemDefault()).toInstant()
             return ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.newBuilder().apply {
                 personId = "e966f608-4621-11ed-b878-0242ac120002"
                 currency = "UAH"
