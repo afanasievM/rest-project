@@ -1,7 +1,6 @@
 package ua.com.foxminded.courseproject.service
 
 import java.time.LocalDateTime
-import java.time.ZoneId
 import java.time.ZoneOffset
 import java.util.UUID
 import org.springframework.data.domain.Pageable
@@ -40,8 +39,8 @@ class TransactionGRPCServiceImpl(
         endDate: LocalDateTime,
         pageable: Pageable
     ): ProtoMessage.FindTransactionsByPersonIdAndTimeRequest {
-        val startDate = startDate.atZone(ZoneId.systemDefault()).toInstant()
-        val endDate = endDate.atZone(ZoneId.systemDefault()).toInstant()
+        val startDate = startDate.toInstant(ZoneOffset.UTC)
+        val endDate = endDate.toInstant(ZoneOffset.UTC)
         return ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.newBuilder().apply {
             personId = id
             currency = cur
