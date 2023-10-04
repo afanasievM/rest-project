@@ -1,3 +1,4 @@
+
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
@@ -10,13 +11,13 @@ val REACTIVE_GRPC_VER = "1.2.4"
 
 plugins {
     java
-    id("org.springframework.boot") version "2.7.11"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.8.21"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    kotlin("jvm") version "1.8.21"
-    id("org.jetbrains.kotlin.kapt") version "1.8.21"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.8.21"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("org.springframework.boot")
+    id("org.jetbrains.kotlin.plugin.spring")
+    id("io.spring.dependency-management")
+    kotlin("jvm")
+    id("org.jetbrains.kotlin.kapt")
+    id("org.jetbrains.kotlin.plugin.allopen")
+    id("io.gitlab.arturbosch.detekt")
     `java-test-fixtures`
 }
 
@@ -60,6 +61,10 @@ dependencies {
     implementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
     implementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
     implementation(project(":protobuf"))
+    implementation("org.springframework.kafka:spring-kafka:3.0.4")
+    implementation("io.projectreactor.kafka:reactor-kafka:1.3.17")
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+
 
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))

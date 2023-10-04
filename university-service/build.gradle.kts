@@ -1,3 +1,4 @@
+
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
@@ -9,11 +10,11 @@ val REACTIVE_GRPC_VER = "1.2.4"
 
 plugins {
     java
-    id("org.springframework.boot") version "2.7.11"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.8.21"
-    kotlin("jvm") version "1.8.21"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
+    id("org.jetbrains.kotlin.plugin.spring")
+    kotlin("jvm")
+    id("io.gitlab.arturbosch.detekt")
     `java-test-fixtures`
 }
 
