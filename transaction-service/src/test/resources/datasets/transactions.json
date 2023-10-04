@@ -1,0 +1,101 @@
+[
+  {
+    "_id": "e966f601-4621-11ed-b878-0242ac120002",
+    "person_id": "e966f608-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-01T10:00:00.000Z"
+    },
+    "transaction_direction": "OUTPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f605-4621-11ed-b878-0242ac120002",
+    "person_id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-05T10:00:00.000Z"
+    },
+    "transaction_direction": "INPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f602-4621-11ed-b878-0242ac120002",
+    "person_id": "e966f608-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-02T10:00:00.000Z"
+    },
+    "transaction_direction": "OUTPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f603-4621-11ed-b878-0242ac120002",
+    "person_id": "e966f608-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-03T10:00:00.000Z"
+    },
+    "transaction_direction": "OUTPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f604-4621-11ed-b878-0242ac120002",
+    "person_id": "e966f608-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-04T10:00:00.000Z"
+    },
+    "transaction_direction": "INPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f606-4621-11ed-b878-0242ac120002",
+    "person_id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-06T10:00:00.000Z"
+    },
+    "transaction_direction": "INPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f607-4621-11ed-b878-0242ac120002",
+    "person_id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-07T10:00:00.000Z"
+    },
+    "transaction_direction": "INPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f608-4621-11ed-b878-0242ac120002",
+    "person_id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-08T10:00:00.000Z"
+    },
+    "transaction_direction": "OUTPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  },
+  {
+    "_id": "e966f609-4621-11ed-b878-0242ac120002",
+    "person_id": "e966d77c-4621-11ed-b878-0242ac120002",
+    "transaction_time": {
+      "$date": "2022-12-09T10:00:00.000Z"
+    },
+    "transaction_direction": "OUTPUT",
+    "value": 1000,
+    "iban": "GB29NWBK60161331926819",
+    "currency": "USD"
+  }
+]
