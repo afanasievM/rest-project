@@ -1,7 +1,8 @@
 package validation
 
-import javax.validation.Validation
-import javax.validation.Validator
+import jakarta.validation.Validation
+import jakarta.validation.Validator
+
 
 object Validations {
     val validator: Validator = Validation.buildDefaultValidatorFactory().validator

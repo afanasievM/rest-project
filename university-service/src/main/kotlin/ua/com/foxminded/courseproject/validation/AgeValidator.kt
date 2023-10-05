@@ -1,9 +1,10 @@
 package ua.com.foxminded.courseproject.validation
 
+import jakarta.validation.ConstraintValidator
+import jakarta.validation.ConstraintValidatorContext
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
-import javax.validation.ConstraintValidator
-import javax.validation.ConstraintValidatorContext
+
 
 class AgeValidator : ConstraintValidator<Age, LocalDate?> {
     private var min: Long = 0

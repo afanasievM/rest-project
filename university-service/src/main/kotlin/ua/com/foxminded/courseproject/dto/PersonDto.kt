@@ -1,11 +1,12 @@
 package ua.com.foxminded.courseproject.dto
 
-import org.springframework.format.annotation.DateTimeFormat
-import ua.com.foxminded.courseproject.validation.Age
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
 import java.time.LocalDate
 import java.util.UUID
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.Size
+import org.springframework.format.annotation.DateTimeFormat
+import ua.com.foxminded.courseproject.validation.Age
+
 
 open class PersonDto(
     var id: UUID? = UUID.randomUUID(),

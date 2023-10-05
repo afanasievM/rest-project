@@ -1,8 +1,9 @@
 package ua.com.foxminded.courseproject.dto
 
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.PositiveOrZero
 import java.util.UUID
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.PositiveOrZero
+
 
 data class ClassRoomDto(
     var id: UUID? = UUID.randomUUID(),

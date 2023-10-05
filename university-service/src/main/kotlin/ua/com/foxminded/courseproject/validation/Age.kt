@@ -1,7 +1,8 @@
 package ua.com.foxminded.courseproject.validation
 
-import javax.validation.Constraint
-import javax.validation.Payload
+
+import jakarta.validation.Constraint
+import jakarta.validation.Payload
 import kotlin.reflect.KClass
 
 @Constraint(validatedBy = [AgeValidator::class])

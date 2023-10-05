@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
-import reactor.core.publisher.toFlux
 import ua.com.foxminded.courseproject.dto.DayScheduleDto
 import ua.com.foxminded.courseproject.service.DayScheduleService
 import ua.com.foxminded.courseproject.utils.Role
@@ -42,7 +41,7 @@ class DayScheduleController(private val service: DayScheduleService) {
         return if (endDate != null && endDate.isAfter(startDate)) {
             ResponseEntity.ok().body(service.getTeacherDaysSchedule(startDate, endDate, id))
         } else {
-            ResponseEntity.ok().body(service.getTeacherOneDaySchedule(startDate, id).toFlux())
+            ResponseEntity.ok().body(service.getTeacherOneDaySchedule(startDate, id).flux())
         }
     }
 
@@ -63,7 +62,7 @@ class DayScheduleController(private val service: DayScheduleService) {
         return if (endDate != null && endDate.isAfter(startDate)) {
             ResponseEntity.ok().body(service.getStudentDaysSchedule(startDate, endDate, id))
         } else {
-            ResponseEntity.ok().body(service.getStudentOneDaySchedule(startDate, id).toFlux())
+            ResponseEntity.ok().body(service.getStudentOneDaySchedule(startDate, id).flux())
         }
     }
 }

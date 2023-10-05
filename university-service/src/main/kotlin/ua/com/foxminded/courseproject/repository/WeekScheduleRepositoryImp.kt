@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.stereotype.Repository
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import reactor.core.publisher.toMono
 import ua.com.foxminded.courseproject.entity.DaySchedule
 import ua.com.foxminded.courseproject.entity.Lesson
 import ua.com.foxminded.courseproject.mapper.DayScheduleMapper
@@ -43,7 +42,7 @@ class WeekScheduleRepositoryImp(
         return template.aggregate(agregation, Companion.COLLECTION_NAME, Document::class.java)
             .flatMap { dayScheduleDBRefsMapper(it) }
             .map { dayScheduleMapper.documentToEntity(it) }
-            .toMono()
+            .single()
     }
 
     private fun dayScheduleDBRefsMapper(doc: Document): Flux<Document> {

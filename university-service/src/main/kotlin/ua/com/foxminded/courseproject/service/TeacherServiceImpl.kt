@@ -30,7 +30,7 @@ class TeacherServiceImpl(
             if (it == true) {
                 Mono.error(TeacherConflictException(teacher))
             } else {
-                repository.save(mapper.toEntity(teacher)).map { mapper.toDto(it) }
+                repository.save(mapper.toEntity(teacher)!!).map { mapper.toDto(it) }
             }
         }
     }

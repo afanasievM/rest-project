@@ -3,8 +3,8 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
 val OPENAPI_VER = "1.7.0"
-val HTTP_CLIENT_VER = "4.5.13"
-val SPRINGBOOT_VER = "2.7.4"
+val HTTP_CLIENT_VER = "4.5.3"
+val SPRINGBOOT_VER = "3.1.4"
 val GRPC_VER = "1.53.0"
 val REACTIVE_GRPC_VER = "1.2.4"
 
@@ -38,6 +38,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webflux-core:$OPENAPI_VER")
     implementation("org.springframework.boot:spring-boot-starter-security:$SPRINGBOOT_VER")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
+    implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")

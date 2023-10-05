@@ -12,8 +12,8 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.junit.jupiter.Testcontainers
-import reactor.core.publisher.toMono
 import java.nio.file.Files
+import org.springframework.data.mongodb.core.dropCollection
 
 @Testcontainers
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -40,7 +40,6 @@ open class DBTestConfig {
     @AfterAll
     fun tearDown() {
         mongoContainer.stop()
-
     }
 
     @BeforeEach
@@ -59,7 +58,7 @@ open class DBTestConfig {
     @AfterEach
     fun dropData() {
         colections.forEach {
-            mongoTemplate.getCollection(it).block().drop().toMono().block()
+            mongoTemplate.dropCollection(it).block()
         }
     }
 

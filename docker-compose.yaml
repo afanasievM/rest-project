@@ -34,8 +34,9 @@ services:
       - mongodb
     environment:
       SPRING.DATA.MONGODB.HOST: mongodb
-      SPRING.REDIS.HOST: localhost
+      SPRING.REDIS.HOST: redis
       SPRING.REDIS.PORT: 6379
+      NATS.URL: nats://nats:4222
     ports:
       - "8082:8082"
 

@@ -1,8 +1,9 @@
 package ua.com.foxminded.courseproject.dto
 
+import jakarta.validation.constraints.NotNull
+import jakarta.validation.constraints.Size
 import java.util.UUID
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.Size
+
 
 data class GroupDto(
     var id: UUID? = UUID.randomUUID(),
