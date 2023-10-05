@@ -5,7 +5,9 @@ import org.springframework.kafka.core.reactive.ReactiveKafkaProducerTemplate
 import org.springframework.stereotype.Service
 
 @Service
-class KafkaProducerService constructor(private val reactiveKafkaProducerTemplate: ReactiveKafkaProducerTemplate<String, ByteArray>) {
+class KafkaProducerService constructor(
+    private val reactiveKafkaProducerTemplate: ReactiveKafkaProducerTemplate<String, ByteArray>
+) {
 
     @Value(value = "\${kafka.producer.topic}")
     private lateinit var topic: String
