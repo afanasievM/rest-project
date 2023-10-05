@@ -64,7 +64,6 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka:3.0.11")
     implementation("io.projectreactor.kafka:reactor-kafka:1.3.21")
 
-
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))
 

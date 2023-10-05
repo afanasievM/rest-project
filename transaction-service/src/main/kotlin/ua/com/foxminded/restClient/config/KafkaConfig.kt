@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate
 import org.springframework.kafka.core.reactive.ReactiveKafkaProducerTemplate
+import proto.ProtoMessage
 import reactor.kafka.receiver.ReceiverOptions
 import reactor.kafka.sender.SenderOptions
 
@@ -30,8 +31,12 @@ class KafkaConfig {
     }
 
     @Bean
-    fun reactiveKafkaProducerTemplate(properties: KafkaProperties): ReactiveKafkaProducerTemplate<String, ByteArray> {
+    fun reactiveKafkaProducerTemplate(
+        properties: KafkaProperties
+    ): ReactiveKafkaProducerTemplate<String, ByteArray> {
         val props = properties.buildProducerProperties()
-        return ReactiveKafkaProducerTemplate<String, ByteArray>(SenderOptions.create(props))
+        return ReactiveKafkaProducerTemplate<String, ByteArray>(
+            SenderOptions.create(props)
+        )
     }
 }
