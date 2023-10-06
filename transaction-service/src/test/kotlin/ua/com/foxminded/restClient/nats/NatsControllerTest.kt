@@ -4,17 +4,16 @@ import io.nats.client.Connection
 import io.nats.client.Message
 import io.nats.client.Nats
 import java.time.LocalDateTime
-import java.util.Currency
 import java.util.UUID
 import java.util.concurrent.CountDownLatch
 import kotlin.test.assertEquals
+import org.bouncycastle.util.Strings
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.mockito.Mockito
 import org.mockito.kotlin.any
-import org.mockito.kotlin.eq
 import org.springframework.data.domain.Pageable
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Testcontainers
@@ -75,15 +74,16 @@ class NatsControllerTest {
                 any<Pageable>()
             )
         )
-            .thenReturn(Flux.fromIterable(testDtos))
-        Mockito.`when`(exchangeService.exchangeTo(eq(testDtos[0]), any<Currency>()))
-            .thenReturn(testDtos[0])
-        Mockito.`when`(exchangeService.exchangeTo(eq(testDtos[1]), any<Currency>()))
-            .thenReturn(testDtos[1])
+            .thenReturn(Flux.fromIterable(emptyList()))
+//        Mockito.`when`(exchangeService.exchangeTo(eq(testDtos[0]), any<Currency>()))
+//            .thenReturn(testDtos[0])
+//        Mockito.`when`(exchangeService.exchangeTo(eq(testDtos[1]), any<Currency>()))
+//            .thenReturn(testDtos[1])
         natsConnection.publish(NATS_REQUEST_TOPIC, NATS_RESPONSE_TOPIC, request.toByteArray())
         latch.await()
         val responseIds = responseMessages
             .map { ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.parseFrom(it.data).id }
+        responseMessages.forEach { println(Strings.fromByteArray(it.data)) }
 
         assertEquals(expectedSize, responseMessages.size)
         assertEquals(responseIds.contains(testDtos[0].id.toString()), true)

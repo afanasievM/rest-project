@@ -50,5 +50,4 @@ class NatsController @Autowired constructor(
     }
 
 
-
 }

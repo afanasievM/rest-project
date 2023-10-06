@@ -3,6 +3,7 @@ syntax = "proto3";
 package proto;
 
 import "google/protobuf/timestamp.proto";
+import "Error.proto";
 
 message FindTransactionsByPersonIdAndTimeRequest {
   string person_id = 1;
@@ -15,6 +16,42 @@ message FindTransactionsByPersonIdAndTimeRequest {
 }
 
 message FindTransactionsByPersonIdAndTimeResponse {
+  oneof response {
+    Success success = 1;
+    Failure failure = 2;
+  }
+
+  message Success {
+    Transaction transaction =1;
+  }
+
+  message Failure{
+    string message = 100;
+    oneof error {
+      Error not_found = 1;
+    }
+  }
+}
+
+message FindTransactionsByPersonIdAndTimeListResponse {
+  oneof response {
+    Success success = 1;
+    Failure failure = 2;
+  }
+
+  message Success {
+    repeated FindTransactionsByPersonIdAndTimeResponse transaction = 1;
+  }
+
+  message Failure{
+    string message = 100;
+    oneof error {
+      Error not_found = 1;
+    }
+  }
+}
+
+message Transaction {
   string id = 1;
   string person_id = 2;
   google.protobuf.Timestamp transaction_time = 3;
@@ -28,8 +65,5 @@ message FindTransactionsByPersonIdAndTimeResponse {
   double value = 5;
   string currency = 6;
   string iban = 7;
-}
 
-message FindTransactionsByPersonIdAndTimeListResponse{
-  repeated FindTransactionsByPersonIdAndTimeResponse transaction = 1;
 }
