@@ -40,7 +40,7 @@ message FindTransactionsByPersonIdAndTimeListResponse {
   }
 
   message Success {
-    repeated FindTransactionsByPersonIdAndTimeResponse transaction = 1;
+    repeated Transaction transactions = 1;
   }
 
   message Failure{

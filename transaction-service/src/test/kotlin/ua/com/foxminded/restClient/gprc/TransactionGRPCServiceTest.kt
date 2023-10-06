@@ -17,7 +17,7 @@ import utils.Transactions
 class TransactionGRPCServiceTest : DBTestConfig() {
 
     @MockBean
-    private lateinit var rateService:RateService
+    private lateinit var rateService: RateService
 
     @Autowired
     private lateinit var grpcService: TransactionGRPCService
@@ -29,7 +29,8 @@ class TransactionGRPCServiceTest : DBTestConfig() {
         Mockito.`when`(rateService.rates()).thenReturn(Transactions.rates)
 
         StepVerifier.create(grpcService.findTransactionsByPersonIdAndTime(Mono.just(Transactions.transactionRequest)))
-            .expectNextMatches { it.transactionCount == expectedSize }
+            .expectNextMatches { it.hasSuccess() }
+            .expectNextMatches { it.success.transactionsCount == expectedSize }
             .verifyComplete()
     }
 }

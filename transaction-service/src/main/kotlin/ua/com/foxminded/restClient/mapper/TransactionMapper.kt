@@ -14,10 +14,10 @@ interface TransactionMapper {
 
 }
 
-fun TransactionMapper.dtoToProtoResponse(
+fun TransactionMapper.dtoToProto(
     dto: TransactionDto
-): ProtoMessage.FindTransactionsByPersonIdAndTimeResponse {
-    return ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.newBuilder()
+): ProtoMessage.Transaction {
+    return ProtoMessage.Transaction.newBuilder()
         .setId(dto.id.toString())
         .setPersonId(dto.personId.toString())
         .setTransactionTime(
@@ -30,3 +30,16 @@ fun TransactionMapper.dtoToProtoResponse(
         .setIban(dto.iban)
         .build()
 }
+
+fun TransactionMapper.listDtoToListResponse(
+    dtos: List<TransactionDto>
+): ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse {
+    return ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse
+        .newBuilder()
+        .apply {
+            success = successBuilder.addAllTransactions(dtos.map { dtoToProto(it) }).build()
+        }
+        .build()
+}
+
+

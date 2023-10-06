@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service
 import proto.ProtoMessage
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.mapper.TransactionMapper
-import ua.com.foxminded.restClient.mapper.dtoToProtoResponse
+import ua.com.foxminded.restClient.mapper.listDtoToListResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 
@@ -71,7 +71,9 @@ class KafkaConsumerService constructor(
                 )
             }
             .map { exchangeService.exchangeTo(it, Currency.getInstance(it.currency)) }
-            .map { transactionMapper.dtoToProtoResponse(it).toByteArray() }
+            .collectList()
+            .map { transactionMapper.listDtoToListResponse(it).toByteArray() }
+            .flux()
             .doOnNext {
                 kafkaProducerService.send(responseTopic, it)
             }

@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import proto.ProtoMessage
 import ua.com.foxminded.restClient.mapper.TransactionMapper
-import ua.com.foxminded.restClient.mapper.dtoToProtoResponse
+import ua.com.foxminded.restClient.mapper.listDtoToListResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 
@@ -32,7 +32,6 @@ class NatsController @Autowired constructor(
         }
     }
 
-
     fun handleMessage(message: Message) {
         val request = ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.parseFrom(message.data)
         transactionService.findAllByIdAndBetweenDate(
@@ -42,12 +41,10 @@ class NatsController @Autowired constructor(
             Pageable.ofSize(request.size).withPage(request.page)
         )
             .map { exchangeService.exchangeTo(it, Currency.getInstance(request.currency)) }
-            .map { transactionMapper.dtoToProtoResponse(it) }
+            .collectList()
+            .map { transactionMapper.listDtoToListResponse(it) }
             .subscribe {
                 natsConnection.publish(message.replyTo, identificator, it.toByteArray())
             }
-
     }
-
-
 }
