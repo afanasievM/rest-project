@@ -28,7 +28,7 @@ class TransactionGRPCServiceImpl(
                 Mono.just(buildTransactionRequest(id, currency, startDate, endDate, pageable))
             )
             .map {
-                it.transactionList.map { transaction -> transactionResponseToDto(transaction) }
+                it.success.transactionsList.map { transaction -> transactionResponseToDto(transaction) }
             }
     }
 
@@ -52,7 +52,7 @@ class TransactionGRPCServiceImpl(
     }
 
     private fun transactionResponseToDto(
-        responseProto: ProtoMessage.FindTransactionsByPersonIdAndTimeResponse
+        responseProto: ProtoMessage.Transaction
     ): TransactionDto {
         return TransactionDto().apply {
             id = UUID.fromString(responseProto.id)
