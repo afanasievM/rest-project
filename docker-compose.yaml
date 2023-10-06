@@ -37,8 +37,8 @@ services:
       - kafka-ui
     environment:
       SPRING.DATA.MONGODB.HOST: mongodb
-      SPRING.REDIS.HOST: ssssss
-      SPRING.REDIS.PORT: 6379
+      SPRING.DATA.REDIS.URL: redis://redis:6379
+      SPRING.DATA.REDIS.PORT: 6379
       NATS.URL: nats://nats:4222
     ports:
       - "8082:8082"
