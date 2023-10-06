@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service
 import proto.ProtoMessage
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.mapper.TransactionMapper
+import ua.com.foxminded.restClient.mapper.dtoToProtoResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 

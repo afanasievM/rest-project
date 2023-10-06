@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import proto.ProtoMessage
 import ua.com.foxminded.restClient.mapper.TransactionMapper
+import ua.com.foxminded.restClient.mapper.dtoToProtoResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 

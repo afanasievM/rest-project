@@ -12,21 +12,21 @@ interface TransactionMapper {
     fun dtoToEntity(transactionDto: TransactionDto): Transaction
     fun entityToDto(transaction: Transaction): TransactionDto
 
-    fun dtoToProtoResponse(
-        dto: TransactionDto
-    ): ProtoMessage.FindTransactionsByPersonIdAndTimeResponse {
-        return ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.newBuilder()
-            .setId(dto.id.toString())
-            .setPersonId(dto.personId.toString())
-            .setTransactionTime(
-                Timestamp.newBuilder()
-                    .setSeconds(dto.transactionTime?.toEpochSecond(ZoneOffset.UTC) ?: 0)
-                    .setNanos(dto.transactionTime?.nano ?: 0)
-            )
-            .setValue(dto.value ?: 0.0)
-            .setCurrency(dto.currency)
-            .setIban(dto.iban)
-            .build()
-    }
+}
 
+fun TransactionMapper.dtoToProtoResponse(
+    dto: TransactionDto
+): ProtoMessage.FindTransactionsByPersonIdAndTimeResponse {
+    return ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.newBuilder()
+        .setId(dto.id.toString())
+        .setPersonId(dto.personId.toString())
+        .setTransactionTime(
+            Timestamp.newBuilder()
+                .setSeconds(dto.transactionTime?.toEpochSecond(ZoneOffset.UTC) ?: 0)
+                .setNanos(dto.transactionTime?.nano ?: 0)
+        )
+        .setValue(dto.value ?: 0.0)
+        .setCurrency(dto.currency)
+        .setIban(dto.iban)
+        .build()
 }
