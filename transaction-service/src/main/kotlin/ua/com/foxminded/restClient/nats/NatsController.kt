@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import proto.ProtoMessage
-import ua.com.foxminded.restClient.mapper.ProtoMapper
+import ua.com.foxminded.restClient.mapper.TransactionMapper
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 
@@ -19,7 +19,7 @@ class NatsController @Autowired constructor(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
     private val natsConnection: Connection,
-    private val protoMapper: ProtoMapper
+    private val transactionMapper: TransactionMapper
 ) {
     private val identificator = "transactions.service"
 
@@ -33,7 +33,6 @@ class NatsController @Autowired constructor(
 
 
     fun handleMessage(message: Message) {
-        println(message.data)
         val request = ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.parseFrom(message.data)
         transactionService.findAllByIdAndBetweenDate(
             UUID.fromString(request.personId),
@@ -42,7 +41,7 @@ class NatsController @Autowired constructor(
             Pageable.ofSize(request.size).withPage(request.page)
         )
             .map { exchangeService.exchangeTo(it, Currency.getInstance(request.currency)) }
-            .map { protoMapper.mapTransactionDtoToResponse(it) }
+            .map { transactionMapper.dtoToProtoResponse(it) }
             .subscribe {
                 natsConnection.publish(message.replyTo, identificator, it.toByteArray())
             }

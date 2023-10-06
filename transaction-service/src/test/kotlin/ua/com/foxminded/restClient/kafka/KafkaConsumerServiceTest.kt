@@ -16,6 +16,7 @@ class KafkaConsumerServiceTest {
     @Autowired
     private lateinit var kafkaProducerTemplate: ReactiveKafkaProducerTemplate<String, ByteArray>
 
+    //IT isn't finished test. Don't review
     @Test
     fun `findTransactionsByPersonIdAndTime should return ListResponse when input correct`() {
         val request: ProtoMessage.FindTransactionsByPersonIdAndTimeRequest = Transactions.transactionRequest
