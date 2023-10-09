@@ -29,7 +29,7 @@ class KafkaConsumerService constructor(
     private val transactionMapper: TransactionMapper
 ) : CommandLineRunner {
 
-    val log: Logger = LoggerFactory.getLogger(KafkaConsumerService::class.java)
+    private val log: Logger = LoggerFactory.getLogger(KafkaConsumerService::class.java)
 
     @Value(value = "\${kafka.producer.topic}")
     private lateinit var responseTopic: String

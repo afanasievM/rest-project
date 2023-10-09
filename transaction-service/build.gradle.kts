@@ -75,6 +75,7 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter:1.18.3")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("org.springframework.kafka:spring-kafka-test:3.0.11")
 
     testFixturesImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     testFixturesImplementation("com.google.protobuf:protobuf-kotlin:3.24.3")
