@@ -77,7 +77,5 @@ class KafkaConsumerService constructor(
             .doOnNext {
                 kafkaProducerService.send(responseTopic, it)
             }
-
-
     }
 }
