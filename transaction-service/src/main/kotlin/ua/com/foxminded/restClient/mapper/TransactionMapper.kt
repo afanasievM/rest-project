@@ -14,9 +14,7 @@ interface TransactionMapper {
 
 }
 
-fun TransactionMapper.dtoToProto(
-    dto: TransactionDto
-): ProtoMessage.Transaction {
+fun TransactionDto.toProto(): ProtoMessage.Transaction {
     return ProtoMessage.Transaction.newBuilder()
         .setId(dto.id.toString())
         .setPersonId(dto.personId.toString())
