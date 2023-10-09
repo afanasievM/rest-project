@@ -29,9 +29,7 @@ fun TransactionDto.toProto(): ProtoMessage.Transaction {
         .build()
 }
 
-fun TransactionMapper.listDtoToListResponse(
-    dtos: List<TransactionDto>
-): ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse {
+fun List<TransactionDto>.toListResponse(): ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse {
     return ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse
         .newBuilder()
         .apply {
