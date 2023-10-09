@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import proto.ProtoMessage
-import ua.com.foxminded.restClient.mapper.TransactionMapper
-import ua.com.foxminded.restClient.mapper.listDtoToListResponse
+import ua.com.foxminded.restClient.mapper.toListResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 
@@ -20,7 +19,6 @@ class NatsController @Autowired constructor(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
     private val natsConnection: Connection,
-    private val transactionMapper: TransactionMapper
 ) {
     private val identificator = "transactions.service"
 
@@ -42,7 +40,7 @@ class NatsController @Autowired constructor(
         )
             .map { exchangeService.exchangeTo(it, Currency.getInstance(request.currency)) }
             .collectList()
-            .map { transactionMapper.listDtoToListResponse(it) }
+            .map {it.toListResponse()}
             .subscribe {
                 natsConnection.publish(message.replyTo, identificator, it.toByteArray())
             }

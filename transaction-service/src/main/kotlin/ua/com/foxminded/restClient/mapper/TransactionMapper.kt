@@ -16,24 +16,25 @@ interface TransactionMapper {
 
 fun TransactionDto.toProto(): ProtoMessage.Transaction {
     return ProtoMessage.Transaction.newBuilder()
-        .setId(dto.id.toString())
-        .setPersonId(dto.personId.toString())
+        .setId(this.id.toString())
+        .setPersonId(this.personId.toString())
         .setTransactionTime(
             Timestamp.newBuilder()
-                .setSeconds(dto.transactionTime?.toEpochSecond(ZoneOffset.UTC) ?: 0)
-                .setNanos(dto.transactionTime?.nano ?: 0)
+                .setSeconds(this.transactionTime?.toEpochSecond(ZoneOffset.UTC) ?: 0)
+                .setNanos(this.transactionTime?.nano ?: 0)
         )
-        .setValue(dto.value ?: 0.0)
-        .setCurrency(dto.currency)
-        .setIban(dto.iban)
+        .setValue(this.value ?: 0.0)
+        .setCurrency(this.currency)
+        .setIban(this.iban)
         .build()
 }
 
 fun List<TransactionDto>.toListResponse(): ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse {
+    val protoList = this.map { it.toProto() }
     return ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse
         .newBuilder()
         .apply {
-            success = successBuilder.addAllTransactions(dtos.map { dtoToProto(it) }).build()
+            success = successBuilder.addAllTransactions(protoList).build()
         }
         .build()
 }

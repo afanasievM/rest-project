@@ -13,9 +13,8 @@ import org.springframework.data.domain.Pageable
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate
 import org.springframework.stereotype.Service
 import proto.ProtoMessage
-import reactor.core.publisher.Flux
-import ua.com.foxminded.restClient.mapper.TransactionMapper
-import ua.com.foxminded.restClient.mapper.listDtoToListResponse
+import reactor.core.publisher.Mono
+import ua.com.foxminded.restClient.mapper.toListResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 
@@ -26,7 +25,6 @@ class KafkaConsumerService constructor(
     private val kafkaProducerService: KafkaProducerService,
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
-    private val transactionMapper: TransactionMapper
 ) : CommandLineRunner {
 
     private val log: Logger = LoggerFactory.getLogger(KafkaConsumerService::class.java)
@@ -38,7 +36,7 @@ class KafkaConsumerService constructor(
         consume().subscribe()
     }
 
-    private fun consume(): Flux<ByteArray> {
+    private fun consume(): Mono<ByteArray> {
         return consumerTemplate
             .receiveAutoAck()
             .doOnNext {
@@ -72,8 +70,7 @@ class KafkaConsumerService constructor(
             }
             .map { exchangeService.exchangeTo(it, Currency.getInstance(it.currency)) }
             .collectList()
-            .map { transactionMapper.listDtoToListResponse(it).toByteArray() }
-            .flux()
+            .map { it.toListResponse().toByteArray() }
             .doOnNext {
                 kafkaProducerService.send(responseTopic, it)
             }
