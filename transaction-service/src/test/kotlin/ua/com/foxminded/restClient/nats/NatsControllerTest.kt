@@ -21,7 +21,6 @@ import org.testcontainers.junit.jupiter.Testcontainers
 import proto.ProtoMessage
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
-import ua.com.foxminded.restClient.mapper.TransactionMapperImpl
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 import utils.Transactions
@@ -35,8 +34,6 @@ class NatsControllerTest {
     val transactionService = Mockito.mock(TransactionService::class.java)
 
     val exchangeService = Mockito.mock(CurrencyExchangeService::class.java)
-
-    val transactionMapper = TransactionMapperImpl()
 
     lateinit var natsUrl: String
 
@@ -52,7 +49,7 @@ class NatsControllerTest {
         nats.start()
         natsUrl = "nats://%s:%d".format(nats.host, nats.getMappedPort(NATS_PORT))
         natsConnection = Nats.connect(natsUrl)
-        natsController = NatsController(transactionService, exchangeService, natsConnection, transactionMapper)
+        natsController = NatsController(transactionService, exchangeService, natsConnection)
     }
 
     @Test
