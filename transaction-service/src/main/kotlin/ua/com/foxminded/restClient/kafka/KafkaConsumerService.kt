@@ -36,7 +36,7 @@ class KafkaConsumerService constructor(
         consume().subscribe()
     }
 
-    private fun consume(): Flux<ByteArray> {
+    private fun consume(): Mono<ByteArray> {
         return consumerTemplate
             .receiveAutoAck()
             .doOnNext {
