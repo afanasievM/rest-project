@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate
 import org.springframework.kafka.core.reactive.ReactiveKafkaProducerTemplate
 import reactor.kafka.receiver.ReceiverOptions
@@ -22,6 +23,7 @@ class KafkaConfig {
     }
 
     @Bean
+    @Primary
     fun reactiveKafkaConsumerTemplate(
         kafkaReceiverOptions: ReceiverOptions<String, ByteArray>
     ): ReactiveKafkaConsumerTemplate<String, ByteArray> {
