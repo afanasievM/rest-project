@@ -18,7 +18,7 @@ import ua.com.foxminded.restClient.service.RateService
 import utils.Transactions
 
 @SpringBootTest
-@EmbeddedKafka(topics = ["t1", "t2"], partitions = 1)
+@EmbeddedKafka(topics = ["test_transactions", "test_transactions_produce"], partitions = 1)
 class KafkaConsumerServiceTest : DBTestConfig() {
 
     @Value(value = "\${kafka.consumer.topics}")
