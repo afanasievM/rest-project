@@ -8,7 +8,7 @@ import org.mockito.Mockito
 import org.mockito.kotlin.any
 import org.springframework.data.domain.Pageable
 import proto.ProtoMessage
-import proto.ProtoMessage.FindTransactionsByPersonIdAndTimeResponse
+import proto.ProtoMessage.Transaction
 import proto.ReactorTransactionsServiceGrpc
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
@@ -41,32 +41,35 @@ class TransactionGRPCServiceTest {
             .verifyComplete()
     }
 
-
     private fun buildTransactionListResponse(): ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse {
         val responseTime1 = LocalDateTime.parse("2022-12-01T12:00").toInstant(ZoneOffset.UTC)
-        val response1 = FindTransactionsByPersonIdAndTimeResponse.newBuilder().apply {
+        val response1 = Transaction.newBuilder().apply {
             id = "e966f601-4621-11ed-b878-0242ac120002"
             personId = "e966f608-4621-11ed-b878-0242ac120002"
             transactionTimeBuilder.setSeconds(responseTime1.epochSecond).setNanos(responseTime1.nano)
-            direction = FindTransactionsByPersonIdAndTimeResponse.Direction.OUTPUT
+            direction = Transaction.Direction.OUTPUT
             value = 36650.001525878906
             currency = "UAH"
             iban = "GB29NWBK60161331926819"
         }.build()
         val responseTime2 = LocalDateTime.parse("2022-12-02T12:00").toInstant(ZoneOffset.UTC)
-        val response2 = FindTransactionsByPersonIdAndTimeResponse.newBuilder().apply {
+        val response2 = Transaction.newBuilder().apply {
             id = "e966f602-4621-11ed-b878-0242ac120002"
             personId = "e966f608-4621-11ed-b878-0242ac120002"
             transactionTimeBuilder.setSeconds(responseTime2.epochSecond).setNanos(responseTime2.nano)
-            direction = FindTransactionsByPersonIdAndTimeResponse.Direction.OUTPUT
+            direction = Transaction.Direction.OUTPUT
             value = 36650.001525878906
             currency = "UAH"
             iban = "GB29NWBK60161331926819"
         }.build()
         return ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse
             .newBuilder()
-            .addTransaction(response1)
-            .addTransaction(response2)
+            .setSuccess(
+                ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse.Success.newBuilder()
+                    .addTransactions(response1)
+                    .addTransactions(response2)
+                    .build()
+            )
             .build()
     }
 

@@ -2,17 +2,17 @@ version: '3.9'
 
 services:
   nats:
-      container_name: 'nats'
-      image: 'nats'
-      ports:
-        - "4222:4222"
-        - "8222:8222"
+    container_name: 'nats'
+    image: 'nats'
+    ports:
+      - "4222:4222"
+      - "8222:8222"
 
   university:
     image: 'university-service'
     build:
-      context: ./university-service
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: ./university-service/Dockerfile
     restart: on-failure
     container_name: 'university-service'
     depends_on:
@@ -26,16 +26,20 @@ services:
   transaction:
     image: 'transaction-service'
     build:
-      context: ./transaction-service
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: ./transaction-service/Dockerfile
     restart: on-failure
     container_name: 'transaction-service'
     depends_on:
       - mongodb
+      - redis
+      - nats
+      - kafka-ui
     environment:
-        SPRING.DATA.MONGODB.HOST: mongodb
-        SPRING.REDIS.HOST: localhost
-        SPRING.REDIS.PORT: 6379
+      SPRING.DATA.MONGODB.HOST: mongodb
+      SPRING.DATA.REDIS.URL: redis://redis:6379
+      SPRING.DATA.REDIS.PORT: 6379
+      NATS.URL: nats://nats:4222
     ports:
       - "8082:8082"
 
@@ -48,8 +52,79 @@ services:
       MONGO_INITDB_ROOT_USERNAME: misha
       MONGO_INITDB_ROOT_PASSWORD: 1111
     volumes:
-        - ./data:/mongodata
+      - ./data:/mongodata
   redis:
     image: redis
     ports:
       - "6379:6379"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+
+  kafka1:
+    image: confluentinc/cp-kafka
+    container_name: kafka1
+    depends_on:
+      - zookeeper
+    ports:
+      - "29091:29091"
+    environment:
+      KAFKA_CLUSTER_ID: my-cluster
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CLIENT:PLAINTEXT,INTER_BROKER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: CLIENT://localhost:29091,INTER_BROKER://kafka1:9091
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTER_BROKER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kafka2:
+    image: confluentinc/cp-kafka
+    container_name: kafka2
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_CLUSTER_ID: my-cluster
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CLIENT:PLAINTEXT,INTER_BROKER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: CLIENT://localhost:29092,INTER_BROKER://kafka2:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTER_BROKER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kafka3:
+    image: confluentinc/cp-kafka
+    container_name: kafka3
+    depends_on:
+      - zookeeper
+    ports:
+      - "29093:29093"
+    environment:
+      KAFKA_CLUSTER_ID: my-cluster
+      KAFKA_BROKER_ID: 3
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CLIENT:PLAINTEXT,INTER_BROKER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: CLIENT://localhost:29093,INTER_BROKER://kafka3:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTER_BROKER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8083:8080"
+    restart: always
+    depends_on:
+      - kafka1
+      - kafka2
+      - kafka3
+    environment:
+      KAFKA_CLUSTERS_0_NAME: cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9091
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181

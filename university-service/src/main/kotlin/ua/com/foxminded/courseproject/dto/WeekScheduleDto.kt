@@ -1,7 +1,7 @@
 package ua.com.foxminded.courseproject.dto
 
+import jakarta.validation.constraints.NotNull
 import java.util.UUID
-import javax.validation.constraints.NotNull
 
 data class WeekScheduleDto(
     var id: UUID? = UUID.randomUUID(),

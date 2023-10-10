@@ -1,6 +1,5 @@
 package ua.com.foxminded.restClient.nats
 
-import com.google.protobuf.Timestamp
 import io.nats.client.Connection
 import io.nats.client.Message
 import java.time.LocalDateTime
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import proto.ProtoMessage
-import ua.com.foxminded.restClient.dto.TransactionDto
+import ua.com.foxminded.restClient.mapper.toListResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 
@@ -19,7 +18,7 @@ import ua.com.foxminded.restClient.service.TransactionService
 class NatsController @Autowired constructor(
     private val transactionService: TransactionService,
     private val exchangeService: CurrencyExchangeService,
-    private val natsConnection: Connection
+    private val natsConnection: Connection,
 ) {
     private val identificator = "transactions.service"
 
@@ -31,7 +30,6 @@ class NatsController @Autowired constructor(
         }
     }
 
-
     fun handleMessage(message: Message) {
         val request = ProtoMessage.FindTransactionsByPersonIdAndTimeRequest.parseFrom(message.data)
         transactionService.findAllByIdAndBetweenDate(
@@ -41,28 +39,10 @@ class NatsController @Autowired constructor(
             Pageable.ofSize(request.size).withPage(request.page)
         )
             .map { exchangeService.exchangeTo(it, Currency.getInstance(request.currency)) }
-            .map { mapTransactionDtoToResponse(it) }
+            .collectList()
+            .map {it.toListResponse()}
             .subscribe {
                 natsConnection.publish(message.replyTo, identificator, it.toByteArray())
             }
-
     }
-
-    private fun mapTransactionDtoToResponse(
-        dto: TransactionDto
-    ): ProtoMessage.FindTransactionsByPersonIdAndTimeResponse {
-        return ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.newBuilder()
-            .setId(dto.id.toString())
-            .setPersonId(dto.personId.toString())
-            .setTransactionTime(
-                Timestamp.newBuilder()
-                    .setSeconds(dto.transactionTime?.toEpochSecond(ZoneOffset.UTC) ?: 0)
-                    .setNanos(dto.transactionTime?.nano ?: 0)
-            )
-            .setValue(dto.value ?: 0.0)
-            .setCurrency(dto.currency)
-            .setIban(dto.iban)
-            .build()
-    }
-
 }

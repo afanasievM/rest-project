@@ -20,7 +20,7 @@ class LoggingRequestDecorator internal constructor(log: Logger, delegate: Server
     init {
         val path = delegate.uri.path
         val query = delegate.uri.query
-        val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name
+        val method = Optional.ofNullable(delegate.method).orElse(HttpMethod.GET).name()
         log.info(
             "{} {}", method, path + (if (StringUtils.hasText(query)) "?$query" else "")
         )

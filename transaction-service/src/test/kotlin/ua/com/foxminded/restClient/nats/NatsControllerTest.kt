@@ -55,7 +55,7 @@ class NatsControllerTest {
     @Test
     fun `nats should return flux transactions when input correct`() {
         val request: ProtoMessage.FindTransactionsByPersonIdAndTimeRequest = Transactions.transactionRequest
-        val latch = CountDownLatch(2)
+        val latch = CountDownLatch(1)
         val responseMessages: MutableList<Message> = mutableListOf()
         val expectedSize = 2
         val dispatcher = natsConnection.createDispatcher {
@@ -79,11 +79,14 @@ class NatsControllerTest {
             .thenReturn(testDtos[1])
         natsConnection.publish(NATS_REQUEST_TOPIC, NATS_RESPONSE_TOPIC, request.toByteArray())
         latch.await()
-        val responseIds = responseMessages
-            .map { ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.parseFrom(it.data).id }
+        val responseList =  ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse
+            .parseFrom(responseMessages[0].data)
+            .success
+            .transactionsList
 
-        assertEquals(expectedSize, responseMessages.size)
-        assertEquals(responseIds.contains(testDtos[0].id.toString()), true)
+
+        assertEquals(expectedSize, responseList.size)
+        assertEquals(testDtos[0].id.toString() == responseList[0].id, true)
     }
 
     @AfterAll

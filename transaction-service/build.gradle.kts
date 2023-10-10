@@ -1,22 +1,23 @@
+
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
 val MAPSTRUCT_VER = "1.5.3.Final"
 val OPENAPI_VER = "1.7.0"
 val HTTP_CLIENT_VER = "4.5.13"
-val SPRINGBOOT_VER = "2.7.4"
+val SPRINGBOOT_VER = "3.1.4"
 val GRPC_VER = "1.42.1"
 val REACTIVE_GRPC_VER = "1.2.4"
 
 plugins {
     java
-    id("org.springframework.boot") version "2.7.11"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.8.21"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    kotlin("jvm") version "1.8.21"
-    id("org.jetbrains.kotlin.kapt") version "1.8.21"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.8.21"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("org.springframework.boot")
+    id("org.jetbrains.kotlin.plugin.spring")
+    id("io.spring.dependency-management")
+    kotlin("jvm")
+    id("org.jetbrains.kotlin.kapt")
+    id("org.jetbrains.kotlin.plugin.allopen")
+    id("io.gitlab.arturbosch.detekt")
     `java-test-fixtures`
 }
 
@@ -47,8 +48,8 @@ dependencies {
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
     implementation("org.springframework.boot:spring-boot-gradle-plugin:$SPRINGBOOT_VER")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
-    implementation("org.slf4j:slf4j-api:1.7.32")
-    implementation("ch.qos.logback:logback-classic:1.2.9")
+    implementation("org.slf4j:slf4j-api:2.0.5")
+    implementation("ch.qos.logback:logback-classic:1.4.7")
     implementation("org.projectlombok:lombok:1.18.20")
     implementation("io.nats:jnats:2.16.8")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
@@ -60,6 +61,8 @@ dependencies {
     implementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
     implementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
     implementation(project(":protobuf"))
+    implementation("org.springframework.kafka:spring-kafka:3.0.11")
+    implementation("io.projectreactor.kafka:reactor-kafka:1.3.21")
 
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
     implementation(kotlin("stdlib-jdk8"))

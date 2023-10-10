@@ -12,7 +12,6 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.junit.jupiter.Testcontainers
-import reactor.core.publisher.toMono
 import java.nio.file.Files
 
 @Testcontainers
@@ -45,6 +44,7 @@ open class DBTestConfig {
 
     @BeforeEach
     fun loadData() {
+        dropData()
         colections.forEach {
             val jsonFile = ClassPathResource(Companion.DATASET_PATH + it + ".json").file
             val jsonString = String(Files.readAllBytes(jsonFile.toPath()))
@@ -59,7 +59,7 @@ open class DBTestConfig {
     @AfterEach
     fun dropData() {
         colections.forEach {
-            mongoTemplate.getCollection(it).block().drop().toMono().block()
+            mongoTemplate.dropCollection(it).block()
         }
     }
 

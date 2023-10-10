@@ -6,11 +6,10 @@ import org.bson.Document
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
-import org.springframework.data.repository.reactive.ReactiveSortingRepository
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import org.springframework.stereotype.Repository
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import reactor.core.publisher.switchIfEmpty
 import ua.com.foxminded.courseproject.entity.Group
 import ua.com.foxminded.courseproject.entity.Lesson
 import ua.com.foxminded.courseproject.mapper.LessonMapper
@@ -48,7 +47,7 @@ class LessonRepositoryImp(
 
     private fun <T> dBRefMapper(
         doc: Document,
-        repository: ReactiveSortingRepository<T, UUID>,
+        repository: ReactiveCrudRepository<T, UUID>,
         fieldName: String
     ): Mono<Document> {
         val dbRef = doc.get(fieldName, DBRef::class.java)
@@ -56,21 +55,18 @@ class LessonRepositoryImp(
             Mono.just(doc)
                 .map { it }
         } else {
-            repository.findById(UUID.fromString(dbRef.id.toString()))
+            repository
+                .findById(UUID.fromString(dbRef.id.toString()))
                 .map {
                     doc[fieldName] = it
                     return@map doc
-                }
-                .switchIfEmpty {
-                    doc[fieldName] = null
-                    return@switchIfEmpty Mono.just(doc)
                 }
         }
     }
 
     private fun <T> listDBRefMapper(
         doc: Document,
-        repository: ReactiveSortingRepository<T, UUID>,
+        repository: ReactiveCrudRepository<T, UUID>,
         fieldName: String
     ): Mono<Document> {
         val dbRefs = doc.get(fieldName, ArrayList<DBRef>())

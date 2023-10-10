@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable
 import proto.ProtoMessage
 import proto.ReactorTransactionsServiceGrpc
 import reactor.core.publisher.Mono
-import ua.com.foxminded.restClient.dto.TransactionDto
+import ua.com.foxminded.restClient.mapper.toListResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
 
@@ -34,27 +34,7 @@ class TransactionGRPCService(
                 )
             }
             .map { exchangeService.exchangeTo(it, Currency.getInstance(currency)) }
-            .map(this::mapTransactionDtoToResponse)
             .collectList()
-            .map {
-                ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse.newBuilder()
-                    .addAllTransaction(it)
-                    .build()
-            }
-    }
-
-    private fun mapTransactionDtoToResponse(
-        dto: TransactionDto
-    ): ProtoMessage.FindTransactionsByPersonIdAndTimeResponse {
-        return ProtoMessage.FindTransactionsByPersonIdAndTimeResponse.newBuilder().apply {
-            id = dto.id.toString()
-            personId = dto.personId.toString()
-            transactionTimeBuilder
-                .setSeconds(dto.transactionTime?.toEpochSecond(ZoneOffset.UTC) ?: 0)
-                .setNanos(dto.transactionTime?.nano ?: 0)
-            value = dto.value ?: 0.0
-            currency = dto.currency
-            iban = dto.iban
-        }.build()
+            .map { it.toListResponse() }
     }
 }

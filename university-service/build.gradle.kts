@@ -2,18 +2,18 @@ import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 
 val OPENAPI_VER = "1.7.0"
-val HTTP_CLIENT_VER = "4.5.13"
-val SPRINGBOOT_VER = "2.7.4"
+val HTTP_CLIENT_VER = "4.5.3"
+val SPRINGBOOT_VER = "3.1.4"
 val GRPC_VER = "1.53.0"
 val REACTIVE_GRPC_VER = "1.2.4"
 
 plugins {
     java
-    id("org.springframework.boot") version "2.7.11"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.8.21"
-    kotlin("jvm") version "1.8.21"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("org.springframework.boot")
+    id("io.spring.dependency-management")
+    id("org.jetbrains.kotlin.plugin.spring")
+    kotlin("jvm")
+    id("io.gitlab.arturbosch.detekt")
     `java-test-fixtures`
 }
 
@@ -37,6 +37,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-webflux-core:$OPENAPI_VER")
     implementation("org.springframework.boot:spring-boot-starter-security:$SPRINGBOOT_VER")
     implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
+    implementation("org.apache.httpcomponents.client5:httpclient5:5.2.1")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")

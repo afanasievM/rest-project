@@ -57,7 +57,7 @@ internal open class WeekScheduleRepositoryTest : DBTestConfig() {
 
         StepVerifier.create(actual)
             .expectNextCount(0)
-            .verifyComplete()
+            .verifyError()
     }
 
     @Test
@@ -68,6 +68,6 @@ internal open class WeekScheduleRepositoryTest : DBTestConfig() {
 
         StepVerifier.create(actual)
             .expectNextCount(0)
-            .verifyComplete()
+            .verifyError()
     }
 }
