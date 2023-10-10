@@ -41,13 +41,7 @@ class KafkaConsumerServiceTest : DBTestConfig() {
         val latch = CountDownLatch(1)
         val expectedSize = 2
         kafkaConsumerTemplate.receiveAutoAck()
-            .handle { obj, sink ->
-                val byteArray = obj.value() as ByteArray
-                when (String(byteArray)) {
-                    "Hello" -> {}
-                    else -> sink.next(byteArray)
-                }
-            }
+            .map { it.value() as ByteArray }
             .doOnNext {
                 messageList.add(ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse.parseFrom(it))
                 latch.countDown()
