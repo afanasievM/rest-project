@@ -13,7 +13,7 @@ import org.springframework.data.domain.Pageable
 import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate
 import org.springframework.stereotype.Service
 import proto.ProtoMessage
-import reactor.core.publisher.Mono
+import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.mapper.toListResponse
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
 import ua.com.foxminded.restClient.service.TransactionService
@@ -27,7 +27,7 @@ class KafkaConsumerService constructor(
     private val exchangeService: CurrencyExchangeService,
 ) : CommandLineRunner {
 
-    val log: Logger = LoggerFactory.getLogger(KafkaConsumerService::class.java)
+    private val log: Logger = LoggerFactory.getLogger(KafkaConsumerService::class.java)
 
     @Value(value = "\${kafka.producer.topic}")
     private lateinit var responseTopic: String
@@ -36,7 +36,7 @@ class KafkaConsumerService constructor(
         consume().subscribe()
     }
 
-    private fun consume(): Mono<ByteArray> {
+    private fun consume(): Flux<ByteArray> {
         return consumerTemplate
             .receiveAutoAck()
             .doOnNext {
@@ -67,12 +67,10 @@ class KafkaConsumerService constructor(
                     LocalDateTime.ofEpochSecond(it.endDate.seconds, it.endDate.nanos, ZoneOffset.UTC),
                     Pageable.ofSize(it.size).withPage(it.page)
                 )
+                    .map { exchangeService.exchangeTo(it, Currency.getInstance(it.currency)) }
+                    .collectList()
+                    .map { it.toListResponse().toByteArray() }
             }
-            .map { exchangeService.exchangeTo(it, Currency.getInstance(it.currency)) }
-            .collectList()
-            .map { it.toListResponse().toByteArray() }
-            .doOnNext {
-                kafkaProducerService.send(responseTopic, it)
-            }
+            .doOnNext { kafkaProducerService.send(responseTopic, it) }
     }
 }
