@@ -22,7 +22,6 @@ import proto.ProtoMessage
 import reactor.core.publisher.Flux
 import ua.com.foxminded.restClient.dto.TransactionDto
 import ua.com.foxminded.restClient.service.CurrencyExchangeService
-import ua.com.foxminded.restClient.service.TransactionService
 import utils.Transactions
 
 @Testcontainers
