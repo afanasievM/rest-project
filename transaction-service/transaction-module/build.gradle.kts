@@ -51,9 +51,10 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka:3.0.11")
     implementation("io.projectreactor.kafka:reactor-kafka:1.3.21")
     implementation(project(":protobuf"))
-    api(project(":transaction-service:rate-module"))
+    implementation(project(":transaction-service:rate-module"))
 
-    annotationProcessor("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
+    kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
+
     implementation(kotlin("stdlib-jdk8"))
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
@@ -86,7 +87,7 @@ tasks.getByName<BootJar>("bootJar") {
     enabled = false
 }
 tasks.getByName<Jar>("jar") {
-    enabled = true
+    enabled = false
 }
 
 tasks.test {

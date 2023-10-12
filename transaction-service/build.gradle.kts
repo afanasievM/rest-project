@@ -60,7 +60,7 @@ detekt {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$SPRINGBOOT_VER")
 //    implementation(project(":transaction-service:rate-module"))
-    api(project(":transaction-service:transaction-module"))
+    implementation(project(":transaction-service:transaction-module"))
 //    implementation("org.springframework.boot:spring-boot-starter-webflux:$SPRINGBOOT_VER")
 //    implementation("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
 //    implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
