@@ -1,4 +1,4 @@
-package com.ajaxsystems.application.handlers
+package com.ajaxsystems.infrastructure.web.handlers
 
 import com.ajaxsystems.domain.exceptions.CurrencyNotFoundException
 import io.swagger.v3.oas.annotations.media.Content

@@ -1,6 +1,7 @@
 
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 val MAPSTRUCT_VER = "1.5.3.Final"
 val OPENAPI_VER = "1.7.0"
@@ -112,7 +113,7 @@ dependencies {
 }
 
 springBoot {
-    mainClass = "ua.com.foxminded.restClient.RestClientApplicationKt"
+    mainClass = "com.ajaxsystems.RestClientApplicationKt"
 }
 
 sourceSets {

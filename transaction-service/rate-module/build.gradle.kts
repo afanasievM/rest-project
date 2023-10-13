@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 val HTTP_CLIENT_VER = "4.5.13"
@@ -8,6 +9,7 @@ plugins {
     java
     id("org.springframework.boot")
     id("org.jetbrains.kotlin.plugin.spring")
+    id("io.spring.dependency-management")
     kotlin("jvm")
 }
 
@@ -37,5 +39,5 @@ tasks.getByName<BootJar>("bootJar") {
     enabled = false
 }
 tasks.getByName<Jar>("jar") {
-    enabled = false
+    enabled = true
 }

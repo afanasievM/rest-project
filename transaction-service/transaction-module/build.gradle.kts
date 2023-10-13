@@ -87,7 +87,7 @@ tasks.getByName<BootJar>("bootJar") {
     enabled = false
 }
 tasks.getByName<Jar>("jar") {
-    enabled = false
+    enabled = true
 }
 
 tasks.test {
