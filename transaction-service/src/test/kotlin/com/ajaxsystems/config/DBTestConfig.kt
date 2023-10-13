@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.nio.file.Files
-import org.springframework.data.mongodb.core.dropCollection
 
 @Testcontainers
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

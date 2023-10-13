@@ -1,5 +1,6 @@
 package com.ajaxsystems.kafka
 
+import com.ajaxsystems.application.service.GetRatesUseCase
 import java.util.concurrent.CountDownLatch
 import kotlin.test.assertEquals
 import org.junit.jupiter.api.Test
@@ -14,7 +15,6 @@ import org.springframework.kafka.core.reactive.ReactiveKafkaProducerTemplate
 import org.springframework.kafka.test.context.EmbeddedKafka
 import proto.ProtoMessage
 import com.ajaxsystems.config.DBTestConfig
-import ua.com.foxminded.restClient.service.RateService
 import utils.Transactions
 
 @SpringBootTest
@@ -25,7 +25,7 @@ class KafkaConsumerServiceTest : DBTestConfig() {
     private lateinit var consumerTopics: List<String>
 
     @MockBean
-    private lateinit var rateService: RateService
+    private lateinit var rateService: GetRatesUseCase
 
     @Autowired
     private lateinit var kafkaProducerTemplate: ReactiveKafkaProducerTemplate<String, ByteArray>
@@ -47,7 +47,7 @@ class KafkaConsumerServiceTest : DBTestConfig() {
                 latch.countDown()
             }.subscribe()
 
-        Mockito.`when`(rateService.rates()).thenReturn(Transactions.rates)
+        Mockito.`when`(rateService.getRates()).thenReturn(Transactions.rates)
         kafkaProducerTemplate.send(consumerTopics[0], request.toByteArray()).subscribe()
         latch.await()
 

@@ -29,7 +29,7 @@ class TransactionGRPCService(
                     it.currency
                 )
             }
-            .map { it.toListResponse() }
             .single()
+            .map { it.toListResponse() }
     }
 }

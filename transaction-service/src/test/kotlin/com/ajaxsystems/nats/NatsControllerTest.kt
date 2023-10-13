@@ -1,10 +1,12 @@
 package com.ajaxsystems.nats
 
+import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
+import com.ajaxsystems.domain.dto.TransactionDto
+import com.ajaxsystems.infrastructure.nats.controller.NatsController
 import io.nats.client.Connection
 import io.nats.client.Message
 import io.nats.client.Nats
 import java.time.LocalDateTime
-import java.util.Currency
 import java.util.UUID
 import java.util.concurrent.CountDownLatch
 import kotlin.test.assertEquals
@@ -14,14 +16,11 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.mockito.Mockito
 import org.mockito.kotlin.any
-import org.mockito.kotlin.eq
 import org.springframework.data.domain.Pageable
 import org.testcontainers.containers.GenericContainer
 import org.testcontainers.junit.jupiter.Testcontainers
 import proto.ProtoMessage
-import reactor.core.publisher.Flux
-import ua.com.foxminded.restClient.dto.TransactionDto
-import ua.com.foxminded.restClient.service.CurrencyExchangeService
+import reactor.core.publisher.Mono
 import utils.Transactions
 
 @Testcontainers
@@ -30,9 +29,7 @@ class NatsControllerTest {
 
     val testDtos: List<TransactionDto> = Transactions.transactionList
 
-    val transactionService = Mockito.mock(TransactionService::class.java)
-
-    val exchangeService = Mockito.mock(CurrencyExchangeService::class.java)
+    val useCase = Mockito.mock(FindTransactionsRestApiInputPort::class.java)
 
     lateinit var natsUrl: String
 
@@ -48,7 +45,7 @@ class NatsControllerTest {
         nats.start()
         natsUrl = "nats://%s:%d".format(nats.host, nats.getMappedPort(NATS_PORT))
         natsConnection = Nats.connect(natsUrl)
-        natsController = NatsController(transactionService, exchangeService, natsConnection)
+        natsController = NatsController(useCase, natsConnection)
     }
 
     @Test
@@ -64,18 +61,15 @@ class NatsControllerTest {
         dispatcher.subscribe(NATS_RESPONSE_TOPIC)
 
         Mockito.`when`(
-            transactionService.findAllByIdAndBetweenDate(
+            useCase.findAllByIdAndBetweenDateAndExchangeCurrency(
                 any<UUID>(),
                 any<LocalDateTime>(),
                 any<LocalDateTime>(),
-                any<Pageable>()
+                any<Pageable>(),
+                any<String>()
             )
         )
-            .thenReturn(Flux.fromIterable(testDtos))
-        Mockito.`when`(exchangeService.exchangeTo(eq(testDtos[0]), any<Currency>()))
-            .thenReturn(testDtos[0])
-        Mockito.`when`(exchangeService.exchangeTo(eq(testDtos[1]), any<Currency>()))
-            .thenReturn(testDtos[1])
+            .thenReturn(Mono.just(testDtos))
         natsConnection.publish(NATS_REQUEST_TOPIC, NATS_RESPONSE_TOPIC, request.toByteArray())
         latch.await()
         val responseList =  ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse
