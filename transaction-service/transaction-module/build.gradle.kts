@@ -16,7 +16,6 @@ plugins {
     kotlin("jvm")
     id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.allopen")
-    `java-test-fixtures`
 }
 
 
@@ -56,25 +55,6 @@ dependencies {
     kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
 
     implementation(kotlin("stdlib-jdk8"))
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
-    testImplementation(kotlin("test"))
-    testImplementation("org.testcontainers:testcontainers:1.18.3")
-    testImplementation("org.testcontainers:mongodb:1.18.3")
-    testImplementation("io.nats:jnats:2.16.8")
-    testImplementation("org.testcontainers:junit-jupiter:1.18.3")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
-    testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.springframework.kafka:spring-kafka-test:3.0.11")
-
-    testFixturesImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
-    testFixturesImplementation("com.google.protobuf:protobuf-kotlin:3.24.3")
-    testFixturesImplementation("io.grpc:grpc-all:$GRPC_VER")
-    testFixturesImplementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
-    testFixturesImplementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
-    testFixturesImplementation(project(":protobuf"))
-    testFixturesImplementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
-    testFixturesImplementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.5")
 }
 
 sourceSets {
@@ -100,14 +80,6 @@ tasks.withType<JavaCompile>() {
 tasks.withType<JavaCompile>() {
     options.compilerArgs = listOf("-Amapstruct.suppressGeneratorTimestamp=true")
 }
-
-//kapt {
-//    keepJavacAnnotationProcessors = false
-//    correctErrorTypes = true
-//    arguments {
-//        arg("mapstruct.nullValueCheckStrategy", "ALWAYS")
-//    }
-//}
 
 kotlin {
     jvmToolchain(17)

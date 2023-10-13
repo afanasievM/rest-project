@@ -60,37 +60,7 @@ detekt {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter:$SPRINGBOOT_VER")
-//    implementation(project(":transaction-service:rate-module"))
     implementation(project(":transaction-service:transaction-module"))
-//    implementation("org.springframework.boot:spring-boot-starter-webflux:$SPRINGBOOT_VER")
-//    implementation("org.springframework.boot:spring-boot-starter-jdbc:$SPRINGBOOT_VER")
-//    implementation("org.springframework.boot:spring-boot-starter-aop:$SPRINGBOOT_VER")
-//    implementation("org.springframework.boot:spring-boot-starter-data-jpa:$SPRINGBOOT_VER")
-//    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$SPRINGBOOT_VER")
-//    implementation("org.springdoc:springdoc-openapi-webflux-ui:$OPENAPI_VER")
-//    implementation("org.springdoc:springdoc-openapi-webflux-core:$OPENAPI_VER")
-//    implementation("org.mapstruct:mapstruct:${MAPSTRUCT_VER}")
-//    implementation("org.apache.httpcomponents:httpclient:$HTTP_CLIENT_VER")
-//    implementation("org.springframework.boot:spring-boot-gradle-plugin:$SPRINGBOOT_VER")
-//    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
-//    implementation("org.slf4j:slf4j-api:2.0.5")
-//    implementation("ch.qos.logback:logback-classic:1.4.7")
-//    implementation("org.projectlombok:lombok:1.18.20")
-//    implementation("io.nats:jnats:2.16.8")
-//    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
-//    implementation("org.springframework.boot:spring-boot-starter-data-redis:$SPRINGBOOT_VER")
-//    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
-//    implementation("redis.clients:jedis")
-//    implementation("com.google.protobuf:protobuf-kotlin:3.24.3")
-//    implementation("io.grpc:grpc-all:$GRPC_VER")
-//    implementation("com.salesforce.servicelibs:reactor-grpc-stub:$REACTIVE_GRPC_VER")
-//    implementation("com.salesforce.servicelibs:grpc-spring:0.8.1")
-//    implementation(project(":protobuf"))
-//    implementation("org.springframework.kafka:spring-kafka:3.0.11")
-//    implementation("io.projectreactor.kafka:reactor-kafka:1.3.21")
-//
-//    kapt("org.mapstruct:mapstruct-processor:${MAPSTRUCT_VER}")
-//    implementation(kotlin("stdlib-jdk8"))
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$SPRINGBOOT_VER")
     testImplementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:$SPRINGBOOT_VER")
@@ -150,13 +120,6 @@ tasks.withType<JavaCompile>() {
 kotlin {
     jvmToolchain(17)
 }
-//kapt {
-//    keepJavacAnnotationProcessors = false
-//    correctErrorTypes = true
-//    arguments {
-//        arg("mapstruct.nullValueCheckStrategy", "ALWAYS")
-//    }
-//}
 
 tasks.withType<Detekt>().configureEach {
     jvmTarget = "17"
