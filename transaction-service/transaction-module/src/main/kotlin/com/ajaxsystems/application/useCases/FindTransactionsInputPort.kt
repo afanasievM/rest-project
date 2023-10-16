@@ -6,7 +6,7 @@ import java.util.UUID
 import org.springframework.data.domain.Pageable
 import reactor.core.publisher.Mono
 
-interface FindTransactionsRestApiInputPort {
+interface FindTransactionsInputPort {
     fun findAllByIdAndBetweenDateAndExchangeCurrency(
         id: UUID,
         start: LocalDateTime?,

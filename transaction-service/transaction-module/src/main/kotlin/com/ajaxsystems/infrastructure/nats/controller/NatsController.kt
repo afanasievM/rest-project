@@ -1,6 +1,6 @@
 package com.ajaxsystems.infrastructure.nats.controller
 
-import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
+import com.ajaxsystems.application.useCases.FindTransactionsInputPort
 import com.ajaxsystems.infrastructure.database.mapper.toListResponse
 import io.nats.client.Connection
 import io.nats.client.Message
@@ -13,7 +13,7 @@ import proto.ProtoMessage
 
 @Component
 class NatsController(
-    private val useCase: FindTransactionsRestApiInputPort,
+    private val useCase: FindTransactionsInputPort,
     private val natsConnection: Connection,
 ) {
     private val identificator = "transactions.service"

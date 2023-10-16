@@ -12,10 +12,10 @@ import reactor.core.publisher.Mono
 
 
 @Service
-class FindTransactionsRestApiUseCase(
+class FindTransactionsUseCase(
     private val transactionsService: TransactionsServiceOutPort,
     private val exchangeService: CurrencyExchangeOutPort
-) : FindTransactionsRestApiInputPort {
+) : FindTransactionsInputPort {
 
     override fun findAllByIdAndBetweenDateAndExchangeCurrency(
         id: UUID,

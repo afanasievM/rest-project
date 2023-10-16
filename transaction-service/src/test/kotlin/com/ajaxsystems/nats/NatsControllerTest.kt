@@ -1,6 +1,6 @@
 package com.ajaxsystems.nats
 
-import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
+import com.ajaxsystems.application.useCases.FindTransactionsInputPort
 import com.ajaxsystems.domain.dto.TransactionDto
 import com.ajaxsystems.infrastructure.nats.controller.NatsController
 import io.nats.client.Connection
@@ -29,7 +29,7 @@ class NatsControllerTest {
 
     val testDtos: List<TransactionDto> = Transactions.transactionList
 
-    val useCase = Mockito.mock(FindTransactionsRestApiInputPort::class.java)
+    val useCase = Mockito.mock(FindTransactionsInputPort::class.java)
 
     lateinit var natsUrl: String
 

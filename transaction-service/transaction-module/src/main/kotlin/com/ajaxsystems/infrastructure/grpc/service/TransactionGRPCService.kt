@@ -1,6 +1,6 @@
 package com.ajaxsystems.infrastructure.grpc.service
 
-import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
+import com.ajaxsystems.application.useCases.FindTransactionsInputPort
 import com.ajaxsystems.infrastructure.database.mapper.toListResponse
 import com.salesforce.grpc.contrib.spring.GrpcService
 import java.time.LocalDateTime
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono
 
 @GrpcService
 class TransactionGRPCService(
-    private val useCase: FindTransactionsRestApiInputPort
+    private val useCase: FindTransactionsInputPort
 ) : ReactorTransactionsServiceGrpc.TransactionsServiceImplBase() {
 
     override fun findTransactionsByPersonIdAndTime(

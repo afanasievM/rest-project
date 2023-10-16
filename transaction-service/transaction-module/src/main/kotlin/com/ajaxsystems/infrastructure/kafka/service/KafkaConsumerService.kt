@@ -1,6 +1,6 @@
 package com.ajaxsystems.infrastructure.kafka.service
 
-import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
+import com.ajaxsystems.application.useCases.FindTransactionsInputPort
 import com.ajaxsystems.infrastructure.database.mapper.toListResponse
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -21,7 +21,7 @@ import reactor.core.publisher.Flux
 class KafkaConsumerService constructor(
     private val consumerTemplate: ReactiveKafkaConsumerTemplate<String, ByteArray>,
     private val kafkaProducerService: KafkaProducerService,
-    private val useCase: FindTransactionsRestApiInputPort,
+    private val useCase: FindTransactionsInputPort,
 ) : CommandLineRunner {
 
     private val log: Logger = LoggerFactory.getLogger(KafkaConsumerService::class.java)
