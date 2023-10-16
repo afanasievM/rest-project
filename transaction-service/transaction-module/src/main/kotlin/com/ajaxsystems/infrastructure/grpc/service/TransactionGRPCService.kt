@@ -1,7 +1,7 @@
 package com.ajaxsystems.infrastructure.grpc.service
 
 import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
-import com.ajaxsystems.infrastructure.mapper.toListResponse
+import com.ajaxsystems.infrastructure.database.mapper.toListResponse
 import com.salesforce.grpc.contrib.spring.GrpcService
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -20,7 +20,7 @@ class TransactionGRPCService(
         request: Mono<ProtoMessage.FindTransactionsByPersonIdAndTimeRequest>
     ): Mono<ProtoMessage.FindTransactionsByPersonIdAndTimeListResponse>? {
         return request
-            .flatMapMany {
+            .flatMap {
                 useCase.findAllByIdAndBetweenDateAndExchangeCurrency(
                     UUID.fromString(it.personId),
                     LocalDateTime.ofEpochSecond(it.startDate.seconds, it.endDate.nanos, ZoneOffset.UTC),
@@ -29,7 +29,6 @@ class TransactionGRPCService(
                     it.currency
                 )
             }
-            .single()
             .map { it.toListResponse() }
     }
 }

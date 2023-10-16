@@ -1,7 +1,7 @@
 package com.ajaxsystems.application.useCases
 
 
-import com.ajaxsystems.application.service.CurrencyExchangeService
+import com.ajaxsystems.application.service.CurrencyExchangeOutPort
 import com.ajaxsystems.domain.dto.TransactionDto
 import java.time.LocalDateTime
 import java.util.Currency
@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono
 @Service
 class FindTransactionsRestApiUseCase(
     private val transactionsService: TransactionsServiceOutPort,
-    private val exchangeService: CurrencyExchangeService
+    private val exchangeService: CurrencyExchangeOutPort
 ) : FindTransactionsRestApiInputPort {
 
     override fun findAllByIdAndBetweenDateAndExchangeCurrency(

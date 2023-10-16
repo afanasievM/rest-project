@@ -3,7 +3,7 @@ package com.ajaxsystems.infrastructure.database.mongodb.service
 import com.ajaxsystems.application.useCases.TransactionsServiceOutPort
 import com.ajaxsystems.domain.dto.TransactionDto
 import com.ajaxsystems.infrastructure.database.mongodb.repository.TransactionRepository
-import com.ajaxsystems.infrastructure.mapper.TransactionMapper
+import com.ajaxsystems.infrastructure.database.mapper.TransactionMapper
 import java.time.LocalDateTime
 import java.util.UUID
 import org.springframework.data.domain.Pageable

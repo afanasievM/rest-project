@@ -1,4 +1,4 @@
-package com.ajaxsystems.infrastructure.mapper
+package com.ajaxsystems.infrastructure.database.mapper
 
 import com.ajaxsystems.domain.dto.TransactionDto
 import com.ajaxsystems.infrastructure.database.mongodb.entity.Transaction

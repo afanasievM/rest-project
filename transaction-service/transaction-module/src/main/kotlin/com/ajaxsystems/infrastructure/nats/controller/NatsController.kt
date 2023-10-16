@@ -1,7 +1,7 @@
 package com.ajaxsystems.infrastructure.nats.controller
 
 import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
-import com.ajaxsystems.infrastructure.mapper.toListResponse
+import com.ajaxsystems.infrastructure.database.mapper.toListResponse
 import io.nats.client.Connection
 import io.nats.client.Message
 import java.time.LocalDateTime

@@ -1,5 +1,6 @@
 package com.ajaxsystems.infrastructure.web.controllers
 
+import com.ajaxsystems.application.useCases.FindTransactionsRestApiInputPort
 import com.ajaxsystems.application.useCases.FindTransactionsRestApiUseCase
 import com.ajaxsystems.domain.dto.TransactionDto
 import io.swagger.v3.oas.annotations.Operation
@@ -22,7 +23,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 class TransactionController(
-    private val useCase: FindTransactionsRestApiUseCase,
+    private val useCase: FindTransactionsRestApiInputPort,
 ) {
     @Operation(summary = "Get all transaction by ID with currency between dates.")
     @ApiResponse(
