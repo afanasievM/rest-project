@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration
 class NatsConfig {
     @Bean
     fun natsConncetion(@Value("\${nats.url}") natsUrl: String): Connection {
-        println(natsUrl)
         return Nats.connect(natsUrl)
     }
 }
