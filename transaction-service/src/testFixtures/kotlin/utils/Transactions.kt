@@ -1,5 +1,8 @@
 package utils
 
+import com.ajaxsystems.domain.dto.MonoRate
+import com.ajaxsystems.domain.dto.TransactionDto
+import com.ajaxsystems.domain.enums.Direction
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -8,9 +11,7 @@ import java.time.ZoneId
 import java.util.UUID
 import org.springframework.core.io.ClassPathResource
 import proto.ProtoMessage
-import ua.com.foxminded.restClient.dto.MonoRate
-import ua.com.foxminded.restClient.dto.TransactionDto
-import ua.com.foxminded.restClient.enums.Direction
+
 
 
 object Transactions {
